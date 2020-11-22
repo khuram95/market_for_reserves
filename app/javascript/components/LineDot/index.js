@@ -4,15 +4,24 @@ import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same 
 
 const LineDot = () => {
   const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 })
+  const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
 
   const DragStartLine = (event) => {
     console.log("event line", event)
   }
-  const DragLine = (event) => {
+  const DragLine = (event, ui) => {
     console.log("event dragging line", event)
+    setLinePosition({ x:  linePosition.x + ui.deltaX, y: linePosition.y + ui.deltaY})
+    console.log("event dragging", linePosition)
   }
   const DragEndLine = (event) => {
     console.log("event stop line", event)
+    if (linePosition.x > 10) {
+      console.log('move down')
+    }
+    if (linePosition.x < -10) {
+      console.log('move up')
+    }
   }
   const DragStartDot = (event) => {
     event.stopPropagation();
@@ -35,13 +44,13 @@ const LineDot = () => {
   }
 
   return (
-    <div style={{ display: "flex", justifyContent: "flex-end", transform: "rotate(45deg)", width: '300px' }} >
+    <div style={{ display: "flex", justifyContent: "flex-end", transform: "rotate(45deg)", width: '210px' }} >
       <Draggable
         axis="x"
         defaultPosition={{x: 0, y: 0}}
         position={null}
         scale={1}
-        bounds={{top: 0, left: -50, right: 50, bottom: 0}}
+        bounds={{top: 0, left: -75, right: 75, bottom: 0}}
         onStart={DragStartLine}
         onDrag={DragLine}
         onStop={DragEndLine}
