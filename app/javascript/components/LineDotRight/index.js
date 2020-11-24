@@ -2,27 +2,41 @@ import React, { useState } from 'react'
 import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 
 
-const LineDot = () => {
+const LineDotRight = (props) => {
+
+  const { questionAnswer, setAnsweredCorrectly, answeredCorrectly } = props
+  const { answer } = questionAnswer
   const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 })
   const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
+  const [answered, setAnswered] = useState(false)
 
   const DragStartLine = (event) => {
     console.log("event line", event)
   }
+
   const DragLine = (event, ui) => {
     console.log("event dragging line", event)
     setLinePosition({ x:  linePosition.x + ui.deltaX, y: linePosition.y + ui.deltaY})
     console.log("event dragging", linePosition)
   }
+
   const DragEndLine = (event) => {
-    console.log("event stop line", event)
-    if (linePosition.x > 10) {
-      console.log('move down')
+    if (linePosition.x > 10 && answer === "Shift right") {
+      console.log("Correct")
+      setLinePosition({x: 75, y: 0})
+      setAnsweredCorrectly(true)
     }
-    if (linePosition.x < -10) {
-      console.log('move up')
+    else if (linePosition.x < -10 && answer === "Shift left") {
+      console.log("Correct")
+      setLinePosition({x: -75, y: 0})
+      setAnsweredCorrectly(true)
+    }
+    else {
+      console.log("Wrong")
+      setAnsweredCorrectly(false)
     }
   }
+
   const DragStartDot = (event) => {
     event.stopPropagation();
     console.log("event", event)
@@ -41,14 +55,20 @@ const LineDot = () => {
       console.log('move up')
     }
     console.log("event stop", event)
+    if (dotPosition.x > 10 && answer === "Dot moves down")
+      console.log("Correct")
+    else if (dotPosition.x < -10 && answer === "Dot moves up")
+      console.log("Correct")
+    else
+      console.log("Wrong")
   }
 
   return (
-    <div style={{ display: "flex", justifyContent: "flex-end", transform: "rotate(45deg)", width: '210px' }} >
+    <div style={{ position: "absolute", top: "80px", left: "165px", transform: "rotate(45deg)" }} >
       <Draggable
         axis="x"
         defaultPosition={{x: 0, y: 0}}
-        position={null}
+        position={answeredCorrectly != null ? linePosition : null}
         scale={1}
         bounds={{top: 0, left: -75, right: 75, bottom: 0}}
         onStart={DragStartLine}
@@ -97,4 +117,4 @@ const LineDot = () => {
   )
 }
 
-export default LineDot
+export default LineDotRight
