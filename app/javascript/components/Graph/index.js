@@ -38,7 +38,6 @@ const Graph = () => {
   const [answeredCorrectly, setAnsweredCorrectly] = useState(null)
 
   const nextQuestion = () => {
-    console.log('sdf')
     setQuestionIndex(questionIndex + 1)
     setAnsweredCorrectly(null)
   }
@@ -47,21 +46,13 @@ const Graph = () => {
     <Grid container alignItems="center" direction="column">
       <Typography variant="h2" style={{ color: '#003E4C', fontWeight: '500' }}>{questionAnswers[questionIndex].title}</Typography>
       <Grid container item justify='space-evenly' alignItems='center'>
-        <Grid style={{ minWidth: '500px', maxWidth: '40%', border: '5px solid #003E4C', padding: '10px', paddingTop: '30px', borderRadius: '10px', marginRight: '50px', marginBottom: '50px'}}>
+        <Grid style={{ minWidth: '500px', maxWidth: '40%', border: '5px solid #003E4C', padding: '10px', paddingTop: '30px', marginRight: '50px', marginBottom: '50px', backgroundColor: '#fff'}}>
           <Grid style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
             <img src={breakingNews} style={{ marginTop: '-58px', height: '50px' }}></img>
             <Typography variant='h3' style={{ color: '#565656' }}>
               {questionAnswers[questionIndex].question}
             </Typography>
           </Grid>
-          {answeredCorrectly != null &&
-            <>
-              {/* <Grid>
-                {answeredCorrectly ? "Correct" : "Wrong"}
-              </Grid> */}
-              {questionAnswers.length - 1 > questionIndex ? < Button onClick={nextQuestion}>Next</Button> : < Button>Finish</Button>}
-          </>
-          }
         </Grid>
         <div style={{ display: 'flex', alignItems: 'center', width: '40%', justifyContent: 'space-around' }}>
           <img src={price} style={{ height: '30px' }}></img>
@@ -85,7 +76,7 @@ const Graph = () => {
           </Grid>
         </div>
       </Grid>
-      <Button style={{ color: '#fff', backgroundColor: '#00b1d9', fontSize: '24px', fontWeight: '500', marginTop: '50px', padding: '0px 30px' }}>Submit</Button>
+      <Button onClick={nextQuestion} style={{ color: '#fff', backgroundColor: '#00b1d9', fontSize: '24px', fontWeight: '500', marginTop: '50px', padding: '0px 30px' }}>Submit</Button>
     </Grid>
   )
 }

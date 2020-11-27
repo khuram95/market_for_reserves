@@ -6,36 +6,78 @@ const LineDotLeft = (props) => {
 
   const { questionAnswer, setAnsweredCorrectly, answeredCorrectly, setScore } = props
   const { answer } = questionAnswer
-  const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 })
+  const [dotPosition, setDotPosition] = useState({x: 0, y: 135})
   const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
-  const [correctPostion, setCorrectPostion] = useState({ x: 0, y: 0 })
+  const [correctPosition, setCorrectPosition] = useState(null)
+  const [wrongPosition, setWrongPosition] = useState(null)
+  const [showLine, setShowLine] = useState(false)
+  const [showDot, setShowDot] = useState(false)
   const [disable, setDisable] = useState(false)
+  const [lineColor, setLineColor] = useState("#003E4C")
+  const [dotBorderColor, setDotBorderColor] = useState("#003e4c")
+  const [dotFillColor, setDotFillColor] = useState("#00b1d9")
+  const [fadeDot, setFadeDot] = useState("1")
 
   const DragStartLine = (event) => {
-    console.log("event line", event)
+    // console.log("event line", event)
   }
 
   const DragLine = (event, ui) => {
-    console.log("event dragging line", event)
+    setFadeDot(0.5)
     setLinePosition({ x:  linePosition.x + ui.deltaX, y: linePosition.y + ui.deltaY})
-    console.log("event dragging", linePosition)
   }
 
-  const markQuestionAsWrong = (value) => {
-    if (answer.includes('Shift')){
-      // setLinePosition(value > 10 ? { x: 75, y: 0 } : { x: -75, y: 0 })
-      setDotPosition({ x: 0, y: 0 })
-      answer.includes('right') ? setCorrectPostion(75) : setCorrectPostion(-75)
+  const lineOrDotMoved = (position) => {
+    if (position == 135) {
+      setShowLine(true)
+      setWrongPosition(linePosition.x)
+      setLineColor("red")
     } else {
-      // setDotPosition(value > 10 ? { x: 0, y: 75 } : { x: 0, y: -75 })
-      // setLinePosition({ x: 0, y: 0 })
-      answer.includes('down') ? setCorrectPostion(260) : setCorrectPostion(25)
+      setDotBorderColor("#e03616")
+      setDotFillColor("#d3968d")
+    }
+    setShowDot(true)
+    setLinePosition({x: 0, y: 0})
+  }
+
+  const setColors = () => {
+    if (dotPosition.y == 135) {
+      setLineColor("red")
+    } else {
+      setDotBorderColor("#e03616")
+      setDotFillColor("#d3968d")
+    }
+  }
+
+  const markQuestionAsWrong = () => {
+
+    switch(answer) {
+      case "Shift left":
+        setShowLine(true)
+        setCorrectPosition(-75)
+        setColors()
+        break;
+      case "Shift right":
+        setShowLine(true)
+        setCorrectPosition(75)
+        setColors()
+        break;
+      case "Dot moves down":
+        lineOrDotMoved(dotPosition.y)
+        setCorrectPosition(260)
+        break;
+      case "Dot moves up":
+        lineOrDotMoved(dotPosition.y)
+        setCorrectPosition(10)
+        break;
+      default:
+        // code block
     }
     setAnsweredCorrectly(false)
-    // setScore((preScore) => preScore + questionAnswer.score)
   }
 
   const DragEndLine = (event) => {
+    setFadeDot(1)
     evaluateLineAnswer(linePosition.x)
   }
 
@@ -45,49 +87,48 @@ const LineDotLeft = (props) => {
   }
 
   const evaluateLineAnswer = (value) => {
-    if (value <= 10 && value >= -10) return
 
-    if (value > 10 && answer === 'Shift right')
-      return markQuestionAsCorrect(75, 0, true)
-    else if (value < -10 && answer === 'Shift left')
-      return markQuestionAsCorrect(-75, 0, true)
-    setDisable(true)
-    markQuestionAsWrong(linePosition.x)
-    // setLinePosition(value > 10 ? { x: 75, y: 0 } : { x: -75, y: 0 })
-    // setAnsweredCorrectly(false)
+    if (value <= 10 && value >= -10)
+      return
+
+    let answerMatched = false
+
+    if (value > 10) {
+      setLinePosition({x: 75, y: 0})
+      answerMatched = answer === 'Shift right'
+    }
+    else if (value < -10) {
+      setLinePosition({x: -75, y: 0})
+      answerMatched = answer === 'Shift left'
+    }
+
+    answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
   }
 
   const evaluateDotAnswer = (value) => {
-    if (value <= 10 && value >= -10) return
 
-    if (value > 10 && answer === 'Dot moves down')
-      return markQuestionAsCorrect(0, 260, false)
-    else if (value < -10 && answer === 'Dot moves up')
-      return markQuestionAsCorrect(0, 25, false)
-    setDisable(true)
-    markQuestionAsWrong(dotPosition.y)
-    // setDotPosition(value > 10 ? { x: 0, y: 75 } : { x: 0, y: -75 })
-    // setAnsweredCorrectly(false)
+    if (value <= 135 && value >= 115)
+      return
+
+    let answerMatched = false
+
+    if (value > 135) {
+      setDotPosition({x: 0, y: 260})
+      answerMatched = answer === 'Dot moves down'
+    }
+    else if (value < 115) {
+      setDotPosition({x: 0, y: 10})
+      answerMatched = answer === 'Dot moves up'
+    }
+
+    answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
   }
 
-  const markQuestionAsCorrect = (x, y, isLine) => {
-    // debugger
-    isLine ? setLinePosition({x: x, y: y}) : setDotPosition({x: x, y: y})
+  const markQuestionAsCorrect = () => {
+    setDisable(true)
     setAnsweredCorrectly(true)
     setScore((preScore) => preScore + questionAnswer.score)
   }
-
-
-  // const evaluateAnswer = (value, pointX, pointY, answer1, answer2) => {
-  //   if (value <= 10 && value >= -10) return
-
-  //   if (value > 10 && answer === answer1)
-  //     markQuestionAsCorrect(pointX, pointY)
-  //   else if (value < -10 && answer === answer2)
-  //     markQuestionAsCorrect(-(pointX), -(pointY))
-  //   setDisable(true)
-  //   return false
-  // }
 
   const DragStartDot = (event) => {
     event.stopPropagation();
@@ -104,7 +145,7 @@ const LineDotLeft = (props) => {
   return (
     <div style={{ transform: "rotate(-45deg)", position: "absolute", top: "80px", left: "160px" }} >
       <div style={{ position: 'absolute', height: "300px", width: "5px", backgroundColor: "#2e8599", borderRadius: '5px'}}></div>
-      {answeredCorrectly == false && answer.includes('Shift') && <div style={{ position: 'absolute', height: "300px", width: "5px", backgroundColor: "#2e8599", borderRadius: '5px', left: correctPostion }}></div>}
+      {showLine && <div style={{ position: 'absolute', height: "300px", width: "5px", backgroundColor: wrongPosition ? lineColor : "#003E4C", borderRadius: '5px', left: wrongPosition || correctPosition }}></div>}
       <Draggable
         axis="x"
         defaultPosition={{x: 0, y: 0}}
@@ -116,20 +157,21 @@ const LineDotLeft = (props) => {
         onStop={DragEndLine}
         disabled={disable}
       >
-      <div style={{display: "flex", justifyContent: "center", height: "300px", width: "5px", backgroundColor: "#003E4C", position: "relative", borderRadius: '5px'}}>
+      <div style={{display: "flex", justifyContent: "center", height: "300px", width: "5px", backgroundColor: wrongPosition ? "#003E4C" : lineColor, position: "relative", borderRadius: '5px'}}>
         <div
           style={{
             position: "absolute",
             transform: "rotate(45deg)",
-            border: "5px solid #003e4c",
+            border: "5px solid #003E4C",
             borderRadius: "50%",
             padding: "10px",
-            backgroundColor: "#00b1d9",
-            top: '41.81%',
+            opacity: fadeDot <= 0.5 ? "0" : "1",
+            backgroundColor: "#003E4C",
+            top: '135px',
             color: "blue"
           }}
           />
-          {answeredCorrectly == false && answer.includes('moves') &&<div
+          {showDot && <div
           style={{
             position: "absolute",
             transform: "rotate(45deg)",
@@ -138,13 +180,13 @@ const LineDotLeft = (props) => {
             padding: "10px",
             backgroundColor: "#00b1d9",
             color: "blue",
-            top: correctPostion
+            top: correctPosition
           }}
           />}
         <Draggable
           axis="y"
-          defaultPosition={{x: 0, y: 125}}
-          position={answeredCorrectly == true && answer.includes('moves') ? dotPosition : null}
+          defaultPosition={{x: 0, y: 135}}
+          position={answeredCorrectly != null ? dotPosition : null}
           scale={1}
           bounds={{top: 5, left: 0, right: 0, bottom: 250}}
           onStart={DragStartDot}
@@ -156,10 +198,11 @@ const LineDotLeft = (props) => {
             <div
               style={{
                 transform: "rotate(45deg)",
-                border: "5px solid #003e4c",
+                border: `5px solid ${dotBorderColor}`,
                 borderRadius: "50%",
                 padding: "10px",
-                backgroundColor: "#00b1d9",
+                opacity: fadeDot,
+                backgroundColor: dotFillColor,  
                 color: "blue"
               }}
             />
