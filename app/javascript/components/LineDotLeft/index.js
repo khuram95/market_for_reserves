@@ -8,6 +8,7 @@ const LineDotLeft = (props) => {
   const { answer } = questionAnswer
   const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 })
   const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
+  const [correctPostion, setCorrectPostion] = useState({ x: 0, y: 0 })
   const [disable, setDisable] = useState(false)
 
   const DragStartLine = (event) => {
@@ -20,32 +21,73 @@ const LineDotLeft = (props) => {
     console.log("event dragging", linePosition)
   }
 
-  const markQuestionAsCorrect = (x, y) => {
-    setLinePosition({x: x, y: y})
-    setAnsweredCorrectly(true)
-    setScore((preScore) => preScore + questionAnswer.score)
+  const markQuestionAsWrong = (value) => {
+    if (answer.includes('Shift')){
+      // setLinePosition(value > 10 ? { x: 75, y: 0 } : { x: -75, y: 0 })
+      setDotPosition({ x: 0, y: 0 })
+      answer.includes('right') ? setCorrectPostion(75) : setCorrectPostion(-75)
+    } else {
+      // setDotPosition(value > 10 ? { x: 0, y: 75 } : { x: 0, y: -75 })
+      // setLinePosition({ x: 0, y: 0 })
+      answer.includes('down') ? setCorrectPostion(260) : setCorrectPostion(25)
+    }
+    setAnsweredCorrectly(false)
+    // setScore((preScore) => preScore + questionAnswer.score)
   }
 
   const DragEndLine = (event) => {
-    evaluateAnswer(linePosition.x, 75, 0, 'Shift right', 'Shift left')
+    evaluateLineAnswer(linePosition.x)
   }
 
   const DragEndDot = (event) => {
     event.stopPropagation();
-    evaluateAnswer(dotPosition.y, 0, 75, 'Dot moves down', 'Dot moves up')
+    evaluateDotAnswer(dotPosition.y)
   }
 
-  const evaluateAnswer = (value, pointX, pointY, answer1, answer2) => {
+  const evaluateLineAnswer = (value) => {
     if (value <= 10 && value >= -10) return
 
-    setAnsweredCorrectly(false)
-    if (value > 10 && answer === answer1)
-      markQuestionAsCorrect(pointX, pointY)
-    else if (value < -10 && answer === answer2)
-      markQuestionAsCorrect(-(pointX), -(pointY))
-
+    if (value > 10 && answer === 'Shift right')
+      return markQuestionAsCorrect(75, 0, true)
+    else if (value < -10 && answer === 'Shift left')
+      return markQuestionAsCorrect(-75, 0, true)
     setDisable(true)
+    markQuestionAsWrong(linePosition.x)
+    // setLinePosition(value > 10 ? { x: 75, y: 0 } : { x: -75, y: 0 })
+    // setAnsweredCorrectly(false)
   }
+
+  const evaluateDotAnswer = (value) => {
+    if (value <= 10 && value >= -10) return
+
+    if (value > 10 && answer === 'Dot moves down')
+      return markQuestionAsCorrect(0, 260, false)
+    else if (value < -10 && answer === 'Dot moves up')
+      return markQuestionAsCorrect(0, 25, false)
+    setDisable(true)
+    markQuestionAsWrong(dotPosition.y)
+    // setDotPosition(value > 10 ? { x: 0, y: 75 } : { x: 0, y: -75 })
+    // setAnsweredCorrectly(false)
+  }
+
+  const markQuestionAsCorrect = (x, y, isLine) => {
+    // debugger
+    isLine ? setLinePosition({x: x, y: y}) : setDotPosition({x: x, y: y})
+    setAnsweredCorrectly(true)
+    setScore((preScore) => preScore + questionAnswer.score)
+  }
+
+
+  // const evaluateAnswer = (value, pointX, pointY, answer1, answer2) => {
+  //   if (value <= 10 && value >= -10) return
+
+  //   if (value > 10 && answer === answer1)
+  //     markQuestionAsCorrect(pointX, pointY)
+  //   else if (value < -10 && answer === answer2)
+  //     markQuestionAsCorrect(-(pointX), -(pointY))
+  //   setDisable(true)
+  //   return false
+  // }
 
   const DragStartDot = (event) => {
     event.stopPropagation();
@@ -57,8 +99,12 @@ const LineDotLeft = (props) => {
     console.log("event dragging", dotPosition)
   }
 
+
+
   return (
     <div style={{ transform: "rotate(-45deg)", position: "absolute", top: "80px", left: "160px" }} >
+      <div style={{ position: 'absolute', height: "300px", width: "5px", backgroundColor: "#2e8599", borderRadius: '5px'}}></div>
+      {answeredCorrectly == false && answer.includes('Shift') && <div style={{ position: 'absolute', height: "300px", width: "5px", backgroundColor: "#2e8599", borderRadius: '5px', left: correctPostion }}></div>}
       <Draggable
         axis="x"
         defaultPosition={{x: 0, y: 0}}
@@ -70,23 +116,35 @@ const LineDotLeft = (props) => {
         onStop={DragEndLine}
         disabled={disable}
       >
-      <div style={{display: "flex", justifyContent: "center", height: "300px", width: "5px", backgroundColor: "black", position: "relative"}}>
+      <div style={{display: "flex", justifyContent: "center", height: "300px", width: "5px", backgroundColor: "#003E4C", position: "relative", borderRadius: '5px'}}>
         <div
           style={{
             position: "absolute",
             transform: "rotate(45deg)",
-            border: "1px solid black",
+            border: "5px solid #003e4c",
             borderRadius: "50%",
             padding: "10px",
+            backgroundColor: "#00b1d9",
             top: '41.81%',
-            backgroundColor: "yellow",
             color: "blue"
           }}
-        >A</div>
+          />
+          {answeredCorrectly == false && answer.includes('moves') &&<div
+          style={{
+            position: "absolute",
+            transform: "rotate(45deg)",
+            border: "5px solid #003e4c",
+            borderRadius: "50%",
+            padding: "10px",
+            backgroundColor: "#00b1d9",
+            color: "blue",
+            top: correctPostion
+          }}
+          />}
         <Draggable
           axis="y"
           defaultPosition={{x: 0, y: 125}}
-          position={null}
+          position={answeredCorrectly == true && answer.includes('moves') ? dotPosition : null}
           scale={1}
           bounds={{top: 5, left: 0, right: 0, bottom: 250}}
           onStart={DragStartDot}
@@ -98,13 +156,13 @@ const LineDotLeft = (props) => {
             <div
               style={{
                 transform: "rotate(45deg)",
-                border: "1px solid black",
+                border: "5px solid #003e4c",
                 borderRadius: "50%",
                 padding: "10px",
-                backgroundColor: "yellow",
+                backgroundColor: "#00b1d9",
                 color: "blue"
               }}
-            >B</div>
+            />
           </div>
         </Draggable>
       </div>
