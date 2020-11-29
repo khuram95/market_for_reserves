@@ -4,7 +4,7 @@ import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same 
 
 const LineDotLeft = (props) => {
 
-  const { questionAnswer, setAnsweredCorrectly, answeredCorrectly, setScore } = props
+  const { questionAnswer, setAnsweredCorrectly, answeredCorrectly, setScore, setMoved } = props
   const { answer } = questionAnswer
   const [dotPosition, setDotPosition] = useState({x: 0, y: 135})
   const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
@@ -32,9 +32,11 @@ const LineDotLeft = (props) => {
       setShowLine(true)
       setWrongPosition(linePosition.x)
       setLineColor("red")
+      setMoved("dot but moved line")
     } else {
       setDotBorderColor("#e03616")
       setDotFillColor("#d3968d")
+      setMoved("dot moved opposite")
     }
     setShowDot(true)
     setLinePosition({x: 0, y: 0})
@@ -43,10 +45,12 @@ const LineDotLeft = (props) => {
   const setColors = () => {
     if (dotPosition.y == 135) {
       setLineColor("red")
+      setMoved("line moved opposite")
     } else {
       setLineColor('#2e8599')
       setDotBorderColor("#e03616")
       setDotFillColor("#d3968d")
+      setMoved("line but moved dot")
     }
   }
 
