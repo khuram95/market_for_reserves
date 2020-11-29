@@ -76,7 +76,7 @@ const Graph = () => {
           </Grid>
         </div>
       </Grid>
-      <Button onClick={nextQuestion} style={{ color: '#fff', backgroundColor: '#00b1d9', fontSize: '24px', fontWeight: '500', marginTop: '50px', padding: '0px 30px' }}>Submit</Button>
+      <Button onClick={nextQuestion} style={{ color: '#fff', backgroundColor: '#00b1d9', fontSize: '24px', fontWeight: '500', marginTop: '50px', padding: '0px 30px' }}>Next</Button>
     </Grid>
   )
 }

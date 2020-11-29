@@ -17,6 +17,7 @@ const LineDotLeft = (props) => {
   const [dotBorderColor, setDotBorderColor] = useState("#003e4c")
   const [dotFillColor, setDotFillColor] = useState("#00b1d9")
   const [fadeDot, setFadeDot] = useState("1")
+  const [orignalLineColor, serOrignalLineColor] = useState('')
 
   const DragStartLine = (event) => {
     // console.log("event line", event)
@@ -37,7 +38,7 @@ const LineDotLeft = (props) => {
       setDotFillColor("#d3968d")
     }
     setShowDot(true)
-    setLinePosition({x: 0, y: 0})
+    // setLinePosition({x: 0, y: 0})
   }
 
   const setColors = () => {
@@ -50,7 +51,7 @@ const LineDotLeft = (props) => {
   }
 
   const markQuestionAsWrong = () => {
-
+    setDisable(true)
     switch(answer) {
       case "Shift left":
         setShowLine(true)
@@ -101,7 +102,7 @@ const LineDotLeft = (props) => {
       setLinePosition({x: -75, y: 0})
       answerMatched = answer === 'Shift left'
     }
-
+    setFadeDot(0)
     answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
   }
 
@@ -157,7 +158,7 @@ const LineDotLeft = (props) => {
         onStop={DragEndLine}
         disabled={disable}
       >
-      <div style={{display: "flex", justifyContent: "center", height: "300px", width: "5px", backgroundColor: wrongPosition ? "#003E4C" : lineColor, position: "relative", borderRadius: '5px'}}>
+      <div style={{display: "flex", justifyContent: "center", height: "300px", width: "5px", backgroundColor: wrongPosition ? "#green" : lineColor, position: "relative", borderRadius: '5px'}}>
         <div
           style={{
             position: "absolute",
@@ -168,7 +169,7 @@ const LineDotLeft = (props) => {
             opacity: fadeDot <= 0.5 ? "0" : "1",
             backgroundColor: "#003E4C",
             top: '135px',
-            color: "blue"
+            color: "blue",
           }}
           />
           {showDot && <div
@@ -202,7 +203,7 @@ const LineDotLeft = (props) => {
                 borderRadius: "50%",
                 padding: "10px",
                 opacity: fadeDot,
-                backgroundColor: dotFillColor,  
+                backgroundColor: dotFillColor,
                 color: "blue"
               }}
             />
