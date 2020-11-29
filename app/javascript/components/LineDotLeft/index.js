@@ -17,7 +17,6 @@ const LineDotLeft = (props) => {
   const [dotBorderColor, setDotBorderColor] = useState("#003e4c")
   const [dotFillColor, setDotFillColor] = useState("#00b1d9")
   const [fadeDot, setFadeDot] = useState("1")
-  const [orignalLineColor, serOrignalLineColor] = useState('')
 
   const DragStartLine = (event) => {
     // console.log("event line", event)
@@ -38,13 +37,14 @@ const LineDotLeft = (props) => {
       setDotFillColor("#d3968d")
     }
     setShowDot(true)
-    // setLinePosition({x: 0, y: 0})
+    setLinePosition({x: 0, y: 0})
   }
 
   const setColors = () => {
     if (dotPosition.y == 135) {
       setLineColor("red")
     } else {
+      setLineColor('#2e8599')
       setDotBorderColor("#e03616")
       setDotFillColor("#d3968d")
     }
@@ -102,7 +102,7 @@ const LineDotLeft = (props) => {
       setLinePosition({x: -75, y: 0})
       answerMatched = answer === 'Shift left'
     }
-    setFadeDot(0)
+    answer.includes('Shift') && setFadeDot(0)
     answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
   }
 
