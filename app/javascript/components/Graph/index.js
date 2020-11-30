@@ -60,40 +60,40 @@ const Graph = () => {
 
   return (
     <Grid container alignItems="center" direction="column">
-      <Typography variant="h2" style={{ color: '#003E4C', fontWeight: '500' }}>{questionAnswers[questionIndex].title}</Typography>
-      <Grid container item justify='space-evenly' alignItems='center'>
+      <Typography variant="h2" style={{ color: '#003E4C', fontWeight: '500', paddingTop: "30px", fontFamily: "'Oswald', sans-serif" }}>{questionAnswers[questionIndex].title}</Typography>
+      <Grid container item justify='center' alignItems='center' style={{ paddingTop: "60px"}}>
       {answeredCorrectly === null
-        ? <Grid style={{ minWidth: '400px', maxWidth: '30%', border: '5px solid #003E4C', padding: '10px', paddingTop: '30px', marginRight: '50px', marginBottom: '50px', backgroundColor: '#fff'}}>
+        ? <Grid style={{ width: '320px', border: '5px solid #003E4C', padding: '30px', marginBottom: '50px', backgroundColor: '#fff'}}>
             <Grid style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
-              <img src={breakingNews} style={{ marginTop: '-58px', height: '50px' }}></img>
-              <Typography variant='h5' style={{ color: '#565656', fontWeight: "600" }}>
+              <img src={breakingNews} style={{ marginTop: '-56px', height: '50px' }}></img>
+              <Typography variant='h5' style={{ color: '#565656', fontWeight: "400", paddingTop: "12px", fontFamily: "'Oswald', sans-serif" }}>
                 {questionAnswers[questionIndex].question}
               </Typography>
             </Grid>
           </Grid>
         : answeredCorrectly === true
-          ? <Grid style={{ minWidth: '260px', maxWidth: '25%', padding: '10px', paddingTop: '30px', marginRight: '50px', marginBottom: '50px' }}>
+          ? <Grid style={{ width: '390px', marginBottom: '50px' }}>
               <img src={CorrectIcon} width="200px" />
               <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", margin: "5px 0 10px 0" }}>
                 Demand {questionAnswers[questionIndex].answer}
               </Typography>
-              <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", fontSize: "1.2rem" }}>
+              <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", fontSize: "1.2rem", marginRight: "50px" }}>
                 {questionAnswers[questionIndex].briefness}
               </Typography>
             </Grid>
-          : <Grid style={{ minWidth: '260px', maxWidth: '25%', padding: '10px', paddingTop: '30px', marginRight: '50px', marginBottom: '50px' }}>
+          : <Grid style={{ width: '390px', marginBottom: '50px' }}>
               <img src={WrongIcon} width="200px" />
               <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", margin: "5px 0 10px 0" }}>
                 Demand {questionAnswers[questionIndex].answer}
               </Typography>
-              <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", fontSize: "1.2rem" }}>
+              <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", fontSize: "1.2rem", marginRight: "50px" }}>
                 {`${whatWasMoved()} ${questionAnswers[questionIndex].briefness}`}
               </Typography>
             </Grid>}
-        <div style={{ display: 'flex', alignItems: 'center', width: '40%', justifyContent: 'space-around' }}>
-          <img src={price} style={{ height: '30px' }}></img>
-          <Grid container justify='center'>
+        <div style={{ display: 'flex', alignItems: 'center', marginLeft: '185px', justifyContent: 'space-around' }}>
+          <Grid container justify='center' style={{maxWidth: '400px'}}>
             <Grid style={{ borderLeft: '5px solid #003E4C', borderBottom: '5px solid #565656', height: '400px', width: '400px', position: "relative" }}>
+              <img src={price} style={{ height: '30px', position: 'absolute', top: '180px', left: '-135px' }}></img>
 
               <LineDotLeft
                 questionAnswer={questionAnswers[questionIndex]}
@@ -113,7 +113,7 @@ const Graph = () => {
           </Grid>
         </div>
       </Grid>
-      <Button onClick={nextQuestion} style={{ color: '#fff', backgroundColor: '#00b1d9', fontSize: '24px', fontWeight: '500', marginTop: '50px', padding: '0px 30px' }}>Next</Button>
+      <Button onClick={nextQuestion} style={{ color: '#fff', backgroundColor: '#00b1d9', fontSize: '24px', fontWeight: '500', marginTop: '50px', padding: '15px 85px', fontFamily: "'Oswald', sans-serif" }}>SUBMIT</Button>
     </Grid>
   )
 }
