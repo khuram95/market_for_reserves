@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
-
+import { withStyles } from '@material-ui/core/styles'
+import styles from './styles'
 
 const LineDotLeft = (props) => {
+  const {classes} = props
 
   const { questionAnswer, setAnsweredCorrectly, answeredCorrectly, setScore, setMoved } = props
   const { answer } = questionAnswer
@@ -99,11 +101,11 @@ const LineDotLeft = (props) => {
     let answerMatched = false
 
     if (value > 10) {
-      setLinePosition({x: 75, y: 0})
+      // setLinePosition({x: 75, y: 0})
       answerMatched = answer === 'Shift right'
     }
     else if (value < -10) {
-      setLinePosition({x: -75, y: 0})
+      // setLinePosition({x: -75, y: 0})
       answerMatched = answer === 'Shift left'
     }
     answer.includes('Shift') && setFadeDot(0)
@@ -118,11 +120,11 @@ const LineDotLeft = (props) => {
     let answerMatched = false
 
     if (value > 135) {
-      setDotPosition({x: 0, y: 260})
+      // setDotPosition({x: 0, y: 260})
       answerMatched = answer === 'Dot moves down'
     }
     else if (value < 115) {
-      setDotPosition({x: 0, y: 10})
+      // setDotPosition({x: 0, y: 10})
       answerMatched = answer === 'Dot moves up'
     }
 
@@ -148,9 +150,9 @@ const LineDotLeft = (props) => {
 
 
   return (
-    <div style={{ transform: "rotate(-45deg)", position: "absolute", top: "80px", left: "160px" }} >
-      <div style={{ position: 'absolute', height: "300px", width: "5px", backgroundColor: "#2e8599", borderRadius: '5px'}}></div>
-      {showLine && <div style={{ position: 'absolute', height: "300px", width: "5px", backgroundColor: wrongPosition ? lineColor : "#003E4C", borderRadius: '5px', left: wrongPosition || correctPosition }}></div>}
+    <div className={classes.verticalLinesContainer}>
+      <div className={classes.defaultLine} />
+      {showLine && <div className={classes.correctLine} style={{ backgroundColor: wrongPosition ? lineColor : "#003E4C", left: wrongPosition || correctPosition }}></div>}
       <Draggable
         axis="x"
         defaultPosition={{x: 0, y: 0}}
@@ -162,61 +164,40 @@ const LineDotLeft = (props) => {
         onStop={DragEndLine}
         disabled={disable}
       >
-      <div style={{display: "flex", justifyContent: "center", height: "300px", width: "5px", backgroundColor: wrongPosition ? "#green" : lineColor, position: "relative", borderRadius: '5px'}}>
-        <div
-          style={{
-            position: "absolute",
-            transform: "rotate(45deg)",
-            border: "5px solid #003E4C",
-            borderRadius: "50%",
-            padding: "10px",
-            opacity: fadeDot <= 0.5 ? "0" : "1",
-            backgroundColor: "#003E4C",
-            top: '135px',
-            color: "blue",
-          }}
-          />
-          {showDot && <div
-          style={{
-            position: "absolute",
-            transform: "rotate(45deg)",
-            border: "5px solid #003e4c",
-            borderRadius: "50%",
-            padding: "10px",
-            backgroundColor: "#00b1d9",
-            color: "blue",
-            top: correctPosition
-          }}
-          />}
-        <Draggable
-          axis="y"
-          defaultPosition={{x: 0, y: 135}}
-          position={answeredCorrectly != null ? dotPosition : null}
-          scale={1}
-          bounds={{top: 5, left: 0, right: 0, bottom: 250}}
-          onStart={DragStartDot}
-          onDrag={DragDot}
-          onStop={DragEndDot}
-          disabled={disable}
-        >
-          <div style={{height: '40px'}}>
-            <div
-              style={{
-                transform: "rotate(45deg)",
-                border: `5px solid ${dotBorderColor}`,
-                borderRadius: "50%",
-                padding: "10px",
-                opacity: fadeDot,
-                backgroundColor: dotFillColor,
-                color: "blue"
-              }}
+        <div>
+          <div className={classes.dragableLine} style={{backgroundColor: wrongPosition ? "#green" : lineColor}}>
+            <div className={classes.fadedDot}
+              style={{ opacity: fadeDot <= 0.5 ? "0" : "1"}}
             />
+            {showDot && <div className={classes.correctDot}
+              style={{ top: correctPosition }}
+            />}
+            <Draggable
+              axis="y"
+              defaultPosition={{x: 0, y: 135}}
+              position={answeredCorrectly != null ? dotPosition : null}
+              scale={1}
+              bounds={{top: 5, left: 0, right: 0, bottom: 250}}
+              onStart={DragStartDot}
+              onDrag={DragDot}
+              onStop={DragEndDot}
+              disabled={disable}
+            >
+              <div style={{height: '40px'}}>
+                <div className={classes.draggableDot}
+                  style={{
+                    border: `5px solid ${dotBorderColor}`,
+                    opacity: fadeDot,
+                    backgroundColor: dotFillColor,
+                  }}
+                />
+              </div>
+            </Draggable>
           </div>
-        </Draggable>
-      </div>
+        </div>
       </Draggable>
     </div>
   )
 }
 
-export default LineDotLeft
+export default withStyles(styles)(LineDotLeft)

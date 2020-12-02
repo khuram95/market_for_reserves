@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import LineDotLeft from '../LineDotLeft'
 import LineDotRight from '../LineDotRight'
+import { withStyles } from '@material-ui/core/styles'
 import { Grid, Typography, Button } from '@material-ui/core'
 import price from '../../images/price.svg'
 import quantity from '../../images/quantity.svg'
 import CorrectIcon from '../../images/correct.svg'
 import WrongIcon from '../../images/notQuite.svg'
 import breakingNews from '../../images/breakingnews.svg'
+import styles from './styles'
 
 
 const questionAnswers = [
@@ -33,7 +35,8 @@ const questionAnswers = [
   }
 ]
 
-const Graph = () => {
+const Graph = (props) => {
+  const {classes} = props
 
   const [questionIndex, setQuestionIndex] = useState(0)
   const [score, setScore] = useState(0)
@@ -60,40 +63,40 @@ const Graph = () => {
 
   return (
     <Grid container alignItems="center" direction="column">
-      <Typography variant="h2" style={{ color: '#003E4C', fontWeight: '500', paddingTop: "30px", fontFamily: "'Oswald', sans-serif" }}>{questionAnswers[questionIndex].title}</Typography>
-      <Grid container item justify='center' alignItems='center' style={{ paddingTop: "60px"}}>
+      <Typography variant="h2" className={classes.questionTitle}>{questionAnswers[questionIndex].title}</Typography>
+      <Grid container item justify='center' alignItems='center' className={classes.graphContainer}>
       {answeredCorrectly === null
-        ? <Grid style={{ width: '320px', border: '5px solid #003E4C', padding: '30px', marginBottom: '50px', backgroundColor: '#fff'}}>
-            <Grid style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
-              <img src={breakingNews} style={{ marginTop: '-56px', height: '50px' }}></img>
-              <Typography variant='h5' style={{ color: '#565656', fontWeight: "400", paddingTop: "12px", fontFamily: "'Oswald', sans-serif" }}>
+        ? <Grid className={classes.questionContainer}>
+            <Grid className={classes.questionBody}>
+              <img src={breakingNews} className={classes.breakingNews}></img>
+              <Typography variant='h5' className={classes.questionText}>
                 {questionAnswers[questionIndex].question}
               </Typography>
             </Grid>
           </Grid>
         : answeredCorrectly === true
-          ? <Grid style={{ width: '390px', marginBottom: '50px' }}>
+          ? <Grid className={classes.answerContainer}>
               <img src={CorrectIcon} width="200px" />
-              <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", margin: "5px 0 10px 0" }}>
+              <Typography variant='h5' className={classes.curveShiftingText}>
                 Demand {questionAnswers[questionIndex].answer}
               </Typography>
-              <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", fontSize: "1.2rem", marginRight: "50px" }}>
+              <Typography variant='h5' className={classes.briefNess}>
                 {questionAnswers[questionIndex].briefness}
               </Typography>
             </Grid>
-          : <Grid style={{ width: '390px', marginBottom: '50px' }}>
+          : <Grid className={classes.answerContainer}>
               <img src={WrongIcon} width="200px" />
-              <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", margin: "5px 0 10px 0" }}>
+              <Typography variant='h5' className={classes.curveShiftingText}>
                 Demand {questionAnswers[questionIndex].answer}
               </Typography>
-              <Typography variant='h5' style={{ color: '#003E4C', fontWeight: "600", fontSize: "1.2rem", marginRight: "50px" }}>
+              <Typography variant='h5' className={classes.briefNess}>
                 {`${whatWasMoved()} ${questionAnswers[questionIndex].briefness}`}
               </Typography>
             </Grid>}
-        <div style={{ display: 'flex', alignItems: 'center', marginLeft: '185px', justifyContent: 'space-around' }}>
+        <div className={classes.graphDiv}>
           <Grid container justify='center' style={{maxWidth: '400px'}}>
-            <Grid style={{ borderLeft: '5px solid #003E4C', borderBottom: '5px solid #565656', height: '400px', width: '400px', position: "relative" }}>
-              <img src={price} style={{ height: '30px', position: 'absolute', top: '180px', left: '-135px' }}></img>
+            <Grid className={classes.graphLines}>
+              <img src={price} className={classes.graphYLable}></img>
 
               <LineDotLeft
                 questionAnswer={questionAnswers[questionIndex]}
@@ -109,13 +112,13 @@ const Graph = () => {
                 answeredCorrectly={answeredCorrectly}
               /> */}
             </Grid>
-            <img src={quantity} style={{ height: '30px', marginTop: '10px' }}></img>
+            <img src={quantity} className={classes.graphXLable}></img>
           </Grid>
         </div>
       </Grid>
-      <Button onClick={nextQuestion} style={{ color: '#fff', backgroundColor: '#00b1d9', fontSize: '24px', fontWeight: '500', marginTop: '50px', padding: '15px 85px', fontFamily: "'Oswald', sans-serif" }}>SUBMIT</Button>
+      <Button onClick={nextQuestion} className={classes.submitButton}>SUBMIT</Button>
     </Grid>
   )
 }
 
-export default Graph
+export default withStyles(styles)(Graph)
