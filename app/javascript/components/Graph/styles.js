@@ -9,7 +9,7 @@ const styles = theme => ({
     paddingTop: "60px"
   },
   questionContainer: {
-    width: '320px',
+    width: '350px',
     border: '5px solid #003E4C',
     padding: '30px',
     marginBottom: '50px',
@@ -28,6 +28,7 @@ const styles = theme => ({
     color: '#565656',
     fontWeight: "400",
     paddingTop: "12px",
+    fontSize: '26px',
     fontFamily: "'Oswald', sans-serif"
   },
   answerContainer: {
@@ -38,11 +39,20 @@ const styles = theme => ({
     fontWeight: "600",
     margin: "5px 0 10px 0"
   },
+  briefNessHeading: {
+    color: '#003E4C',
+    fontWeight: "600",
+    fontFamily: "'Rubik', sans-serif",
+    fontSize: "1.4rem",
+    marginTop: "15px",
+    marginBottom: "15px"
+  },
   briefNess: {
     color: '#003E4C',
     fontWeight: "600",
-    fontSize: "1.2rem",
-    marginRight: "50px"
+    fontFamily: "'Rubik', sans-serif",
+    fontSize: "1.0rem",
+    // marginRight: "50px"
   },
   graphDiv: {
     display: 'flex',
@@ -70,10 +80,10 @@ const styles = theme => ({
   submitButton: {
     color: '#fff',
     backgroundColor: '#00b1d9',
-    fontSize: '24px',
+    fontSize: '36px',
     fontWeight: '500',
     marginTop: '50px',
-    padding: '15px 85px',
+    padding: '5px 45px',
     fontFamily: "'Oswald', sans-serif"
   }
 })

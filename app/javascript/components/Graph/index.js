@@ -77,7 +77,7 @@ const Graph = (props) => {
         : answeredCorrectly === true
           ? <Grid className={classes.answerContainer}>
               <img src={CorrectIcon} width="200px" />
-              <Typography variant='h5' className={classes.curveShiftingText}>
+              <Typography variant='h4' className={classes.curveShiftingText}>
                 Demand {questionAnswers[questionIndex].answer}
               </Typography>
               <Typography variant='h5' className={classes.briefNess}>
@@ -86,11 +86,14 @@ const Graph = (props) => {
             </Grid>
           : <Grid className={classes.answerContainer}>
               <img src={WrongIcon} width="200px" />
-              <Typography variant='h5' className={classes.curveShiftingText}>
+              <Typography variant='h4' className={classes.curveShiftingText}>
                 Demand {questionAnswers[questionIndex].answer}
               </Typography>
-              <Typography variant='h5' className={classes.briefNess}>
-                {`${whatWasMoved()} ${questionAnswers[questionIndex].briefness}`}
+              <Typography variant='h5' className={classes.briefNessHeading}>
+                {whatWasMoved()}
+              </Typography>
+              <Typography variant='h6' className={classes.briefNess}>
+                {questionAnswers[questionIndex].briefness}
               </Typography>
             </Grid>}
         <div className={classes.graphDiv}>

@@ -10,7 +10,7 @@ const LineDotLeft = (props) => {
   const { answer } = questionAnswer
   const [dotPosition, setDotPosition] = useState({x: 0, y: 135})
   const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
-  const [correctPosition, setCorrectPosition] = useState(null)
+  const [correctPosition, setCorrectPosition] = useState(0)
   const [wrongPosition, setWrongPosition] = useState(null)
   const [showLine, setShowLine] = useState(false)
   const [showDot, setShowDot] = useState(false)
@@ -61,11 +61,13 @@ const LineDotLeft = (props) => {
     switch(answer) {
       case "Shift left":
         setShowLine(true)
+        // animateLine()
         setCorrectPosition(-75)
         setColors()
         break;
       case "Shift right":
         setShowLine(true)
+        // animateLine()
         setCorrectPosition(75)
         setColors()
         break;
@@ -147,12 +149,22 @@ const LineDotLeft = (props) => {
     console.log("event dragging", dotPosition)
   }
 
+  const animateLine = () => {
+    console.log('correctPosition', correctPosition)
+    // while (correctPosition > -75) {
+      setTimeout(() => {
+        let abc = correctPosition - 1
+        setCorrectPosition(abc)
+      }, 200)
+    // }
+  }
+
 
 
   return (
     <div className={classes.verticalLinesContainer}>
       <div className={classes.defaultLine} />
-      {showLine && <div className={classes.correctLine} style={{ backgroundColor: wrongPosition ? lineColor : "#003E4C", left: wrongPosition || correctPosition }}></div>}
+      <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#003E4C", transition: 'left 1s', left: wrongPosition ? wrongPosition : correctPosition }}></div>
       <Draggable
         axis="x"
         defaultPosition={{x: 0, y: 0}}
@@ -164,7 +176,7 @@ const LineDotLeft = (props) => {
         onStop={DragEndLine}
         disabled={disable}
       >
-        <div>
+        <div style={{ cursor: !disable && 'pointer' }}>
           <div className={classes.dragableLine} style={{backgroundColor: wrongPosition ? "#green" : lineColor}}>
             <div className={classes.fadedDot}
               style={{ opacity: fadeDot <= 0.5 ? "0" : "1"}}
