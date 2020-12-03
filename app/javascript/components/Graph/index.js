@@ -42,10 +42,17 @@ const Graph = (props) => {
   const [score, setScore] = useState(0)
   const [answeredCorrectly, setAnsweredCorrectly] = useState(null)
   const [moved, setMoved] = useState(null)
+  const [submitted, setSubmitted] = useState(false)
+
+
+  const handleSubmit = () => {
+    setSubmitted(true)
+  }
 
   const nextQuestion = () => {
     setQuestionIndex(questionIndex + 1)
     setAnsweredCorrectly(null)
+    setSubmitted(false)
   }
 
   const whatWasMoved = () => {
@@ -107,6 +114,7 @@ const Graph = (props) => {
                 answeredCorrectly={answeredCorrectly}
                 setScore={setScore}
                 setMoved={setMoved}
+                submitted={submitted}
                 key={questionIndex}
               />
               {/* <LineDotRight
@@ -119,7 +127,12 @@ const Graph = (props) => {
           </Grid>
         </div>
       </Grid>
-      <Button onClick={nextQuestion} className={classes.submitButton}>SUBMIT</Button>
+      <Button
+        onClick={submitted ? nextQuestion : handleSubmit}
+        className={classes.submitButton}
+      >
+        {submitted ? "NEXT" : "SUBMIT"}
+      </Button>
     </Grid>
   )
 }

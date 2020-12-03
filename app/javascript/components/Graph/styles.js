@@ -63,14 +63,14 @@ const styles = theme => ({
   graphLines: {
     borderLeft: '5px solid #003E4C',
     borderBottom: '5px solid #565656',
-    height: '400px',
-    width: '400px',
+    height: '330px',
+    width: '330px',
     position: "relative"
   },
   graphYLable: {
     height: '30px',
     position: 'absolute',
-    top: '180px',
+    top: '150px',
     left: '-135px'
   },
   graphXLable: {
