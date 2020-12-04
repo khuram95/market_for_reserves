@@ -50,7 +50,7 @@ const Graph = (props) => {
 
   useEffect(() => {
     setShowBreakingNews(true)
-  }, [showBreakingNews])
+  }, [])
 
   useEffect(() => {
     whatWasMoved()
@@ -59,12 +59,14 @@ const Graph = (props) => {
 
   const handleSubmit = () => {
     setSubmitted(true)
+    setShowBreakingNews(false)
   }
 
   const nextQuestion = () => {
     setQuestionIndex(questionIndex + 1)
     setAnsweredCorrectly(null)
     setSubmitted(false)
+    setShowBreakingNews(true)
   }
 
   const whatWasMoved = () => {
