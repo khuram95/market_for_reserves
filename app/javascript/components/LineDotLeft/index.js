@@ -9,14 +9,12 @@ const LineDotLeft = (props) => {
   const { questionAnswer, setAnsweredCorrectly, answeredCorrectly, setScore, setMoved, submitted } = props
 
   useEffect(() => {
-    console.log("called")
     if(submitted) {
       if(dotPosition.y === 120) {
         evaluateLineAnswer(linePosition.x)
       } else {
         evaluateDotAnswer(dotPosition.y)
       }
-
     }
   }, [submitted])
 
@@ -28,6 +26,7 @@ const LineDotLeft = (props) => {
   const [showLine, setShowLine] = useState(false)
   const [showDot, setShowDot] = useState(false)
   const [lineDisable, setLineDisable] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
   const [dotDisable, setDotDisable] = useState(false)
   const [lineColor, setLineColor] = useState("#003E4C")
   const [dotBorderColor, setDotBorderColor] = useState("#003e4c")
@@ -35,12 +34,21 @@ const LineDotLeft = (props) => {
   const [fadeDot, setFadeDot] = useState("1")
 
   const DragStartLine = (event) => {
-    // console.log("event line", event)
+    console.log("event line", event)
+    if (lineDisable) {
+      console.log("line was dragged")
+      setLinePosition({x: 0, y: 0})
+    }
   }
 
   const DragLine = (event, ui) => {
-    setFadeDot(0.5)
-    setLinePosition({ x:  linePosition.x + ui.deltaX, y: linePosition.y + ui.deltaY})
+    if (lineDisable) {
+      console.log("line was dragged")
+      setLinePosition({x: 0, y: 0})
+    } else {
+      setFadeDot(0.5)
+      setLinePosition({ x:  linePosition.x + ui.deltaX, y: linePosition.y + ui.deltaY})
+    }
   }
 
   const lineOrDotMoved = (position) => {
@@ -191,7 +199,7 @@ const LineDotLeft = (props) => {
         onStart={DragStartLine}
         onDrag={DragLine}
         onStop={DragEndLine}
-        disabled={lineDisable}
+        // disabled={lineDisable}
       >
         <div style={{ cursor: !lineDisable && 'pointer' }}>
           <div className={classes.dragableLine} style={{backgroundColor: wrongPosition ? "#green" : lineColor}}>
@@ -210,9 +218,9 @@ const LineDotLeft = (props) => {
               onStart={DragStartDot}
               onDrag={DragDot}
               onStop={DragEndDot}
-              disabled={dotDisable}
+              // disabled={dotDisable}
             >
-              <div style={{height: '40px'}}>
+              <div style={{height: '40px', cursor: !dotDisable && 'pointer'}}>
                 <div className={classes.draggableDot}
                   style={{
                     border: `5px solid ${dotBorderColor}`,

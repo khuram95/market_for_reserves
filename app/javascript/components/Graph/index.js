@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import LineDotLeft from '../LineDotLeft'
 import LineDotRight from '../LineDotRight'
 import { withStyles } from '@material-ui/core/styles'
-import { Grid, Typography, Button } from '@material-ui/core'
+import { Grid, Typography, Button, Fade } from '@material-ui/core'
 import price from '../../images/price.svg'
 import quantity from '../../images/quantity.svg'
 import CorrectIcon from '../../images/correct.svg'
-import WrongIcon from '../../images/notQuite.svg'
+import NotQuiteIcon from '../../images/notQuite.svg'
+import IncorrectIcon from '../../images/incorrect.svg'
 import breakingNews from '../../images/breakingnews.svg'
 import styles from './styles'
 
@@ -42,7 +43,18 @@ const Graph = (props) => {
   const [score, setScore] = useState(0)
   const [answeredCorrectly, setAnsweredCorrectly] = useState(null)
   const [moved, setMoved] = useState(null)
+  const [answerImage, setAnswerImage] = useState(CorrectIcon)
+  const [answerMessage, setAnswerMessage] = useState("")
+  const [showBreakingNews, setShowBreakingNews] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    setShowBreakingNews(true)
+  }, [showBreakingNews])
+
+  useEffect(() => {
+    whatWasMoved()
+  }, [moved])
 
 
   const handleSubmit = () => {
@@ -58,13 +70,20 @@ const Graph = (props) => {
   const whatWasMoved = () => {
     switch (moved) {
       case "dot but moved line":
-        return moved
+        setAnswerImage(IncorrectIcon)
+        setAnswerMessage("")
+        return
       case "line but moved dot":
-        return moved
+        setAnswerImage(IncorrectIcon)
+        setAnswerMessage("")
+        return
       case "dot moved opposite":
-        return "you where right to move the dot, but you did it in the opposite direction."
+        setAnswerImage(NotQuiteIcon)
+        setAnswerMessage("You where right to move the dot, but you did it in the opposite direction.")
       case "line moved opposite":
-        return "you where right to shift the curve, but you did it in the opposite direction."
+        setAnswerImage(NotQuiteIcon)
+        setAnswerMessage("You where right to shift the curve, but you did it in the opposite direction.")
+        return
     }
   }
 
@@ -73,7 +92,7 @@ const Graph = (props) => {
       <Typography variant="h2" className={classes.questionTitle}>{questionAnswers[questionIndex].title}</Typography>
       <Grid container item justify='center' alignItems='center' className={classes.graphContainer}>
       {answeredCorrectly === null
-        ? <Grid className={classes.questionContainer}>
+        ? <Fade in={showBreakingNews} timeout={2000}><Grid className={classes.questionContainer}>
             <Grid className={classes.questionBody}>
               <img src={breakingNews} className={classes.breakingNews}></img>
               <Typography variant='h5' className={classes.questionText}>
@@ -81,9 +100,10 @@ const Graph = (props) => {
               </Typography>
             </Grid>
           </Grid>
+          </Fade>
         : answeredCorrectly === true
           ? <Grid className={classes.answerContainer}>
-              <img src={CorrectIcon} width="200px" />
+              <img src={answerImage} width="200px" />
               <Typography variant='h4' className={classes.curveShiftingText}>
                 Demand {questionAnswers[questionIndex].answer}
               </Typography>
@@ -92,12 +112,12 @@ const Graph = (props) => {
               </Typography>
             </Grid>
           : <Grid className={classes.answerContainer}>
-              <img src={WrongIcon} width="200px" />
+              <img src={answerImage} width="200px" />
               <Typography variant='h4' className={classes.curveShiftingText}>
                 Demand {questionAnswers[questionIndex].answer}
               </Typography>
               <Typography variant='h5' className={classes.briefNessHeading}>
-                {whatWasMoved()}
+                {answerMessage}
               </Typography>
               <Typography variant='h6' className={classes.briefNess}>
                 {questionAnswers[questionIndex].briefness}

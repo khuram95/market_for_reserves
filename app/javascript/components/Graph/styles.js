@@ -32,7 +32,8 @@ const styles = theme => ({
     fontFamily: "'Oswald', sans-serif"
   },
   answerContainer: {
-    width: '390px', marginBottom: '50px'
+    width: '420px',
+    marginBottom: '50px'
   },
   curveShiftingText: {
     color: '#003E4C',
@@ -61,7 +62,7 @@ const styles = theme => ({
     justifyContent: 'space-around'
   },
   graphLines: {
-    borderLeft: '5px solid #003E4C',
+    borderLeft: '5px solid #565656',
     borderBottom: '5px solid #565656',
     height: '330px',
     width: '330px',
@@ -84,7 +85,11 @@ const styles = theme => ({
     fontWeight: '500',
     marginTop: '50px',
     padding: '5px 45px',
-    fontFamily: "'Oswald', sans-serif"
+    borderRadius: '10px',
+    fontFamily: "'Oswald', sans-serif",
+    "&:hover": {
+      backgroundColor: '#056f8a'
+    }
   }
 })
 export default styles;
