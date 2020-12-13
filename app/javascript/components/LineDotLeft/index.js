@@ -6,17 +6,31 @@ import styles from './styles'
 const LineDotLeft = (props) => {
   const {classes} = props
 
-  const { questionAnswer, setAnsweredCorrectly, answeredCorrectly, setScore, setMoved, submitted } = props
+  const { questionAnswer, setAnsweredCorrectly, setScore, setMoved, submitted, resetGraph, modalClose, modalOpen } = props
 
   useEffect(() => {
-    if(submitted) {
-      if(dotPosition.y === 120) {
+    if (submitted) {
+      if (nothingMove()) {
+        nothingAsWrong()
+      }
+      else if(dotPosition.y === 120) {
         evaluateLineAnswer(linePosition.x)
       } else {
         evaluateDotAnswer(dotPosition.y)
       }
     }
   }, [submitted])
+
+  useEffect(() => {
+    if (resetGraph) {
+      console.log('reseting here')
+      setLinePosition({ x: 0, y: 0 })
+      setDotPosition({ x: 0, y: 120 })
+      setLineDisable(false)
+      setDotDisable(false)
+      modalClose()
+    }
+  }, [resetGraph])
 
   const { answer } = questionAnswer
   const [dotPosition, setDotPosition] = useState({x: 0, y: 120})
@@ -26,7 +40,6 @@ const LineDotLeft = (props) => {
   const [showLine, setShowLine] = useState(false)
   const [showDot, setShowDot] = useState(false)
   const [lineDisable, setLineDisable] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
   const [dotDisable, setDotDisable] = useState(false)
   const [lineColor, setLineColor] = useState("#003E4C")
   const [dotBorderColor, setDotBorderColor] = useState("#003e4c")
@@ -37,7 +50,8 @@ const LineDotLeft = (props) => {
     console.log("event line", event)
     if (lineDisable) {
       console.log("line was dragged")
-      setLinePosition({x: 0, y: 0})
+      setLinePosition({ x: 0, y: 0 })
+      modalOpen()
     }
   }
 
@@ -49,6 +63,10 @@ const LineDotLeft = (props) => {
       setFadeDot(0.5)
       setLinePosition({ x:  linePosition.x + ui.deltaX, y: linePosition.y + ui.deltaY})
     }
+  }
+
+  const nothingMove = () => {
+    return dotPosition.y === 120 && linePosition.x === 0
   }
 
   const lineOrDotMoved = (position) => {
@@ -78,26 +96,53 @@ const LineDotLeft = (props) => {
     }
   }
 
+  const nothingAsWrong = () => {
+    setLineDisable(true)
+    setDotDisable(true)
+
+    switch(answer) {
+      case "shifts left":
+        setShowLine(true)
+        setCorrectPosition(-55)
+        break;
+      case "shifts right":
+        setShowLine(true)
+        setCorrectPosition(55)
+        break;
+      case "goes down":
+        setShowDot(true)
+        setCorrectPosition(190)
+        break;
+      case "goes up":
+        setShowDot(true)
+        setCorrectPosition(50)
+        break;
+      default:
+    }
+    setMoved("nothing")
+    setAnsweredCorrectly(false)
+  }
+
   const markQuestionAsWrong = () => {
     setLineDisable(true)
     setDotDisable(true)
 
     switch(answer) {
-      case "Shift left":
+      case "shifts left":
         setShowLine(true)
         setCorrectPosition(-55)
         setColors()
         break;
-      case "Shift right":
+      case "shifts right":
         setShowLine(true)
         setCorrectPosition(55)
         setColors()
         break;
-      case "Dot moves down":
+      case "goes down":
         lineOrDotMoved(dotPosition.y)
         setCorrectPosition(190)
         break;
-      case "Dot moves up":
+      case "goes up":
         lineOrDotMoved(dotPosition.y)
         setCorrectPosition(50)
         break;
@@ -127,7 +172,7 @@ const LineDotLeft = (props) => {
       setLineDisable(true)
     }
     // evaluateDotAnswer(dotPosition.y)
-    
+
 
   }
 
@@ -140,13 +185,13 @@ const LineDotLeft = (props) => {
 
     if (value > 10) {
       // setLinePosition({x: 75, y: 0})
-      answerMatched = answer === 'Shift right'
+      answerMatched = answer === 'shifts right'
     }
     else if (value < -10) {
       // setLinePosition({x: -75, y: 0})
-      answerMatched = answer === 'Shift left'
+      answerMatched = answer === 'shifts left'
     }
-    answer.includes('Shift') && setFadeDot(0)
+    answer.includes('shifts') && setFadeDot(0)
     answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
   }
 
@@ -159,11 +204,11 @@ const LineDotLeft = (props) => {
 
     if (value > 130) {
       // setDotPosition({x: 0, y: 260})
-      answerMatched = answer === 'Dot moves down'
+      answerMatched = answer === 'goes down'
     }
     else if (value < 110) {
       // setDotPosition({x: 0, y: 10})
-      answerMatched = answer === 'Dot moves up'
+      answerMatched = answer === 'goes up'
     }
 
     answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
@@ -174,15 +219,24 @@ const LineDotLeft = (props) => {
     setDotDisable(true)
     setAnsweredCorrectly(true)
     setScore((preScore) => preScore + questionAnswer.score)
+    setMoved("correct")
   }
 
   const DragStartDot = (event) => {
     event.stopPropagation();
-    console.log("event", event)
+    if (dotDisable) {
+      setDotPosition({ x: 0, y: 120 })
+      modalOpen()
+    }
   }
+
   const DragDot = (event, ui) => {
     event.stopPropagation();
-    setDotPosition({ x:  dotPosition.x + ui.deltaX, y: dotPosition.y + ui.deltaY})
+    if (dotDisable) {
+      setDotPosition({ x: 0, y: 120 })
+    } else {
+      setDotPosition({ x:  dotPosition.x + ui.deltaX, y: dotPosition.y + ui.deltaY})
+    }
     console.log("event dragging", dotPosition)
   }
 

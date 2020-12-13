@@ -15,6 +15,12 @@ const styles = theme => ({
     marginBottom: '50px',
     backgroundColor: '#fff'
   },
+  questionContainerHidden: {
+    width: '350px',
+    border: 'none',
+    padding: '30px',
+    marginBottom: '50px',
+  },
   questionBody: {
     position: 'relative',
     display: 'flex',
@@ -38,8 +44,11 @@ const styles = theme => ({
   curveShiftingText: {
     color: '#003E4C',
     fontWeight: "600",
-    margin: "5px 0 10px 0"
+    margin: "5px 0 10px 0",
+    fontFamily: "'Rubik', sans-serif",
+    fontSize: "1.8rem",
   },
+
   briefNessHeading: {
     color: '#003E4C',
     fontWeight: "600",
@@ -90,6 +99,39 @@ const styles = theme => ({
     "&:hover": {
       backgroundColor: '#056f8a'
     }
-  }
+  },
+   modalDescription: {
+    color: '#fff',
+    fontWeight: "300",
+    fontFamily: "'Rubik', sans-serif",
+    fontSize: "1.5rem",
+    letterSpacing: '1px'
+  },
+
+  backButton: {
+    color: '#fff',
+    backgroundColor: '#00b1d9',
+    fontSize: '18px',
+    fontWeight: '500',
+    left: '230px',
+    padding: '5px 25px',
+    borderRadius: '10px',
+    fontFamily: "'Oswald', sans-serif",
+    "&:hover": {
+      backgroundColor: '#056f8a'
+    }
+  },
+  modal: {
+    position: 'absolute',
+    top: '30vh',
+    left: '36vw',
+    padding: theme.spacing(2, 4, 3),
+    border: '0px',
+    outline: 'none',
+    "&:focus": {
+      border: '0px',
+      outline: 'none'
+    }
+  },
 })
 export default styles;

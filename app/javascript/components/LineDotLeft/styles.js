@@ -9,7 +9,7 @@ const styles = theme => ({
     transform: "rotate(-45deg)",
     position: 'absolute',
     height: "270px",
-    width: "5px",
+    width: "8px",
     backgroundColor: "#2e8599",
     borderRadius: '5px'
   },
@@ -18,7 +18,7 @@ const styles = theme => ({
     transform: "rotate(-45deg)",
     position: 'absolute',
     height: "270px",
-    width: "5px",
+    width: "8px",
     borderRadius: '5px',
   },
 
@@ -26,7 +26,7 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "center",
     height: "270px",
-    width: "5px",
+    width: "8px",
     position: "relative",
     borderRadius: '5px',
     transform: "rotate(-45deg)"
