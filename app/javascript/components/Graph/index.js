@@ -9,6 +9,9 @@ import correctIcon from '../../images/correct.svg'
 import NotQuiteIcon from '../../images/notQuite.svg'
 import IncorrectIcon from '../../images/incorrect.svg'
 import breakingNews from '../../images/breakingnews.svg'
+import peanutbutterCircleIcon from '../../images/peanutbutterCircle.png'
+import sodaCircleIcon from '../../images/sodaCircle.png'
+import laptopCircleIcon from '../../images/laptopCircle.png'
 import styles from './styles'
 import 'animate.css/animate.css'
 
@@ -16,6 +19,8 @@ const questionAnswers = [
   {
     title: 'DEMAND CURVE FOR LAPTOPS',
     question: "Consumers expect the price of laptop computers to decrease in the coming months.",
+    subQuestion: "What happens to the demand for laptops?",
+    icon: 'laptop',
     answer: "shifts left",
     briefness: "The expectation of lower prices in the future will cause a decrease in the demand for laptops today. At every price, consumers will buy fewer computers today.",
     score: 10
@@ -23,6 +28,8 @@ const questionAnswers = [
   {
     title: 'DEMAND CURVE FOR SODA',
     question: "A reduction in the supply of soda causes the price of soda to increase.",
+    subQuestion: "What happens to the demand for soda?",
+    icon: 'soda',
     answer: "goes up",
     briefness: "A change in price causes movement along the curve. It does not change demand, only quantity demanded. A decrease in price would cause an increase in the quantity demanded.",
     score: 10
@@ -30,6 +37,8 @@ const questionAnswers = [
   {
     title: 'DEMAND CURVE FOR PEANUT BUTTER',
     question: "The price of almond butter, a substitute for peanut butter, decreases.",
+    subQuestion: "What happens to the demand for peanut butter?",
+    icon: 'peanut butter',
     answer: "shifts left",
     briefness: "When the price of almond butter decreases, consumers will purchase MORE almond butter (movement along the almond butter demand curve) and LESS peanut butter at every price (leftward shift of peanut butter demand curve).",
     score: 10
@@ -84,6 +93,13 @@ const Graph = (props) => {
     setShowBreakingNews(false)
   }
 
+  const circleIcon = {
+    "peanut butter": <img src={peanutbutterCircleIcon} className={classes.circleIcon}></img>,
+    "soda": <img src={sodaCircleIcon} className={classes.circleIcon}></img>,
+    "laptop": <img src={laptopCircleIcon} className={classes.circleIcon}></img>
+
+  }
+
   const nextQuestion = () => {
     setHideQuestionBeforeAnimation(true)
     setQuestionIndex(questionIndex + 1)
@@ -132,16 +148,50 @@ const Graph = (props) => {
 
   return (
     <Grid container alignItems="center" direction="column">
-      <Typography variant="h2" className={[classes.questionTitle, animationClass1]}>{questionAnswers[questionIndex].title}</Typography>
-      <Grid container item justify='center' alignItems='center' className={[classes.graphContainer]}>
-      {answeredCorrectly === null
-          ? hideQuestionBeforeAnimation
-            ? <Grid className={classes.questionContainerHidden}/>
-            : <Grid className={[classes.questionContainer, animationClass2]}>
+      <Grid container item justify='space-evenly' alignItems='center' className={[classes.graphContainer]}>
+        <Grid>
+          <Typography variant="h5" align='right' className={[classes.questionTitle, animationClass1]}>{questionAnswers[questionIndex].title}</Typography>
+          <div className={classes.graphDiv}>
+            <Grid container justify='center' style={{maxWidth: '520px'}}>
+              <Grid className={classes.graphLines}>
+                <img src={price} className={classes.graphYLable}></img>
+
+                <LineDotLeft
+                  questionAnswer={questionAnswers[questionIndex]}
+                  setAnsweredCorrectly={setAnsweredCorrectly}
+                  answeredCorrectly={answeredCorrectly}
+                  setScore={setScore}
+                  setMoved={setMoved}
+                  submitted={submitted}
+                  resetGraph={resetGraph}
+                  modalClose={modalClose}
+                  modalOpen={modalOpen}
+                  key={questionIndex}
+                />
+                {/* <LineDotRight
+                  questionAnswer={questionAnswers[questionIndex]}
+                  setAnsweredCorrectly={setAnsweredCorrectly}
+                  answeredCorrectly={answeredCorrectly}
+                /> */}
+              <img src={quantity} className={classes.graphXLable}></img>
+              </Grid>
+            </Grid>
+          </div>
+        </Grid>
+        {answeredCorrectly === null
+        ? hideQuestionBeforeAnimation
+          ? <Grid className={classes.questionContainerHidden}/>
+          : <Grid className={[classes.questionContainer, animationClass2]}>
               <Grid className={classes.questionBody}>
                 <img src={breakingNews} className={classes.breakingNews}></img>
+                {circleIcon[questionAnswers[questionIndex].icon]}
+                {/* <img src={peanutbutterCircleIcon} className={classes.circleIcon}></img> */}
+
                 <Typography variant='h5' className={classes.questionText}>
                   {questionAnswers[questionIndex].question}
+                </Typography>
+                <Typography variant='h5' className={classes.subQuestionText}>
+                  {questionAnswers[questionIndex].subQuestion}
                 </Typography>
               </Grid>
             </Grid>
@@ -169,32 +219,6 @@ const Graph = (props) => {
                 {questionAnswers[questionIndex].briefness}
               </Typography>
             </Grid>}
-        <div className={classes.graphDiv}>
-          <Grid container justify='center' style={{maxWidth: '400px'}}>
-            <Grid className={classes.graphLines}>
-              <img src={price} className={classes.graphYLable}></img>
-
-              <LineDotLeft
-                questionAnswer={questionAnswers[questionIndex]}
-                setAnsweredCorrectly={setAnsweredCorrectly}
-                answeredCorrectly={answeredCorrectly}
-                setScore={setScore}
-                setMoved={setMoved}
-                submitted={submitted}
-                resetGraph={resetGraph}
-                modalClose={modalClose}
-                modalOpen={modalOpen}
-                key={questionIndex}
-              />
-              {/* <LineDotRight
-                questionAnswer={questionAnswers[questionIndex]}
-                setAnsweredCorrectly={setAnsweredCorrectly}
-                answeredCorrectly={answeredCorrectly}
-              /> */}
-            </Grid>
-            <img src={quantity} className={classes.graphXLable}></img>
-          </Grid>
-        </div>
       </Grid>
       <Button
         onClick={submitted ? nextQuestion : handleSubmit}

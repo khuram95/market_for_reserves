@@ -2,24 +2,25 @@ const styles = theme => ({
   questionTitle: {
     color: '#003E4C',
     fontWeight: '500',
-    paddingTop: "30px",
+    fontSize: '2rem',
+    padding: "60px 20px 60px 0",
     fontFamily: "'Oswald',sans-serif"
   },
   graphContainer: {
     paddingTop: "60px"
   },
   questionContainer: {
-    width: '350px',
+    width: '300px',
     border: '5px solid #003E4C',
     padding: '30px',
-    marginBottom: '50px',
+    margin: '100px 50px 0px 40px',
     backgroundColor: '#fff'
   },
   questionContainerHidden: {
-    width: '350px',
+    width: '310px',
     border: 'none',
     padding: '30px',
-    marginBottom: '50px',
+    margin: '100px 50px 0px 40px',
   },
   questionBody: {
     position: 'relative',
@@ -27,19 +28,37 @@ const styles = theme => ({
     flexDirection: 'column'
   },
   breakingNews: {
-    marginTop: '-56px',
-    height: '50px'
+    position: 'absolute',
+    top: '-60px',
+    left: '-80px',
+    height: '60px'
+  },
+  circleIcon: {
+    position: 'absolute',
+    top: '-115px',
+    right: '-85px',
+    height: '140px'
   },
   questionText: {
     color: '#565656',
     fontWeight: "400",
     paddingTop: "12px",
-    fontSize: '26px',
+    fontSize: '27px',
+    fontFamily: "'Oswald', sans-serif"
+  },
+  subQuestionText: {
+    color: '#00b1d9',
+    fontWeight: "400",
+    paddingTop: "12px",
+    fontSize: '27px',
     fontFamily: "'Oswald', sans-serif"
   },
   answerContainer: {
-    width: '420px',
-    marginBottom: '50px'
+    marginTop: '100px',
+    width: '300px',
+    border: '5px solid transparent',
+    padding: '30px',
+    margin: '100px 50px 0px 40px',
   },
   curveShiftingText: {
     color: '#003E4C',
@@ -67,25 +86,29 @@ const styles = theme => ({
   graphDiv: {
     display: 'flex',
     alignItems: 'center',
-    marginLeft: '185px',
+    marginLeft: '100px',
+    marginBottom: '50px',
     justifyContent: 'space-around'
   },
   graphLines: {
     borderLeft: '5px solid #565656',
     borderBottom: '5px solid #565656',
     height: '330px',
-    width: '330px',
+    width: '460px',
     position: "relative"
   },
   graphYLable: {
-    height: '30px',
+    height: '18px',
     position: 'absolute',
-    top: '150px',
-    left: '-135px'
+    top: '7px',
+    left: '-90px'
   },
   graphXLable: {
-    height: '30px',
-    marginTop: '10px'
+    height: '18px',
+    position: 'absolute',
+    bottom: '-35px',
+    right: '5px',
+
   },
   submitButton: {
     color: '#fff',
@@ -93,8 +116,8 @@ const styles = theme => ({
     fontSize: '36px',
     fontWeight: '500',
     marginTop: '50px',
-    padding: '5px 45px',
-    borderRadius: '10px',
+    padding: '0px 20px',
+    borderRadius: '0px',
     fontFamily: "'Oswald', sans-serif",
     "&:hover": {
       backgroundColor: '#056f8a'

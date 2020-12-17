@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 import { withStyles } from '@material-ui/core/styles'
 import styles from './styles'
@@ -6,34 +6,15 @@ import styles from './styles'
 const LineDotLeft = (props) => {
   const {classes} = props
 
-  const { questionAnswer, setAnsweredCorrectly, setScore, setMoved, submitted, resetGraph, modalClose, modalOpen } = props
+  const { questionAnswer, answeredCorrectly, setAnsweredCorrectly, setScore, setMoved, submitted, resetGraph, modalClose, modalOpen } = props
 
-  useEffect(() => {
-    if (submitted) {
-      if (nothingMove()) {
-        nothingAsWrong()
-      }
-      else if(dotPosition.y === 120) {
-        evaluateLineAnswer(linePosition.x)
-      } else {
-        evaluateDotAnswer(dotPosition.y)
-      }
-    }
-  }, [submitted])
 
-  useEffect(() => {
-    if (resetGraph) {
-      console.log('reseting here')
-      setLinePosition({ x: 0, y: 0 })
-      setDotPosition({ x: 0, y: 120 })
-      setLineDisable(false)
-      setDotDisable(false)
-      modalClose()
-    }
-  }, [resetGraph])
+  //adjust dot center accoring to line
+  const heightOfLine = 400
+  const dotCenterPosition = (heightOfLine - 30)/2
 
   const { answer } = questionAnswer
-  const [dotPosition, setDotPosition] = useState({x: 0, y: 120})
+  const [dotPosition, setDotPosition] = useState({x: 0, y: dotCenterPosition})
   const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
   const [correctPosition, setCorrectPosition] = useState(0)
   const [wrongPosition, setWrongPosition] = useState(null)
@@ -45,6 +26,31 @@ const LineDotLeft = (props) => {
   const [dotBorderColor, setDotBorderColor] = useState("#003e4c")
   const [dotFillColor, setDotFillColor] = useState("#00b1d9")
   const [fadeDot, setFadeDot] = useState("1")
+
+  useEffect(() => {
+    if (submitted) {
+      if (nothingMove()) {
+        nothingAsWrong()
+      }
+      else if(dotPosition.y === dotCenterPosition) {
+        evaluateLineAnswer(linePosition.x)
+      } else {
+        evaluateDotAnswer(dotPosition.y)
+      }
+    }
+  }, [submitted])
+
+  useEffect(() => {
+    if (resetGraph) {
+      console.log('reseting here')
+      setLinePosition({ x: 0, y: 0 })
+      setDotPosition({ x: 0, y: dotCenterPosition })
+      setLineDisable(false)
+      setDotDisable(false)
+      modalClose()
+    }
+  }, [resetGraph])
+
 
   const DragStartLine = (event) => {
     console.log("event line", event)
@@ -66,11 +72,11 @@ const LineDotLeft = (props) => {
   }
 
   const nothingMove = () => {
-    return dotPosition.y === 120 && linePosition.x === 0
+    return dotPosition.y === dotCenterPosition && linePosition.x === 0
   }
 
   const lineOrDotMoved = (position) => {
-    if (position == 120) {
+    if (position == dotCenterPosition) {
       setShowLine(true)
       setWrongPosition(linePosition.x)
       setLineColor("red")
@@ -85,11 +91,11 @@ const LineDotLeft = (props) => {
   }
 
   const setColors = () => {
-    if (dotPosition.y == 120) {
+    if (dotPosition.y == dotCenterPosition) {
       setLineColor("red")
       setMoved("line moved opposite")
     } else {
-      setLineColor('#2e8599')
+      // setLineColor('#2e8599')
       setDotBorderColor("#e03616")
       setDotFillColor("#d3968d")
       setMoved("line but moved dot")
@@ -111,11 +117,11 @@ const LineDotLeft = (props) => {
         break;
       case "goes down":
         setShowDot(true)
-        setCorrectPosition(190)
+        setCorrectPosition(dotCenterPosition + dotCenterPosition/2)
         break;
       case "goes up":
         setShowDot(true)
-        setCorrectPosition(50)
+        setCorrectPosition(dotCenterPosition - dotCenterPosition/2)
         break;
       default:
     }
@@ -140,11 +146,11 @@ const LineDotLeft = (props) => {
         break;
       case "goes down":
         lineOrDotMoved(dotPosition.y)
-        setCorrectPosition(190)
+        setCorrectPosition(dotCenterPosition + dotCenterPosition/2)
         break;
       case "goes up":
         lineOrDotMoved(dotPosition.y)
-        setCorrectPosition(50)
+        setCorrectPosition(dotCenterPosition - dotCenterPosition/2)
         break;
       default:
         // code block
@@ -167,7 +173,7 @@ const LineDotLeft = (props) => {
     event.stopPropagation();
     if (dotPosition.y <= 130 && dotPosition.y >= 110) {
       setLineDisable(false)
-      setDotPosition({x: 0, y: 120})
+      setDotPosition({x: 0, y: dotCenterPosition})
     } else {
       setLineDisable(true)
     }
@@ -219,13 +225,14 @@ const LineDotLeft = (props) => {
     setDotDisable(true)
     setAnsweredCorrectly(true)
     setScore((preScore) => preScore + questionAnswer.score)
+    draggableDotColor()
     setMoved("correct")
   }
 
   const DragStartDot = (event) => {
     event.stopPropagation();
     if (dotDisable) {
-      setDotPosition({ x: 0, y: 120 })
+      setDotPosition({ x: 0, y: dotCenterPosition })
       modalOpen()
     }
   }
@@ -233,17 +240,32 @@ const LineDotLeft = (props) => {
   const DragDot = (event, ui) => {
     event.stopPropagation();
     if (dotDisable) {
-      setDotPosition({ x: 0, y: 120 })
+      setDotPosition({ x: 0, y: dotCenterPosition })
     } else {
       setDotPosition({ x:  dotPosition.x + ui.deltaX, y: dotPosition.y + ui.deltaY})
     }
     console.log("event dragging", dotPosition)
   }
 
+  const draggableLineColor = () => {
+    if (answeredCorrectly && answer.includes('shifts')) {
+      return "#508a05"
+    }
+    return wrongPosition ? "#003E4C" : lineColor
+  }
+
+  const draggableDotColor = () => {
+    if (answer.includes('goes')) {
+      setDotFillColor('#508a05')
+      // return "#508a05"
+    }
+    // return wrongPosition ? "#003E4C" : lineColor
+  }
+
   return (
     <div className={classes.verticalLinesContainer}>
       <div className={classes.defaultLine} />
-      <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#003E4C", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}></div>
+      <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}></div>
       <Draggable
         axis="x"
         defaultPosition={{x: 0, y: 0}}
@@ -256,19 +278,24 @@ const LineDotLeft = (props) => {
         // disabled={lineDisable}
       >
         <div style={{ cursor: !lineDisable && 'pointer' }}>
-          <div className={classes.dragableLine} style={{backgroundColor: wrongPosition ? "#green" : lineColor}}>
+          <div className={classes.dragableLine} id="draggable_line" style={{backgroundColor: draggableLineColor()}}>
             <div className={classes.fadedDot}
-              style={{ opacity: fadeDot <= 0.5 ? "0" : "1", zIndex: showDot ? '1' : '0'}}
+              style={{ opacity: fadeDot <= 0.5 ? "0" : "1", zIndex: showDot ? '1' : '0', top: dotCenterPosition}}
             />
             {<div className={classes.correctDot}
-              style={{ opacity: showDot ? "1" : "0", top: correctPosition || 120, transition: `top 1s` }}
+              style={{ opacity: showDot ? "1" : "0", top: correctPosition || dotCenterPosition, transition: `top 1s` }}
             />}
             <Draggable
               axis="y"
-              defaultPosition={{x: 0, y: 120}}
+              defaultPosition={{x: 0, y: dotCenterPosition}}
               position={dotPosition}
               scale={1}
-              bounds={{top: 50, left: 0, right: 0, bottom: 190}}
+              bounds={{
+                top: dotCenterPosition-(dotCenterPosition/2),
+                left: 0,
+                right: 0,
+                bottom: dotCenterPosition+(dotCenterPosition/2)
+              }}
               onStart={DragStartDot}
               onDrag={DragDot}
               onStop={DragEndDot}

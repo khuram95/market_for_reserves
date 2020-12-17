@@ -1,23 +1,23 @@
 const styles = theme => ({
   verticalLinesContainer: {
     position: "absolute",
-    top: "60px",
-    left: "170px"
+    top: "-52px",
+    left: "240px"
   },
 
   defaultLine: {
     transform: "rotate(-45deg)",
     position: 'absolute',
-    height: "270px",
+    height: "400px",
     width: "8px",
-    backgroundColor: "#2e8599",
+    backgroundColor: "#003e4c",
     borderRadius: '5px'
   },
 
   correctLine: {
     transform: "rotate(-45deg)",
     position: 'absolute',
-    height: "270px",
+    height: "400px",
     width: "8px",
     borderRadius: '5px',
   },
@@ -25,7 +25,7 @@ const styles = theme => ({
   dragableLine: {
     display: "flex",
     justifyContent: "center",
-    height: "270px",
+    height: "400px",
     width: "8px",
     position: "relative",
     borderRadius: '5px',
@@ -49,7 +49,7 @@ const styles = theme => ({
     border: "5px solid #003e4c",
     borderRadius: "50%",
     padding: "10px",
-    backgroundColor: "#00b1d9",
+    backgroundColor: "#508a05",
     color: "blue",
   },
 
