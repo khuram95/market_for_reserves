@@ -12,6 +12,7 @@ import breakingNews from '../../images/breakingnews.svg'
 import peanutbutterCircleIcon from '../../images/peanutbutterCircle.png'
 import sodaCircleIcon from '../../images/sodaCircle.png'
 import laptopCircleIcon from '../../images/laptopCircle.png'
+import { useHistory } from 'react-router-dom'
 import styles from './styles'
 import 'animate.css/animate.css'
 
@@ -48,6 +49,8 @@ const questionAnswers = [
 const Graph = (props) => {
   const {classes} = props
 
+  let history = useHistory()
+
   const [questionIndex, setQuestionIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [answeredCorrectly, setAnsweredCorrectly] = useState(null)
@@ -60,7 +63,10 @@ const Graph = (props) => {
   const [animationClass2, setAnimationClass2] = useState('')
   const [open, setOpen] = useState(false);
   const [resetGraph, setResetGraph] = useState(false);
+  const [answersArray, setAnswersArray] = useState([])
   const [hideQuestionBeforeAnimation, setHideQuestionBeforeAnimation] = useState(true);
+
+  // let answers = []
 
   useEffect(() => {
     setShowBreakingNews(true)
@@ -74,9 +80,13 @@ const Graph = (props) => {
   }, [])
 
   useEffect(() => {
+    if(answeredCorrectly !== null)
+      setAnswersArray([...answersArray, answeredCorrectly])
+    console.log("answer", answersArray)
     whatWasMoved()
   }, [moved])
 
+  console.log("answersArray", answersArray)
 
   const modalOpen = () => setOpen(true);
 
@@ -100,12 +110,19 @@ const Graph = (props) => {
 
   }
 
+  const isQuizCompleted = () => {
+    if(!(questionIndex + 1 < questionAnswers.length))
+      history.push('/result')
+  }
+
   const nextQuestion = () => {
     setHideQuestionBeforeAnimation(true)
+    isQuizCompleted()
     setQuestionIndex(questionIndex + 1)
     setAnsweredCorrectly(null)
     setSubmitted(false)
     setShowBreakingNews(true)
+    setMoved(null)
     setAnimationClass1('animate__animated animate__bounceIn')
     setTimeout(() => {
       setAnimationClass1('')

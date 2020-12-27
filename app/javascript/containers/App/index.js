@@ -1,6 +1,6 @@
 import React from "react"
-import HomeScreen from "../HomeScreen"
+import RouterScreen from "../RouterScreen"
 
-const App = () => <HomeScreen/>
+const App = () => <RouterScreen/>
 
 export default App
