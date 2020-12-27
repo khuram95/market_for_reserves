@@ -49,9 +49,9 @@ const LineDotLeft = (props) => {
     <div className={classes.verticalLinesContainer} style={{ left: linePosition}}>
       <div className={classes.defaultLine} />
         <div>
-          <div className={classes.dragableLine}  style={{backgroundColor: '#003e4c'}}>
+          <div className={classes.dragableLine}  style={{backgroundColor: move == 'line' ? '#00b1d9' : '#fff'}}>
             <div className={classes.draggableDot}
-              style={{ top: `${dotPosition}px`, transition: `top 1s` }}
+              style={{ top: `${dotPosition}px`, transition: `top 1s`, backgroundColor: move == 'dot' ? '#00b1d9' : '#fff' }}
             />
               <div style={{height: '40px'}}>
               <img

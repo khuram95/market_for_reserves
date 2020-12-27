@@ -47,9 +47,9 @@ const styles = theme => ({
   draggableDot: {
     position: "absolute",
     transform: "rotate(45deg)",
-    border: "5px solid #003e4c",
+    // border: "5px solid #003e4c",
     borderRadius: "50%",
-    padding: "10px",
+    padding: "15px",
     backgroundColor: "#00b1d9",
     color: "blue",
   },

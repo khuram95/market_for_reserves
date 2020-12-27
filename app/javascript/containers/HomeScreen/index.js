@@ -48,7 +48,7 @@ const HomeScreen = ({ classes }) => {
       <Grid container justify='space-between'>
         <Grid style={{ padding: "2rem"}}>
 
-          <Typography variant='h5' className={classes.classAssignmentTitle}>
+          {/* <Typography variant='h5' className={classes.classAssignmentTitle}>
             Submitting as class assignment?
           </Typography>
           <input
@@ -56,7 +56,7 @@ const HomeScreen = ({ classes }) => {
             onChange={(e) => setName(e.target.value)}
             value={name}
             placeholder="Your name here"
-          />
+          /> */}
 
         </Grid>
         <Grid className={classes.mruLogo}>

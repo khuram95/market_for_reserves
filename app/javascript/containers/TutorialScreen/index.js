@@ -5,7 +5,7 @@ import Simulation from "../../components/Simulation"
 const HomeScreen = () => {
 
   return (
-    <div style={{ height: "100%", minHeight: '100vh', backgroundColor: '#71cedb' }}>
+    <div style={{ height: "100%", minHeight: '100vh', backgroundColor: '#565656' }}>
        {/* backgroundImage: `url(${background})` */}
       <Simulation />
     </div>

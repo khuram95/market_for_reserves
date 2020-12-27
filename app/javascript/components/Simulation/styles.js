@@ -1,6 +1,26 @@
 const styles = theme => ({
+  tutorialGrid: {
+    display: 'flex',
+    alignSelf: 'flex-start'
+  },
+  tutorialText: {
+    color: '#fff',
+    fontSize: '48px',
+    fontWeight: '500',
+    marginTop: '15px',
+    padding: '0px 20px',
+    fontFamily: "'Oswald', sans-serif",
+  },
+  youCanImg: {
+    height: '250px',
+    // marginLeft: '135px'
+  },
+  textContainer: {
+    paddingTop: "50px",
+    flex: '1'
+  },
   graphContainer: {
-    paddingTop: "200px",
+    // paddingTop: "50px",
     flex: '1'
   },
   questionTitle: {
@@ -36,13 +56,13 @@ const styles = theme => ({
   graphDiv: {
     display: 'flex',
     alignItems: 'center',
-    marginLeft: '100px',
+    // marginLeft: '100px',
     marginBottom: '50px',
     justifyContent: 'space-around'
   },
   graphLines: {
-    borderLeft: '5px solid #003a4c',
-    borderBottom: '5px solid #003a4c',
+    borderLeft: '5px solid #fff',
+    borderBottom: '5px solid #fff',
     height: '330px',
     width: '460px',
     position: "relative",
@@ -62,7 +82,7 @@ const styles = theme => ({
   },
   submitButton: {
     color: '#fff',
-    backgroundColor: '#003E4C',
+    backgroundColor: '#00b1d9',
     fontSize: '36px',
     fontWeight: '500',
     marginTop: '50px',

@@ -3,8 +3,9 @@ import styles from './styles'
 import { withStyles } from '@material-ui/core/styles'
 import LineDotLeft from './LineDotLeft'
 import { Grid, Typography, Button, Modal } from '@material-ui/core'
-import price from '../../images/price.svg'
-import quantity from '../../images/quantity.svg'
+import youCan from '../../images/youCan.svg'
+import priceWhite from '../../images/priceWhite.svg'
+import quantityWhite from '../../images/quantityWhite.svg'
 import ShiftTheLine from './ShiftTheLine'
 import MoveThePoint from './MoveThePoint'
 import { useHistory } from 'react-router-dom'
@@ -24,56 +25,75 @@ const Simulation = (props) => {
     setTimeout(() => {
       setRunTutorial("line")
     }, 2000)
-    setTimeout(() => {
-      setRunTutorial("or")
-    }, 8000)
-    setTimeout(() => {
-      setRunTutorial("dot")
-    }, 11000)
+    // setTimeout(() => {
+    //   setRunTutorial("or")
+    // }, 8000)
+    // setTimeout(() => {
+    //   setRunTutorial("dot")
+    // }, 11000)
   },[])
 
-  useEffect(() => {
-    switch (runTutorial) {
-      case "none":
-        break;
-      case "line":
-        setTimeout(() => { setMove("line") }, 1000)
-        break;
-      case "or":
-        setMove("none")
-        break;
-      case "dot":
-        setTimeout(() => { setMove("dot") }, 1000)
-        setTimeout(() => { setQuizButton("got it") }, 5000)
-        setTimeout(() => { onClickSkip() }, 8000)
-          break;
-      default:
-        break;
-    }
-  },[runTutorial])
+  // useEffect(() => {
+  //   switch (runTutorial) {
+  //     case "none":
+  //       break;
+  //     case "line":
+  //       setTimeout(() => { setMove("line") }, 1000)
+  //       break;
+  //     case "or":
+  //       setMove("none")
+  //       break;
+  //     case "dot":
+  //       setTimeout(() => { setMove("dot") }, 1000)
+  //       setTimeout(() => { setQuizButton("got it") }, 5000)
+  //       setTimeout(() => { onClickSkip() }, 8000)
+  //         break;
+  //     default:
+  //       break;
+  //   }
+  // },[runTutorial])
 
   const onClickSkip = () => {
     history.push("/quiz")
   }
 
   return (
-    <Grid container alignItems="center" direction="column">
+    <Grid container item direction='column' alignItems='center'>
+      <Grid className={classes.tutorialGrid}>
+        <Typography className={classes.tutorialText}>TUTOTIAL</Typography>
+      </Grid>
+      <Grid container item justify='center'>
+        <img src={youCan}  className={classes.youCanImg}></img>
+      </Grid>
       <Grid container item justify='space-evenly' className={[classes.graphContainer]}>
-        <Grid container style={{ flex: '0.5' }}>
+        <Grid container style={{ flex: '0.3' }}>
           <Typography variant="h5" align='right' className={classes.questionTitle}></Typography>
           <div className={classes.graphDiv}>
             <Grid container justify='center' style={{maxWidth: '520px'}}>
               <Grid className={classes.graphLines}>
-                <img src={price} className={classes.graphYLable}></img>
-                <LineDotLeft move={move}/>
-                <img src={quantity} className={classes.graphXLable}></img>
+                <img src={priceWhite} className={classes.graphYLable}></img>
+                <LineDotLeft move={'line'}/>
+                <img src={quantityWhite} className={classes.graphXLable}></img>
               </Grid>
             </Grid>
           </div>
         </Grid>
 
-        <Grid className={classes.questionContainer}>
-          <Grid className={classes.questionBody}>
+        <Grid container style={{ flex: '0.3' }}>
+          <Typography variant="h5" align='right' className={classes.questionTitle}></Typography>
+          <div className={classes.graphDiv}>
+            <Grid container justify='center' style={{maxWidth: '520px'}}>
+              <Grid className={classes.graphLines}>
+                <img src={priceWhite} className={classes.graphYLable}></img>
+                <LineDotLeft move={'dot'}/>
+                <img src={quantityWhite} className={classes.graphXLable}></img>
+              </Grid>
+            </Grid>
+          </div>
+
+        {/* <Grid className={classes.questionContainer}> */}
+          {/* <LineDotLeft move={'dot'}/> */}
+          {/* <Grid className={classes.questionBody}>
             <Typography className={classes.questionTitle}>
               HOW TO PLAY
             </Typography>
@@ -82,14 +102,15 @@ const Simulation = (props) => {
               OR
             </Typography>}
             {runTutorial === 'dot' && <MoveThePoint/>}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
       <Button
         className={classes.submitButton}
         onClick={onClickSkip}
       >
-        {quizButton === 'skip' ? "SKIP" : "GOT IT"}
+        GOT IT
+        {/* {quizButton === 'skip' ? "SKIP" : "GOT IT"} */}
       </Button>
     </Grid>
   )}
