@@ -10,17 +10,17 @@ const styles = theme => ({
     paddingTop: "60px"
   },
   questionContainer: {
-    width: '300px',
+    width: '350px',
     border: '5px solid #003E4C',
-    padding: '30px',
-    margin: '100px 50px 0px 40px',
+    padding: '30px 10px 30px 30px',
+    margin: '100px 10px 0px 40px',
     backgroundColor: '#fff'
   },
   questionContainerHidden: {
-    width: '310px',
+    width: '360px',
     border: 'none',
-    padding: '30px',
-    margin: '100px 50px 0px 40px',
+    padding: '30px 10px 30px 30px',
+    margin: '100px 10px 0px 40px',
   },
   questionBody: {
     position: 'relative',
@@ -53,12 +53,20 @@ const styles = theme => ({
     fontSize: '27px',
     fontFamily: "'Oswald', sans-serif"
   },
+  QuestionTextAgain: {
+    color: '#565656',
+    fontWeight: "400",
+    // paddingTop: "12px",
+    fontSize: '23px',
+    fontFamily: "'Oswald', sans-serif",
+    paddingBottom: '20px'
+  },
   answerContainer: {
-    marginTop: '100px',
-    width: '300px',
+    // marginTop: '100px',
+    width: '350px',
     border: '5px solid transparent',
-    padding: '30px',
-    margin: '100px 50px 0px 40px',
+    padding: '30px 10px 30px 30px',
+    margin: '100px 10px 0px 40px',
   },
   curveShiftingText: {
     color: '#003E4C',
@@ -103,12 +111,43 @@ const styles = theme => ({
     top: '7px',
     left: '-90px'
   },
+  graphP1Lable: {
+    fontSize: '24px',
+    fontWeight: '600',
+    position: 'absolute',
+    color: '#003e4c',
+    top: '138px',
+    left: '-35px'
+  },
+  graphP2Lable: {
+    fontSize: '24px',
+    fontWeight: '600',
+    position: 'absolute',
+    color: '#003e4c',
+    top: '203px',
+    left: '-35px'
+  },
   graphXLable: {
     height: '18px',
     position: 'absolute',
     bottom: '-35px',
     right: '5px',
-
+  },
+  graphQ1Lable: {
+    fontSize: '24px',
+    fontWeight: '600',
+    position: 'absolute',
+    color: '#003e4c',
+    bottom: '-35px',
+    left: '222px',
+  },
+  graphQ2Lable: {
+    fontSize: '24px',
+    fontWeight: '600',
+    position: 'absolute',
+    color: '#003e4c',
+    bottom: '-35px',
+    left: '288px',
   },
   submitButton: {
     color: '#fff',

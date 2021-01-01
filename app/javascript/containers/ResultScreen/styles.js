@@ -22,7 +22,7 @@ const styles = theme => ({
   resultScreenContainer: {
     height: "100%",
     minHeight: '100vh',
-    backgroundColor: '#71cedb',
+    backgroundColor: '#bacfcc',
     fontFamily: "'Oswald'",
     fontSize: "50px",
     color: "#003e4c",
@@ -34,7 +34,7 @@ const styles = theme => ({
     backgroundColor: '#003e4c',
     fontSize: '30px',
     fontWeight: '500',
-    padding: '0px 50px',
+    padding: '0px 20px',
     borderRadius: '0px',
     fontFamily: "'Oswald', sans-serif",
     "&:hover": {
@@ -43,31 +43,44 @@ const styles = theme => ({
   },
 
   classAssignmentTitle: {
-    color: '#000',
-    fontWeight: '300',
+    color: '#003e4c',
+    fontWeight: '400',
     fontSize: '30px',
     textAlign: 'center',
-    fontFamily: "'Oswald',sans-serif",
+    fontFamily: "rubik",
+  },
+
+  studentName: {
+    color: '#003e4c',
+    fontWeight: '300',
+    fontSize: '40px',
+    textAlign: 'center',
+    fontFamily: "rubik",
   },
 
   nameInput: {
-    width: "250px",
+    width: "450px",
     padding: "6px",
     fontSize: "30px",
     border: "none",
+    color: '#003e4c',
+    marginRight: "1rem",
     borderRadius: "4px",
-    textAlign: "center"
+    textAlign: "center",
+    fontWeight: "100",
+    fontFamily: "rubik"
+
   },
 
   answerNumber: {
-    fontFamily: "'Oswald'",
+    fontFamily: "rubik",
     fontSize: "30px",
     fontWeight: "500"
   },
 
   answerLogo: {
     width: "30px",
-    padding: "0 2rem"
+    padding: "0 1rem"
   }
 
 })

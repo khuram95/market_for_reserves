@@ -47,7 +47,7 @@ const questionAnswers = [
 ]
 
 const Graph = (props) => {
-  const {classes} = props
+  const { classes, setAnswers, setCurrentScreen } = props
 
   let history = useHistory()
 
@@ -64,6 +64,8 @@ const Graph = (props) => {
   const [open, setOpen] = useState(false);
   const [resetGraph, setResetGraph] = useState(false);
   const [answersArray, setAnswersArray] = useState([])
+  const [dottedLineLabels, setDottedLineLabels] = useState(false)
+
   const [hideQuestionBeforeAnimation, setHideQuestionBeforeAnimation] = useState(true);
 
   // let answers = []
@@ -81,12 +83,9 @@ const Graph = (props) => {
 
   useEffect(() => {
     if(answeredCorrectly !== null)
-      setAnswersArray([...answersArray, answeredCorrectly])
-    console.log("answer", answersArray)
+      setAnswers((prevAnswers) => [...prevAnswers, answeredCorrectly])
     whatWasMoved()
   }, [moved])
-
-  console.log("answersArray", answersArray)
 
   const modalOpen = () => setOpen(true);
 
@@ -100,6 +99,7 @@ const Graph = (props) => {
   const handleSubmit = () => {
     setAnimationClass1('')
     setSubmitted(true)
+    questionAnswers[questionIndex].answer.includes('goes') && setTimeout(() => setDottedLineLabels(true), 1000)
     setShowBreakingNews(false)
   }
 
@@ -112,7 +112,7 @@ const Graph = (props) => {
 
   const isQuizCompleted = () => {
     if(!(questionIndex + 1 < questionAnswers.length))
-      history.push('/result')
+      setCurrentScreen("Result")
   }
 
   const nextQuestion = () => {
@@ -121,6 +121,7 @@ const Graph = (props) => {
     setQuestionIndex(questionIndex + 1)
     setAnsweredCorrectly(null)
     setSubmitted(false)
+    setDottedLineLabels(false)
     setShowBreakingNews(true)
     setMoved(null)
     setAnimationClass1('animate__animated animate__bounceIn')
@@ -172,7 +173,15 @@ const Graph = (props) => {
             <Grid container justify='center' style={{maxWidth: '520px'}}>
               <Grid className={classes.graphLines}>
                 <img src={price} className={classes.graphYLable}></img>
+                {dottedLineLabels &&
+                  <>
+                    <Typography className={classes.graphP1Lable}>P1</Typography>
+                    <Typography className={classes.graphP2Lable} style={{ top: questionAnswers[questionIndex].answer.includes('up') ? '70px' : '203px' }}>P2</Typography>
 
+                    <Typography className={classes.graphQ1Lable}>Q1</Typography>
+                    <Typography className={classes.graphQ2Lable} style={{ left: questionAnswers[questionIndex].answer.includes('up') ? '153px' : '288' }}>Q2</Typography>
+                  </>
+                }
                 <LineDotLeft
                   questionAnswer={questionAnswers[questionIndex]}
                   setAnsweredCorrectly={setAnsweredCorrectly}
@@ -190,7 +199,7 @@ const Graph = (props) => {
                   setAnsweredCorrectly={setAnsweredCorrectly}
                   answeredCorrectly={answeredCorrectly}
                 /> */}
-              <img src={quantity} className={classes.graphXLable}></img>
+                <img src={quantity} className={classes.graphXLable}></img>
               </Grid>
             </Grid>
           </div>
@@ -214,6 +223,11 @@ const Graph = (props) => {
             </Grid>
         : answeredCorrectly === true
           ? <Grid className={classes.answerContainer}>
+              <Typography variant='h5' className={classes.QuestionTextAgain}>
+                {questionAnswers[questionIndex].question}
+                <br/>
+                {questionAnswers[questionIndex].subQuestion}
+              </Typography>
               <img src={answerImage} width="200px" />
               <Typography variant='h4' className={classes.curveShiftingText}>
                 {questionAnswers[questionIndex].answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded '}
@@ -224,6 +238,11 @@ const Graph = (props) => {
               </Typography>
             </Grid>
           : <Grid className={classes.answerContainer}>
+              <Typography variant='h5' className={classes.QuestionTextAgain}>
+                {questionAnswers[questionIndex].question}
+                <br/>
+                {questionAnswers[questionIndex].subQuestion}
+              </Typography>
               <img src={answerImage} width="200px" />
               <Typography variant='h4' className={classes.curveShiftingText}>
                 {questionAnswers[questionIndex].answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded '}

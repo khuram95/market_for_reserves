@@ -2,7 +2,14 @@ const styles = theme => ({
   verticalLinesContainer: {
     position: "absolute",
     top: "-52px",
-    left: "240px"
+    left: "225px"
+  },
+
+  arrows: {
+    position: 'absolute',
+    height: "30px",
+    top: '185px',
+    left: '-50px'
   },
 
   defaultLine: {

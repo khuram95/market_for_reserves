@@ -1,33 +1,20 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom"
-
+import React, { useState } from 'react'
 import HomeScreen from "../HomeScreen"
 import TutorialScreen from "../TutorialScreen"
 import QuizScreen from "../QuizScreen"
 import ResultScreen from "../ResultScreen"
 
 function RouterScreen() {
+
+  const [answers, setAnswers] = useState([])
+  const [currentScreen, setCurrentScreen] = useState("Home")
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <HomeScreen />
-        </Route>
-        <Route exact path="/tutorial">
-          <TutorialScreen />
-        </Route>
-        <Route exact path="/quiz">
-          <QuizScreen />
-        </Route>
-        <Route exact path="/result">
-          <ResultScreen />
-        </Route>
-      </Switch>
-    </Router>
+      <>
+      {currentScreen === "Home"     && <HomeScreen setCurrentScreen={setCurrentScreen} />}
+      {currentScreen === "Tutorial" && <TutorialScreen setCurrentScreen={setCurrentScreen} />}
+      {currentScreen === "Quiz"     && <QuizScreen setAnswers={setAnswers} setCurrentScreen={setCurrentScreen} />}
+      {currentScreen === "Result"   && <ResultScreen answers={answers} />}
+      </>
   )
 }
 

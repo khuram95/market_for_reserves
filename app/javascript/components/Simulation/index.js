@@ -8,14 +8,11 @@ import priceWhite from '../../images/priceWhite.svg'
 import quantityWhite from '../../images/quantityWhite.svg'
 import ShiftTheLine from './ShiftTheLine'
 import MoveThePoint from './MoveThePoint'
-import { useHistory } from 'react-router-dom'
 
 import 'animate.css/animate.css'
 
 const Simulation = (props) => {
-  const { classes } = props
-
-  let history = useHistory()
+  const { classes, setCurrentScreen } = props
 
   const [move, setMove] = useState('none')
   const [quizButton, setQuizButton] = useState('skip')
@@ -53,9 +50,7 @@ const Simulation = (props) => {
   //   }
   // },[runTutorial])
 
-  const onClickSkip = () => {
-    history.push("/quiz")
-  }
+  const onClickSkip = () => setCurrentScreen("Quiz")
 
   return (
     <Grid container item direction='column' alignItems='center'>

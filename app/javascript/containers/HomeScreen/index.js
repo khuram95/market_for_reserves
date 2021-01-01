@@ -1,22 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid, Typography, Button } from '@material-ui/core'
 import CoverImage from '../../images/coverImage.svg'
 import styles from './styles'
-import { withStyles, Input } from '@material-ui/core/styles'
-import { useHistory } from "react-router-dom"
+import { withStyles } from '@material-ui/core/styles'
 import mruLogo from "../../images/mruLogo.png"
 // import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 
 
-const HomeScreen = ({ classes }) => {
+const HomeScreen = ({ classes, setCurrentScreen }) => {
 
-  const [name, setName] = useState("")
-
-  let history = useHistory()
-
-  const handleClick = () => {
-    history.push("/tutorial")
-  }
+  const handleClick = () => setCurrentScreen("Tutorial")
 
   return (
     <Grid
@@ -47,17 +40,6 @@ const HomeScreen = ({ classes }) => {
       </Grid>
       <Grid container justify='space-between'>
         <Grid style={{ padding: "2rem"}}>
-
-          {/* <Typography variant='h5' className={classes.classAssignmentTitle}>
-            Submitting as class assignment?
-          </Typography>
-          <input
-            className={classes.nameInput}
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            placeholder="Your name here"
-          /> */}
-
         </Grid>
         <Grid className={classes.mruLogo}>
           <img src={mruLogo} width='110px' />
