@@ -2,32 +2,47 @@ import React, { useState } from 'react'
 import styles from './styles'
 import { withStyles } from "@material-ui/core/styles"
 import { Grid, Typography, Button } from '@material-ui/core'
-import Correct from 'images/checkMark.svg'
-import Wrong from 'images/xMark.svg'
+import Correct from 'images/checkMarkImage.png'
+import Wrong from 'images/xMarkImage.png'
 import { filter } from "lodash"
-import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
-
+import html2canvas from 'html2canvas';
+import download from "downloadjs"
+import downloadIcon from "images/download.svg"
 
 const ResultScreen = ({ classes, answers }) => {
-  // const answers = [true, true, true, true, true, true, true, true, true, false]
+  // answers = [true, true, true]
   const [name, setName] = useState("")
+  const [error, setError] = useState(null)
   const [showStudentName, setShowStudentName] = useState(false)
 
   const handleClick = () => {
+    if (name.length <= 30) {
+      takeScreenshot()
+    } else {
+      setError("Name cannot be more than 30 charactors")
+    }
+  }
+
+  const onInputChange = (e, value) => {
+    setError(false)
+    setName(e.target.value)
+  }
+
+  const takeScreenshot = () => {
     setShowStudentName(true)
     setTimeout(() => {
-      // htmlToImage.toPng(document.body)
-      // .then(function (dataUrl) {
-      //   var img = new Image();
-      //   img.src = dataUrl;
-      //   document.body.appendChild(img);
-      //   download(dataUrl, 'my-node.png');
-      // })
-      // .catch(function (error) {
-      //   console.error('oops, something went wrong!', error);
-      // });
+      html2canvas(
+        document.body,
+        {
+          width: "1000",
+          height: "570",
+          windowWidth: "1000",
+          windowHeight: "570"
 
+        }
+      ).then((canvas) => {
+        download(canvas.toDataURL("image/png"), 'my-class-assignment.jpg');
+      });
     })
   }
 
@@ -59,21 +74,21 @@ const ResultScreen = ({ classes, answers }) => {
 
       {showStudentName
         ? <Grid>
-          <Typography variant='h5' className={classes.classAssignmentTitle}>
-            Student name:
+            <Typography variant='h5' className={classes.classAssignmentTitle}>
+              Student name:
+              </Typography>
+            <Typography variant='h5' className={classes.studentName}>
+              {name}
             </Typography>
-          <Typography variant='h5' className={classes.studentName}>
-            {name}
-          </Typography>
-        </Grid>
+          </Grid>
         : <Grid>
             <Typography variant='h5' className={classes.classAssignmentTitle}>
               Submitting as class assignment?
-              </Typography>
+            </Typography>
             <Grid container alignItems="center" justify='center' style={{ marginTop: "3rem" }}>
               <input
                 className={classes.nameInput}
-                onChange={(e) => setName(e.target.value)}
+                onChange={onInputChange}
                 value={name}
                 placeholder="Your name here"
               />
@@ -81,10 +96,20 @@ const ResultScreen = ({ classes, answers }) => {
                 className={classes.saveButton}
                 onClick={handleClick}
               >
-                SAVE AS .JPG
+                <>
+                <img src={downloadIcon} className={classes.downloadImage} />
+                  DOWNLOAD .JPG
+                </>
                 </Button>
             </Grid>
-          </Grid>}
+        </Grid>}
+      {error
+        &&
+        <Grid container justify='center' >
+          <Typography variant='h5' className={classes.errorText}>
+            {error}
+          </Typography>
+        </Grid>}
     </Grid>
   )
 }

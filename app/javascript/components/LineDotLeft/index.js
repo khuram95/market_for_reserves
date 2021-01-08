@@ -330,14 +330,32 @@ const LineDotLeft = (props) => {
     <div>
       {showDottedLines &&
       <>
-        <div className={'P1'} style={{ position: 'absolute', top: dotCenterPosition - 34 }}></div>
-        <div className={'P2'} style={{ position: 'absolute', top: answer.includes('up') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 }}></div>
+        <div className={'P2'} style={{ position: 'absolute', top: dotCenterPosition - 34 }}></div>
+        <div className={'P1'} style={{ position: 'absolute', top: answer.includes('up') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 }}></div>
 
-        <div className={'dotOriginP'} style={{ position: 'absolute', top: dotCenterPosition - 34, left: "220px" }}></div>
-        <div className={'dotCorrectP'} style={{ position: 'absolute', top: answer.includes('up') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 , left: answer.includes('up') ? "155px" : '285px'}}></div>
+        <div className={'dotOriginP'} style={{ position: 'absolute', top: dotCenterPosition - 34, left: "215px" }}></div>
+        <div className={'dotCorrectP'} style={{ position: 'absolute', top: answer.includes('up') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 , left: answer.includes('up') ? "150px" : '280px'}}></div>
 
-        <LineTo from="dotOriginP" to="P1" orientation='h' borderStyle='dashed' borderWidth='4px' borderColor='#000' fromAnchor='20%' delay={true}/>
-        <LineTo from="dotCorrectP" to="P2" orientation='h' borderStyle='dashed' borderWidth='4px' borderColor='#000' fromAnchor='20%' delay={true} />
+        <LineTo
+          from="dotOriginP"
+          to="P2"
+          orientation='h'
+          borderStyle='dashed'
+          borderWidth='4px'
+          borderColor='#003e4c'
+          fromAnchor='20%'delay={true}
+          className="animate__animated animate__fadeIn"
+        />
+        <LineTo
+          from="dotCorrectP"
+          to="P1"
+          orientation='h'
+          borderStyle='dashed'
+          borderWidth='4px'
+          borderColor='#003e4c'
+          fromAnchor='20%'delay={true}
+          className="animate__animated animate__fadeIn"
+        />
 
         <div className={'Q1'} style={{ position: 'absolute', top: '330px', left: "230px" }}></div>
         <div className={'Q2'} style={{ position: 'absolute', top: '330px', left: answer.includes('up') ? "165px" : '295px'}}></div>
@@ -345,8 +363,26 @@ const LineDotLeft = (props) => {
         <div className={'dotOriginQ'} style={{ position: 'absolute', top: dotCenterPosition - 25, left: "230px" }}></div>
         <div className={'dotCorrectQ'} style={{ position: 'absolute', top: answer.includes('up') ? (dotCenterPosition - 25) - 65 : (dotCenterPosition - 25) + 65 , left: answer.includes('up') ? "165px" : '295px'}}></div>
 
-        <LineTo from="dotOriginQ" to="Q1" orientation='h' borderStyle='dashed' borderWidth='4px' borderColor='#003e4c' fromAnchor='20%' delay={true}/>
-        <LineTo from="dotCorrectQ" to="Q2" orientation='h' borderStyle='dashed' borderWidth='4px' borderColor='#003e4c' fromAnchor='20%' delay={true} />
+        <LineTo
+          from="dotOriginQ"
+          to="Q1"
+          orientation='h'
+          borderStyle='dashed'
+          borderWidth='4px'
+          borderColor='#003e4c'
+          fromAnchor='20%'delay={true}
+          className="animate__animated animate__fadeIn"
+        />
+        <LineTo
+          from="dotCorrectQ"
+          to="Q2"
+          orientation='h'
+          borderStyle='dashed'
+          borderWidth='4px'
+          borderColor='#003e4c'
+          fromAnchor='20%'delay={true}
+          className="animate__animated animate__fadeIn"
+        />
       </>
       }
       <div className={classes.verticalLinesContainer}>

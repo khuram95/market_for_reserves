@@ -5,15 +5,18 @@ const styles = theme => ({
   },
   tutorialText: {
     color: '#fff',
-    fontSize: '48px',
+    fontSize: '35px',
     fontWeight: '500',
     marginTop: '15px',
     padding: '0px 20px',
     fontFamily: "'Oswald', sans-serif",
   },
   youCanImg: {
-    height: '250px',
-    // marginLeft: '135px'
+    height: '60px'
+  },
+  shiftTheCurve: {
+    height: '80px',
+    marginBottom: "20px"
   },
   textContainer: {
     paddingTop: "50px",
@@ -63,8 +66,8 @@ const styles = theme => ({
   graphLines: {
     borderLeft: '5px solid #fff',
     borderBottom: '5px solid #fff',
-    height: '330px',
-    width: '460px',
+    height: '250px',
+    width: '360px',
     position: "relative",
   },
   graphYLable: {

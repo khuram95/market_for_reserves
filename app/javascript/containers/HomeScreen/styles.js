@@ -5,7 +5,7 @@ const styles = theme => ({
     fontWeight: '500',
     fontSize: '4rem',
     fontFamily: "'Oswald',sans-serif",
-    marginTop: '140px'
+    marginTop: '120px'
   },
 
   homeScreenContainer: {
@@ -13,6 +13,7 @@ const styles = theme => ({
     minHeight: '100vh',
     backgroundColor: '#ecf2f1',
     position: "relative",
+    cursor: "pointer"
   },
 
   logo: {

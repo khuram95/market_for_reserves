@@ -17,18 +17,19 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
       justify='space-between'
       direction='column'
       className={classes.homeScreenContainer}
+      onClick={handleClick}
     >
-      <Grid container direction='column' alignItems='center'>
+      <Grid container direction='column' alignItems='center' style={{ flexWrap: 'nowrap' }}>
         <Typography variant='h5' className={classes.homeTitle}>
           ECON PRACTICE
         </Typography>
         <img src={CoverImage} className={classes.logo} />
         <Grid style={{ marginTop: '-200px'}}>
           <Typography variant='h5' className={classes.homeDesc}>
-            Change In Demand vs.
+            Change in Demand vs.
           </Typography>
           <Typography variant='h5' className={classes.homeDesc}>
-            Change In Quality Demanded
+            Change in Quantity Demanded
           </Typography>
         </Grid>
         <Button

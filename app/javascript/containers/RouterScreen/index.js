@@ -10,10 +10,10 @@ function RouterScreen() {
   const [currentScreen, setCurrentScreen] = useState("Home")
   return (
       <>
-      {currentScreen === "Home"     && <HomeScreen setCurrentScreen={setCurrentScreen} />}
+      {currentScreen === "Home"     && <HomeScreen     setCurrentScreen={setCurrentScreen} />}
       {currentScreen === "Tutorial" && <TutorialScreen setCurrentScreen={setCurrentScreen} />}
-      {currentScreen === "Quiz"     && <QuizScreen setAnswers={setAnswers} setCurrentScreen={setCurrentScreen} />}
-      {currentScreen === "Result"   && <ResultScreen answers={answers} />}
+      {currentScreen === "Quiz"     && <QuizScreen     setAnswers={setAnswers} setCurrentScreen={setCurrentScreen} />}
+      {currentScreen === "Result"   && <ResultScreen   answers={answers} />}
       </>
   )
 }

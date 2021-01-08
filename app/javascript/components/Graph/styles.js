@@ -54,10 +54,10 @@ const styles = theme => ({
     fontFamily: "'Oswald', sans-serif"
   },
   QuestionTextAgain: {
-    color: '#565656',
+    color: '#7c7c7c',
     fontWeight: "400",
     // paddingTop: "12px",
-    fontSize: '23px',
+    fontSize: '20px',
     fontFamily: "'Oswald', sans-serif",
     paddingBottom: '20px'
   },
@@ -116,16 +116,16 @@ const styles = theme => ({
     fontWeight: '600',
     position: 'absolute',
     color: '#003e4c',
-    top: '138px',
-    left: '-35px'
+    top: '135px',
+    left: '-40px'
   },
   graphP2Lable: {
     fontSize: '24px',
     fontWeight: '600',
     position: 'absolute',
     color: '#003e4c',
-    top: '203px',
-    left: '-35px'
+    top: '200px',
+    left: '-40px'
   },
   graphXLable: {
     height: '18px',
@@ -138,23 +138,23 @@ const styles = theme => ({
     fontWeight: '600',
     position: 'absolute',
     color: '#003e4c',
-    bottom: '-35px',
-    left: '222px',
+    bottom: '-40px',
+    left: '215px',
   },
   graphQ2Lable: {
     fontSize: '24px',
     fontWeight: '600',
     position: 'absolute',
     color: '#003e4c',
-    bottom: '-35px',
-    left: '288px',
+    bottom: '-40px',
+    left: '280px',
   },
   submitButton: {
     color: '#fff',
     backgroundColor: '#00b1d9',
     fontSize: '36px',
     fontWeight: '500',
-    marginTop: '50px',
+    marginTop: '40px',
     padding: '0px 20px',
     borderRadius: '0px',
     fontFamily: "'Oswald', sans-serif",

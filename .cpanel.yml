@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/d15v022isd7n/public_html/
+    - /bin/cp -R economics-quiz $DEPLOYPATH
+    - bundle exec puma -C config/puma.rb

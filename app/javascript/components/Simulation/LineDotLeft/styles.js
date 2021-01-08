@@ -1,8 +1,8 @@
 const styles = theme => ({
   verticalLinesContainer: {
     position: "absolute",
-    top: "-52px",
-    left: "240px",
+    top: "-30px",
+    left: "210px",
     transition: "left 1s"
   },
 
@@ -26,7 +26,7 @@ const styles = theme => ({
   dragableLine: {
     display: "flex",
     justifyContent: "center",
-    height: "400px",
+    height: "280px",
     width: "8px",
     position: "relative",
     borderRadius: '5px',
@@ -57,7 +57,7 @@ const styles = theme => ({
   handCursorDesign: {
     position: 'absolute',
     right: '-5px',
-    top: '250px',
+    top: '200px',
     transform: 'rotate(45deg)',
     width: '40px',
     transition: 'top 1s'

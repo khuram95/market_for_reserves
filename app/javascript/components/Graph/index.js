@@ -136,7 +136,7 @@ const Graph = (props) => {
   }
 
   const whatWasMoved = () => {
-    console.log('ggg: ', moved)
+
     switch (moved) {
       case 'nothing':
         setAnswerImage(IncorrectIcon)
@@ -166,21 +166,21 @@ const Graph = (props) => {
 
   return (
     <Grid container alignItems="center" direction="column">
-      <Grid container item justify='space-evenly' alignItems='center' className={[classes.graphContainer]}>
-        <Grid>
+      <Grid container item justify='center' alignItems='center'>
+        <Grid style={{ marginRight: "100px" }}>
           <Typography variant="h5" align='right' className={[classes.questionTitle, animationClass1]}>{questionAnswers[questionIndex].title}</Typography>
           <div className={classes.graphDiv}>
             <Grid container justify='center' style={{maxWidth: '520px'}}>
               <Grid className={classes.graphLines}>
                 <img src={price} className={classes.graphYLable}></img>
                 {dottedLineLabels &&
-                  <>
+                  <span className="animate__animated animate__fadeIn">
                     <Typography className={classes.graphP1Lable}>P1</Typography>
                     <Typography className={classes.graphP2Lable} style={{ top: questionAnswers[questionIndex].answer.includes('up') ? '70px' : '203px' }}>P2</Typography>
 
                     <Typography className={classes.graphQ1Lable}>Q1</Typography>
                     <Typography className={classes.graphQ2Lable} style={{ left: questionAnswers[questionIndex].answer.includes('up') ? '153px' : '288' }}>Q2</Typography>
-                  </>
+                  </span>
                 }
                 <LineDotLeft
                   questionAnswer={questionAnswers[questionIndex]}
@@ -224,7 +224,7 @@ const Graph = (props) => {
         : answeredCorrectly === true
           ? <Grid className={classes.answerContainer}>
               <Typography variant='h5' className={classes.QuestionTextAgain}>
-                {questionAnswers[questionIndex].question}
+                Q. {questionAnswers[questionIndex].question}
                 <br/>
                 {questionAnswers[questionIndex].subQuestion}
               </Typography>
@@ -239,7 +239,7 @@ const Graph = (props) => {
             </Grid>
           : <Grid className={classes.answerContainer}>
               <Typography variant='h5' className={classes.QuestionTextAgain}>
-                {questionAnswers[questionIndex].question}
+                Q. {questionAnswers[questionIndex].question}
                 <br/>
                 {questionAnswers[questionIndex].subQuestion}
               </Typography>
@@ -265,6 +265,8 @@ const Graph = (props) => {
       <Modal
         open={open}
         onClose={modalClose}
+        onClick={resetPosition}
+        style={{ cursor: "pointer" }}
         aria-describedby="simple-modal-description"
       >
         <div className={classes.modal}>

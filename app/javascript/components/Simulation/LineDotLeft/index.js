@@ -8,46 +8,58 @@ import styles from './styles'
 const LineDotLeft = (props) => {
   const { classes, move } = props
   //adjust dot center accoring to line
-  const heightOfLine = 400
+  const heightOfLine = 280
   const dotCenterPosition = (heightOfLine - 30)/2
 
   const [dotPosition, setDotPosition] = useState(dotCenterPosition)
-  const [linePosition, setLinePosition] = useState("240px")
+  const [linePosition, setLinePosition] = useState("210px")
 
   useEffect(() => {
     switch (move) {
       case "none":
         break;
       case "line":
-        setTimeout(() => {
-          setLinePosition("290px")
-        }, 1000)
-        setTimeout(() => {
-          setLinePosition("190px")
-        }, 2000)
-        setTimeout(() => {
-          setLinePosition("240px")
-        }, 3000)
+        animateLine()
         break;
       case "dot":
-        setTimeout(() => {
-          setDotPosition(dotCenterPosition + 70)
-        }, 1000)
-        setTimeout(() => {
-          setDotPosition(dotCenterPosition - 70)
-        }, 2000)
-        setTimeout(() => {
-          setDotPosition(dotCenterPosition)
-        }, 3000)
+        animateDot()
         break;
       default:
         break;
     }
-  },[move])
+  }, [move])
+
+  const animateLine = () => {
+    setTimeout(() => {
+      setLinePosition("250px")
+    }, 1000)
+    setTimeout(() => {
+      setLinePosition("170px")
+      animateLine()
+
+    }, 2000)
+    // setTimeout(() => {
+    //   // setLinePosition("240px")
+    //   animateLine()
+    // }, 3000)
+  }
+
+  const animateDot = () => {
+    setTimeout(() => {
+      setDotPosition(dotCenterPosition + 70)
+    }, 1000)
+    setTimeout(() => {
+      setDotPosition(dotCenterPosition - 70)
+      animateDot()
+    }, 2000)
+    // setTimeout(() => {
+    //   setDotPosition(dotCenterPosition)
+    // }, 3000)
+  }
 
   return (
     <div className={classes.verticalLinesContainer} style={{ left: linePosition}}>
-      <div className={classes.defaultLine} />
+      {/* <div className={classes.defaultLine} /> */}
         <div>
           <div className={classes.dragableLine}  style={{backgroundColor: move == 'line' ? '#00b1d9' : '#fff'}}>
             <div className={classes.draggableDot}
@@ -59,7 +71,7 @@ const LineDotLeft = (props) => {
                 className={classes.handCursorDesign}
                 style={{
                   opacity: (move === 'none' || move === 'or') ? '0' : '1',
-                  top:  move === 'dot' ? `${dotPosition + 15}px` : '250px',
+                  top:  move === 'dot' ? `${dotPosition + 15}px` : '200px',
                   right: move === 'dot' ? '3px' : '-5px'
                 }}
               />

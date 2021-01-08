@@ -22,11 +22,17 @@ const styles = theme => ({
   resultScreenContainer: {
     height: "100%",
     minHeight: '100vh',
-    backgroundColor: '#bacfcc',
+    backgroundColor: '#ecf2f1',
     fontFamily: "'Oswald'",
     fontSize: "50px",
     color: "#003e4c",
     padding: "2rem"
+  },
+
+  downloadImage: {
+    width: "33px",
+    marginRight: "15px",
+    marginTop: "-5px"
   },
 
   saveButton: {
@@ -48,6 +54,12 @@ const styles = theme => ({
     fontSize: '30px',
     textAlign: 'center',
     fontFamily: "rubik",
+  },
+
+  errorText: {
+    paddingTop: "10px",
+    color: "red",
+    fontSize: "20px"
   },
 
   studentName: {
