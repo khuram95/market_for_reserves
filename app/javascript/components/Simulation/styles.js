@@ -96,5 +96,13 @@ const styles = theme => ({
       backgroundColor: '#056f8a'
     }
   },
+
+  dragLineMessage: {
+    height: '100px',
+    position: 'absolute',
+    bottom: '-35px',
+    right: '-40px',
+    top: '60px'
+  }
 })
 export default styles;

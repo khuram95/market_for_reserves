@@ -3,48 +3,18 @@ import LineDotLeft from '../LineDotLeft'
 import LineDotRight from '../LineDotRight'
 import { withStyles } from '@material-ui/core/styles'
 import { Grid, Typography, Button, Modal } from '@material-ui/core'
-import price from '../../images/price.svg'
-import quantity from '../../images/quantity.svg'
-import correctIcon from '../../images/correct.svg'
-import NotQuiteIcon from '../../images/notQuite.svg'
-import IncorrectIcon from '../../images/incorrect.svg'
-import breakingNews from '../../images/breakingnews.svg'
-import peanutbutterCircleIcon from '../../images/peanutbutterCircle.png'
-import sodaCircleIcon from '../../images/sodaCircle.png'
-import laptopCircleIcon from '../../images/laptopCircle.png'
+import price from 'images/price.svg'
+import quantity from 'images/quantity.svg'
+import correctIcon from 'images/correct.svg'
+import NotQuiteIcon from 'images/notQuite.svg'
+import IncorrectIcon from 'images/incorrect.svg'
+import breakingNews from 'images/breakingnews.svg'
+import dragLine from 'images/dragLineDark.svg'
 import { useHistory } from 'react-router-dom'
+import questionAnswers from './questionAnswers'
 import styles from './styles'
 import 'animate.css/animate.css'
 
-const questionAnswers = [
-  {
-    title: 'DEMAND CURVE FOR LAPTOPS',
-    question: "Consumers expect the price of laptop computers to decrease in the coming months.",
-    subQuestion: "What happens to the demand for laptops?",
-    icon: 'laptop',
-    answer: "shifts left",
-    briefness: "The expectation of lower prices in the future will cause a decrease in the demand for laptops today. At every price, consumers will buy fewer computers today.",
-    score: 10
-  },
-  {
-    title: 'DEMAND CURVE FOR SODA',
-    question: "A reduction in the supply of soda causes the price of soda to increase.",
-    subQuestion: "What happens to the demand for soda?",
-    icon: 'soda',
-    answer: "goes up",
-    briefness: "A change in price causes movement along the curve. It does not change demand, only quantity demanded. A decrease in price would cause an increase in the quantity demanded.",
-    score: 10
-  },
-  {
-    title: 'DEMAND CURVE FOR PEANUT BUTTER',
-    question: "The price of almond butter, a substitute for peanut butter, decreases.",
-    subQuestion: "What happens to the demand for peanut butter?",
-    icon: 'peanut butter',
-    answer: "shifts left",
-    briefness: "When the price of almond butter decreases, consumers will purchase MORE almond butter (movement along the almond butter demand curve) and LESS peanut butter at every price (leftward shift of peanut butter demand curve).",
-    score: 10
-  }
-]
 
 const Graph = (props) => {
   const { classes, setAnswers, setCurrentScreen } = props
@@ -63,7 +33,7 @@ const Graph = (props) => {
   const [animationClass2, setAnimationClass2] = useState('')
   const [open, setOpen] = useState(false);
   const [resetGraph, setResetGraph] = useState(false);
-  const [answersArray, setAnswersArray] = useState([])
+  const [showDragMessage, setShowDragMessage] = useState(false)
   const [dottedLineLabels, setDottedLineLabels] = useState(false)
 
   const [hideQuestionBeforeAnimation, setHideQuestionBeforeAnimation] = useState(true);
@@ -101,13 +71,6 @@ const Graph = (props) => {
     setSubmitted(true)
     questionAnswers[questionIndex].answer.includes('goes') && setTimeout(() => setDottedLineLabels(true), 1000)
     setShowBreakingNews(false)
-  }
-
-  const circleIcon = {
-    "peanut butter": <img src={peanutbutterCircleIcon} className={classes.circleIcon}></img>,
-    "soda": <img src={sodaCircleIcon} className={classes.circleIcon}></img>,
-    "laptop": <img src={laptopCircleIcon} className={classes.circleIcon}></img>
-
   }
 
   const isQuizCompleted = () => {
@@ -156,7 +119,8 @@ const Graph = (props) => {
         return
       case "dot moved opposite":
         setAnswerImage(NotQuiteIcon)
-        setAnswerMessage("You were right to move the dot, but you did it in the wrong direction.")
+        setAnswerMessage("You we're right to move the point, but you did it in the wrong direction.")
+        return
       case "line moved opposite":
         setAnswerImage(NotQuiteIcon)
         setAnswerMessage("You were right to shift the curve, but you did it in the wrong direction.")
@@ -172,14 +136,15 @@ const Graph = (props) => {
           <div className={classes.graphDiv}>
             <Grid container justify='center' style={{maxWidth: '520px'}}>
               <Grid className={classes.graphLines}>
+                {showDragMessage && <img src={dragLine} className={`${classes.dragLineMessage} animate__animated animate__bounceIn`}></img>}
                 <img src={price} className={classes.graphYLable}></img>
                 {dottedLineLabels &&
                   <span className="animate__animated animate__fadeIn">
                     <Typography className={classes.graphP1Lable}>P1</Typography>
-                    <Typography className={classes.graphP2Lable} style={{ top: questionAnswers[questionIndex].answer.includes('up') ? '70px' : '203px' }}>P2</Typography>
+                    <Typography className={classes.graphP2Lable} style={{ top: questionAnswers[questionIndex].answer.includes('down') ? '70px' : '203px' }}>P2</Typography>
 
                     <Typography className={classes.graphQ1Lable}>Q1</Typography>
-                    <Typography className={classes.graphQ2Lable} style={{ left: questionAnswers[questionIndex].answer.includes('up') ? '153px' : '288' }}>Q2</Typography>
+                    <Typography className={classes.graphQ2Lable} style={{ left: questionAnswers[questionIndex].answer.includes('down') ? '153px' : '288' }}>Q2</Typography>
                   </span>
                 }
                 <LineDotLeft
@@ -192,6 +157,7 @@ const Graph = (props) => {
                   resetGraph={resetGraph}
                   modalClose={modalClose}
                   modalOpen={modalOpen}
+                  setShowDragMessage={setShowDragMessage}
                   key={questionIndex}
                 />
                 {/* <LineDotRight
@@ -210,7 +176,7 @@ const Graph = (props) => {
           : <Grid className={[classes.questionContainer, animationClass2]}>
               <Grid className={classes.questionBody}>
                 <img src={breakingNews} className={classes.breakingNews}></img>
-                {circleIcon[questionAnswers[questionIndex].icon]}
+                <img src={questionAnswers[questionIndex].icon} className={classes.circleIcon}></img>
                 {/* <img src={peanutbutterCircleIcon} className={classes.circleIcon}></img> */}
 
                 <Typography variant='h5' className={classes.questionText}>
@@ -230,7 +196,7 @@ const Graph = (props) => {
               </Typography>
               <img src={answerImage} width="200px" />
               <Typography variant='h4' className={classes.curveShiftingText}>
-                {questionAnswers[questionIndex].answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded '}
+                { !questionAnswers[questionIndex].answer.includes('Nothing') && (questionAnswers[questionIndex].answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded ')}
                 {questionAnswers[questionIndex].answer}
               </Typography>
               <Typography variant='h5' className={classes.briefNess}>
@@ -245,7 +211,7 @@ const Graph = (props) => {
               </Typography>
               <img src={answerImage} width="200px" />
               <Typography variant='h4' className={classes.curveShiftingText}>
-                {questionAnswers[questionIndex].answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded '}
+                { !questionAnswers[questionIndex].answer.includes('Nothing') && (questionAnswers[questionIndex].answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded ')}
                 {questionAnswers[questionIndex].answer}
               </Typography>
               <Typography variant='h5' className={classes.briefNessHeading}>

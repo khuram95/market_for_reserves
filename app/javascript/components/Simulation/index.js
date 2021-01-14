@@ -7,6 +7,7 @@ import youCan from '../../images/youCan.svg'
 import shiftTheCurve from '../../images/shiftTheCurve.svg'
 import priceWhite from '../../images/priceWhite.svg'
 import quantityWhite from '../../images/quantityWhite.svg'
+import dragLine from '../../images/dragLine.svg'
 import ShiftTheLine from './ShiftTheLine'
 import MoveThePoint from './MoveThePoint'
 
@@ -90,7 +91,8 @@ const Simulation = (props) => {
               <div className={classes.graphDiv}>
                 <Grid container justify='center' style={{maxWidth: '520px'}}>
                   <Grid className={classes.graphLines}>
-                    <img src={priceWhite} className={classes.graphYLable}></img>
+                  <img src={dragLine} className={classes.dragLineMessage}></img>
+                  <img src={priceWhite} className={classes.graphYLable}></img>
                     <LineDotLeft move={'line'}/>
                     <img src={quantityWhite} className={classes.graphXLable}></img>
                   </Grid>

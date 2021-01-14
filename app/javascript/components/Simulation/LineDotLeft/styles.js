@@ -49,9 +49,17 @@ const styles = theme => ({
     transform: "rotate(45deg)",
     // border: "5px solid #003e4c",
     borderRadius: "50%",
-    padding: "15px",
+    padding: "12px",
     backgroundColor: "#00b1d9",
     color: "blue",
+  },
+
+  crossMark: {
+    position: "absolute",
+    borderRadius: "50%",
+    transform: "rotate(45deg)",
+    width: "35px",
+    height: "35px",
   },
 
   handCursorDesign: {

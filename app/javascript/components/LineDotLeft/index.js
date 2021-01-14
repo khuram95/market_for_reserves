@@ -9,10 +9,13 @@ import styles from './styles'
 import LineTo from 'react-lineto';
 import 'animate.css/animate.css'
 
+let initialDotPosition
+let moveXAxisCount = 0
+
 const LineDotLeft = (props) => {
   const { classes } = props
 
-  const { questionAnswer, answeredCorrectly, setAnsweredCorrectly, setScore, setMoved, submitted, resetGraph, modalClose, modalOpen } = props
+  const { questionAnswer, answeredCorrectly, setAnsweredCorrectly, setScore, setMoved, submitted, resetGraph, modalClose, modalOpen, setShowDragMessage } = props
 
 
   //adjust dot center accoring to line
@@ -40,7 +43,15 @@ const LineDotLeft = (props) => {
   // animate__fadeIn
   useEffect(() => {
     if (submitted) {
-      if (nothingMove()) {
+      if (answer.includes('Nothing')) {
+        if(nothingMove()) {
+          setAnsweredCorrectly(true)
+          setMoved("correct")
+        } else {
+          nothingAsWrong()
+        }
+      }
+      else if (nothingMove()) {
         nothingAsWrong()
       }
       else if (dotPosition.y === dotCenterPosition) {
@@ -85,11 +96,11 @@ const LineDotLeft = (props) => {
         setArrowPosition({ top: dotCenterPosition, left: 20 })
         setArrowIcon(rightArrow)
         break;
-      case "goes down":
+      case "goes up":
         setArrowIcon(downArrow)
         setArrowPosition({ top: dotCenterPosition + 15, left: 45 })
         break;
-      case "goes up":
+      case "goes down":
         setArrowIcon(upArrow)
         setArrowPosition({ top: dotCenterPosition - 55, left: -20 })
         break;
@@ -160,15 +171,14 @@ const LineDotLeft = (props) => {
         setShowLine(true)
         setCorrectPosition(70)
         break;
-      case "goes down":
+      case "goes up":
         setShowDot(true)
         setCorrectPosition(dotCenterPosition + dotCenterPosition/2)
         break;
-      case "goes up":
+      case "goes down":
         setShowDot(true)
         setCorrectPosition(dotCenterPosition - dotCenterPosition/2)
         break;
-      default:
     }
     setMoved("nothing")
     setAnsweredCorrectly(false)
@@ -189,11 +199,11 @@ const LineDotLeft = (props) => {
         setCorrectPosition(70)
         setColors()
         break;
-      case "goes down":
+      case "goes up":
         lineOrDotMoved(dotPosition.y)
         setCorrectPosition(dotCenterPosition + dotCenterPosition/2)
         break;
-      case "goes up":
+      case "goes down":
         lineOrDotMoved(dotPosition.y)
         setCorrectPosition(dotCenterPosition - dotCenterPosition/2)
         break;
@@ -223,6 +233,7 @@ const LineDotLeft = (props) => {
       setLineDisable(true)
     }
     // evaluateDotAnswer(dotPosition.y)
+    checkifDotMovedXAxis(event.pageX, event.pageY)
 
 
   }
@@ -255,11 +266,11 @@ const LineDotLeft = (props) => {
 
     if (value > dotCenterPosition + 10) {
       // setDotPosition({x: 0, y: 260})
-      answerMatched = answer === 'goes down'
+      answerMatched = answer === 'goes up'
     }
     else if (value < dotCenterPosition - 10) {
       // setDotPosition({x: 0, y: 10})
-      answerMatched = answer === 'goes up'
+      answerMatched = answer === 'goes down'
     }
 
     answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
@@ -282,10 +293,10 @@ const LineDotLeft = (props) => {
       case "shifts right":
         setLinePosition({ x:  70, y: 0})
         break;
-      case "goes down":
+      case "goes up":
         setDotPosition({x: 0, y: dotCenterPosition + (dotCenterPosition/2)})
         break;
-      case "goes up":
+      case "goes down":
         setDotPosition({x: 0, y: dotCenterPosition - (dotCenterPosition/2)})
         break;
       default:
@@ -295,6 +306,7 @@ const LineDotLeft = (props) => {
 
   const DragStartDot = (event) => {
     event.stopPropagation();
+    initialDotPosition = {x: event.pageX, y: event.pageY}
     if (dotDisable) {
       setDotPosition({ x: 0, y: dotCenterPosition })
       modalOpen()
@@ -308,7 +320,22 @@ const LineDotLeft = (props) => {
     } else {
       setDotPosition({ x:  dotPosition.x + ui.deltaX, y: dotPosition.y + ui.deltaY})
     }
-    console.log("event dragging", dotPosition)
+
+  }
+
+  const checkifDotMovedXAxis = (x, y) => {
+    if (y > (initialDotPosition.y + 10) || y < initialDotPosition.y - 10)
+      return;
+
+    if (x > (initialDotPosition.x + 30) || x < initialDotPosition.x - 30) {
+      // if (moveXAxisCount >= 1) {
+        setShowDragMessage(true)
+        setTimeout(() => setShowDragMessage(false), 4000)
+      //   moveXAxisCount=0
+      // } else {
+      //   moveXAxisCount+=1
+      // }
+    }
   }
 
   const draggableLineColor = () => {
@@ -331,10 +358,10 @@ const LineDotLeft = (props) => {
       {showDottedLines &&
       <>
         <div className={'P2'} style={{ position: 'absolute', top: dotCenterPosition - 34 }}></div>
-        <div className={'P1'} style={{ position: 'absolute', top: answer.includes('up') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 }}></div>
+        <div className={'P1'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 }}></div>
 
         <div className={'dotOriginP'} style={{ position: 'absolute', top: dotCenterPosition - 34, left: "215px" }}></div>
-        <div className={'dotCorrectP'} style={{ position: 'absolute', top: answer.includes('up') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 , left: answer.includes('up') ? "150px" : '280px'}}></div>
+        <div className={'dotCorrectP'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 , left: answer.includes('down') ? "150px" : '280px'}}></div>
 
         <LineTo
           from="dotOriginP"
@@ -358,10 +385,10 @@ const LineDotLeft = (props) => {
         />
 
         <div className={'Q1'} style={{ position: 'absolute', top: '330px', left: "230px" }}></div>
-        <div className={'Q2'} style={{ position: 'absolute', top: '330px', left: answer.includes('up') ? "165px" : '295px'}}></div>
+        <div className={'Q2'} style={{ position: 'absolute', top: '330px', left: answer.includes('down') ? "165px" : '295px'}}></div>
 
         <div className={'dotOriginQ'} style={{ position: 'absolute', top: dotCenterPosition - 25, left: "230px" }}></div>
-        <div className={'dotCorrectQ'} style={{ position: 'absolute', top: answer.includes('up') ? (dotCenterPosition - 25) - 65 : (dotCenterPosition - 25) + 65 , left: answer.includes('up') ? "165px" : '295px'}}></div>
+        <div className={'dotCorrectQ'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 25) - 65 : (dotCenterPosition - 25) + 65 , left: answer.includes('down') ? "165px" : '295px'}}></div>
 
         <LineTo
           from="dotOriginQ"
@@ -412,14 +439,14 @@ const LineDotLeft = (props) => {
               />}
               <Draggable
                 axis="y"
-                defaultPosition={{x: 0, y: dotCenterPosition}}
+                defaultPosition={{ x: 0, y: dotCenterPosition }}
                 position={dotPosition}
                 scale={1}
                 bounds={{
-                  top: dotCenterPosition-(dotCenterPosition/2),
+                  top: dotCenterPosition - (dotCenterPosition / 2),
                   left: 0,
                   right: 0,
-                  bottom: dotCenterPosition+(dotCenterPosition/2)
+                  bottom: dotCenterPosition + (dotCenterPosition / 2)
                 }}
                 onStart={DragStartDot}
                 onDrag={DragDot}

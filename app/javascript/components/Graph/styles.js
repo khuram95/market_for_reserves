@@ -195,5 +195,13 @@ const styles = theme => ({
       outline: 'none'
     }
   },
+
+  dragLineMessage: {
+    height: '130px',
+    position: 'absolute',
+    right: '-20px',
+    top: '80px'
+  }
+
 })
 export default styles;
