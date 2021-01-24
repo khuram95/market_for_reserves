@@ -10,7 +10,7 @@ import download from "downloadjs"
 import downloadIcon from "images/download.svg"
 
 const ResultScreen = ({ classes, answers }) => {
-  // answers = [true, true, true]
+  // answers = [true, true, true, true, false ,false, true, true ,true, false]
   const [name, setName] = useState("")
   const [error, setError] = useState(null)
   const [showStudentName, setShowStudentName] = useState(false)
@@ -61,7 +61,7 @@ const ResultScreen = ({ classes, answers }) => {
           {filter(answers, (o) => o === true).length}/{answers.length}
         </Typography>
       </Grid>
-      <Grid container alignItems='center' direction='column' style={{ maxHeight: "350px", maxWidth: "600px", padding: "50px 0px"}}>
+      <Grid container alignItems='center' direction='column' className={classes.questionAnswerContainer}>
         {answers.map((answer, index) =>
           <Grid style={{ display: "flex"}} alignItems="center">
             <Typography className={classes.answerNumber}>
@@ -85,7 +85,7 @@ const ResultScreen = ({ classes, answers }) => {
             <Typography variant='h5' className={classes.classAssignmentTitle}>
               Submitting as class assignment?
             </Typography>
-            <Grid container alignItems="center" justify='center' style={{ marginTop: "3rem" }}>
+            <Grid container alignItems="center" justify='center' className={classes.nameContainer}>
               <input
                 className={classes.nameInput}
                 onChange={onInputChange}

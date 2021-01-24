@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import LineDotLeft from '../LineDotLeft'
-import LineDotRight from '../LineDotRight'
 import { withStyles } from '@material-ui/core/styles'
 import { Grid, Typography, Button, Modal } from '@material-ui/core'
 import price from 'images/price.svg'
@@ -12,6 +10,10 @@ import breakingNews from 'images/breakingnews.svg'
 import dragLine from 'images/dragLineDark.svg'
 import { useHistory } from 'react-router-dom'
 import questionAnswers from './questionAnswers'
+import LineDotLeftHandler from '../Graph/LineDotLeftHandler'
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { emulatorScreen, mobileScreen } from "utils/styleUtils"
 import styles from './styles'
 import 'animate.css/animate.css'
 
@@ -37,6 +39,11 @@ const Graph = (props) => {
   const [dottedLineLabels, setDottedLineLabels] = useState(false)
 
   const [hideQuestionBeforeAnimation, setHideQuestionBeforeAnimation] = useState(true);
+
+
+  const theme = useTheme();
+  const isEmulator = useMediaQuery(emulatorScreen(theme));
+  const isMobile = useMediaQuery(mobileScreen(theme));
 
   // let answers = []
 
@@ -128,10 +135,44 @@ const Graph = (props) => {
     }
   }
 
+  const setP2Label = () => {
+    if (questionAnswers[questionIndex].answer.includes('down'))
+      if (isMobile)
+        return "26px"
+      else if (isEmulator)
+        return '38px'
+      else
+        return '70px'
+    else
+      if (isMobile)
+        return "84px"
+      else if (isEmulator)
+        return '120px'
+      else
+        return '203px'
+  }
+
+  const setQ2Label = () => {
+    if (questionAnswers[questionIndex].answer.includes('down'))
+      if (isMobile)
+        return "60px"
+      else if (isEmulator)
+        return '97px'
+      else
+        return '153px'
+    else
+      if (isMobile)
+        return "115px"
+      else if (isEmulator)
+        return '180px'
+      else
+        return '288px'
+  }
+
   return (
     <Grid container alignItems="center" direction="column">
       <Grid container item justify='center' alignItems='center'>
-        <Grid style={{ marginRight: "100px" }}>
+        <Grid className={classes.quizContainer}>
           <Typography variant="h5" align='right' className={[classes.questionTitle, animationClass1]}>{questionAnswers[questionIndex].title}</Typography>
           <div className={classes.graphDiv}>
             <Grid container justify='center' style={{maxWidth: '520px'}}>
@@ -141,13 +182,13 @@ const Graph = (props) => {
                 {dottedLineLabels &&
                   <span className="animate__animated animate__fadeIn">
                     <Typography className={classes.graphP1Lable}>P1</Typography>
-                    <Typography className={classes.graphP2Lable} style={{ top: questionAnswers[questionIndex].answer.includes('down') ? '70px' : '203px' }}>P2</Typography>
+                    <Typography className={classes.graphP2Lable} style={{ top: setP2Label() }}>P2</Typography>
 
                     <Typography className={classes.graphQ1Lable}>Q1</Typography>
-                    <Typography className={classes.graphQ2Lable} style={{ left: questionAnswers[questionIndex].answer.includes('down') ? '153px' : '288' }}>Q2</Typography>
+                    <Typography className={classes.graphQ2Lable} style={{ left: setQ2Label() }}>Q2</Typography>
                   </span>
                 }
-                <LineDotLeft
+                <LineDotLeftHandler
                   questionAnswer={questionAnswers[questionIndex]}
                   setAnsweredCorrectly={setAnsweredCorrectly}
                   answeredCorrectly={answeredCorrectly}
@@ -194,7 +235,7 @@ const Graph = (props) => {
                 <br/>
                 {questionAnswers[questionIndex].subQuestion}
               </Typography>
-              <img src={answerImage} width="200px" />
+              <img src={answerImage} className={classes.correctIncorrectIcon} />
               <Typography variant='h4' className={classes.curveShiftingText}>
                 { !questionAnswers[questionIndex].answer.includes('Nothing') && (questionAnswers[questionIndex].answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded ')}
                 {questionAnswers[questionIndex].answer}
@@ -209,7 +250,7 @@ const Graph = (props) => {
                 <br/>
                 {questionAnswers[questionIndex].subQuestion}
               </Typography>
-              <img src={answerImage} width="200px" />
+              <img src={answerImage} className={classes.correctIncorrectIcon} />
               <Typography variant='h4' className={classes.curveShiftingText}>
                 { !questionAnswers[questionIndex].answer.includes('Nothing') && (questionAnswers[questionIndex].answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded ')}
                 {questionAnswers[questionIndex].answer}
@@ -235,14 +276,16 @@ const Graph = (props) => {
         style={{ cursor: "pointer" }}
         aria-describedby="simple-modal-description"
       >
-        <div className={classes.modal}>
-          <p id="simple-modal-description" className={classes.modalDescription}>
-            You must either shift the line OR move the dot.
-          </p>
-          <Button onClick={resetPosition} className={classes.backButton} >
-            BACK
-          </Button>
-        </div>
+        <Grid container justify='center' alignItems='center' className={classes.modal}>
+          <Grid>
+            <Typography id="simple-modal-description" textAlign='center' className={classes.modalDescription}>
+              You must either shift the line OR move the dot.
+            </Typography>
+            <Button onClick={resetPosition} className={classes.backButton} >
+                BACK
+            </Button>
+          </Grid>
+        </Grid>
       </Modal>
     </Grid>
   )

@@ -1,9 +1,14 @@
+import { emulatorScreen, mobileScreen } from "utils/styleUtils"
+
 const styles = theme => ({
   verticalLinesContainer: {
     position: "absolute",
     top: "-30px",
     left: "210px",
-    transition: "left 1s"
+    transition: "left 1s",
+    [mobileScreen(theme)]: {
+      top: "-20px",
+    },
   },
 
   defaultLine: {
@@ -30,7 +35,15 @@ const styles = theme => ({
     width: "8px",
     position: "relative",
     borderRadius: '5px',
-    transform: "rotate(-45deg)"
+    transform: "rotate(-45deg)",
+    [emulatorScreen(theme)]: {
+      width: "5px",
+      height: "200px",
+      borderWidth: "3px"
+    },
+    [mobileScreen(theme)]: {
+      height: "150px",
+    },
   },
 
   fadedDot: {
@@ -52,6 +65,9 @@ const styles = theme => ({
     padding: "12px",
     backgroundColor: "#00b1d9",
     color: "blue",
+    [emulatorScreen(theme)]: {
+      padding: "10px",
+    },
   },
 
   crossMark: {
@@ -60,6 +76,10 @@ const styles = theme => ({
     transform: "rotate(45deg)",
     width: "35px",
     height: "35px",
+    [emulatorScreen(theme)]: {
+      width: "25px",
+      height: "30px",
+    },
   },
 
   handCursorDesign: {
@@ -68,7 +88,15 @@ const styles = theme => ({
     top: '200px',
     transform: 'rotate(45deg)',
     width: '40px',
-    transition: 'top 1s'
+    transition: 'top 1s',
+    [emulatorScreen(theme)]: {
+      width: "25px",
+      right: "0px",
+      top: "140px"
+    },
+    [mobileScreen(theme)]: {
+      top: "110px"
+    },
   }
 
 })

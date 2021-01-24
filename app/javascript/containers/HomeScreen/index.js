@@ -24,7 +24,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
           ECON PRACTICE
         </Typography>
         <img src={CoverImage} className={classes.logo} />
-        <Grid style={{ marginTop: '-200px'}}>
+        <Grid className={classes.quizDesc}>
           <Typography variant='h5' className={classes.homeDesc}>
             Change in Demand vs.
           </Typography>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 import { withStyles } from '@material-ui/core/styles'
-import leftArrow from '../../images/leftArrow'
-import rightArrow from '../../images/rightArrow'
-import upArrow from '../../images/upArrow'
-import downArrow from '../../images/downArrow'
+import leftArrow from 'images/leftArrow'
+import rightArrow from 'images/rightArrow'
+import upArrow from 'images/upArrow'
+import downArrow from 'images/downArrow'
 import styles from './styles'
 import LineTo from 'react-lineto';
 import 'animate.css/animate.css'
@@ -15,7 +15,18 @@ let moveXAxisCount = 0
 const LineDotLeft = (props) => {
   const { classes } = props
 
-  const { questionAnswer, answeredCorrectly, setAnsweredCorrectly, setScore, setMoved, submitted, resetGraph, modalClose, modalOpen, setShowDragMessage } = props
+  const {
+    questionAnswer,
+    answeredCorrectly,
+    setAnsweredCorrectly,
+    setScore,
+    setMoved,
+    submitted,
+    resetGraph,
+    modalClose,
+    modalOpen,
+    setShowDragMessage,
+  } = props
 
 
   //adjust dot center accoring to line
@@ -368,7 +379,7 @@ const LineDotLeft = (props) => {
           to="P2"
           orientation='h'
           borderStyle='dashed'
-          borderWidth='4px'
+          borderWidth='3px'
           borderColor='#003e4c'
           fromAnchor='20%'delay={true}
           className="animate__animated animate__fadeIn"
@@ -378,7 +389,7 @@ const LineDotLeft = (props) => {
           to="P1"
           orientation='h'
           borderStyle='dashed'
-          borderWidth='4px'
+          borderWidth='3px'
           borderColor='#003e4c'
           fromAnchor='20%'delay={true}
           className="animate__animated animate__fadeIn"
