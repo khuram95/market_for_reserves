@@ -95,7 +95,7 @@ const styles = theme => ({
       width: "250px",
       marginLeft: "60px",
     },
-    [emulatorScreen(theme)]: {
+    [mobileScreen(theme)]: {
       width: "185px",
       marginRight: "20px",
       marginLeft: "50px",

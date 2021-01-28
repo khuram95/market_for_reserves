@@ -26,10 +26,12 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
         <img src={CoverImage} className={classes.logo} />
         <Grid className={classes.quizDesc}>
           <Typography variant='h5' className={classes.homeDesc}>
-            Change in Demand vs.
+            {/* Change in Demand vs. */}
+            Change in Quantity
           </Typography>
           <Typography variant='h5' className={classes.homeDesc}>
-            Change in Quantity Demanded
+            {/* Change in Quantity Demanded */}
+            Change in Quantity Supplied
           </Typography>
         </Grid>
         <Button

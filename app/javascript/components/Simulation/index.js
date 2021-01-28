@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react'
 import styles from './styles'
 import { withStyles } from '@material-ui/core/styles'
 import LineDotLeftHandler from './LineDotLeftHandler'
+import LineDotRightHandler from './LineDotRightHandler'
 import { Grid, Typography, Button, Modal } from '@material-ui/core'
 import youCan from '../../images/youCan.svg'
 import shiftTheCurve from '../../images/shiftTheCurve.svg'
 import priceWhite from '../../images/priceWhite.svg'
 import quantityWhite from '../../images/quantityWhite.svg'
 import dragLine from '../../images/dragLine.svg'
-import ShiftTheLine from './ShiftTheLine'
-import MoveThePoint from './MoveThePoint'
 
 import 'animate.css/animate.css'
 
@@ -87,13 +86,13 @@ const Simulation = (props) => {
         <>
           <Grid container item justify='center' className={[classes.graphContainer, "animate__animated animate__bounceIn"]}>
             <Grid container className={classes.graphDivContainer} style={{ marginRight: "30px"}}>
-              <Typography variant="h5" align='right' className={classes.questionTitle}></Typography>
               <div className={classes.graphDiv}>
                 <Grid container justify='center' style={{maxWidth: '520px'}}>
                   <Grid className={classes.graphLines}>
                   <img src={dragLine} className={classes.dragLineMessage}></img>
                   <img src={priceWhite} className={classes.graphYLable}></img>
-                    <LineDotLeftHandler move={'line'}/>
+                  {/* <LineDotLeftHandler move={'line'} /> */}
+                  <LineDotRightHandler move={'line'}/>
                     <img src={quantityWhite} className={classes.graphXLable}></img>
                   </Grid>
                 </Grid>
@@ -101,12 +100,12 @@ const Simulation = (props) => {
             </Grid>
 
             <Grid container className={classes.graphDivContainer}>
-              <Typography variant="h5" align='right' className={classes.questionTitle}></Typography>
               <div className={classes.graphDiv}>
                 <Grid container justify='center' style={{maxWidth: '520px'}}>
                   <Grid className={classes.graphLines}>
                     <img src={priceWhite} className={classes.graphYLable}></img>
-                    <LineDotLeftHandler move={'dot'}/>
+                    {/* <LineDotLeftHandler move={'dot'} /> */}
+                    <LineDotRightHandler move={'dot'}/>
                     <img src={quantityWhite} className={classes.graphXLable}></img>
                   </Grid>
                 </Grid>

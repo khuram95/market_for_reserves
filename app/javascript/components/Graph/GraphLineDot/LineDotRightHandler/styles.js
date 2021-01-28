@@ -1,6 +1,7 @@
 import { emulatorScreen, mobileScreen } from "utils/styleUtils"
 
 const styles = theme => ({
+
   verticalLinesContainer: {
     position: "absolute",
     top: "-52px",
@@ -15,9 +16,70 @@ const styles = theme => ({
     }
   },
 
+  graphLines: {
+    borderLeft: '5px solid #565656',
+    borderBottom: '5px solid #565656',
+    height: '330px',
+    width: '460px',
+    position: "relative",
+    [emulatorScreen(theme)]: {
+      width: "290px",
+      height: "210px",
+      borderWidth: '3px'
+    },
+    [mobileScreen(theme)]: {
+      width: "200px",
+      height: "150px",
+      borderWidth: '3px'
+    },
+  },
+
+  graphYLable: {
+    height: '18px',
+    position: 'absolute',
+    top: '7px',
+    left: '-90px',
+    [emulatorScreen(theme)]: {
+      height: '12px',
+      left: '-60px'
+    },
+    [mobileScreen(theme)]: {
+      height: '10px',
+      left: '-50px'
+    },
+  },
+
+  graphXLable: {
+    height: '18px',
+    position: 'absolute',
+    bottom: '-35px',
+    right: '5px',
+    [emulatorScreen(theme)]: {
+      height: '12px',
+      bottom: '-25px',
+    },
+    [mobileScreen(theme)]: {
+      height: '10px',
+      bottom: '-22px',
+    },
+  },
+
+  dragLineMessage: {
+    height: '130px',
+    position: 'absolute',
+    right: '-20px',
+    top: '80px',
+    [emulatorScreen(theme)]: {
+      height: '90px',
+      right: '-25px',
+      top: '50px',
+    },
+  },
+
   arrows: {
     position: 'absolute',
     height: "30px",
+    transform: "rotate(90deg)",
     top: '185px',
     left: '-50px',
     [emulatorScreen(theme)]: {
@@ -33,7 +95,7 @@ const styles = theme => ({
   },
 
   defaultLine: {
-    transform: "rotate(-45deg)",
+    transform: "rotate(45deg)",
     position: 'absolute',
     height: "400px",
     width: "8px",
@@ -50,7 +112,7 @@ const styles = theme => ({
   },
 
   correctLine: {
-    transform: "rotate(-45deg)",
+    transform: "rotate(45deg)",
     position: 'absolute',
     height: "400px",
     width: "8px",
@@ -69,10 +131,10 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "center",
     height: "400px",
-    width: "6px",
+    width: "8px",
     position: "relative",
     borderRadius: '5px',
-    transform: "rotate(-45deg)",
+    transform: "rotate(45deg)",
     [emulatorScreen(theme)]: {
       height: "260px",
       width: "6px",
@@ -89,7 +151,7 @@ const styles = theme => ({
     width: "6px",
     position: "relative",
     borderRadius: '5px',
-    transform: "rotate(-45deg)",
+    transform: "rotate(45deg)",
     top: "28px",
     left: "-68px",
     height: "0",
@@ -131,7 +193,6 @@ const styles = theme => ({
     padding: "10px",
     backgroundColor: "#508a05",
     color: "blue",
-    border: "5px solid",
     [emulatorScreen(theme)]: {
       padding: "7px",
       border: "4px solid #003e4c"

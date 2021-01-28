@@ -5,31 +5,26 @@ import leftArrow from 'images/leftArrow'
 import rightArrow from 'images/rightArrow'
 import upArrow from 'images/upArrow'
 import downArrow from 'images/downArrow'
-import styles from '../LineDotLeftHandler/styles'
-import LineTo from 'react-lineto';
+import styles from '../styles'
 import 'animate.css/animate.css'
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { emulatorScreen } from "utils/styleUtils"
+import RightLabels from '../RightLabels'
 
 let initialDotPosition
 let moveXAxisCount = 0
 
-const LineDotLeftMobile = (props) => {
+const LineDotRightEmulator = (props) => {
   const { classes } = props
 
-  const {
-    questionAnswer,
-    answeredCorrectly,
-    setAnsweredCorrectly,
-    setScore,
-    setMoved,
-    submitted,
-    resetGraph,
-    modalClose,
-    modalOpen,
-    setShowDragMessage
-  } = props
+  const { questionAnswer, answeredCorrectly, setAnsweredCorrectly, setMoved, submitted, resetGraph, modalClose, modalOpen, setShowDragMessage } = props
+
+  const theme = useTheme();
+  const matches = useMediaQuery(emulatorScreen(theme));
 
   //adjust dot center accoring to line
-  const heightOfLine = 190
+  const heightOfLine = 260
   const dotCenterPosition = (heightOfLine - 30) / 2
 
   const { answer } = questionAnswer
@@ -100,19 +95,19 @@ const LineDotLeftMobile = (props) => {
     switch (answer) {
       case "shifts left":
         setArrowIcon(leftArrow)
-        setArrowPosition({ top: dotCenterPosition + 6, left: -26 })
+        setArrowPosition({ top: dotCenterPosition + 2, left: -32 })
         break;
       case "shifts right":
-        setArrowPosition({ top: dotCenterPosition + 4, left: 8 })
+        setArrowPosition({ top: dotCenterPosition + 2, left: 18 })
         setArrowIcon(rightArrow)
         break;
-      case "goes up":
-        setArrowIcon(downArrow)
-        setArrowPosition({ top: dotCenterPosition + 12, left: 15 })
-        break;
       case "goes down":
+        setArrowIcon(downArrow)
+        setArrowPosition({ top: dotCenterPosition + 40, left: -19 })
+        break;
+      case "goes up":
         setArrowIcon(upArrow)
-        setArrowPosition({ top: dotCenterPosition - 20, left: -12 })
+        setArrowPosition({ top: dotCenterPosition - 25, left: -15 })
         break;
     }
     setArrowFadeIn('animate__animated animate__fadeIn animate__slow animate__delay-1s')
@@ -175,17 +170,17 @@ const LineDotLeftMobile = (props) => {
     switch(answer) {
       case "shifts left":
         setShowLine(true)
-        setCorrectPosition(-30)
+        setCorrectPosition(-45)
         break;
       case "shifts right":
         setShowLine(true)
-        setCorrectPosition(30)
+        setCorrectPosition(45)
         break;
-      case "goes up":
+      case "goes down":
         setShowDot(true)
         setCorrectPosition(dotCenterPosition + dotCenterPosition/2)
         break;
-      case "goes down":
+      case "goes up":
         setShowDot(true)
         setCorrectPosition(dotCenterPosition - dotCenterPosition/2)
         break;
@@ -201,19 +196,19 @@ const LineDotLeftMobile = (props) => {
     switch(answer) {
       case "shifts left":
         setShowLine(true)
-        setCorrectPosition(-30)
+        setCorrectPosition(-45)
         setColors()
         break;
       case "shifts right":
         setShowLine(true)
-        setCorrectPosition(30)
+        setCorrectPosition(45)
         setColors()
         break;
-      case "goes up":
+      case "goes down":
         lineOrDotMoved(dotPosition.y)
         setCorrectPosition(dotCenterPosition + dotCenterPosition/2)
         break;
-      case "goes down":
+      case "goes up":
         lineOrDotMoved(dotPosition.y)
         setCorrectPosition(dotCenterPosition - dotCenterPosition/2)
         break;
@@ -236,7 +231,7 @@ const LineDotLeftMobile = (props) => {
 
   const DragEndDot = (event) => {
     event.stopPropagation();
-    if (dotPosition.y <= dotCenterPosition + 10 && dotPosition.y >= dotCenterPosition - 10) {
+    if (dotPosition.y <= dotCenterPosition + 10 && dotPosition.y >= dotCenterPosition -10) {
       setLineDisable(false)
       setDotPosition({x: 0, y: dotCenterPosition})
     } else {
@@ -276,11 +271,11 @@ const LineDotLeftMobile = (props) => {
 
     if (value > dotCenterPosition + 10) {
       // setDotPosition({x: 0, y: 260})
-      answerMatched = answer === 'goes up'
+      answerMatched = answer === 'goes down'
     }
     else if (value < dotCenterPosition - 10) {
       // setDotPosition({x: 0, y: 10})
-      answerMatched = answer === 'goes down'
+      answerMatched = answer === 'goes up'
     }
 
     answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
@@ -291,22 +286,21 @@ const LineDotLeftMobile = (props) => {
     setDotDisable(true)
     changePosition()
     setAnsweredCorrectly(true)
-    setScore((preScore) => preScore + questionAnswer.score)
     draggableDotColor()
     setMoved("correct")
   }
   const changePosition = () => {
     switch(answer) {
       case "shifts left":
-        setLinePosition({ x:  -30, y: 0})
+        setLinePosition({ x:  -45, y: 0})
         break;
       case "shifts right":
-        setLinePosition({ x:  30, y: 0})
-        break;
-      case "goes up":
-        setDotPosition({x: 0, y: dotCenterPosition + (dotCenterPosition/2)})
+        setLinePosition({ x:  45, y: 0})
         break;
       case "goes down":
+        setDotPosition({x: 0, y: dotCenterPosition + (dotCenterPosition/2)})
+        break;
+      case "goes up":
         setDotPosition({x: 0, y: dotCenterPosition - (dotCenterPosition/2)})
         break;
       default:
@@ -363,68 +357,37 @@ const LineDotLeftMobile = (props) => {
     // return wrongPosition ? "#003E4C" : lineColor
   }
 
+  const p2ToOrigin = () => dotCenterPosition - 20
+  const p1ToCorrect = () => answer.includes('up') ? (dotCenterPosition - 34) - 29 : (dotCenterPosition - 34) + 54
+  const q2ToCorrect = () => answer.includes('up') ? "196px" : '116px'
+  const q1ToOrigin = () => '157px'
+  const qTop = () => '210px'
+
   return (
     <div>
       {showDottedLines &&
-      <>
-        <div className={'P2'} style={{ position: 'absolute', top: dotCenterPosition - 12 }}></div>
-        <div className={'P1'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 34) - 8  : (dotCenterPosition - 34) + 50 }}></div>
-
-        <div className={'dotOriginP'} style={{ position: 'absolute', top: dotCenterPosition - 12, left: "100px" }}></div>
-        <div className={'dotCorrectP'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 34) - 8 : (dotCenterPosition - 34) + 50 , left: answer.includes('down') ? "60px" : '120px'}}></div>
-
-        <LineTo
-          from="dotOriginP"
-          to="P2"
-          orientation='h'
-          borderStyle='dashed'
-          borderWidth='3px'
-          borderColor='#003e4c'
-          fromAnchor='20%'delay={true}
-          className="animate__animated animate__fadeIn"
-        />
-        <LineTo
-          from="dotCorrectP"
-          to="P1"
-          orientation='h'
-          borderStyle='dashed'
-          borderWidth='3px'
-          borderColor='#003e4c'
-          fromAnchor='20%'delay={true}
-          className="animate__animated animate__fadeIn"
-        />
-
-        <div className={'Q1'} style={{ position: 'absolute', top: '150px', left: "100px" }}></div>
-        <div className={'Q2'} style={{ position: 'absolute', top: '150px', left: answer.includes('down') ? "72px" : '129px'}}></div>
-
-        <div className={'dotOriginQ'} style={{ position: 'absolute', top: dotCenterPosition - 20, left: "100px" }}></div>
-        <div className={'dotCorrectQ'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 25) - 8 : (dotCenterPosition - 25) + 48 , left: answer.includes('down') ? "72px" : '129px'}}></div>
-
-        <LineTo
-          from="dotOriginQ"
-          to="Q1"
-          orientation='h'
-          borderStyle='dashed'
-          borderWidth='3px'
-          borderColor='#003e4c'
-          fromAnchor='20%'delay={true}
-          className="animate__animated animate__fadeIn"
-        />
-        <LineTo
-          from="dotCorrectQ"
-          to="Q2"
-          orientation='h'
-          borderStyle='dashed'
-          borderWidth='3px'
-          borderColor='#003e4c'
-          fromAnchor='20%'delay={true}
-          className="animate__animated animate__fadeIn"
-        />
-      </>
-      }
+        <RightLabels
+          p2Top={p2ToOrigin()}
+          p1Top={p1ToCorrect()}
+          originP={{ top: p2ToOrigin(), left: "145px" }}
+          originCorrectP={{
+            top: p1ToCorrect(),
+            left: answer.includes('up') ? "186px" : '105px'
+          }}
+          q1={{ top: qTop(), left: q1ToOrigin() }}
+          q2={{ top: qTop(), left: q2ToCorrect() }}
+          originQ={{ top: dotCenterPosition - 25, left: q1ToOrigin(), }}
+          dotCorrectQ={{
+            top: answer.includes('up') ? (dotCenterPosition - 25) - 29 : (dotCenterPosition - 25) + 53,
+            left: q2ToCorrect()
+          }}
+          isMobile={false}
+          isEmulator={true}
+          answer={answer}
+        />}
       <div className={classes.verticalLinesContainer}>
         <div className={arrowFadeIn}>
-          <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left }}></img>
+          <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left, transform: answer.includes("shift") ? "rotate(0deg)" : "rotate(90deg)" }}></img>
         </div>
         <div className={classes.defaultLine} />
         <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}></div>
@@ -432,9 +395,8 @@ const LineDotLeftMobile = (props) => {
           axis="x"
           defaultPosition={{x: 0, y: 0}}
           position={linePosition}
-          handle="#draggable_line"
           scale={1}
-          bounds={{top: 0, left: -30, right: 30, bottom: 0}}
+          bounds={{top: 0, left: -45, right: 45, bottom: 0}}
           onStart={DragStartLine}
           onDrag={DragLine}
           onStop={DragEndLine}
@@ -448,18 +410,10 @@ const LineDotLeftMobile = (props) => {
               {<div className={classes.correctDot}
                 style={{ opacity: showDot ? "1" : "0", top: correctPosition || dotCenterPosition, transition: `top 1s` }}
               />}
-            </div>
-            <div
-              className={classes.dragableLineContainer}
-              style={{
-                zIndex: (!(dotFillColor === "#d3968d") && showDot) ? "-1" : "1"
-              }}
-            >
               <Draggable
                 axis="y"
                 defaultPosition={{ x: 0, y: dotCenterPosition }}
                 position={dotPosition}
-                handle="#handleDot"
                 scale={1}
                 bounds={{
                   top: dotCenterPosition - (dotCenterPosition / 2),
@@ -473,7 +427,7 @@ const LineDotLeftMobile = (props) => {
                 // disabled={dotDisable}
               >
                 <div style={{height: '40px', cursor: !dotDisable && 'pointer'}}>
-                  <div id="handleDot" className={[classes.draggableDot]}
+                  <div className={[classes.draggableDot]}
                     style={{
                       borderColor: dotBorderColor,
                       opacity: fadeDot,
@@ -490,4 +444,4 @@ const LineDotLeftMobile = (props) => {
   )
 }
 
-export default withStyles(styles)(LineDotLeftMobile)
+export default withStyles(styles)(LineDotRightEmulator)

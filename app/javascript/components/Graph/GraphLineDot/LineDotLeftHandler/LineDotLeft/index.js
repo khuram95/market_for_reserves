@@ -6,8 +6,8 @@ import rightArrow from 'images/rightArrow'
 import upArrow from 'images/upArrow'
 import downArrow from 'images/downArrow'
 import styles from './styles'
-import LineTo from 'react-lineto';
 import 'animate.css/animate.css'
+import LeftLabels from '../LeftLabels';
 
 let initialDotPosition
 let moveXAxisCount = 0
@@ -19,11 +19,10 @@ const LineDotLeft = (props) => {
     questionAnswer,
     answeredCorrectly,
     setAnsweredCorrectly,
-    setScore,
     setMoved,
     submitted,
-    resetGraph,
-    modalClose,
+    // resetGraph,
+    // modalClose,
     modalOpen,
     setShowDragMessage,
   } = props
@@ -79,16 +78,16 @@ const LineDotLeft = (props) => {
     }
   }, [submitted])
 
-  useEffect(() => {
-    if (resetGraph) {
-      console.log('reseting here')
-      setLinePosition({ x: 0, y: 0 })
-      setDotPosition({ x: 0, y: dotCenterPosition })
-      setLineDisable(false)
-      setDotDisable(false)
-      modalClose()
-    }
-  }, [resetGraph])
+  // useEffect(() => {
+  //   if (resetGraph) {
+  //     console.log('reseting here')
+  //     setLinePosition({ x: 0, y: 0 })
+  //     setDotPosition({ x: 0, y: dotCenterPosition })
+  //     setLineDisable(false)
+  //     setDotDisable(false)
+  //     modalClose()
+  //   }
+  // }, [resetGraph])
 
 
   window.addEventListener("resize", () => setTimeout(() => {
@@ -292,7 +291,6 @@ const LineDotLeft = (props) => {
     setDotDisable(true)
     changePosition()
     setAnsweredCorrectly(true)
-    setScore((preScore) => preScore + questionAnswer.score)
     draggableDotColor()
     setMoved("correct")
   }
@@ -364,65 +362,34 @@ const LineDotLeft = (props) => {
     // return wrongPosition ? "#003E4C" : lineColor
   }
 
+  const p2ToOrigin = () => dotCenterPosition - 34
+  const p1ToCorrect = () => answer.includes('down') ? (dotCenterPosition - 98) : (dotCenterPosition + 31)
+  const q2ToCorrect = () => answer.includes('down') ? "165px" : '295px'
+  const q1ToOrigin = () => '230px'
+  const qTop = () => '330px'
+
   return (
     <div>
       {showDottedLines &&
-      <>
-        <div className={'P2'} style={{ position: 'absolute', top: dotCenterPosition - 34 }}></div>
-        <div className={'P1'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 }}></div>
-
-        <div className={'dotOriginP'} style={{ position: 'absolute', top: dotCenterPosition - 34, left: "215px" }}></div>
-        <div className={'dotCorrectP'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 34) - 65 : (dotCenterPosition - 34) + 65 , left: answer.includes('down') ? "150px" : '280px'}}></div>
-
-        <LineTo
-          from="dotOriginP"
-          to="P2"
-          orientation='h'
-          borderStyle='dashed'
-          borderWidth='3px'
-          borderColor='#003e4c'
-          fromAnchor='20%'delay={true}
-          className="animate__animated animate__fadeIn"
-        />
-        <LineTo
-          from="dotCorrectP"
-          to="P1"
-          orientation='h'
-          borderStyle='dashed'
-          borderWidth='3px'
-          borderColor='#003e4c'
-          fromAnchor='20%'delay={true}
-          className="animate__animated animate__fadeIn"
-        />
-
-        <div className={'Q1'} style={{ position: 'absolute', top: '330px', left: "230px" }}></div>
-        <div className={'Q2'} style={{ position: 'absolute', top: '330px', left: answer.includes('down') ? "165px" : '295px'}}></div>
-
-        <div className={'dotOriginQ'} style={{ position: 'absolute', top: dotCenterPosition - 25, left: "230px" }}></div>
-        <div className={'dotCorrectQ'} style={{ position: 'absolute', top: answer.includes('down') ? (dotCenterPosition - 25) - 65 : (dotCenterPosition - 25) + 65 , left: answer.includes('down') ? "165px" : '295px'}}></div>
-
-        <LineTo
-          from="dotOriginQ"
-          to="Q1"
-          orientation='h'
-          borderStyle='dashed'
-          borderWidth='4px'
-          borderColor='#003e4c'
-          fromAnchor='20%'delay={true}
-          className="animate__animated animate__fadeIn"
-        />
-        <LineTo
-          from="dotCorrectQ"
-          to="Q2"
-          orientation='h'
-          borderStyle='dashed'
-          borderWidth='4px'
-          borderColor='#003e4c'
-          fromAnchor='20%'delay={true}
-          className="animate__animated animate__fadeIn"
-        />
-      </>
-      }
+        <LeftLabels
+          p2Top={p2ToOrigin()}
+          p1Top={p1ToCorrect()}
+          originP={{ top: p2ToOrigin(), left: "215px" }}
+          originCorrectP={{
+            top: p1ToCorrect(),
+            left: answer.includes('down') ? "150px" : '280px'
+          }}
+          q1={{ top: qTop(), left: q1ToOrigin() }}
+          q2={{ top: qTop(), left: q2ToCorrect() }}
+          originQ={{ top: dotCenterPosition - 25, left: q1ToOrigin(), }}
+          dotCorrectQ={{
+            top: answer.includes('down') ? (dotCenterPosition - 90) : (dotCenterPosition + 40),
+            left: q2ToCorrect()
+          }}
+          isMobile={false}
+          isEmulator={false}
+          answer={answer}
+        />}
       <div className={classes.verticalLinesContainer}>
         <div className={arrowFadeIn}>
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left }}></img>
