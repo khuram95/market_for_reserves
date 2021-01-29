@@ -59,21 +59,27 @@ const styles = theme => ({
       bottom: '-25px',
     },
     [mobileScreen(theme)]: {
-      height: '10px',
+      height: '9px',
       bottom: '-22px',
+      right: '-2px'
     },
   },
 
   dragLineMessage: {
     height: '130px',
     position: 'absolute',
-    right: '-20px',
+    right: '305px',
     top: '80px',
     [emulatorScreen(theme)]: {
-      height: '90px',
-      right: '-25px',
+      height: '85px',
+      right: '186px',
       top: '50px',
     },
+    [mobileScreen(theme)]: {
+      top: '25px',
+      right: '120px',
+      height: '65px'
+    }
   },
 
   arrows: {
@@ -153,7 +159,7 @@ const styles = theme => ({
     borderRadius: '5px',
     transform: "rotate(45deg)",
     top: "28px",
-    left: "-68px",
+    left: "67px",
     height: "0",
     position: "absolute",
     // [emulatorScreen(theme)]: {

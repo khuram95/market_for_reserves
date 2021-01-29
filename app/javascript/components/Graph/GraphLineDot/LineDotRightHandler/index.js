@@ -1,13 +1,11 @@
 import React from 'react'
 import LineDotRight from './LineDotRight'
-import LineDotLeft from '../LineDotLeftHandler/LineDotLeft'
-// import LineDotLeftMobile from './LineDotLeftMobile'
+import LineDotRightMobile from './LineDotRightMobile'
 import LineDotRightEmulator from './LineDotRightEmulator'
 import styles from './styles'
 import price from 'images/price.svg'
 import quantity from 'images/quantity.svg'
-import dragLine from 'images/dragLineDark.svg'
-// import LeftLabels from './LeftLabels'
+import dragLine from 'images/dragLineRightDark.svg'
 import { emulatorScreen, mobileScreen } from "utils/styleUtils"
 import { useTheme } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core'
@@ -29,7 +27,7 @@ const LineDotRightHandler = (props) => {
 
   const LineDotRightResponsive = () => {
     if (isMobile)
-      return <LineDotRightEmulator {...otherProps} />
+      return <LineDotRightMobile {...otherProps} />
     else if (isEmulator)
       return <LineDotRightEmulator {...otherProps} />
     else
@@ -40,14 +38,7 @@ const LineDotRightHandler = (props) => {
     <Grid className={classes.graphLines}>
       {showDragMessage && <img src={dragLine} className={`${classes.dragLineMessage} animate__animated animate__bounceIn`} />}
       <img src={price} className={classes.graphYLable} />
-      {/* {dottedLineLabels
-        &&  <LeftLabels
-              isEmulator={isEmulator}
-              isMobile={isMobile}
-              answer={props.questionAnswer.answer}
-        />} */}
       {LineDotRightResponsive()}
-      {/* <LineDotLeft {...otherProps} /> */}
       <img src={quantity} className={classes.graphXLable} />
     </Grid>
   )

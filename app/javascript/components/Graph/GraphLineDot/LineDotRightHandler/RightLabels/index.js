@@ -41,14 +41,14 @@ const RightLabels = (props) => {
   const setQ2Label = () => {
     if (answer.includes('up'))
       if (isMobile)
-        return "60px"
+        return "122px"
       else if (isEmulator)
         return '180px'
       else
         return '286px'
     else
       if (isMobile)
-        return "115px"
+        return "60px"
       else if (isEmulator)
         return '97px'
       else

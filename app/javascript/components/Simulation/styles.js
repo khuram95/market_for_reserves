@@ -185,6 +185,24 @@ const styles = theme => ({
       height: '65px',
       right: '-20px',
     },
+  },
+
+  dragLineRightMessage: {
+    height: '100px',
+    position: 'absolute',
+    bottom: '-35px',
+    right: '215px',
+    top: '60px',
+    [emulatorScreen(theme)]: {
+      top: '30px',
+      right: '150px',
+      height: '75px',
+    },
+    [mobileScreen(theme)]: {
+      top: '14px',
+      height: '55px',
+      right: '110px',
+    },
   }
 })
 export default styles;

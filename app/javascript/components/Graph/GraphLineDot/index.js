@@ -33,28 +33,30 @@ const GraphLineDot = (props) => {
       </Typography>
       <Grid className={classes.graphDiv}>
         <Grid container justify='center' style={{maxWidth: '520px'}}>
-          {/* <LineDotLeftHandler
-            showDragMessage={showDragMessage}
-            questionAnswer={questionAnswer}
-            setAnsweredCorrectly={setAnsweredCorrectly}
-            answeredCorrectly={answeredCorrectly}
-            setMoved={setMoved}
-            submitted={submitted}
-            modalOpen={modalOpen}
-            setShowDragMessage={setShowDragMessage}
-            dottedLineLabels={dottedLineLabels}
-          /> */}
-          <LineDotRightHandler
-            showDragMessage={showDragMessage}
-            questionAnswer={questionAnswer}
-            setAnsweredCorrectly={setAnsweredCorrectly}
-            answeredCorrectly={answeredCorrectly}
-            setMoved={setMoved}
-            submitted={submitted}
-            modalOpen={modalOpen}
-            setShowDragMessage={setShowDragMessage}
-            dottedLineLabels={dottedLineLabels}
-          />
+          {questionAnswer.graphType === "demand curve"
+            && <LineDotLeftHandler
+                showDragMessage={showDragMessage}
+                questionAnswer={questionAnswer}
+                setAnsweredCorrectly={setAnsweredCorrectly}
+                answeredCorrectly={answeredCorrectly}
+                setMoved={setMoved}
+                submitted={submitted}
+                modalOpen={modalOpen}
+                setShowDragMessage={setShowDragMessage}
+                dottedLineLabels={dottedLineLabels}
+            />}
+          {questionAnswer.graphType === "supply curve"
+            && <LineDotRightHandler
+                showDragMessage={showDragMessage}
+                questionAnswer={questionAnswer}
+                setAnsweredCorrectly={setAnsweredCorrectly}
+                answeredCorrectly={answeredCorrectly}
+                setMoved={setMoved}
+                submitted={submitted}
+                modalOpen={modalOpen}
+                setShowDragMessage={setShowDragMessage}
+                dottedLineLabels={dottedLineLabels}
+              />}
         </Grid>
       </Grid>
     </Grid>
