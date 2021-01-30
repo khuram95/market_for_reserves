@@ -121,14 +121,14 @@ const Simulation = (props) => {
               <div className={classes.graphDiv}>
                 <Grid container justify="center" style={{ maxWidth: "520px" }}>
                   <Grid className={classes.graphLines}>
-                    <img src={dragLine} className={classes.dragLineMessage} />
-                    {/* <img
+                    {/* <img src={dragLine} className={classes.dragLineMessage} /> */}
+                    <img
                       src={dragLineRight}
                       className={classes.dragLineRightMessage}
-                    /> */}
+                    />
                     <img src={priceWhite} className={classes.graphYLable} />
-                    <LineDotLeftHandler move={"line"} />
-                    {/* <LineDotRightHandler move={'line'}/> */}
+                    {/* <LineDotLeftHandler move={"line"} /> */}
+                    <LineDotRightHandler move={"line"} />
                     <img src={quantityWhite} className={classes.graphXLable} />
                   </Grid>
                 </Grid>
@@ -140,8 +140,8 @@ const Simulation = (props) => {
                 <Grid container justify="center" style={{ maxWidth: "520px" }}>
                   <Grid className={classes.graphLines}>
                     <img src={priceWhite} className={classes.graphYLable} />
-                    <LineDotLeftHandler move={"dot"} />
-                    {/* <LineDotRightHandler move={'dot'}/> */}
+                    {/* <LineDotLeftHandler move={"dot"} /> */}
+                    <LineDotRightHandler move={"dot"} />
                     <img src={quantityWhite} className={classes.graphXLable} />
                   </Grid>
                 </Grid>

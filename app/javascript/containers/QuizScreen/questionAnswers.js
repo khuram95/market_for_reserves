@@ -1,198 +1,138 @@
-import laptopIcon from "images/circleIcons/laptop.png";
-// import sodaIcon            from 'images/circleIcons/soda.png'
-import peanutbutterIcon from "images/circleIcons/peanutbutter.png";
-// import dogIcon             from 'images/circleIcons/dog.png'
-import gasIcon from "images/circleIcons/gas.png";
-import fiveGIcon from "images/circleIcons/5G.png";
-import sodaIcon from "images/circleIcons/soda2.png";
-import caneIcon from "images/circleIcons/cane.png";
-import playstationIcon from "images/circleIcons/playstation.png";
-import electricCarIcon from "images/circleIcons/electricCar.png";
-import restaurantCovidIcon from "images/circleIcons/restaurantCovid.png";
-import hearingAidIcon from "images/circleIcons/hearingAid.png";
-import meatIcon from "images/circleIcons/meat.png";
-import restaurantTaxIcon from "images/circleIcons/restaurantTax.png";
-import walkerIcon from "images/circleIcons/walker.png";
+import vaccine from "images/circleIcons/supply/Vaccine.png";
+import bicycle from "images/circleIcons/supply/Bicycle.png";
+import car from "images/circleIcons/supply/Cars.png";
+import chocolate from "images/circleIcons/supply/Chocolate.png";
+import dumbells from "images/circleIcons/supply/Dumbells.png";
+import haircut from "images/circleIcons/supply/Haircut.png";
+import luggage from "images/circleIcons/supply/Luggage.png";
+import milk from "images/circleIcons/supply/Milk.png";
+import pizza from "images/circleIcons/supply/Pizza.png";
+import tennisball from "images/circleIcons/supply/Tennisball.png";
 
 const questionAnswers = [
   // {
-  //   title: "DEMAND CURVE FOR LAPTOPS",
-  //   question:
-  //     "Consumers expect the price of laptop computers to decrease in the coming months.",
-  //   subQuestion: "What happens to the demand for laptops?",
-  //   icon: laptopIcon,
-  //   answer: "shifts left",
-  //   graphType: "demand curve",
-  //   briefness:
-  //     "The expectation of lower prices in the future will cause a decrease in the demand for laptops today. At every price, consumers will buy fewer computers today.",
-  // },
-  // {
-  //   title: "DEMAND CURVE FOR SODA",
-  //   question:
-  //     "A reduction in the supply of soda causes the price of soda to increase.",
-  //   subQuestion: "What happens to the demand for soda?",
-  //   icon: sodaIcon,
-  //   answer: "goes up",
-  //   graphType: "demand curve",
-  //   briefness:
-  //     "A change in price causes movement along the curve. It does not change demand, only quantity demanded. A decrease in price would cause an increase in the quantity demanded.",
-  // },
-  // {
-  //   title: "DEMAND CURVE FOR PEANUT BUTTER",
-  //   question:
-  //     "The price of almond butter, a substitute for peanut butter, decreases.",
-  //   subQuestion: "What happens to the demand for peanut butter?",
-  //   icon: peanutbutterIcon,
-  //   answer: "shifts left",
-  //   graphType: "demand curve",
-  //   briefness:
-  //     "When the price of almond butter decreases, consumers will purchase MORE almond butter (movement along the almond butter demand curve) and LESS peanut butter at every price (leftward shift of peanut butter demand curve).",
-  // },
-  // {
-  //   title: "DEMAND CURVE FOR DOG FOOD",
-  //   question: "People buy more dogs during the pandemic.",
-  //   subQuestion: "What happens to the demand curve for dog food?",
-  //   icon: dogIcon,
-  //   answer: "shifts right",
-  //   graphType: "demand curve",
-  //   briefness:
-  //     "Dogs need food, so they are complements. More adopted puppies will mean an increase in demand for dog food. The demand curve will shift to the right.",
+  //   title: "CHART TITLE",
+  //   question: "breaking new",
+  //   subQuestion: "Question",
+  //   answer: "What happens to graph",
+  //   briefness: "Answer",
+  // graphType: 'supply curve/demand curve',
   // },
 
-  // {
-  //   title: "SUPPLY CURVE FOR SODA",
-  //   question: 'Government enacts a tax on the production of soda.',
-  //   subQuestion: "Consider the supply curve for soda. What happens?",
-  //   icon: sodaIcon,
-  //   answer: "shifts left",
-  //   graphType: "supply curve",
-  //   briefness: "Taxes levied on the production of a product will cause the supply curve to shift left.",
-  // },
-  // {
-  //   title: "SUPPLY CURVE FOR OATS",
-  //   question: 'Price of corn falls.',
-  //   subQuestion: "Consider the supply curve for oats (another crop farmers can produce). What happens?",
-  //   icon: sodaIcon,
-  //   answer: "shifts right",
-  //   graphType: "supply curve",
-  //   briefness: "When the price of another product suppliers can produce decreases, supplier will shift production away from that product, decreasing quantity supplied. Farmer will produce the other product instead (a rightward shift in the supply curve).",
-  // },
-  // {
-  //   title: "SUPPLY CURVE FOR SMARTPHONES",
-  //   question: 'Higher demand for smartphone leads to price hike.',
-  //   subQuestion: "Consider the supply curve for smartphones. What happens?",
-  //   icon: fiveGIcon,
-  //   answer: "goes up",
-  //   graphType: "supply curve",
-  //   briefness: "A change in price does not change supply; only quantity supplied. An increase in the price will cause quantity supplied to increase.",
-  // },
   {
-    title: "DEMAND CURVE FOR SUVs",
-    question: "Gas prices plummet and stay low for years.",
-    subQuestion: "Consider the demand curve for SUVs. What happens?",
-    icon: gasIcon,
-    answer: "shifts right",
-    graphType: "demand curve",
-    briefness:
-      "Gas and SUVs are complements. If the price of gas falls, the quantity demanded for gas will increase. Demand for SUVs, a complement, will increase and the demand curve will shift to the right.",
-  },
-  {
-    title: "DEMAND CURVE FOR 5G PHONES",
+    title: "SUPPLY CURVE FOR COVID-19 VACCINES.",
     question:
-      'Tech expert: "Wait a year until technology improves before buying a 5G phone."',
-    subQuestion: "Consider the demand curve for 5G phones. What happens?",
-    icon: fiveGIcon,
-    answer: "shifts left",
-    graphType: "demand curve",
-    briefness:
-      "If consumers expect that the quality will dramatically improve within a year, they will delay purchasing 5G phones. This will cause a decrease in demand, and the demand curve will shift to the left.",
-  },
-  {
-    title: "DEMAND CURVE FOR SODA",
-    question:
-      "Government enacts a tax on soda producers and the price of soda increases.",
-    subQuestion: "Consider the demand curve for soda. What happens?",
-    icon: sodaIcon,
-    answer: "goes down",
-    graphType: "demand curve",
-    briefness:
-      "This will only change the price. This will cause the quantity demanded for soda to decrease.",
-  },
-  {
-    title: "DEMAND CURVE FOR VIDEO GAME CONSOLES",
-    question: "Gamers are upset over an increase in video game prices.",
+      "Government provides subsidies to firms involved in vaccine production.",
     subQuestion:
-      "Consider the demand curve for video game consoles. What happens?",
-    icon: playstationIcon,
-    answer: "shifts left",
-    graphType: "demand curve",
-    briefness:
-      "Video games and game consoles are complements. As the price of games increase, the quantity demanded for videos games will decrease. Demand for video game consoles, a complement, will decrease. The demand curve will shift to the left.",
-  },
-  {
-    title: "DEMAND CURVE FOR ELECTRIC CARS",
-    question:
-      "The price of electric cars drops because the government subsidizes manufacturers.",
-    subQuestion: "Consider the demand curve for electric cars. What happens?",
-    icon: electricCarIcon,
-    answer: "goes up",
-    graphType: "demand curve",
-    briefness:
-      "This will only change the price. At a lower price, the quantity demanded for electric cars will go up.",
-  },
-  {
-    title: "DEMAND CURVE FOR RESTAURANTS",
-    question:
-      "Researchers say restaurants are high-risk area for spreading coronavirus.",
-    subQuestion: "Consider the demand curve for restaurants. What happens?",
-    icon: restaurantCovidIcon,
-    answer: "shifts left",
-    graphType: "demand curve",
-    briefness:
-      "The increased health risks of eating out will cause consumers to eat out less often, regardless of price. This change in consumer preferences will cause the demand curve to shift to the left.",
-  },
-  {
-    title: "DEMAND CURVE FOR COMPUTERS",
-    question: "Hearing aids will now be sold without a prescription.",
-    subQuestion: "Consider the demand curve for computers. What happens?",
-    icon: hearingAidIcon,
-    answer: "Nothing happens",
-    graphType: "demand curve",
-    briefness:
-      "This was a trick question. Hearing aids and computers aren't substitutes or complements, so the change in the hearing aid market shouldn't affect demand in the computer market.",
-  },
-  {
-    title: "DEMAND CURVE FOR REAL MEAT",
-    question:
-      "Synthetic meat now cheaper because of a breakthrough in technology.",
-    subQuestion: "Consider the demand curve for real meat. What happens?",
-    icon: meatIcon,
-    answer: "shifts left",
-    graphType: "demand curve",
-    briefness:
-      "Synthetic meat and real meat are substitutes. If the price of synthetic meat decreases, the quantity demanded will increase. Demand for real meat, a substitute for synthetic meat, will decrease, and the demand curve will shift to the left.",
-  },
-  {
-    title: "DEMAND CURVE FOR RESTAURANTS",
-    question:
-      "New tax introduced on all restaurants and the price of eating out increases.",
-    subQuestion: "Consider the demand curve for restaurants. What happens?",
-    icon: restaurantTaxIcon,
-    answer: "goes down",
-    graphType: "demand curve",
-    briefness:
-      "This will only change the price. With an increase in the price of restaurant meals, quantity demanded for restaurants will decrease.",
-  },
-  {
-    title: "DEMAND CURVE FOR CANES",
-    question:
-      "Elderly population is increasing at unprecedented rates worldwide.",
-    subQuestion: "Consider the demand curve for canes. What happens?",
-    icon: caneIcon,
+      "Consider the supply curve for COVID-19 vaccines. What happens?",
+    icon: vaccine,
     answer: "shifts right",
-    graphType: "demand curve",
+    graphType: "supply curve",
     briefness:
-      "A rising elderly population means that demand will increase for products that seniors use, including canes.",
+      "A subsidy from the government will lower production costs. This will shift the supply curve for vaccines to the right.",
+  },
+  {
+    title: "SUPPLY CURVE FOR HAIRCUTS",
+    question:
+      "New COVID-19 safety rules reduce the productivity of hairdressers.",
+    subQuestion: "Consider the supply curve for haircuts. What happens?",
+    icon: haircut,
+    answer: "shifts left",
+    graphType: "supply curve",
+    briefness:
+      "A decrease in productivity raises production costs for hair dressers. This will cause the supply curve to shift to the left.",
+  },
+
+  {
+    title: "SUPPLY CURVE FOR BICYCLES",
+    question:
+      "The price of bicycles increases due to a shift in consumer preferences.",
+    subQuestion: "Consider the supply curve for bicycles. What happens?",
+    icon: bicycle,
+    answer: "goes up",
+    graphType: "supply curve",
+    briefness:
+      "The example only describes a change in price. Therefore, the supply curve does not shift and the quantity supplied increases.",
+  },
+
+  {
+    title: "SUPPLY CURVE FOR CHOCOLATE",
+    question: "The price of cacoa beans, an ingredient in chocolate, plummets.",
+    subQuestion: "Consider the supply curve for chocolate. What happens?",
+    icon: chocolate,
+    answer: "shifts right",
+    graphType: "supply curve",
+    briefness:
+      "If an input price drops, this causes the cost of producing chocolate to fall. The supply curve will shift to the right.",
+  },
+
+  {
+    title: "SUPPLY CURVE FOR LUGGAGE",
+    question:
+      "Producers believe the price of luggage will increase in 6 months.",
+    subQuestion: "Consider the supply curve for luggage. What happens?",
+    icon: luggage,
+    answer: "shifts left",
+    graphType: "supply curve",
+    briefness:
+      "If luggage producers think the price of luggage will increase in 6 months, they will move some of their supply into storage in the hopes of selling those items later at the higher price. In the short run, this will mean the supply curve will shift to the left.",
+  },
+
+  {
+    title: "SUPPLY CURVE FOR PIZZA",
+    question:
+      "The price of pizza decreases due to consumers turning to healthier alternatives.",
+    subQuestion: "Consider the supply curve for pizza. What happens?",
+    icon: pizza,
+    answer: "goes down",
+    graphType: "supply curve",
+    briefness:
+      "The example only describes a change in price. Therefore, the supply curve does not shift and the quantity supplied decreases.",
+  },
+
+  {
+    title: "SUPPLY CURVE FOR TENNIS BALLS",
+    question: "The government imposes a tax on tennis balls producers.",
+    subQuestion: "Consider the supply curve for tennis balls. What happens?",
+    icon: tennisball,
+    answer: "shifts left",
+    graphType: "supply curve",
+    briefness:
+      "A tax on producers increases the costs of production. The supply curve will shift to the left.",
+  },
+
+  {
+    title: "SSUPPLY CURVE FOR MILK",
+    question: "The government lifts restrictive barriers on trading milk.",
+    subQuestion: "Consider the supply curve for milk. What happens?",
+    icon: milk,
+    answer: "shifts right",
+    graphType: "supply curve",
+    briefness:
+      "If the government lifts barriers to trade, more sellers will enter the market and this will shift the supply curve to the right.",
+  },
+
+  {
+    title: "SUPPLY CURVE FOR CARS",
+    question: "The price of steel increases.",
+    subQuestion: "Consider the supply curve for cars. What happens?",
+    icon: car,
+    answer: "shifts left",
+    graphType: "supply curve",
+    briefness:
+      "Steel is an input price for cars, so an increase in the price of steel will raise the costs of car production. The supply curve will shift to the left.",
+  },
+
+  {
+    title: "SUPPLY CURVE FOR DUMBBELLS",
+    question:
+      "The price of dumbbells increases because consumers shift away from gyms to home exercise.",
+    subQuestion: "Consider the supply curve for dumbbells. What happens?",
+    icon: dumbells,
+    answer: "goes down",
+    graphType: "supply curve",
+    briefness:
+      "The example only describes a change in price. Therefore, the supply curve does not shift and the quantity supplied increases.",
   },
 ];
 
