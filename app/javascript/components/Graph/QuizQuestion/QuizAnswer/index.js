@@ -44,6 +44,14 @@ const QuizAnswer = ({ questionAnswer, classes, moved, showBriefness }) => {
     }
   }
 
+  const answerPrefix = () => {
+    if (questionAnswer.graphType === "supply curve") {
+      return !questionAnswer.answer.includes('Nothing') && (questionAnswer.answer.includes('shifts') ? 'Supply curve ' : 'Quantity supplied ')
+    } else {
+      return !questionAnswer.answer.includes('Nothing') && (questionAnswer.answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded ')
+    }
+  }
+
   return (
     <Grid className={classes.answerContainer}>
       <Typography variant='h5' className={classes.QuestionTextAgain}>
@@ -53,7 +61,7 @@ const QuizAnswer = ({ questionAnswer, classes, moved, showBriefness }) => {
       </Typography>
       <img src={answerImage} className={classes.correctIncorrectIcon} />
       <Typography variant='h4' className={classes.curveShiftingText}>
-        { !questionAnswer.answer.includes('Nothing') && (questionAnswer.answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded ')}
+        {answerPrefix()}
         {questionAnswer.answer}
       </Typography>
       {showBriefness && <Typography variant='h5' className={classes.briefNessHeading}>

@@ -68,16 +68,16 @@ const styles = theme => ({
   dragLineMessage: {
     height: '130px',
     position: 'absolute',
-    right: '305px',
-    top: '80px',
+    right: '260px',
+    top: '85px',
     [emulatorScreen(theme)]: {
       height: '85px',
-      right: '186px',
+      right: '155px',
       top: '50px',
     },
     [mobileScreen(theme)]: {
-      top: '25px',
-      right: '120px',
+      top: '35px',
+      right: '110px',
       height: '65px'
     }
   },

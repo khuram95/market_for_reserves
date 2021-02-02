@@ -20,7 +20,7 @@ const questionAnswers = [
   // },
 
   {
-    title: "SUPPLY CURVE FOR COVID-19 VACCINES.",
+    title: "SUPPLY CURVE FOR COVID-19 VACCINES",
     question:
       "Government provides subsidies to firms involved in vaccine production.",
     subQuestion:
@@ -102,7 +102,7 @@ const questionAnswers = [
   },
 
   {
-    title: "SSUPPLY CURVE FOR MILK",
+    title: "SUPPLY CURVE FOR MILK",
     question: "The government lifts restrictive barriers on trading milk.",
     subQuestion: "Consider the supply curve for milk. What happens?",
     icon: milk,
