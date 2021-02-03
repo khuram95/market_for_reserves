@@ -30,7 +30,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
         <Grid className={classes.quizDesc}>
           <Typography variant="h5" className={classes.homeDesc}>
             {/* Change in Demand vs. */}
-            Change in Supply
+            Change in Supply vs.
           </Typography>
           <Typography variant="h5" className={classes.homeDesc}>
             {/* Change in Quantity Demanded */}
