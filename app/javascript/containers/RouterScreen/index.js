@@ -13,7 +13,7 @@ function RouterScreen() {
       {currentScreen === "Home"     && <HomeScreen     setCurrentScreen={setCurrentScreen} />}
       {currentScreen === "Tutorial" && <TutorialScreen setCurrentScreen={setCurrentScreen} />}
       {currentScreen === "Quiz"     && <QuizScreen     setAnswers={setAnswers} setCurrentScreen={setCurrentScreen} />}
-      {currentScreen === "Result"   && <ResultScreen   answers={answers} />}
+      {currentScreen === "Result"   && <ResultScreen answers={answers} setAnswers={setAnswers} setCurrentScreen={setCurrentScreen} />}
       </>
   )
 }

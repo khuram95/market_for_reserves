@@ -16,9 +16,39 @@ const styles = theme => ({
       fontSize: "40px",
     },
     [mobileScreen(theme)]: {
-      fontSize: "33px",
+      fontSize: "28px",
       paddingRight: "0.5rem",
     }
+  },
+
+  sideBarLinkText: {
+    fontFamily: "'Oswald'",
+    fontSize: "16px",
+    marginLeft: "12px",
+    fontWeight: "500",
+    color: "#003e4c",
+    [emulatorScreen(theme)]: {
+      fontSize: '12px',
+      lineHeight: '1.1'
+    },
+    [mobileScreen(theme)]: {
+      fontSize: '10px',
+      lineHeight: '1'
+    },
+  },
+
+  sideBarLink: {
+    display: "flex",
+    alignItems: "center",
+    marginTop: "15px",
+    cursor: "pointer",
+    textDecoration: "none!important",
+    [emulatorScreen(theme)]: {
+      marginTop: "8px",
+    },
+    [mobileScreen(theme)]: {
+      marginTop: "6px",
+    },
   },
 
   score: {
@@ -31,7 +61,7 @@ const styles = theme => ({
       paddingRight: "0.5rem",
     },
     [mobileScreen(theme)]: {
-      fontSize: "25px",
+      fontSize: "20px",
       paddingRight: "0.5rem",
     }
   },
@@ -42,6 +72,7 @@ const styles = theme => ({
     backgroundColor: '#ecf2f1',
     fontFamily: "'Oswald'",
     fontSize: "50px",
+    position: "relative",
     color: "#003e4c",
     padding: "2rem",
     [emulatorScreen(theme)]: {
@@ -50,6 +81,75 @@ const styles = theme => ({
     [mobileScreen(theme)]: {
       padding: "0.5rem",
     }
+  },
+
+  leftBarContainer: {
+    position: "absolute",
+    left: "0",
+    top: "90px",
+    [emulatorScreen(theme)]: {
+      top: "60px",
+    },
+    [mobileScreen(theme)]: {
+      top: "45px",
+    }
+  },
+
+  forStudents: {
+    backgroundColor: "#F7F7F7",
+    padding: "15px 80px 10px 35px",
+    [emulatorScreen(theme)]: {
+      padding: "10px 35px 10px 15px"
+    },
+    [mobileScreen(theme)]: {
+      padding: "5px 30px 5px 15px"
+    },
+  },
+
+  forTeachers: {
+    backgroundColor: "#F7F7F7",
+    padding: "15px 80px 40px 35px",
+    marginTop: "25px",
+    [emulatorScreen(theme)]: {
+      marginTop: "20px",
+      padding: "10px 35px 25px 15px"
+    },
+    [mobileScreen(theme)]: {
+      padding: "5px 30px 20px 15px"
+    },
+  },
+
+  linkImg: {
+    width: '30px',
+    [emulatorScreen(theme)]: {
+      width: "20px",
+    },
+    [mobileScreen(theme)]: {
+      width: "10px",
+    },
+  },
+
+  logoImg: {
+    width: "110px",
+    [emulatorScreen(theme)]: {
+      width: "90px",
+    },
+    [mobileScreen(theme)]: {
+      width: "60px",
+    },
+  },
+
+  forStudentsTitle: {
+    color: '#003e4c',
+    fontWeight: '500',
+    fontSize: '1.5rem',
+    fontFamily: "'Oswald',sans-serif",
+    [emulatorScreen(theme)]: {
+      fontSize: '1rem',
+    },
+    [mobileScreen(theme)]: {
+      fontSize: '0.7rem',
+    },
   },
 
   downloadImage: {
@@ -82,7 +182,7 @@ const styles = theme => ({
       padding: '0px 15px',
     },
     [mobileScreen(theme)]: {
-      fontSize: '18px',
+      fontSize: '16px',
     }
   },
 
@@ -96,7 +196,7 @@ const styles = theme => ({
       fontSize: "22px",
     },
     [mobileScreen(theme)]: {
-      fontSize: "18px",
+      fontSize: "16px",
     }
   },
 
@@ -105,7 +205,10 @@ const styles = theme => ({
     color: "red",
     fontSize: "20px",
     [emulatorScreen(theme)]: {
-      fontSize: "17px"
+      fontSize: "12px"
+    },
+    [mobileScreen(theme)]: {
+      fontSize: "10px"
     }
   },
 
@@ -132,16 +235,16 @@ const styles = theme => ({
     fontWeight: "100",
     fontFamily: "rubik",
     [emulatorScreen(theme)]: {
-      width: "330px",
+      width: "300px",
       fontSize: "22px",
       marginRight: "0.8rem",
       padding: "5px",
     },
     [mobileScreen(theme)]: {
-      width: "260px",
+      width: "220px",
       padding: "5px",
-      fontSize: "18px",
-      marginRight: "0.5rem"
+      fontSize: "16px",
+      marginRight: "0.3rem"
 
     }
 
@@ -176,23 +279,56 @@ const styles = theme => ({
     maxWidth: "600px",
     padding: "50px 0px",
     [emulatorScreen(theme)]: {
-      maxHeight: "270px",
+      maxHeight: "220px",
       maxWidth: "440px",
-      padding: "40px 0px",
+      padding: "15px 0px",
     },
     [mobileScreen(theme)]: {
-      maxHeight: "180px",
-      maxWidth: "380px",
-      padding: "20px 0px",
+      maxHeight: "160px",
+      maxWidth: "350px",
+      padding: "5px 0 12px 0",
     }
+  },
+
+  quizResultContainer: {
+    height: "85vh"
   },
 
   nameContainer: {
     marginTop: "3rem",
+    [emulatorScreen(theme)]: {
+      marginTop: "1.5rem",
+    },
     [mobileScreen(theme)]: {
-      marginTop: "2rem",
+      marginTop: "1rem",
     }
-  }
+  },
+
+  mruLogo: {
+    alignItems: 'flex-end',
+    display: "flex",
+  },
+
+  mruLogoContainer: {
+    height: "8vh"
+  },
+
+  homeDesc: {
+    color: '#003e4c',
+    fontWeight: '500',
+    fontSize: '1.7rem',
+    textAlign: 'center',
+    fontFamily: "'Oswald',sans-serif",
+    marginBottom: '1.5rem',
+    [emulatorScreen(theme)]: {
+      fontSize: '1.4rem',
+      marginBottom: '1rem',
+    },
+    [mobileScreen(theme)]: {
+      fontSize: '1rem',
+      marginBottom: '0rem',
+    }
+  },
 
 })
 export default styles;
