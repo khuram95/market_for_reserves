@@ -1,11 +1,10 @@
-import { emulatorScreen, mobileScreen } from "utils/styleUtils"
+import { emulatorScreen, mobileScreen } from "utils/styleUtils";
 
-const styles = theme => ({
-
+const styles = (theme) => ({
   resultTitle: {
     fontFamily: "'Oswald'",
     fontSize: "50px",
-    fontWeight: "500"
+    fontWeight: "500",
   },
 
   totalScore: {
@@ -18,7 +17,7 @@ const styles = theme => ({
     [mobileScreen(theme)]: {
       fontSize: "28px",
       paddingRight: "0.5rem",
-    }
+    },
   },
 
   sideBarLinkText: {
@@ -27,13 +26,14 @@ const styles = theme => ({
     marginLeft: "12px",
     fontWeight: "500",
     color: "#003e4c",
+    lineHeight: 1.1,
     [emulatorScreen(theme)]: {
-      fontSize: '12px',
-      lineHeight: '1.1'
+      fontSize: "12px",
+      lineHeight: "1",
     },
     [mobileScreen(theme)]: {
-      fontSize: '10px',
-      lineHeight: '1'
+      fontSize: "10px",
+      lineHeight: "1",
     },
   },
 
@@ -63,13 +63,13 @@ const styles = theme => ({
     [mobileScreen(theme)]: {
       fontSize: "20px",
       paddingRight: "0.5rem",
-    }
+    },
   },
 
   resultScreenContainer: {
     height: "100%",
-    minHeight: '100vh',
-    backgroundColor: '#ecf2f1',
+    minHeight: "100vh",
+    backgroundColor: "#ecf2f1",
     fontFamily: "'Oswald'",
     fontSize: "50px",
     position: "relative",
@@ -80,7 +80,7 @@ const styles = theme => ({
     },
     [mobileScreen(theme)]: {
       padding: "0.5rem",
-    }
+    },
   },
 
   leftBarContainer: {
@@ -92,17 +92,17 @@ const styles = theme => ({
     },
     [mobileScreen(theme)]: {
       top: "45px",
-    }
+    },
   },
 
   forStudents: {
     backgroundColor: "#F7F7F7",
     padding: "15px 80px 10px 35px",
     [emulatorScreen(theme)]: {
-      padding: "10px 35px 10px 15px"
+      padding: "10px 35px 10px 15px",
     },
     [mobileScreen(theme)]: {
-      padding: "5px 30px 5px 15px"
+      padding: "5px 30px 5px 15px",
     },
   },
 
@@ -112,15 +112,15 @@ const styles = theme => ({
     marginTop: "25px",
     [emulatorScreen(theme)]: {
       marginTop: "20px",
-      padding: "10px 35px 25px 15px"
+      padding: "10px 35px 25px 15px",
     },
     [mobileScreen(theme)]: {
-      padding: "5px 30px 20px 15px"
+      padding: "5px 30px 20px 15px",
     },
   },
 
   linkImg: {
-    width: '30px',
+    width: "30px",
     [emulatorScreen(theme)]: {
       width: "20px",
     },
@@ -140,15 +140,15 @@ const styles = theme => ({
   },
 
   forStudentsTitle: {
-    color: '#003e4c',
-    fontWeight: '500',
-    fontSize: '1.5rem',
+    color: "#003e4c",
+    fontWeight: "500",
+    fontSize: "1.5rem",
     fontFamily: "'Oswald',sans-serif",
     [emulatorScreen(theme)]: {
-      fontSize: '1rem',
+      fontSize: "1rem",
     },
     [mobileScreen(theme)]: {
-      fontSize: '0.7rem',
+      fontSize: "0.7rem",
     },
   },
 
@@ -162,42 +162,42 @@ const styles = theme => ({
       marginTop: "-4px",
     },
     [mobileScreen(theme)]: {
-      width: "19px"
-    }
+      width: "19px",
+    },
   },
 
   saveButton: {
-    color: '#fff',
-    backgroundColor: '#003e4c',
-    fontSize: '30px',
-    fontWeight: '500',
-    padding: '0px 20px',
-    borderRadius: '0px',
+    color: "#fff",
+    backgroundColor: "#003e4c",
+    fontSize: "30px",
+    fontWeight: "500",
+    padding: "0px 20px",
+    borderRadius: "0px",
     fontFamily: "'Oswald', sans-serif",
     "&:hover": {
-      backgroundColor: '#056f8a'
+      backgroundColor: "#056f8a",
     },
     [emulatorScreen(theme)]: {
-      fontSize: '22px',
-      padding: '0px 15px',
+      fontSize: "22px",
+      padding: "0px 15px",
     },
     [mobileScreen(theme)]: {
-      fontSize: '16px',
-    }
+      fontSize: "16px",
+    },
   },
 
   classAssignmentTitle: {
-    color: '#003e4c',
-    fontWeight: '400',
-    fontSize: '30px',
-    textAlign: 'center',
+    color: "#003e4c",
+    fontWeight: "400",
+    fontSize: "30px",
+    textAlign: "center",
     fontFamily: "rubik",
     [emulatorScreen(theme)]: {
       fontSize: "22px",
     },
     [mobileScreen(theme)]: {
       fontSize: "16px",
-    }
+    },
   },
 
   errorText: {
@@ -205,22 +205,22 @@ const styles = theme => ({
     color: "red",
     fontSize: "20px",
     [emulatorScreen(theme)]: {
-      fontSize: "12px"
+      fontSize: "12px",
     },
     [mobileScreen(theme)]: {
-      fontSize: "10px"
-    }
+      fontSize: "10px",
+    },
   },
 
   studentName: {
-    color: '#003e4c',
-    fontWeight: '300',
-    fontSize: '40px',
-    textAlign: 'center',
+    color: "#003e4c",
+    fontWeight: "300",
+    fontSize: "40px",
+    textAlign: "center",
     fontFamily: "rubik",
     [mobileScreen(theme)]: {
       fontSize: "30px",
-    }
+    },
   },
 
   nameInput: {
@@ -228,7 +228,7 @@ const styles = theme => ({
     padding: "6px",
     fontSize: "30px",
     border: "none",
-    color: '#003e4c',
+    color: "#003e4c",
     marginRight: "1rem",
     borderRadius: "4px",
     textAlign: "center",
@@ -244,10 +244,8 @@ const styles = theme => ({
       width: "220px",
       padding: "5px",
       fontSize: "16px",
-      marginRight: "0.3rem"
-
-    }
-
+      marginRight: "0.3rem",
+    },
   },
 
   answerNumber: {
@@ -259,7 +257,7 @@ const styles = theme => ({
     },
     [mobileScreen(theme)]: {
       fontSize: "18px",
-    }
+    },
   },
 
   answerLogo: {
@@ -271,7 +269,7 @@ const styles = theme => ({
     },
     [mobileScreen(theme)]: {
       width: "18px",
-    }
+    },
   },
 
   questionAnswerContainer: {
@@ -287,11 +285,11 @@ const styles = theme => ({
       maxHeight: "160px",
       maxWidth: "350px",
       padding: "5px 0 12px 0",
-    }
+    },
   },
 
   quizResultContainer: {
-    height: "85vh"
+    height: "85vh",
   },
 
   nameContainer: {
@@ -301,34 +299,33 @@ const styles = theme => ({
     },
     [mobileScreen(theme)]: {
       marginTop: "1rem",
-    }
+    },
   },
 
   mruLogo: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
     display: "flex",
   },
 
   mruLogoContainer: {
-    height: "8vh"
+    height: "8vh",
   },
 
   homeDesc: {
-    color: '#003e4c',
-    fontWeight: '500',
-    fontSize: '1.7rem',
-    textAlign: 'center',
+    color: "#003e4c",
+    fontWeight: "500",
+    fontSize: "1.7rem",
+    textAlign: "center",
     fontFamily: "'Oswald',sans-serif",
-    marginBottom: '1.5rem',
+    marginBottom: "1.5rem",
     [emulatorScreen(theme)]: {
-      fontSize: '1.4rem',
-      marginBottom: '1rem',
+      fontSize: "1.4rem",
+      marginBottom: "1rem",
     },
     [mobileScreen(theme)]: {
-      fontSize: '1rem',
-      marginBottom: '0rem',
-    }
+      fontSize: "1rem",
+      marginBottom: "0rem",
+    },
   },
-
-})
+});
 export default styles;

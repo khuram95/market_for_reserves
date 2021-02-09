@@ -114,13 +114,13 @@ const questionAnswers = [
 
   {
     title: "SUPPLY CURVE FOR CARS",
-    question: "The price of steel increases.",
+    question: "The price of steel, an input for car production, increases.",
     subQuestion: "Consider the supply curve for cars. What happens?",
     icon: car,
     answer: "shifts left",
     graphType: "supply curve",
     briefness:
-      "Steel is an input price for cars, so an increase in the price of steel will raise the costs of car production. The supply curve will shift to the left.",
+      "Steel is an input for car production, so an increase in the price of steel will raise the costs of car production. The supply curve will shift to the left.",
   },
 
   {
@@ -129,7 +129,7 @@ const questionAnswers = [
       "The price of dumbbells increases because consumers shift away from gyms to home exercise.",
     subQuestion: "Consider the supply curve for dumbbells. What happens?",
     icon: dumbells,
-    answer: "goes down",
+    answer: "goes up",
     graphType: "supply curve",
     briefness:
       "The example only describes a change in price. Therefore, the supply curve does not shift and the quantity supplied increases.",
