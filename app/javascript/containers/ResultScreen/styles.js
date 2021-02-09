@@ -69,6 +69,7 @@ const styles = (theme) => ({
   resultScreenContainer: {
     height: "100%",
     minHeight: "100vh",
+    overflow: "auto",
     backgroundColor: "#ecf2f1",
     fontFamily: "'Oswald'",
     fontSize: "50px",
@@ -290,6 +291,7 @@ const styles = (theme) => ({
 
   quizResultContainer: {
     height: "85vh",
+    flexWrap: "nowrap",
   },
 
   nameContainer: {
