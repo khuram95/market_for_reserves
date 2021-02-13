@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
 import LineDotLeftHandler from "./LineDotLeftHandler";
+import LineDotBothHandler from "./LineDotBothHandler"
 import LineDotRightHandler from "./LineDotRightHandler";
 import styles from "./styles";
 import "animate.css/animate.css";
@@ -19,6 +20,7 @@ const GraphLineDot = (props) => {
   } = props;
 
   const [showDragMessage, setShowDragMessage] = useState(false);
+  console.log("answeredCorrectly", answeredCorrectly)
 
   return (
     <Grid className={classes.quizContainer}>
@@ -45,7 +47,7 @@ const GraphLineDot = (props) => {
                 setShowDragMessage={setShowDragMessage}
                 dottedLineLabels={dottedLineLabels}
             />} */}
-          {questionAnswer.graphType === "supply curve" && (
+          {/* {questionAnswer.graphType === "supply curve" && (
             <LineDotRightHandler
               showDragMessage={showDragMessage}
               questionAnswer={questionAnswer}
@@ -57,7 +59,20 @@ const GraphLineDot = (props) => {
               setShowDragMessage={setShowDragMessage}
               dottedLineLabels={dottedLineLabels}
             />
-          )}
+          )} */}
+          {/* {questionAnswer.graphType === "supply curve and demand curve" && ( */}
+            <LineDotBothHandler
+              showDragMessage={showDragMessage}
+              questionAnswer={questionAnswer}
+              setAnsweredCorrectly={setAnsweredCorrectly}
+              answeredCorrectly={answeredCorrectly}
+              setMoved={setMoved}
+              submitted={submitted}
+              modalOpen={modalOpen}
+              setShowDragMessage={setShowDragMessage}
+              dottedLineLabels={dottedLineLabels}
+            />
+          {/* )} */}
         </Grid>
       </Grid>
     </Grid>

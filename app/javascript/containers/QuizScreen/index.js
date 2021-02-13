@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Grid } from "@material-ui/core"
-import questionAnswers from './questionAnswers'
+// import questionAnswers from './questionAnswers'
+import questionAnswers from './equalibriumQuestionAnswers'
 import styles from './styles'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Graph from '../../components/Graph'
