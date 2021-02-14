@@ -25,21 +25,17 @@ const QuizAnswer = ({ questionAnswer, classes, moved, showBriefness }) => {
         setAnswerImage(correctIcon)
         setAnswerMessage("")
         return
-      case "dot but moved line":
+      case "incorrect":
         setAnswerImage(IncorrectIcon)
         setAnswerMessage("")
         return
-      case "line but moved dot":
-        setAnswerImage(IncorrectIcon)
-        setAnswerMessage("")
-        return
-      case "dot moved opposite":
+      case "moved demand curve but in opposite":
         setAnswerImage(NotQuiteIcon)
-        setAnswerMessage("You we're right to move the point, but you did it in the wrong direction.")
+        setAnswerMessage("You were right to shift the demand curve, but you did it in the wrong direction.")
         return
-      case "line moved opposite":
+      case "moved supply curve but in opposite":
         setAnswerImage(NotQuiteIcon)
-        setAnswerMessage("You were right to shift the curve, but you did it in the wrong direction.")
+        setAnswerMessage("You were right to shift the supply curve, but you did it in the wrong direction.")
         return
     }
   }

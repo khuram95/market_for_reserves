@@ -7,7 +7,7 @@ import ResultScreen from "../ResultScreen"
 function RouterScreen() {
 
   const [answers, setAnswers] = useState([])
-  const [currentScreen, setCurrentScreen] = useState("Quiz")
+  const [currentScreen, setCurrentScreen] = useState("Home")
   return (
       <>
       {currentScreen === "Home"     && <HomeScreen     setCurrentScreen={setCurrentScreen} />}

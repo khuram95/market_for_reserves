@@ -3,11 +3,13 @@ import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same 
 import { withStyles } from '@material-ui/core/styles'
 import leftArrow from 'images/leftArrow'
 import rightArrow from 'images/rightArrow'
+import dGreen from 'images/equalibriumIcons/d-green.svg'
+import dBlue from 'images/equalibriumIcons/D-blue.svg'
 import upArrow from 'images/upArrow'
 import downArrow from 'images/downArrow'
 import styles from '../demandStyles'
 import 'animate.css/animate.css'
-// import LeftLabels from '../LeftLabels';
+import Labels from '../Labels';
 
 let initialDotPosition
 let moveXAxisCount = 0
@@ -35,18 +37,13 @@ const DemandCurve = (props) => {
   const dotCenterPosition = (heightOfLine - 30) / 2
 
   const { answer } = questionAnswer
-  const [dotPosition, setDotPosition] = useState({ x: 0, y: dotCenterPosition })
   const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
   const [correctPosition, setCorrectPosition] = useState(0)
   const [wrongPosition, setWrongPosition] = useState(null)
   const [showLine, setShowLine] = useState(false)
   const [showDot, setShowDot] = useState(false)
-  // const [disableSupply, setdisableSupply] = useState(false)
-  const [dotDisable, setDotDisable] = useState(false)
+  const [changeIconColor, setChangeIconColor] = useState(false)
   const [lineColor, setLineColor] = useState("#003E4C")
-  const [dotBorderColor, setDotBorderColor] = useState("#003e4c")
-  const [dotFillColor, setDotFillColor] = useState("#00b1d9")
-  const [fadeDot, setFadeDot] = useState("1")
   const [arrowIcon, setArrowIcon] = useState()
   const [arrowFadeIn, setArrowFadeIn] = useState()
   const [arrowPosition, setArrowPosition] = useState({ left: 0, top: 0 })
@@ -56,29 +53,47 @@ const DemandCurve = (props) => {
   useEffect(() => {
     if (submitted ) {
       if (answer.includes('Nothing')) {
-        if(nothingMove()) {
+        if (nothingMove()) {
           setAnsweredCorrectly(true)
           setMoved("correct")
         } else {
+          setColors()
           nothingAsWrong()
         }
       }
-      // else if (nothingMove()) {
-      //   nothingAsWrong()
-      // }
-      // else if (dotPosition.y === dotCenterPosition) {
-      evaluateLineAnswer(linePosition.x)
-      // } else {
-      //   evaluateDotAnswer(dotPosition.y)
-      // }
-      // showArrow()
-      // if (answer.includes('goes')) {
-      //   setTimeout(() => {
-      //     setShowDottedLines(true)
-      //   }, 1000)
-      // }
+      else if (nothingMove()) {
+        nothingAsWrong()
+      }
+      else {
+        evaluateLineAnswer(linePosition.x)
+      }
+      showArrow()
+      answer.includes("Demand curve") && setChangeIconColor(true)
+      setTimeout(() => {
+        if (answer.includes("Demand curve")) {
+          setShowDottedLines(true)
+          setShowDot(true)
+        }
+      }, 1000)
     }
   }, [submitted])
+
+  useEffect(() => {
+    if (answeredCorrectly === false && disableDemand) {
+      switch(answer) {
+        case "Demand curve shifts left":
+          setShowLine(true)
+          setCorrectPosition(-70)
+          break;
+        case "Demand curve shifts right":
+          setShowLine(true)
+          setCorrectPosition(70)
+          break;
+      }
+      setAnsweredCorrectly(false)
+      return
+    }
+  },[answeredCorrectly])
 
   window.addEventListener("resize", () => setTimeout(() => {
     setReRender(!reRender)
@@ -90,20 +105,12 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "Demand curve shifts left":
         setArrowIcon(leftArrow)
-        setArrowPosition({ top: dotCenterPosition, left: -56 })
+        setArrowPosition({ top: dotCenterPosition - 60, left: -110 })
         break;
       case "Demand curve shifts right":
-        setArrowPosition({ top: dotCenterPosition, left: 20 })
+        setArrowPosition({ top: dotCenterPosition + 55, left: 75 })
         setArrowIcon(rightArrow)
         break;
-      // case "goes up":
-      //   setArrowIcon(downArrow)
-      //   setArrowPosition({ top: dotCenterPosition + 15, left: 45 })
-      //   break;
-      // case "goes down":
-      //   setArrowIcon(upArrow)
-      //   setArrowPosition({ top: dotCenterPosition - 55, left: -20 })
-      //   break;
     }
     setArrowFadeIn('animate__animated animate__fadeIn animate__slow animate__delay-1s')
   }
@@ -122,46 +129,20 @@ const DemandCurve = (props) => {
       console.log("demand line was dragged")
       setLinePosition({x: 0, y: 0})
     } else {
-      setFadeDot(0.5)
-      setLinePosition({ x:  linePosition.x + ui.deltaX, y: linePosition.y + ui.deltaY})
+      setLinePosition({ x: linePosition.x + ui.deltaX, y: linePosition.y + ui.deltaY })
     }
   }
 
-  const nothingMove = () => {
-    return dotPosition.y === dotCenterPosition && linePosition.x === 0
-  }
-
-  const lineOrDotMoved = (position) => {
-    if (position == dotCenterPosition) {
-      setShowLine(true)
-      setWrongPosition(linePosition.x)
-      setLineColor("red")
-      setMoved("dot but moved line")
-    } else {
-      setDotBorderColor("#e03616")
-      setDotFillColor("#d3968d")
-      setMoved("dot moved opposite")
-    }
-    setShowDot(true)
-    setLinePosition({x: 0, y: 0})
-  }
+  const nothingMove = () => !disableDemand && !disableSupply
 
   const setColors = () => {
-    // if (dotPosition.y == dotCenterPosition) {
-    console.log("disableSupply", disableSupply)
-      if(disableSupply) setLineColor("red")
-      // setMoved("line moved opposite")
-    // } else {
-    //   // setLineColor('#2e8599')
-    //   setDotBorderColor("#e03616")
-    //   setDotFillColor("#d3968d")
-    //   setMoved("line but moved dot")
-    // }
+    if (disableSupply)
+      setLineColor("red")
   }
 
   const nothingAsWrong = () => {
     setDisableDemand(true)
-    setDotDisable(true)
+    setDisableSupply(true)
 
     switch(answer) {
       case "shifts left":
@@ -172,14 +153,6 @@ const DemandCurve = (props) => {
         setShowLine(true)
         setCorrectPosition(70)
         break;
-      case "goes up":
-        setShowDot(true)
-        setCorrectPosition(dotCenterPosition + dotCenterPosition/2)
-        break;
-      case "goes down":
-        setShowDot(true)
-        setCorrectPosition(dotCenterPosition - dotCenterPosition/2)
-        break;
     }
     setMoved("nothing")
     setAnsweredCorrectly(false)
@@ -188,33 +161,34 @@ const DemandCurve = (props) => {
   const markQuestionAsWrong = () => {
     setDisableDemand(true)
     setDisableSupply(true)
-    console.log("markqu")
-    switch(answer) {
+
+    switch (answer) {
       case "Demand curve shifts left":
         setShowLine(true)
         setCorrectPosition(-70)
+        setMoved("moved demand curve but in opposite")
         setColors()
         break;
       case "Demand curve shifts right":
         setShowLine(true)
         setCorrectPosition(70)
+        setMoved("moved demand curve but in opposite")
         setColors()
         break;
       default:
-        // code block
+        setColors()
+        answer.includes("Supply curve shifts") &&  setMoved("incorrect")
     }
     setAnsweredCorrectly(false)
   }
 
   const DragEndLine = (event) => {
-    setFadeDot(1)
     if (linePosition.x <= 10 && linePosition.x >= -10) {
-      setDotDisable(false)
+      setDisableSupply(false)
       setLinePosition({x: 0, y: 0})
     } else {
       setDisableSupply(true)
     }
-    // evaluateLineAnswer(linePosition.x)
   }
 
   const evaluateLineAnswer = (value) => {
@@ -234,19 +208,17 @@ const DemandCurve = (props) => {
       // setLinePosition({x: -75, y: 0})
       answerMatched = answer === 'Demand curve shifts left'
     }
-    answer.includes('shifts') && setFadeDot(0)
+
     console.log("evaluator called", answerMatched)
     answerMatched ? markQuestionAsCorrect() : markQuestionAsWrong()
   }
 
   const markQuestionAsCorrect = () => {
-    // setDisableDemand(true)
-    // setDisableSupply(true)
-    // changePosition()
+    setDisableDemand(true)
+    setDisableSupply(true)
+    changePosition()
     setAnsweredCorrectly(true)
-    // console.log("answeredCorrectly", answeredCorrectly)
-    // draggableDotColor()
-    // setMoved("correct")
+    setMoved("correct")
   }
   const changePosition = () => {
 
@@ -263,56 +235,52 @@ const DemandCurve = (props) => {
   }
 
   const draggableLineColor = () => {
-    console.log("answeredCorrectly", answeredCorrectly)
-    // console.log("answeredCorrectly", answeredCorrectly, "answer", answer.includes('shifts'))
-    if (answeredCorrectly && answer.includes('shifts')) {
+    if (answeredCorrectly && answer.includes('Demand curve shifts')) {
       return "#508a05"
     }
     return wrongPosition ? "#003E4C" : lineColor
   }
 
-  const draggableDotColor = () => {
-    if (answer.includes('goes')) {
-      setDotFillColor('#508a05')
-      // return "#508a05"
-    }
-    // return wrongPosition ? "#003E4C" : lineColor
-  }
-
   const p2ToOrigin = () => dotCenterPosition - 34
-  const p1ToCorrect = () => answer.includes('down') ? (dotCenterPosition - 98) : (dotCenterPosition + 31)
-  const q2ToCorrect = () => answer.includes('down') ? "165px" : '295px'
+  const p1ToCorrect = () => answer.includes('shifts right') ? (dotCenterPosition - 70) : (dotCenterPosition)
+  const q2ToCorrect = () => answer.includes('shifts right') ? "265px" : '195px'
   const q1ToOrigin = () => '230px'
   const qTop = () => '330px'
 
   return (
     <div>
-      {/* {showDottedLines &&
-        <LeftLabels
+      {showDottedLines &&
+        <Labels
           p2Top={p2ToOrigin()}
           p1Top={p1ToCorrect()}
-          originP={{ top: p2ToOrigin(), left: "215px" }}
+          originP={{ top: p2ToOrigin(), left: "225px" }}
           originCorrectP={{
             top: p1ToCorrect(),
-            left: answer.includes('down') ? "150px" : '280px'
+            left: answer.includes('shifts right') ? "250px" : '180px'
           }}
           q1={{ top: qTop(), left: q1ToOrigin() }}
           q2={{ top: qTop(), left: q2ToCorrect() }}
-          originQ={{ top: dotCenterPosition - 25, left: q1ToOrigin(), }}
+          originQ={{ top: dotCenterPosition - 38, left: q1ToOrigin(), }}
           dotCorrectQ={{
-            top: answer.includes('down') ? (dotCenterPosition - 90) : (dotCenterPosition + 40),
+            top: answer.includes('shifts right') ? (dotCenterPosition - 60) : (dotCenterPosition + 10),
             left: q2ToCorrect()
           }}
           isMobile={false}
           isEmulator={false}
           answer={answer}
-        />} */}
-      <div className={classes.verticalLinesContainer}>
+        />}
+      <div className={classes.verticalLinesContainer} style={{ zIndex: answeredCorrectly !== null && answer.includes("Demand") ? "1" : "0" }}>
         <div className={arrowFadeIn}>
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left }}></img>
         </div>
         <div className={classes.defaultLine} />
-        <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}></div>
+        <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
+          {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
+              style={{ opacity: "1", left: "-10px", top: answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
+          />}
+          {(changeIconColor && !answeredCorrectly) && <img src={dGreen} className={classes.lineIcon} />}
+
+        </div>
         <Draggable
           axis="x"
           defaultPosition={{x: 0, y: 0}}
@@ -326,38 +294,10 @@ const DemandCurve = (props) => {
         >
           <div style={{ cursor: !disableDemand && 'pointer' }}>
             <div className={classes.dragableLine} id="draggable_line" style={{backgroundColor: draggableLineColor()}}>
-              {/* <div className={classes.fadedDot}
-                style={{ opacity: fadeDot <= 0.5 ? "0" : "1", zIndex: showDot ? '1' : '0', top: dotCenterPosition}}
-              /> */}
-              {<div className={classes.correctDot}
-                style={{ opacity: showDot ? "1" : "0", top: correctPosition || dotCenterPosition, transition: `top 1s` }}
+              {(showDot && answeredCorrectly) && <div className={classes.correctDot}
+                style={{ opacity: "1", top: answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
               />}
-              {/* <Draggable
-                axis="y"
-                defaultPosition={{ x: 0, y: dotCenterPosition }}
-                position={dotPosition}
-                scale={1}
-                bounds={{
-                  top: dotCenterPosition - (dotCenterPosition / 2),
-                  left: 0,
-                  right: 0,
-                  bottom: dotCenterPosition + (dotCenterPosition / 2)
-                }}
-                onStart={DragStartDot}
-                onDrag={DragDot}
-                onStop={DragEndDot}
-                // disabled={dotDisable}
-              >
-                <div style={{height: '40px', cursor: !dotDisable && 'pointer'}}>
-                  <div className={[classes.draggableDot]}
-                    style={{
-                      border: `5px solid ${dotBorderColor}`,
-                      opacity: fadeDot,
-                      backgroundColor: dotFillColor,
-                    }}
-                  />
-                </div>
-              </Draggable> */}
+              <img src={((changeIconColor && answeredCorrectly)) ? dGreen : dBlue} className={classes.lineIcon} />
             </div>
           </div>
         </Draggable>

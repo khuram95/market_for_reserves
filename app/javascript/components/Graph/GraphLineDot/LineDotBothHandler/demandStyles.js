@@ -83,7 +83,7 @@ const styles = theme => ({
 
   arrows: {
     position: 'absolute',
-    height: "30px",
+    height: "22px",
     top: '185px',
     left: '-50px',
     [emulatorScreen(theme)]: {
@@ -192,12 +192,12 @@ const styles = theme => ({
   correctDot: {
     position: "absolute",
     transform: "rotate(45deg)",
-    border: "5px solid #003e4c",
+    border: "4px solid #003e4c",
     borderRadius: "50%",
     padding: "10px",
-    backgroundColor: "#508a05",
+    backgroundColor: "#CACDCE",
     color: "blue",
-    border: "5px solid",
+    // border: "5px solid",
     [emulatorScreen(theme)]: {
       padding: "7px",
       border: "4px solid #003e4c"
@@ -222,6 +222,14 @@ const styles = theme => ({
       padding: "7px",
       border: "4px solid"
     }
+  },
+
+  lineIcon: {
+    position: "absolute",
+    height: "30px",
+    bottom: "-25px",
+    left: "20px",
+    transform: "rotate(45deg)"
   }
 
 })

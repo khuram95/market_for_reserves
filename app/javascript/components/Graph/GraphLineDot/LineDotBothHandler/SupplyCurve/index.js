@@ -3,12 +3,12 @@ import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same 
 import { withStyles } from '@material-ui/core/styles'
 import leftArrow from 'images/leftArrow'
 import rightArrow from 'images/rightArrow'
-import upArrow from 'images/upArrow'
-import downArrow from 'images/downArrow'
+import sGreen from 'images/equalibriumIcons/s-green.svg'
+import sBlue from 'images/equalibriumIcons/S-blue.svg'
 import styles from '../supplyStyles'
 import 'animate.css/animate.css'
 import DemandCurve from '../DemandCurve';
-// import RightLabels from '../RightLabels'
+import Labels from '../Labels'
 
 const SupplyCurve = (props) => {
   const { classes } = props
@@ -24,7 +24,6 @@ const SupplyCurve = (props) => {
     disableDemand,
     setDisableDemand,
     modalOpen,
-    setShowDragMessage,
   } = props
 
 
@@ -33,14 +32,12 @@ const SupplyCurve = (props) => {
   const dotCenterPosition = (heightOfLine - 30) / 2
 
   const { answer } = questionAnswer
-  const [dotPosition, setDotPosition] = useState({ x: 0, y: dotCenterPosition })
   const [linePosition, setLinePosition] = useState({ x: 0, y: 0 })
   const [correctPosition, setCorrectPosition] = useState(0)
   const [wrongPosition, setWrongPosition] = useState(null)
   const [showLine, setShowLine] = useState(false)
   const [showDot, setShowDot] = useState(false)
-  // const [disableSupply, setdisableSupply] = useState(false)
-  const [dotDisable, setDotDisable] = useState(false)
+  const [changeIconColor, setChangeIconColor] = useState(false)
   const [lineColor, setLineColor] = useState("#1db2d7")
   const [dotBorderColor, setDotBorderColor] = useState("#003e4c")
   const [dotFillColor, setDotFillColor] = useState("#00b1d9")
@@ -52,32 +49,51 @@ const SupplyCurve = (props) => {
   const [reRender, setReRender] = useState(false)
   // animate__fadeIn
   useEffect(() => {
-    if (submitted && !disableSupply) {
+
+    if (submitted) {
       if (answer.includes('Nothing')) {
         if(nothingMove()) {
           setAnsweredCorrectly(true)
           setMoved("correct")
         } else {
-          // nothingAsWrong()
+          console.log("somthing moved")
+          setColors()
+          nothingAsWrong()
         }
       }
-      console.log("submited")
-      // else if (nothingMove()) {
-      //   nothingAsWrong()
-      // }
-      // else if (dotPosition.y === dotCenterPosition) {
+      else if (nothingMove()) {
+        nothingAsWrong()
+      }
+      else {
         evaluateLineAnswer(linePosition.x)
-      // } else {
-        // evaluateDotAnswer(dotPosition.y)
-      // }
-      // showArrow()
-      // if (answer.includes('goes')) {
-      //   setTimeout(() => {
-      //     setShowDottedLines(true)
-      //   }, 1000)
-      // }
+      }
+      showArrow()
+      answer.includes("Supply curve") && setChangeIconColor(true)
+      setTimeout(() => {
+        if (answer.includes("Supply curve")) {
+          setShowDottedLines(true)
+          setShowDot(true)
+        }
+      }, 1000)
     }
   }, [submitted])
+
+  useEffect(() => {
+    if (answeredCorrectly === false && disableSupply) {
+      switch(answer) {
+        case "Supply curve shifts left":
+          setShowLine(true)
+          setCorrectPosition(-70)
+          break;
+        case "Supply curve shifts right":
+          setShowLine(true)
+          setCorrectPosition(70)
+          break;
+      }
+      // setAnsweredCorrectly(false)
+      return
+    }
+  },[answeredCorrectly])
 
   window.addEventListener("resize", () => setTimeout(() => {
     setReRender(!reRender)
@@ -89,10 +105,10 @@ const SupplyCurve = (props) => {
     switch (answer) {
       case "Supply curve shifts left":
         setArrowIcon(leftArrow)
-        setArrowPosition({ top: dotCenterPosition, left: -56 })
+        setArrowPosition({ top: dotCenterPosition + 55, left: -100 })
         break;
       case "Supply curve shifts right":
-        setArrowPosition({ top: dotCenterPosition, left: 20 })
+        setArrowPosition({ top: dotCenterPosition - 45, left: 70 })
         setArrowIcon(rightArrow)
         break;
     }
@@ -126,38 +142,13 @@ const SupplyCurve = (props) => {
     } else {
       setDisableDemand(true)
     }
-    // evaluateLineAnswer(linePosition.x)
   }
 
-  const nothingMove = () => {
-    return dotPosition.y === dotCenterPosition && linePosition.x === 0
-  }
-
-  const lineOrDotMoved = (position) => {
-    if (position == dotCenterPosition) {
-      setShowLine(true)
-      setWrongPosition(linePosition.x)
-      setLineColor("red")
-      setMoved("dot but moved line")
-    } else {
-      setDotBorderColor("#e03616")
-      setDotFillColor("#d3968d")
-      setMoved("dot moved opposite")
-    }
-    setShowDot(true)
-    setLinePosition({x: 0, y: 0})
-  }
+  const nothingMove = () => !disableDemand && !disableSupply
 
   const setColors = () => {
-    // if (dotPosition.y == dotCenterPosition) {
+    if (disableDemand)
       setLineColor("red")
-      setMoved("line moved opposite")
-    // } else {
-    //   // setLineColor('#2e8599')
-    //   setDotBorderColor("#e03616")
-    //   setDotFillColor("#d3968d")
-      setMoved("line but moved dot")
-    // }
   }
 
   const nothingAsWrong = () => {
@@ -186,25 +177,31 @@ const SupplyCurve = (props) => {
       case "Supply curve shifts left":
         setShowLine(true)
         setCorrectPosition(-70)
+        !disableSupply && setMoved("moved supply curve but in opposite")
         setColors()
         break;
       case "Supply curve shifts right":
         setShowLine(true)
         setCorrectPosition(70)
+        !disableSupply && setMoved("moved supply curve but in opposite")
         setColors()
         break;
       default:
-        // setShowLine(true)
         setColors()
-        // code block
+        if (!disableSupply && answer.includes("Demand curve shifts"))
+          setMoved("incorrect")
     }
-    setAnsweredCorrectly(false)
+    // setAnsweredCorrectly(false)
   }
 
   const evaluateLineAnswer = (value) => {
 
-    if (value <= 10 && value >= -10)
-      return
+    // if (value <= 10 && value >= -10)
+    //   return
+    console.log("disableSupply", disableSupply)
+    if (disableSupply && answeredCorrectly === false) {
+      return markQuestionAsWrong()
+    }
 
     let answerMatched = false
 
@@ -223,10 +220,10 @@ const SupplyCurve = (props) => {
 
   const markQuestionAsCorrect = () => {
     setDisableDemand(true)
-    setDotDisable(true)
+    setDisableSupply(true)
     changePosition()
     setAnsweredCorrectly(true)
-    draggableDotColor()
+    // draggableDotColor()
     setMoved("correct")
   }
   const changePosition = () => {
@@ -249,48 +246,46 @@ const SupplyCurve = (props) => {
     return wrongPosition ? "#003E4C" : lineColor
   }
 
-  const draggableDotColor = () => {
-    if (answer.includes('goes')) {
-      setDotFillColor('#508a05')
-      // return "#508a05"
-    }
-    // return wrongPosition ? "#003E4C" : lineColor
-  }
-
   const p2ToOrigin = () => dotCenterPosition - 34
-  const p1ToCorrect = () => answer.includes('up') ? (dotCenterPosition - 98) : (dotCenterPosition + 31)
-  const q2ToCorrect = () => answer.includes('up') ? "295px" : '165px'
+  const p1ToCorrect = () => !answer.includes('shifts right') ? (dotCenterPosition - 70) : (dotCenterPosition)
+  const q2ToCorrect = () => answer.includes('shifts right') ? "265px" : '195px'
   const q1ToOrigin = () => '230px'
   const qTop = () => '330px'
 
   return (
     <div>
-       {/* {showDottedLines &&
-          <RightLabels
-            p2Top={p2ToOrigin()}
-            p1Top={p1ToCorrect()}
-            originP={{ top: p2ToOrigin(), left: "215px" }}
-            originCorrectP={{
-              top: p1ToCorrect(),
-              left: answer.includes('up') ? "280px" : '150px'
-            }}
-            q1={{ top: qTop(), left: q1ToOrigin() }}
-            q2={{ top: qTop(), left: q2ToCorrect() }}
-            originQ={{ top: dotCenterPosition - 25, left: q1ToOrigin(), }}
-            dotCorrectQ={{
-              top: answer.includes('up') ? (dotCenterPosition - 90) : (dotCenterPosition + 40),
-              left: q2ToCorrect()
-            }}
-            isMobile={false}
-            isEmulator={false}
-            answer={answer}
-        />} */}
+       {showDottedLines &&
+          <Labels
+          p2Top={p2ToOrigin()}
+          p1Top={p1ToCorrect()}
+          originP={{ top: p2ToOrigin(), left: "225px" }}
+          originCorrectP={{
+            top: p1ToCorrect(),
+            left: answer.includes('shifts right') ? "250px" : '180px'
+          }}
+          q1={{ top: qTop(), left: q1ToOrigin() }}
+          q2={{ top: qTop(), left: q2ToCorrect() }}
+          originQ={{ top: dotCenterPosition - 38, left: q1ToOrigin(), }}
+          dotCorrectQ={{
+            top: !answer.includes('shifts right') ? (dotCenterPosition - 60) : (dotCenterPosition + 10),
+            left: q2ToCorrect()
+          }}
+          isMobile={false}
+          isEmulator={false}
+          answer={answer}
+        />}
       <div className={classes.verticalLinesContainer}>
         <div className={arrowFadeIn}>
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left, transform: answer.includes("shift") ? "rotate(0deg)" : "rotate(90deg)" }}></img>
         </div>
         <div className={classes.defaultLine} />
-        <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}></div>
+        <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
+          {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
+            style={{ opacity: "1", left: "-10px", top: !answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
+          />}
+          {(changeIconColor && !answeredCorrectly) && <img src={sGreen} className={classes.lineIcon} />}
+
+        </div>
         <Draggable
           axis="x"
           defaultPosition={{x: 0, y: 0}}
@@ -304,38 +299,11 @@ const SupplyCurve = (props) => {
         >
           <div style={{ cursor: !disableSupply && 'pointer' }}>
             <div className={classes.dragableLine} id="draggable_line" style={{backgroundColor: draggableLineColor()}}>
-              {/* <div className={classes.fadedDot}
-                style={{ opacity: fadeDot <= 0.5 ? "0" : "1", zIndex: showDot ? '1' : '0', top: dotCenterPosition}}
-              /> */}
-              {<div className={classes.correctDot}
-                style={{ opacity: showDot ? "1" : "0", top: correctPosition || dotCenterPosition, transition: `top 1s` }}
+               {(showDot && answeredCorrectly) && <div className={classes.correctDot}
+                style={{ opacity: "1", top: !answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
               />}
-              {/* <Draggable
-                axis="y"
-                defaultPosition={{ x: 0, y: dotCenterPosition }}
-                position={dotPosition}
-                scale={1}
-                bounds={{
-                  top: dotCenterPosition - (dotCenterPosition / 2),
-                  left: 0,
-                  right: 0,
-                  bottom: dotCenterPosition + (dotCenterPosition / 2)
-                }}
-                onStart={DragStartDot}
-                onDrag={DragDot}
-                onStop={DragEndDot}
-                // disabled={dotDisable}
-              >
-                <div style={{height: '40px', cursor: !dotDisable && 'pointer'}}>
-                  <div className={[classes.draggableDot]}
-                    style={{
-                      border: `5px solid ${dotBorderColor}`,
-                      opacity: fadeDot,
-                      backgroundColor: dotFillColor,
-                    }}
-                  />
-                </div>
-              </Draggable> */}
+              <img src={((changeIconColor && answeredCorrectly)) ? sGreen : sBlue} className={classes.lineIcon} />
+
             </div>
           </div>
         </Draggable>
