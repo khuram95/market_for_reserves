@@ -26,7 +26,7 @@ const GraphLineDot = (props) => {
     <Grid className={classes.quizContainer}>
       <Typography
         variant="h5"
-        align="right"
+        align="center"
         className={`${
           classes.questionTitle
         } animate__animated animate__bounceIn`}

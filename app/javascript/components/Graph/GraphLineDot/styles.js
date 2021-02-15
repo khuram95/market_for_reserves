@@ -8,6 +8,7 @@ const styles = theme => ({
     fontSize: '2rem',
     padding: "60px 20px 60px 0",
     fontFamily: "'Oswald',sans-serif",
+    marginLeft: '100px',
     [emulatorScreen(theme)]: {
       padding: "30px 20px 30px 0",
       fontSize: '1.3rem',

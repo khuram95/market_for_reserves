@@ -228,7 +228,7 @@ const styles = theme => ({
 
   lineIcon: {
     position: "absolute",
-    height: "30px",
+    height: "25px",
     top: "-40px",
     left: "10px",
     transform: "rotate(-45deg)"

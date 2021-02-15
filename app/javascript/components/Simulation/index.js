@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import LineDotLeftHandler from "./LineDotLeftHandler";
+import SupplyCurveHandler from "./SupplyCurveHandler"
+import DemandCurveHandler from "./DemandCurveHandler"
 import LineDotRightHandler from "./LineDotRightHandler";
 import { Grid, Typography, Button, Modal } from "@material-ui/core";
 import youCan from "../../images/youCan.svg";
-import shiftTheCurve from "../../images/shiftTheCurve.svg";
+import shiftTheCurve from "../../images/equalibriumIcons/tutorial-shift-the-demand.svg";
 import priceWhite from "../../images/priceWhite.svg";
 import quantityWhite from "../../images/quantityWhite.svg";
 import dragLine from "../../images/dragLine.svg";
-import dragLineRight from "../../images/dragLineRight.svg";
+// import dragLineRight from "../../images/dragLineRight.svg";
 
 import "animate.css/animate.css";
 
@@ -121,14 +123,15 @@ const Simulation = (props) => {
               <div className={classes.graphDiv}>
                 <Grid container justify="center" style={{ maxWidth: "520px" }}>
                   <Grid className={classes.graphLines}>
-                    {/* <img src={dragLine} className={classes.dragLineMessage} /> */}
-                    <img
+                    <img src={dragLine} className={classes.dragLineMessage} />
+                    {/* <img
                       src={dragLineRight}
                       className={classes.dragLineRightMessage}
-                    />
+                    /> */}
                     <img src={priceWhite} className={classes.graphYLable} />
                     {/* <LineDotLeftHandler move={"line"} /> */}
-                    <LineDotRightHandler move={"line"} />
+                    {/* <LineDotRightHandler move={"line"} /> */}
+                    <DemandCurveHandler move={"line"} />
                     <img src={quantityWhite} className={classes.graphXLable} />
                   </Grid>
                 </Grid>
@@ -141,7 +144,8 @@ const Simulation = (props) => {
                   <Grid className={classes.graphLines}>
                     <img src={priceWhite} className={classes.graphYLable} />
                     {/* <LineDotLeftHandler move={"dot"} /> */}
-                    <LineDotRightHandler move={"dot"} />
+                    {/* <LineDotRightHandler move={"dot"} /> */}
+                    <SupplyCurveHandler move={"line"} />
                     <img src={quantityWhite} className={classes.graphXLable} />
                   </Grid>
                 </Grid>

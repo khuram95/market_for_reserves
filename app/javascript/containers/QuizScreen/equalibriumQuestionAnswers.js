@@ -1,13 +1,13 @@
-import vaccine from "images/circleIcons/supply/Vaccine.png";
-import bicycle from "images/circleIcons/supply/Bicycle.png";
-import car from "images/circleIcons/supply/Cars.png";
-import chocolate from "images/circleIcons/supply/Chocolate.png";
-import dumbells from "images/circleIcons/supply/Dumbells.png";
-import haircut from "images/circleIcons/supply/Haircut.png";
-import luggage from "images/circleIcons/supply/Luggage.png";
-import milk from "images/circleIcons/supply/Milk.png";
-import pizza from "images/circleIcons/supply/Pizza.png";
-import tennisball from "images/circleIcons/supply/Tennisball.png";
+import bracelets from "../../images/circleIcons/equalibrium/bracelets.png";
+import icecream from "../../images/circleIcons/equalibrium/Icecream.png";
+import silver from "../../images/circleIcons/equalibrium/silver.png";
+import avocado from "../../images/circleIcons/equalibrium/avocado.png";
+import vase from "../../images/circleIcons/equalibrium/vase.png";
+import gaming from "../../images/circleIcons/equalibrium/gaming.png";
+import soda from "../../images/circleIcons/equalibrium/soda.png";
+import alcohol from "../../images/circleIcons/equalibrium/alcohol.png";
+import physicians from "../../images/circleIcons/equalibrium/physicians.png";
+import chapstick from "../../images/circleIcons/equalibrium/chapstick.png";
 
 const questionAnswers = [
 
@@ -15,7 +15,7 @@ const questionAnswers = [
     title: "MARKET FOR BRACELETS",
     question: "Fashion magazines: Wearing multiple bracelets is the hot new trend.",
     subQuestion: "Consider the market for bracelets. What happens?",
-    icon: vaccine,
+    icon: bracelets,
     answer: "Demand curve shifts right",
     graphType: "supply curve",
     briefness:
@@ -25,7 +25,7 @@ const questionAnswers = [
     title: "MARKET FOR ICE CREAM",
     question: "Ice cream producers think the price of ice cream will increase in 6 months.",
     subQuestion: "Consider the market for ice cream. What happens?",
-    icon: haircut,
+    icon: icecream,
     answer: "Supply curve shifts left",
     graphType: "supply curve",
     briefness:
@@ -36,7 +36,7 @@ const questionAnswers = [
     title: "MARKET FOR SILVER",
     question: "The price of gold goes up.",
     subQuestion: "Consider the market for silver. What happens?",
-    icon: bicycle,
+    icon: silver,
     answer: "Demand curve shifts right",
     graphType: "supply curve",
     briefness:
@@ -47,7 +47,7 @@ const questionAnswers = [
     title: "MARKET FOR AVOCADOS",
     question: "New farming technology makes it possible to grow avocados in more places.",
     subQuestion: "Consider the market for avocados. What happens?",
-    icon: chocolate,
+    icon: avocado,
     answer: "Supply curve shifts right",
     graphType: "supply curve",
     briefness:
@@ -58,7 +58,7 @@ const questionAnswers = [
     title: "MARKET FOR VASES",
     question: "The price of flowers increases.",
     subQuestion: "Consider the market for vases. What happens?",
-    icon: luggage,
+    icon: vase,
     answer: "Demand curve shifts left",
     graphType: "supply curve",
     briefness:
@@ -69,7 +69,7 @@ const questionAnswers = [
     title: "MARKET FOR GAMING CONSOLES",
     question: "LEAKED: New, more advanced game console to be launched in 6 months.",
     subQuestion: "Consider the market for gaming consoles. What happens?",
-    icon: pizza,
+    icon: gaming,
     answer: "Demand curve shifts left",
     graphType: "supply curve",
     briefness:
@@ -80,7 +80,7 @@ const questionAnswers = [
     title: "MARKET FOR SODA",
     question: "The price of sugar—an ingredient of soda—reaches new heights.",
     subQuestion: "Consider the market for soda. What happens?",
-    icon: tennisball,
+    icon: soda,
     answer: "Supply curve shifts left",
     graphType: "supply curve",
     briefness:
@@ -91,7 +91,7 @@ const questionAnswers = [
     title: "MARKET FOR ALCOHOL",
     question: "State governments enact new tax on alcohol producers.",
     subQuestion: "Consider the market for alcohol. What happens?",
-    icon: milk,
+    icon: alcohol,
     answer: "Supply curve shifts left",
     graphType: "supply curve",
     briefness:
@@ -102,7 +102,7 @@ const questionAnswers = [
     title: "MARKET FOR PHYSICIANS",
     question: "New law gives nurse practioners the full practicing authority of physicians.",
     subQuestion: "Consider the market for physicians. What happens?",
-    icon: car,
+    icon: physicians,
     answer: "Supply curve shifts right",
     graphType: "supply curve",
     briefness:
@@ -113,7 +113,7 @@ const questionAnswers = [
     title: "MARKET FOR CHAPSTICK",
     question: "Puppy adoptions surge during pandemic.",
     subQuestion: "Consider the market for chapstick. What happens?",
-    icon: dumbells,
+    icon: chapstick,
     answer: "Nothing happens",
     graphType: "supply curve",
     briefness:

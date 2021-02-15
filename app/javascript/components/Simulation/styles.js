@@ -32,7 +32,7 @@ const styles = theme => ({
     }
   },
   shiftTheCurve: {
-    height: '80px',
+    height: '110px',
     marginBottom: "20px",
     [emulatorScreen(theme)]: {
       height: '60px',

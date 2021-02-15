@@ -316,7 +316,7 @@ const styles = (theme) => ({
   homeDesc: {
     color: "#003e4c",
     fontWeight: "500",
-    fontSize: "1.7rem",
+    fontSize: "2rem",
     textAlign: "center",
     fontFamily: "'Oswald',sans-serif",
     marginBottom: "1.5rem",

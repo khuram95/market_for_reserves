@@ -145,8 +145,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
       >
         <Grid>
           <Typography variant="h5" className={classes.homeDesc}>
-            {/* Change in Demand vs. */}
-            Change in Supply vs. Change in Quantity Supplied
+            Finding Equalibrium
           </Typography>
         </Grid>
         <Grid container justify="center" alignItems="center">
