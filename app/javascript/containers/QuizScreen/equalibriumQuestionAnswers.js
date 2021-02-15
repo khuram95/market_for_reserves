@@ -78,13 +78,13 @@ const questionAnswers = [
 
   {
     title: "MARKET FOR SODA",
-    question: "The price of sugar—an ingredient of soda—reaches new heights.",
+    question: "The price of sugar—an ingredient in soda—reaches new heights.",
     subQuestion: "Consider the market for soda. What happens?",
     icon: soda,
     answer: "Supply curve shifts left",
     graphType: "supply curve",
     briefness:
-      "If the price of sugar—an input of soda—increases, then the production costs of soda go up. The supply of soda will decrease and the supply curve will shift to the left.",
+      "If the price of sugar—an input for soda—increases, then the production costs of soda go up. The supply of soda will decrease and the supply curve will shift to the left.",
   },
 
   {
