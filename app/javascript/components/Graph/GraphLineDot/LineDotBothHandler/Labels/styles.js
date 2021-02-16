@@ -30,9 +30,9 @@ const styles = theme => ({
       fontSize: '18px'
     },
     [mobileScreen(theme)]: {
-      top: '55px',
-      left: '-24px',
-      fontSize: '16px'
+      top: '60px',
+      left: '-22px',
+      fontSize: '13px'
     },
   },
 
@@ -48,8 +48,8 @@ const styles = theme => ({
       left: '-27px',
     },
     [mobileScreen(theme)]: {
-      left: '-24px',
-      fontSize: '16px'
+      left: '-22px',
+      fontSize: '13px'
     },
   },
 
@@ -81,9 +81,9 @@ const styles = theme => ({
       fontSize: '18px'
     },
     [mobileScreen(theme)]: {
-      bottom: '-26px',
-      left: '89px',
-      fontSize: '16px'
+      bottom: '-22px',
+      left: '94px',
+      fontSize: '13px'
     },
   },
 
@@ -99,9 +99,9 @@ const styles = theme => ({
       fontSize: '18px'
     },
     [mobileScreen(theme)]: {
-      bottom: '-26px',
+      bottom: '-22px',
       // left: '137px',
-      fontSize: '16px'
+      fontSize: '13px'
     },
   },
 

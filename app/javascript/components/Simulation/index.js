@@ -123,7 +123,7 @@ const Simulation = (props) => {
               <div className={classes.graphDiv}>
                 <Grid container justify="center" style={{ maxWidth: "520px" }}>
                   <Grid className={classes.graphLines}>
-                    <img src={dragLine} className={classes.dragLineMessage} />
+                    {/* <img src={dragLine} className={classes.dragLineMessage} /> */}
                     {/* <img
                       src={dragLineRight}
                       className={classes.dragLineRightMessage}

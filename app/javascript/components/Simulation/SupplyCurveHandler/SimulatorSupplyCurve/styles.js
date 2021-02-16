@@ -104,7 +104,17 @@ const styles = theme => ({
     height: "25px",
     top: "-45px",
     left: "4px",
-    transform: "rotate(-45deg)"
+    transform: "rotate(-45deg)",
+    [emulatorScreen(theme)]: {
+      // width: "25px",
+      // right: "0px",
+      // top: "140px"
+    },
+    [mobileScreen(theme)]: {
+      height: "17px",
+      top: "-28px",
+      left: "4px",
+    },
   },
 
   handCursorLineDesign: {

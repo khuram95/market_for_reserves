@@ -35,7 +35,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
         <img src={CoverImage} className={classes.logo} />
         <Grid className={classes.quizDesc}>
           <Typography variant="h5" className={classes.homeDesc}>
-            Finding Equilibruim
+            Finding Equilibrium
           </Typography>
         </Grid>
         <Button className={classes.submitButton} onClick={handleClick}>

@@ -15,6 +15,7 @@ const styles = theme => ({
     },
     [mobileScreen(theme)]: {
       padding: "20px 0px 20px 0",
+      marginLeft: '52px',
       fontSize: "1rem"
     }
   },

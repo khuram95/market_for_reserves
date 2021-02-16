@@ -21,7 +21,7 @@ const WrongMoveModal = (props) => {
       <Grid container justify='center' alignItems='center' className={classes.modal}>
         <Grid>
           <Typography id="simple-modal-description" align='center' className={classes.modalDescription}>
-            You must either shift the line OR move the dot.
+            You must either shift the demand OR the supply curve.
           </Typography>
           <Button className={classes.backButton} >
               BACK

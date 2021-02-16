@@ -29,14 +29,14 @@ const Labels = (props) => {
 
     if (answerCondition)
       if (isMobile)
-        return "26px"
+        return "44px"
       else if (isEmulator)
         return '38px'
       else
         return '95px'
     else
       if (isMobile)
-        return "84px"
+        return "78px"
       else if (isEmulator)
         return '120px'
       else
@@ -46,7 +46,7 @@ const Labels = (props) => {
   const setQ2Label = () => {
     if (answer.includes('shifts left'))
       if (isMobile)
-        return "60px"
+        return "76px"
       else if (isEmulator)
         return '97px'
       else
@@ -58,6 +58,13 @@ const Labels = (props) => {
         return '180px'
       else
         return '250px'
+  }
+
+  const calcBorderWidth = () => {
+    if (isMobile)
+      return "3px"
+    else
+      return "4px"
   }
 
   return (
@@ -102,7 +109,7 @@ const Labels = (props) => {
           to="P2"
           orientation='h'
           borderStyle='dashed'
-          borderWidth='4px'
+          borderWidth={calcBorderWidth()}
           borderColor='#003e4c'
           fromAnchor='20%'delay={true}
           className="animate__animated animate__fadeIn"
@@ -112,7 +119,7 @@ const Labels = (props) => {
           to="P1"
           orientation='h'
           borderStyle='dashed'
-          borderWidth='4px'
+          borderWidth={calcBorderWidth()}
           borderColor='#003e4c'
           fromAnchor='20%'delay={true}
           className="animate__animated animate__fadeIn"
@@ -129,7 +136,7 @@ const Labels = (props) => {
           to="Q1"
           orientation='h'
           borderStyle='dashed'
-          borderWidth='4px'
+          borderWidth={calcBorderWidth()}
           borderColor='#003e4c'
           fromAnchor='20%'delay={true}
           className="animate__animated animate__fadeIn"
@@ -139,7 +146,7 @@ const Labels = (props) => {
           to="Q2"
           orientation='h'
           borderStyle='dashed'
-          borderWidth='4px'
+          borderWidth={calcBorderWidth()}
           borderColor='#003e4c'
           fromAnchor='20%'delay={true}
           className="animate__animated animate__fadeIn"

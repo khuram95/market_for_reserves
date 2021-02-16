@@ -89,7 +89,17 @@ const styles = theme => ({
     bottom: "-35px",
     left: "18px",
     filter: "brightness(10)",
-    transform: "rotate(45deg)"
+    transform: "rotate(45deg)",
+    [emulatorScreen(theme)]: {
+      // width: "25px",
+      // right: "0px",
+      // top: "140px"
+    },
+    [mobileScreen(theme)]: {
+      height: "17px",
+      bottom: "-20px",
+      left: "10px",
+    },
   },
 
   handCursorDesign: {

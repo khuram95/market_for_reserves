@@ -203,7 +203,7 @@ const styles = theme => ({
       border: "4px solid #003e4c"
     },
     [mobileScreen(theme)]: {
-      padding: "7px",
+      padding: "6px",
       border: "4px solid #003e4c"
     }
   },
@@ -229,7 +229,16 @@ const styles = theme => ({
     height: "25px",
     bottom: "-25px",
     left: "20px",
-    transform: "rotate(45deg)"
+    transform: "rotate(45deg)",
+    [emulatorScreen(theme)]: {
+      // padding: "7px",
+      // border: "4px solid"
+    },
+    [mobileScreen(theme)]: {
+      left: "7px",
+      bottom: "-18px",
+      height: "17px",
+    }
   }
 
 })
