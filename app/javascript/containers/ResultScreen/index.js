@@ -145,7 +145,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
       >
         <Grid>
           <Typography variant="h5" className={classes.homeDesc}>
-            Finding Equalibrium
+            Finding Equilibrium
           </Typography>
         </Grid>
         <Grid container justify="center" alignItems="center">
