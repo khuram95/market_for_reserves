@@ -91,7 +91,7 @@ const styles = theme => ({
     [emulatorScreen(theme)]: {
       top: "117px",
       left: "12px",
-      height: "18px"
+      height: "16px"
     },
     [mobileScreen(theme)]: {
       top: "84px",
@@ -232,6 +232,11 @@ const styles = theme => ({
     top: "-40px",
     left: "10px",
     transform: "rotate(-45deg)",
+    [emulatorScreen(theme)]: {
+      top: '-30px',
+      left: '0px',
+      height: '20px'
+    },
     [mobileScreen(theme)]: {
       top: '-20px',
       left: '4px',

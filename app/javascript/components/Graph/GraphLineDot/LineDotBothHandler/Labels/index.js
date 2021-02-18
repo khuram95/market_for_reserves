@@ -31,14 +31,14 @@ const Labels = (props) => {
       if (isMobile)
         return "44px"
       else if (isEmulator)
-        return '38px'
+        return '58px'
       else
         return '95px'
     else
       if (isMobile)
         return "78px"
       else if (isEmulator)
-        return '120px'
+        return '102px'
       else
         return '165px'
   }
@@ -48,14 +48,14 @@ const Labels = (props) => {
       if (isMobile)
         return "76px"
       else if (isEmulator)
-        return '97px'
+        return '112px'
       else
         return '173px'
     else
       if (isMobile)
         return "115px"
       else if (isEmulator)
-        return '180px'
+        return '165px'
       else
         return '250px'
   }

@@ -46,7 +46,6 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
         <Grid style={{ padding: "2rem" }} />
         <Grid onClick={logoClick} className={classes.mruLogo}>
           <img src={mruLogo} width="110px" />
-        }
         </Grid>
       </Grid>
     </Grid>

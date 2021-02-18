@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import DemandCurveMobile from './DemandCurveMobile'
-import SupplyCurveMobile from './SupplyCurveMobile'
 import DemandCurve from './DemandCurve'
 import SupplyCurve from './SupplyCurve'
+import DemandCurveEmulator from './DemandCurveEmulator'
+import SupplyCurveEmulator from './SupplyCurveEmulator'
+import DemandCurveMobile from './DemandCurveMobile'
+import SupplyCurveMobile from './SupplyCurveMobile'
 import styles from './styles'
 import price from 'images/price.svg'
 import quantity from 'images/quantity.svg'
-import dragLine from 'images/dragLineDark.svg'
-// import LeftLabels from './LeftLabels'
 import { emulatorScreen, mobileScreen } from "utils/styleUtils"
 import { useTheme } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core'
@@ -38,8 +38,14 @@ const LineDotBothHandler = (props) => {
         disableSupply={disableSupply}
         setDisableSupply={setDisableSupply}
       />
-    // else if (isEmulator)
-    //   return <DemandCurveEmulator {...otherProps} />
+    else if (isEmulator)
+      return <DemandCurveEmulator
+        {...otherProps}
+        disableDemand={disableDemand}
+        setDisableDemand={setDisableDemand}
+        disableSupply={disableSupply}
+        setDisableSupply={setDisableSupply}
+      />
     else
       return <DemandCurve
         {...otherProps}
@@ -59,12 +65,14 @@ const LineDotBothHandler = (props) => {
         disableSupply={disableSupply}
         setDisableSupply={setDisableSupply}
       />
-    // else if (isEmulator)
-    //   return <SupplyCurveEmulator  {...otherProps}
-        // disableDemand={disableDemand}
-        // setDisableDemand={setDisableDemand}
-        // disableSupply={disableSupply}
-        // setDisableSupply={setDisableSupply} />
+    else if (isEmulator)
+      return <SupplyCurveEmulator
+        {...otherProps}
+        disableDemand={disableDemand}
+        setDisableDemand={setDisableDemand}
+        disableSupply={disableSupply}
+        setDisableSupply={setDisableSupply}
+      />
     else
       return <SupplyCurve
         {...otherProps}
@@ -77,24 +85,9 @@ const LineDotBothHandler = (props) => {
 
   return (
     <Grid className={classes.graphLines}>
-      {showDragMessage && <img src={dragLine} className={`${classes.dragLineMessage} animate__animated animate__bounceIn`} />}
       <img src={price} className={classes.graphYLable} />
       {demandCurveResponsive()}
       {supplyCurveResponsive()}
-      {/* <DemandCurve
-        {...otherProps}
-        disableDemand={disableDemand}
-        setDisableDemand={setDisableDemand}
-        disableSupply={disableSupply}
-        setDisableSupply={setDisableSupply}
-      />
-      <SupplyCurve
-        {...otherProps}
-        disableDemand={disableDemand}
-        setDisableDemand={setDisableDemand}
-        disableSupply={disableSupply}
-        setDisableSupply={setDisableSupply}
-      /> */}
       <img src={quantity} className={classes.graphXLable} />
     </Grid>
   )

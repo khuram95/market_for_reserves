@@ -11,6 +11,7 @@ const styles = theme => ({
     marginLeft: '100px',
     [emulatorScreen(theme)]: {
       padding: "30px 20px 30px 0",
+      marginLeft: '62px',
       fontSize: '1.3rem',
     },
     [mobileScreen(theme)]: {

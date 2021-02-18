@@ -106,9 +106,9 @@ const styles = theme => ({
     left: "4px",
     transform: "rotate(-45deg)",
     [emulatorScreen(theme)]: {
-      // width: "25px",
-      // right: "0px",
-      // top: "140px"
+      height: "20px",
+      top: "-30px",
+      left: "0",
     },
     [mobileScreen(theme)]: {
       height: "17px",

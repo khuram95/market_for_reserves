@@ -91,9 +91,9 @@ const styles = theme => ({
     filter: "brightness(10)",
     transform: "rotate(45deg)",
     [emulatorScreen(theme)]: {
-      // width: "25px",
-      // right: "0px",
-      // top: "140px"
+      height: "20px",
+      bottom: "-25px",
+      left: "12px",
     },
     [mobileScreen(theme)]: {
       height: "17px",
