@@ -240,6 +240,24 @@ const styles = theme => ({
       bottom: "-18px",
       height: "17px",
     }
+  },
+
+  correctLineIcon: {
+    position: "absolute",
+    height: "25px",
+    bottom: "-30px",
+    left: "20px",
+    transform: "rotate(45deg)",
+    [emulatorScreen(theme)]: {
+      left: "12px",
+      bottom: "-25px",
+      height: "20px",
+    },
+    [mobileScreen(theme)]: {
+      left: "7px",
+      bottom: "-22px",
+      height: "17px",
+    }
   }
 
 })

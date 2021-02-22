@@ -19,17 +19,28 @@ const questionAnswers = [
     answer: "Demand curve shifts right",
     graphType: "supply curve",
     briefness:
-      "If wearing multiple bracelets is now in style, this means that demand for bracelets will increase. The demand curve will shift to the right.",
+      "If wearing multiple bracelets is now in style, this means that demand for bracelets will increase. The demand curve will shift to the right and this will result in movement along the existing supply curve.",
   },
   {
-    title: "MARKET FOR ICE CREAM",
-    question: "Ice cream producers think the price of ice cream will increase in 6 months.",
-    subQuestion: "Consider the market for ice cream. What happens?",
+    title: "MARKET FOR OIL",
+    question: "Oil producers think the price of oil will increase in 6 months.",
+    subQuestion: "Consider the market for oil. What happens?",
     icon: icecream,
     answer: "Supply curve shifts left",
     graphType: "supply curve",
     briefness:
-      "If ice cream sellers think they can charge a higher price for ice cream in the near future, they will put some of their ice cream in storage. The supply of ice cream will decrease and the supply curve will shift to the left.",
+      "If oil providers think they can charge a higher price for oil in the near future, they will keep oil in the ground. The supply of oil will decrease, the supply curve will shift to the left, and that will result in movement along the existing demand curve.",
+  },
+
+  {
+    title: "MARKET FOR E-CIGARETTES",
+    question: "State governments enact new tax on e-cigarette producers.",
+    subQuestion: "Consider the market for e-cigarettes. What happens?",
+    icon: icecream,
+    answer: "Supply curve shifts left",
+    graphType: "supply curve",
+    briefness:
+      "Imposing a tax on suppliers of e-cigarettes is equivalent to increasing their production costs. The supply curve will shift to the left and this will result in movement along the existing demand curve.",
   },
 
   {
@@ -40,7 +51,7 @@ const questionAnswers = [
     answer: "Demand curve shifts right",
     graphType: "supply curve",
     briefness:
-      "Gold and silver are substitutes. If the price of gold increases, the quantity demanded will decrease. Demand for silver—a substitute—will increase. The demand curve for silver will shift to the right.",
+      "Gold and silver are substitutes. If the price of gold increases, the quantity demanded will decrease. Demand for silver—a substitute—will increase. The demand curve for silver will shift to the right, resulting in movement along the existing supply curve.",
   },
 
   {
@@ -51,7 +62,18 @@ const questionAnswers = [
     answer: "Supply curve shifts right",
     graphType: "supply curve",
     briefness:
-      "If avocados can be grown in more locations, this increases the number of potential avocado sellers. The supply of avocados will increase and the supply curve will shift to the right.",
+      "If avocados can be grown in more locations, this increases the number of potential avocado sellers. The supply of avocados will increase, the supply curve will shift to the right, and that will result in movement along the existing demand curve.",
+  },
+
+  {
+    title: "MARKET FOR LASER EYE SURGERY",
+    question: "New law to allow optometrists to perform basic eye surgery by laser, a service previously performed only by those with more training.",
+    subQuestion: "Consider the market for laser eye surgery. What happens?",
+    icon: gaming,
+    answer: "Supply curve shifts right",
+    graphType: "supply curve",
+    briefness:
+      "If optomestrists are now able to offer basic laser eye surgery, the supply of laser eye surgeries will increase. The supply curve for laser eye surgeries will shift to the right and this will result in movement along the existing demand curve.",
   },
 
   {
@@ -62,7 +84,7 @@ const questionAnswers = [
     answer: "Demand curve shifts left",
     graphType: "supply curve",
     briefness:
-      "Flowers and vases are complements. As the price of flowers increases, the quantity demanded will decrease. Demand for vases—a complement—will decrease. The demand curve for vases will shift to the left.",
+      "Flowers and vases are complements. As the price of flowers increases, the quantity demanded will decrease. Demand for vases—a complement—will decrease. The demand curve for vases will shift to the left and this will result in movement along the existing supply curve.",
   },
 
   {
@@ -73,7 +95,7 @@ const questionAnswers = [
     answer: "Demand curve shifts left",
     graphType: "supply curve",
     briefness:
-      "If consumers think a new, superior gaming console will be sold in 6 months, they may hold off purchasing a new gaming console until then. Therefore, the demand for gaming consoles now will decrease and the demand curve will shift to the left.",
+      "If consumers think a new, superior gaming console will be sold in 6 months, they may hold off purchasing a new gaming console until then. Therefore, the demand for gaming consoles now will decrease and the demand curve will shift to the left. This will result in movement along the existing supply curve.",
   },
 
   {
@@ -84,29 +106,7 @@ const questionAnswers = [
     answer: "Supply curve shifts left",
     graphType: "supply curve",
     briefness:
-      "If the price of sugar—an input for soda—increases, then the production costs of soda go up. The supply of soda will decrease and the supply curve will shift to the left.",
-  },
-
-  {
-    title: "MARKET FOR ALCOHOL",
-    question: "State governments enact new tax on alcohol producers.",
-    subQuestion: "Consider the market for alcohol. What happens?",
-    icon: alcohol,
-    answer: "Supply curve shifts left",
-    graphType: "supply curve",
-    briefness:
-      "Imposing a tax on suppliers of alcohol is equivalent to increasing their production costs. The supply curve will shift to the left.",
-  },
-
-  {
-    title: "MARKET FOR PHYSICIANS",
-    question: "New law gives nurse practioners the full practicing authority of physicians.",
-    subQuestion: "Consider the market for physicians. What happens?",
-    icon: physicians,
-    answer: "Supply curve shifts right",
-    graphType: "supply curve",
-    briefness:
-      "If nurse practioners are now able to provide the same services as medical doctor, this means, in essence, that the supply of physicians has increased. The supply curve for physicians will shift to the right.",
+      "If the price of sugar—an input for soda—increases, then the production costs of soda go up. The supply of soda will decrease and the supply curve will shift to the left. This will result in movement along the existing demand curve.",
   },
 
   {

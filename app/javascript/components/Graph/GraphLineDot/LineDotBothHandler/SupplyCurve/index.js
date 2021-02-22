@@ -5,6 +5,8 @@ import leftArrow from 'images/leftArrow'
 import rightArrow from 'images/rightArrow'
 import sGreen from 'images/equalibriumIcons/s-green.svg'
 import sBlue from 'images/equalibriumIcons/S-blue.svg'
+import S1 from 'images/equalibriumIcons/S1.svg'
+import S2 from 'images/equalibriumIcons/S2.svg'
 import styles from '../supplyStyles'
 import 'animate.css/animate.css'
 import DemandCurve from '../DemandCurve';
@@ -278,12 +280,14 @@ const SupplyCurve = (props) => {
         <div className={arrowFadeIn}>
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left, transform: answer.includes("shift") ? "rotate(0deg)" : "rotate(90deg)" }}></img>
         </div>
-        <div className={classes.defaultLine} />
+        <div className={classes.defaultLine} >
+          {changeIconColor && answeredCorrectly && <img src={S1} className={classes.lineIcon} />}
+        </div>
         <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
           {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
             style={{ opacity: "1", left: "-10px", top: !answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
           />}
-          {(changeIconColor && !answeredCorrectly) && <img src={sGreen} className={classes.lineIcon} />}
+          {(changeIconColor && !answeredCorrectly) && <img src={S2} className={classes.lineIcon} />}
 
         </div>
         <Draggable
@@ -302,7 +306,7 @@ const SupplyCurve = (props) => {
                {(showDot && answeredCorrectly) && <div className={classes.correctDot}
                 style={{ opacity: "1", top: !answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
               />}
-              <img src={((changeIconColor && answeredCorrectly)) ? sGreen : sBlue} className={classes.lineIcon} />
+              <img src={((changeIconColor && answeredCorrectly)) ? S2 : sBlue} className={classes.lineIcon} />
 
             </div>
           </div>

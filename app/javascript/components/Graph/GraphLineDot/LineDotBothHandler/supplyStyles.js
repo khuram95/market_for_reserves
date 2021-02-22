@@ -239,8 +239,8 @@ const styles = theme => ({
     },
     [mobileScreen(theme)]: {
       top: '-20px',
-      left: '4px',
-      height: '17px'
+      left: '0px',
+      height: '15px'
     }
   }
 

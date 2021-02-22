@@ -5,6 +5,8 @@ import leftArrow from 'images/leftArrow'
 import rightArrow from 'images/rightArrow'
 import dGreen from 'images/equalibriumIcons/d-green.svg'
 import dBlue from 'images/equalibriumIcons/D-blue.svg'
+import D1 from 'images/equalibriumIcons/D1.svg'
+import D2 from 'images/equalibriumIcons/D2.svg'
 import upArrow from 'images/upArrow'
 import downArrow from 'images/downArrow'
 import styles from '../demandStyles'
@@ -274,12 +276,14 @@ const DemandCurveEmulator = (props) => {
         <div className={arrowFadeIn}>
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left }}></img>
         </div>
-        <div className={classes.defaultLine} />
+        <div className={classes.defaultLine} >
+          {changeIconColor && answeredCorrectly && <img src={D1} className={classes.lineIcon} />}
+        </div>
         <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
           {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
               style={{ opacity: "1", left: "-8px", top: answer.includes("shifts right") ? 87 : 150 }}
           />}
-          {(changeIconColor && !answeredCorrectly) && <img src={dGreen} className={classes.lineIcon} />}
+          {(changeIconColor && !answeredCorrectly) && <img src={D2} className={(changeIconColor && !answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />}
 
         </div>
         <Draggable
@@ -298,7 +302,7 @@ const DemandCurveEmulator = (props) => {
               {(showDot && answeredCorrectly) && <div className={classes.correctDot}
                 style={{ opacity: "1", top: answer.includes("shifts right") ? 87 : 150 }}
               />}
-              <img src={((changeIconColor && answeredCorrectly)) ? dGreen : dBlue} className={classes.lineIcon} />
+              <img src={((changeIconColor && answeredCorrectly)) ? D2 : dBlue} className={(changeIconColor && answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />
             </div>
           </div>
         </Draggable>
