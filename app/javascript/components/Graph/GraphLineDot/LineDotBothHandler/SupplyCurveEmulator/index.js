@@ -248,7 +248,16 @@ const SupplyCurveEmulator = (props) => {
     return wrongPosition ? "#003E4C" : lineColor
   }
 
-  const lineMovedOrNotAnswered = () => ((!(linePosition.x === 0) || answer.includes("Demand curve")) || answeredCorrectly === null)
+  const lineMovedOrNotAnswered = () => {
+    if (answeredCorrectly === null)
+      return true
+    if (answer.includes("Demand curve"))
+      return true
+    if (linePosition.x !== 0 && answeredCorrectly)
+      return true
+
+    return false
+  }
 
   const p2ToOrigin = () => dotCenterPosition - 16
   const p1ToCorrect = () => !answer.includes('shifts right') ? (dotCenterPosition - 40) : (dotCenterPosition + 3)
