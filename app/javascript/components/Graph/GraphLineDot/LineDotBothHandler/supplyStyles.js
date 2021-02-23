@@ -229,18 +229,18 @@ const styles = theme => ({
   lineIcon: {
     position: "absolute",
     height: "25px",
-    top: "-40px",
-    left: "10px",
+    top: "-30px",
+    left: "5px",
     transform: "rotate(-45deg)",
     [emulatorScreen(theme)]: {
-      top: '-30px',
+      top: '-24px',
       left: '0px',
-      height: '20px'
+      height: '18px'
     },
     [mobileScreen(theme)]: {
-      top: '-20px',
+      top: '-16px',
       left: '0px',
-      height: '15px'
+      height: '12px'
     }
   }
 

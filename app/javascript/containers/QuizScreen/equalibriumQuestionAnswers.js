@@ -8,6 +8,9 @@ import soda from "../../images/circleIcons/equalibrium/soda.png";
 import alcohol from "../../images/circleIcons/equalibrium/alcohol.png";
 import physicians from "../../images/circleIcons/equalibrium/physicians.png";
 import chapstick from "../../images/circleIcons/equalibrium/chapstick.png";
+import eCigarettes from "../../images/circleIcons/equalibrium/eCigarettes.png";
+import eyeSurgery from "../../images/circleIcons/equalibrium/eyeSurgery.png";
+import oil from "../../images/circleIcons/equalibrium/oil.png";
 
 const questionAnswers = [
 
@@ -25,7 +28,7 @@ const questionAnswers = [
     title: "MARKET FOR OIL",
     question: "Oil producers think the price of oil will increase in 6 months.",
     subQuestion: "Consider the market for oil. What happens?",
-    icon: icecream,
+    icon: oil,
     answer: "Supply curve shifts left",
     graphType: "supply curve",
     briefness:
@@ -36,7 +39,7 @@ const questionAnswers = [
     title: "MARKET FOR E-CIGARETTES",
     question: "State governments enact new tax on e-cigarette producers.",
     subQuestion: "Consider the market for e-cigarettes. What happens?",
-    icon: icecream,
+    icon: eCigarettes,
     answer: "Supply curve shifts left",
     graphType: "supply curve",
     briefness:
@@ -69,7 +72,7 @@ const questionAnswers = [
     title: "MARKET FOR LASER EYE SURGERY",
     question: "New law to allow optometrists to perform basic eye surgery by laser, a service previously performed only by those with more training.",
     subQuestion: "Consider the market for laser eye surgery. What happens?",
-    icon: gaming,
+    icon: eyeSurgery,
     answer: "Supply curve shifts right",
     graphType: "supply curve",
     briefness:

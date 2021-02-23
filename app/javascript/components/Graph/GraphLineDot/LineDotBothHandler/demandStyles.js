@@ -228,35 +228,35 @@ const styles = theme => ({
     position: "absolute",
     height: "25px",
     bottom: "-25px",
-    left: "20px",
+    left: "10px",
     transform: "rotate(45deg)",
     [emulatorScreen(theme)]: {
-      left: "12px",
+      left: "5px",
       bottom: "-20px",
       height: "20px",
     },
     [mobileScreen(theme)]: {
-      left: "7px",
-      bottom: "-18px",
-      height: "17px",
+      left: "4px",
+      bottom: "-15px",
+      height: "15px",
     }
   },
 
   correctLineIcon: {
     position: "absolute",
     height: "25px",
-    bottom: "-30px",
-    left: "20px",
+    bottom: "-28px",
+    left: "8px",
     transform: "rotate(45deg)",
     [emulatorScreen(theme)]: {
-      left: "12px",
-      bottom: "-25px",
+      left: "5px",
+      bottom: "-22px",
       height: "20px",
     },
     [mobileScreen(theme)]: {
-      left: "7px",
-      bottom: "-22px",
-      height: "17px",
+      left: "4px",
+      bottom: "-17px",
+      height: "15px",
     }
   }
 

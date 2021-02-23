@@ -243,6 +243,8 @@ const DemandCurve = (props) => {
     return wrongPosition ? "#003E4C" : lineColor
   }
 
+  const lineMovedOrNotAnswered = () => ((!(linePosition.x === 0) || answer.includes("Supply curve")) || answeredCorrectly === null)
+
   const p2ToOrigin = () => dotCenterPosition - 34
   const p1ToCorrect = () => answer.includes('shifts right') ? (dotCenterPosition - 70) : (dotCenterPosition)
   const q2ToCorrect = () => answer.includes('shifts right') ? "265px" : '195px'
@@ -276,7 +278,7 @@ const DemandCurve = (props) => {
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left }}></img>
         </div>
         <div className={classes.defaultLine} >
-          {changeIconColor && answeredCorrectly && <img src={D1} className={classes.lineIcon} />}
+          {changeIconColor && answer.includes("Demand curve") && <img src={D1} className={classes.lineIcon} />}
         </div>
         <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
           {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
@@ -301,7 +303,7 @@ const DemandCurve = (props) => {
               {(showDot && answeredCorrectly) && <div className={classes.correctDot}
                 style={{ opacity: "1", top: answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
               />}
-              <img src={(changeIconColor && answeredCorrectly) ? D2 : dBlue} className={(changeIconColor && answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />
+              {lineMovedOrNotAnswered() && <img src={(changeIconColor && answeredCorrectly) ? D2 : dBlue} className={(changeIconColor && answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />}
             </div>
           </div>
         </Draggable>
