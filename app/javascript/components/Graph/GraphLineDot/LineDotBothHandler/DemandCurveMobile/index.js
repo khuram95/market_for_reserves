@@ -246,12 +246,26 @@ const DemandCurveMobile = (props) => {
   const lineMovedOrNotAnswered = () => {
     if (answeredCorrectly === null)
       return true
+    if (answeredCorrectly === false)
+      return false
     if (answer.includes("Supply curve"))
       return true
     if (linePosition.x !== 0 && answeredCorrectly)
       return true
 
     return false
+  }
+
+  const showIconDefaultLine = () => {
+    if (answer.includes("Nothing"))
+      return dBlue
+    if (answeredCorrectly === false && answer.includes("Supply curve"))
+      return dBlue
+    if (answeredCorrectly === false && answer.includes("Demand curve"))
+      return D1
+    if (answeredCorrectly === true && answer.includes("Supply curve"))
+      return dBlue
+    return D1
   }
 
   const p2ToOrigin = () => dotCenterPosition - 8
@@ -288,7 +302,7 @@ const DemandCurveMobile = (props) => {
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left }}></img>
         </div>
         <div className={classes.defaultLine} >
-          {changeIconColor && answer.includes("Demand curve") && <img src={D1} className={classes.lineIcon} />}
+        {!(answeredCorrectly === null) && <img src={showIconDefaultLine()} className={classes.lineIcon} />}
         </div>
         <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
           {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
