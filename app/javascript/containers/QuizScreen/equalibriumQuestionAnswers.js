@@ -100,7 +100,7 @@ const questionAnswers = [
     answer: "Supply curve shifts right",
     graphType: "supply curve",
     briefness:
-      "If optomestrists are now able to offer basic laser eye surgery, the supply of laser eye surgeries will increase. The supply curve for laser eye surgeries will shift to the right and this will result in movement along the existing demand curve.",
+      "If optometrists are now able to offer basic laser eye surgery, the supply of laser eye surgeries will increase. The supply curve for laser eye surgeries will shift to the right and this will result in movement along the existing demand curve.",
   },
 
   {
