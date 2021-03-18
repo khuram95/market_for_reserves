@@ -69,6 +69,21 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
               <img src={Retry} className={classes.linkImg} />
               <Typography className={classes.sideBarLinkText}>RETRY</Typography>
             </Link>
+            <Link
+              href="https://practice.mru.org"
+              target="_blank"
+              className={classes.sideBarLink}
+            >
+              <img src={Hand} className={classes.linkImg} />
+              <Grid>
+                <Typography className={classes.sideBarLinkText}>
+                  MORE INTERACTIVE
+                </Typography>
+                <Typography className={classes.sideBarLinkText}>
+                  PRACTICE
+                </Typography>
+              </Grid>
+            </Link>
           </Grid>
           <Grid className={classes.forTeachers}>
             <Typography className={classes.forStudentsTitle}>

@@ -89,10 +89,10 @@ const styles = (theme) => ({
     left: "0",
     top: "90px",
     [emulatorScreen(theme)]: {
-      top: "60px",
+      top: "40px",
     },
     [mobileScreen(theme)]: {
-      top: "45px",
+      top: "20px",
     },
   },
 
