@@ -323,11 +323,13 @@ const DemandCurveMobile = (props) => {
           // disabled={DisasetDisableDemand}
         >
           <div style={{ cursor: !disableDemand && 'pointer' }}>
-            <div className={classes.dragableLine} id="draggable_line" style={{backgroundColor: draggableLineColor()}}>
-              {(showDot && answeredCorrectly) && <div className={classes.correctDot}
-                style={{ opacity: "1", top: answer.includes("shifts right") ? 63 : 106 }}
-              />}
-              {lineMovedOrNotAnswered() && <img src={((changeIconColor && answeredCorrectly)) ? D2 : dBlue} className={(changeIconColor && answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />}
+            <div className={classes.lineContainer} id="draggable_line">
+              <div className={classes.dragableLine} style={{backgroundColor: draggableLineColor()}}>
+                {(showDot && answeredCorrectly) && <div className={classes.correctDot}
+                  style={{ opacity: "1", top: answer.includes("shifts right") ? 63 : 106 }}
+                />}
+                {lineMovedOrNotAnswered() && <img src={((changeIconColor && answeredCorrectly)) ? D2 : dBlue} className={(changeIconColor && answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />}
+              </div>
             </div>
           </div>
         </Draggable>

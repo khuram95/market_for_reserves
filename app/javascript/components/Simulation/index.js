@@ -11,8 +11,8 @@ import shiftTheCurve from "../../images/equalibriumIcons/tutorial-shift-the-dema
 import priceWhite from "../../images/priceWhite.svg";
 import quantityWhite from "../../images/quantityWhite.svg";
 import dragLine from "../../images/dragLine.svg";
-// import dragLineRight from "../../images/dragLineRight.svg";
-
+import dragLineRight from "../../images/dragLineRight.svg";
+import { isMobileOnly } from "react-device-detect"
 import "animate.css/animate.css";
 
 const Simulation = (props) => {
@@ -36,18 +36,9 @@ const Simulation = (props) => {
     setTimeout(() => {
       setShowGraphs(true);
     }, 2000);
-    // setTimeout(() => {
-    //   onClickSkip()
-    // }, 9000)
-    // setTimeout(() => {
-    //   setRunTutorial("line")
-    // }, 5000)
-    // setTimeout(() => {
-    //   setRunTutorial("or")
-    // }, 8000)
-    // setTimeout(() => {
-    //   setRunTutorial("dot")
-    // }, 11000)
+    if (isMobileOnly)
+      setTimeout(onClickSkip, 5500)
+
   }, []);
 
   // useEffect(() => {

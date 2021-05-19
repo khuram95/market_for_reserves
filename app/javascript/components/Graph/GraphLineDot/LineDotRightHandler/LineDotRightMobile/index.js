@@ -406,13 +406,15 @@ const LineDotRightMobile = (props) => {
           // disabled={lineDisable}
         >
           <div style={{ cursor: !lineDisable && 'pointer' }}>
-            <div className={classes.dragableLine} id="draggable_line" style={{backgroundColor: draggableLineColor()}}>
-              <div className={classes.fadedDot}
-                style={{ opacity: fadeDot <= 0.5 ? "0" : "1", zIndex: showDot ? '1' : '0', top: dotCenterPosition}}
-              />
-              {<div className={classes.correctDot}
-                style={{ opacity: showDot ? "1" : "0", top: correctPosition || dotCenterPosition, transition: `top 1s` }}
-              />}
+            <div className={classes.lineContainer} id="draggable_line">
+              <div className={classes.dragableLine} style={{backgroundColor: draggableLineColor()}}>
+                <div className={classes.fadedDot}
+                  style={{ opacity: fadeDot <= 0.5 ? "0" : "1", zIndex: showDot ? '1' : '0', top: dotCenterPosition}}
+                />
+                {<div className={classes.correctDot}
+                  style={{ opacity: showDot ? "1" : "0", top: correctPosition || dotCenterPosition, transition: `top 1s` }}
+                />}
+              </div>
             </div>
             <div
               className={classes.dragableLineContainer}

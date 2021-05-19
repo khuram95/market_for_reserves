@@ -19,6 +19,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [showStudentName, setShowStudentName] = useState(false);
+  const [disableButton, setDisableButton] = useState(true)
 
   const handleClick = () => {
     if (name.length <= 30) {
@@ -28,8 +29,13 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
     }
   };
 
-  const onInputChange = (e, value) => {
+  const onInputChange = (e) => {
     setError(false);
+
+    if (e.target.value === "")
+      setDisableButton(true)
+    else
+      setDisableButton(false)
     setName(e.target.value);
   };
 
@@ -210,13 +216,12 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
             >
               <input
                 className={classes.nameInput}
-                onChange={onInputChange}
-                value={name}
+                onKeyUp={onInputChange}
                 placeholder="Your name here"
               />
-              <Button className={classes.saveButton} onClick={handleClick}>
+              <Button className={disableButton ? classes.disabledButton : classes.saveButton} disabled={disableButton} onClick={handleClick}>
                 <>
-                  <img src={downloadIcon} className={classes.downloadImage} />
+                    <img src={downloadIcon} className={classes.downloadImage} />
                   DOWNLOAD .JPG
                 </>
               </Button>

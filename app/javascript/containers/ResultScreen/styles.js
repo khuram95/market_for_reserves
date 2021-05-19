@@ -169,7 +169,7 @@ const styles = (theme) => ({
 
   saveButton: {
     color: "#fff",
-    backgroundColor: "#003e4c",
+    backgroundColor: "#00b1d9",
     fontSize: "30px",
     fontWeight: "500",
     padding: "0px 20px",
@@ -187,17 +187,37 @@ const styles = (theme) => ({
     },
   },
 
+  disabledButton: {
+    color: "#fff!important",
+    backgroundColor: "#003e4c",
+    fontSize: "30px",
+    fontWeight: "500",
+    padding: "0px 20px",
+    borderRadius: "0px",
+    fontFamily: "'Oswald', sans-serif",
+
+    [emulatorScreen(theme)]: {
+      fontSize: "22px",
+      padding: "0px 15px",
+    },
+    [mobileScreen(theme)]: {
+      fontSize: "16px",
+    },
+  },
+
   classAssignmentTitle: {
     color: "#003e4c",
     fontWeight: "400",
     fontSize: "30px",
     textAlign: "center",
     fontFamily: "rubik",
+    marginTop: '1rem',
     [emulatorScreen(theme)]: {
       fontSize: "22px",
     },
     [mobileScreen(theme)]: {
       fontSize: "16px",
+      display: 'none!important'
     },
   },
 
@@ -276,7 +296,7 @@ const styles = (theme) => ({
   questionAnswerContainer: {
     maxHeight: "350px",
     maxWidth: "600px",
-    padding: "50px 0px",
+    padding: "60px 0px",
     [emulatorScreen(theme)]: {
       maxHeight: "220px",
       maxWidth: "440px",
@@ -284,7 +304,7 @@ const styles = (theme) => ({
     },
     [mobileScreen(theme)]: {
       maxHeight: "160px",
-      maxWidth: "350px",
+      maxWidth: "275px",
       padding: "5px 0 12px 0",
     },
   },
@@ -295,12 +315,15 @@ const styles = (theme) => ({
   },
 
   nameContainer: {
-    marginTop: "3rem",
+    marginTop: "1rem",
+    zIndex: '2',
+    position: 'relative',
     [emulatorScreen(theme)]: {
-      marginTop: "1.5rem",
+      marginTop: "0.75rem",
     },
     [mobileScreen(theme)]: {
-      marginTop: "1rem",
+      marginTop: "0.5rem",
+      display: 'none!important'
     },
   },
 
@@ -311,6 +334,8 @@ const styles = (theme) => ({
 
   mruLogoContainer: {
     height: "8vh",
+    zIndex: '1',
+    position: 'relative',
   },
 
   homeDesc: {

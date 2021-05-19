@@ -146,9 +146,30 @@ const styles = theme => ({
       width: "6px",
     },
     [mobileScreen(theme)]: {
+      transform: "rotate(0deg)",
       height: "190px",
       width: "6px"
     }
+  },
+
+  lineContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: '400px',
+    width: '8px',
+    padding: '0 1rem',
+    margin: '0 -1rem',
+    position: 'relative',
+    borderRadius: '5px',
+    transform: 'rotate(45deg)',
+    [emulatorScreen(theme)]: {
+      height: '260px',
+      width: '8px',
+    },
+    [mobileScreen(theme)]: {
+      height: '190px',
+      width: '6px',
+    },
   },
 
   dragableLineContainer: {
