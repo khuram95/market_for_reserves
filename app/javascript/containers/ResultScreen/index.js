@@ -14,12 +14,13 @@ import Podium from "images/resultIcons/Podium.svg";
 import Retry from "images/resultIcons/Retry.svg";
 import download from "downloadjs";
 import downloadIcon from "images/download.svg";
+import TeacherGuide from "images/resultIcons/TeacherGuide.svg";
 
 const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [showStudentName, setShowStudentName] = useState(false);
-  const [disableButton, setDisableButton] = useState(true)
+  const [disableButton, setDisableButton] = useState(true);
 
   const handleClick = () => {
     if (name.length <= 30) {
@@ -32,10 +33,8 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
   const onInputChange = (e) => {
     setError(false);
 
-    if (e.target.value === "")
-      setDisableButton(true)
-    else
-      setDisableButton(false)
+    if (e.target.value === "") setDisableButton(true);
+    else setDisableButton(false);
     setName(e.target.value);
   };
 
@@ -95,6 +94,18 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
             <Typography className={classes.forStudentsTitle}>
               FOR TEACHERS
             </Typography>
+            <Link
+              href="https://mru.org/get-shifts-supply-or-demand-interactive-practice-teachers-guide/receive"
+              target="_blank"
+              className={classes.sideBarLink}
+            >
+              <img src={TeacherGuide} className={classes.linkImg} />
+              <Grid>
+                <Typography className={classes.sideBarLinkText}>
+                  GET TEACHER'S GUIDE
+                </Typography>
+              </Grid>
+            </Link>
             <Link
               href="https://mru.org/supplydemand"
               target="_blank"
@@ -219,9 +230,15 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
                 onKeyUp={onInputChange}
                 placeholder="Your name here"
               />
-              <Button className={disableButton ? classes.disabledButton : classes.saveButton} disabled={disableButton} onClick={handleClick}>
+              <Button
+                className={
+                  disableButton ? classes.disabledButton : classes.saveButton
+                }
+                disabled={disableButton}
+                onClick={handleClick}
+              >
                 <>
-                    <img src={downloadIcon} className={classes.downloadImage} />
+                  <img src={downloadIcon} className={classes.downloadImage} />
                   DOWNLOAD .JPG
                 </>
               </Button>
