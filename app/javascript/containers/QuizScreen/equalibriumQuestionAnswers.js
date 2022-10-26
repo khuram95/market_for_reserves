@@ -1,12 +1,9 @@
 import bracelets from "../../images/circleIcons/equalibrium/bracelets.png";
-import icecream from "../../images/circleIcons/equalibrium/Icecream.png";
 import silver from "../../images/circleIcons/equalibrium/silver.png";
 import avocado from "../../images/circleIcons/equalibrium/avocado.png";
 import vase from "../../images/circleIcons/equalibrium/vase.png";
 import gaming from "../../images/circleIcons/equalibrium/gaming.png";
 import soda from "../../images/circleIcons/equalibrium/soda.png";
-import alcohol from "../../images/circleIcons/equalibrium/alcohol.png";
-import physicians from "../../images/circleIcons/equalibrium/physicians.png";
 import chapstick from "../../images/circleIcons/equalibrium/chapstick.png";
 import eCigarettes from "../../images/circleIcons/equalibrium/eCigarettes.png";
 import eyeSurgery from "../../images/circleIcons/equalibrium/eyeSurgery.png";
@@ -76,7 +73,7 @@ const questionAnswers = [
     answer: "Nothing happens",
     graphType: "supply curve",
     briefness:
-      "This was a trick question. As far as we know there is no relationship between puppy adoptions and the market for chapstick.",
+      "This was a trick question. As far as we know, there is no relationship between puppy adoptions and the market for chapstick.",
   },
 
   {

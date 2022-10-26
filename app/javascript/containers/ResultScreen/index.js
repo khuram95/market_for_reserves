@@ -11,6 +11,7 @@ import Hand from "images/resultIcons/Hand.svg";
 import Desk from "images/resultIcons/Desk.svg";
 import Blocks from "images/resultIcons/Blocks.svg";
 import Podium from "images/resultIcons/Podium.svg";
+import NextPractice from "images/resultIcons/NextPractice.svg";
 import Retry from "images/resultIcons/Retry.svg";
 import download from "downloadjs";
 import downloadIcon from "images/download.svg";
@@ -66,7 +67,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
     >
       {!showStudentName && (
         <Grid className={classes.leftBarContainer}>
-          <Grid className={classes.forStudents}>
+          {/* <Grid className={classes.forStudents}>
             <Typography className={classes.forStudentsTitle}>
               FOR STUDENTS
             </Typography>
@@ -89,7 +90,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
                 </Typography>
               </Grid>
             </Link>
-          </Grid>
+          </Grid> */}
           <Grid className={classes.forTeachers}>
             <Typography className={classes.forStudentsTitle}>
               FOR TEACHERS
@@ -129,10 +130,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
               <img src={Hand} className={classes.linkImg} />
               <Grid>
                 <Typography className={classes.sideBarLinkText}>
-                  MORE INTERACTIVE
-                </Typography>
-                <Typography className={classes.sideBarLinkText}>
-                  PRACTICE
+                  ALL INTERACTIVES
                 </Typography>
               </Grid>
             </Link>
@@ -169,6 +167,31 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
           </Grid>
         </Grid>
       )}
+
+      <Grid className={classes.rightBarContainer}>
+        <Link onClick={quizRetry} className={classes.rightSideBarLink}>
+          <img src={Retry} className={classes.linkImg} />
+          <Typography className={classes.rightSideBarLinkText}>RETRY</Typography>
+        </Link>
+        <Link
+          href="https://practice.mru.org/equilibrium2/"
+          target="_blank"
+          className={classes.rightSideBarLink}
+        >
+          <img src={NextPractice} className={classes.linkImg} />
+          <Typography className={classes.rightSideBarLinkText}>NEXT PRACTICE SET</Typography>
+        </Link>
+        <Link
+          href="https://practice.mru.org"
+          target="_blank"
+          className={classes.rightSideBarLink}
+        >
+          <img src={Hand} className={classes.linkImg} />
+          <Typography className={classes.rightSideBarLinkText}> ALL INTERACTIVES </Typography>
+        </Link>
+      </Grid>
+
+
       <Grid
         container
         alignItems="center"
@@ -177,7 +200,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
       >
         <Grid>
           <Typography variant="h5" className={classes.homeDesc}>
-            Finding Equilibrium
+            Finding Equilibrium (Set 1/3)
           </Typography>
         </Grid>
         <Grid container justify="center" alignItems="center">
