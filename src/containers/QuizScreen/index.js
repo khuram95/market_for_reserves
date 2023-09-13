@@ -1,73 +1,62 @@
-import React, { useState } from "react";
-import questionAnswers from "./questionSet";
-import styles from "./styles";
-import withStyles from "@material-ui/core/styles/withStyles";
-import QuestionScreen from "../../components/QuestionScreen";
-import WrongMoveModal from "../../components/WrongMoveModal";
-import EvaluatorModal from "../../components/EvaluatorModal";
+import React, { useState } from 'react'
+import { Grid } from "@material-ui/core"
+// import questionAnswers from './questionAnswers'
+import questionAnswers from './equalibriumQuestionAnswers'
+import styles from './styles'
+import withStyles from '@material-ui/core/styles/withStyles'
+import Graph from '../../components/Graph'
+import WrongMoveModal from 'components/WrongMoveModal'
+
 
 const QuizScreen = (props) => {
-  const {
-    classes,
-    setCurrentScreen,
-    setAnswers,
-    answers,
-    totalBalance,
-    setTotalBalance,
-    ...others
-  } = props;
 
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const [open, setOpen] = useState(false);
-  const [answeredCorrectly, setAnsweredCorrectly] = useState(null);
-  const [previousBalance, setPreviousBalance] = useState(0);
+  const { classes, setCurrentScreen, ...others } = props
 
-  const modalOpen = () => setOpen(true);
+  const [questionIndex, setQuestionIndex] = useState(0)
+  const [open, setOpen] = useState(false)
+  const [resetGraph, setResetGraph] = useState(false);
+
+
+  const modalOpen = () => setOpen(true)
+
+  const modalClose = () => {
+    setOpen(false)
+    setResetGraph(!resetGraph)
+  }
+
+  // const resetPosition = () => setResetGraph(true)
+
+  const isQuizCompleted = () => (!(questionIndex + 1 < questionAnswers.length)) && setCurrentScreen("Result")
 
   const nextQuestion = () => {
-    setOpen(false);
-    setAnswers([...answers, answeredCorrectly]);
-    if (questionIndex >= questionAnswers.length - 1) {
-      setCurrentScreen("Result");
-      // setCurrentScreen("Home");
-    } else {
-      setQuestionIndex(questionIndex + 1);
-    }
-  };
-
-  const addToTotalBalance = (selected) => {
-    setPreviousBalance(totalBalance);
-    setTotalBalance(
-      questionAnswers[questionIndex].prices[selected] + totalBalance
-    );
-  };
-
-  console.log("questionIndex: ", questionIndex);
-  console.log("totalBalance: ", totalBalance);
+    // setHideQuestionBeforeAnimation(true)
+    isQuizCompleted()
+    setQuestionIndex(questionIndex + 1)
+    // setAnsweredCorrectly(null)
+    // setSubmitted(false)
+    // setDottedLineLabels(false)
+    // setMoved(null)
+    // setTimeout(() => {
+    //   setHideQuestionBeforeAnimation(false)
+    // }, 500)
+  }
 
   return (
     <div className={classes.quizScreenContainer}>
-      <QuestionScreen
+      <Graph
         {...others}
         questionAnswer={questionAnswers[questionIndex]}
+        resetGraph={resetGraph}
         modalOpen={modalOpen}
         nextQuestion={nextQuestion}
         key={questionIndex}
-        questionIndex={questionIndex}
-        setAnsweredCorrectly={setAnsweredCorrectly}
-        addToTotalBalance={addToTotalBalance}
-        totalBalance={totalBalance}
-        previousBalance={previousBalance}
       />
-      {open && (
-        <EvaluatorModal
-          answeredCorrectly={answeredCorrectly}
-          nextQuestion={nextQuestion}
-          question={questionAnswers[questionIndex]}
-        />
-      )}
+      <WrongMoveModal
+        open={open}
+        modalClose={modalClose}
+      />
     </div>
-  );
-};
+  )
+}
 
-export default withStyles(styles)(QuizScreen);
+export default withStyles(styles)(QuizScreen)

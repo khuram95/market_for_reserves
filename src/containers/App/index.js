@@ -1,8 +1,7 @@
 import React from "react"
 import RouterScreen from "../RouterScreen"
 import { withOrientationChange } from 'react-device-detect'
-import RotateModal from "../../components/RotateModal";
-
+import RotateModal from "components/RotateModal"
 
 
 const App = (props) => {

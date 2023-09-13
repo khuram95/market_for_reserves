@@ -1,16 +1,16 @@
 import React from "react";
 import { Grid, Typography, Button, Link } from "@material-ui/core";
-import CoverImage from "../../images/home-screen.svg";
+import CoverImage from "../../images/coverImage.svg";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
+import mruLogo from "../../images/mruLogo.png";
 import Blocks from "../../images/resultIcons/Blocks.svg";
 import TeacherGuide from "../../images/resultIcons/TeacherGuide.svg";
 
-import mruLogo from "../../images/mruLogo.png";
 // import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 
 const HomeScreen = ({ classes, setCurrentScreen }) => {
-  const handleClick = () => setCurrentScreen("Quiz");
+  const handleClick = () => setCurrentScreen("Tutorial");
 
   const logoClick = (e) => {
     e.stopPropagation();
@@ -23,23 +23,21 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
       justify="space-between"
       direction="column"
       className={classes.homeScreenContainer}
-      onClick={handleClick}
     >
       <Grid
         container
         direction="column"
         alignItems="center"
-        className={classes.innerDiv}
+        style={{ flexWrap: "nowrap" }}
+        onClick={handleClick}
       >
+        <Typography variant="h5" className={classes.homeTitle}>
+          ECON PRACTICE
+        </Typography>
+        <img src={CoverImage} className={classes.logo} />
         <Grid className={classes.quizDesc}>
           <Typography variant="h5" className={classes.homeDesc}>
-            ECON PRACTICE
-          </Typography>
-        </Grid>
-        <img src={CoverImage} className={classes.logo} alt="" />
-        <Grid className={classes.quizDesc}>
-          <Typography variant="h6" className={classes.homeDesc2}>
-            Winners and Losers of Inflation
+            Finding Equilibrium (Set 1/3)
           </Typography>
         </Grid>
         <Button className={classes.submitButton} onClick={handleClick}>
@@ -52,7 +50,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
             FOR TEACHERS
           </Typography>
           <Link
-            href=" https://mru.org/get-winners-and-losers-of-inflation-interactive-practice-teachers-guide/receive"
+            href="https://mru.org/get-shifts-supply-or-demand-interactive-practice-teachers-guide/receive"
             target="_blank"
             className={classes.sideBarLink}
           >
@@ -64,7 +62,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
             </Grid>
           </Link>
           <Link
-            href="https://mru.org/inflation"
+            href="https://mru.org/supplydemand"
             target="_blank"
             className={classes.sideBarLink}
           >
@@ -74,7 +72,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
                 GET UNIT PLAN
               </Typography>
               <Typography className={classes.sideBarLinkText}>
-                Money & Inflation
+                Supply and Demand
               </Typography>
             </Grid>
           </Link>

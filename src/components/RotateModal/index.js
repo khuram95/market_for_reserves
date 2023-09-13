@@ -1,7 +1,7 @@
 import React from 'react'
-import { Modal, Grid } from "@material-ui/core"
+import { Modal, Grid, Typography } from "@material-ui/core"
 import withStyles from "@material-ui/core/styles/withStyles"
-import rotatePhone from "../../images/rotatePhone.svg"
+import rotatePhone from "../../../../../images/rotatePhone.svg"
 import styles from "./styles"
 
 const RotateModal = ({ isOpen, classes }) => {

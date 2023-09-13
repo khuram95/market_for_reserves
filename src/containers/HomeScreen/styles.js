@@ -1,6 +1,22 @@
 import { emulatorScreen, mobileScreen } from "../../utils/styleUtils";
 
 const styles = (theme) => ({
+  homeTitle: {
+    color: "#003e4c",
+    fontWeight: "500",
+    fontSize: "4rem",
+    fontFamily: "'Oswald',sans-serif",
+    marginTop: "120px",
+    [emulatorScreen(theme)]: {
+      marginTop: "80px",
+      fontSize: "2.6rem",
+    },
+    [mobileScreen(theme)]: {
+      marginTop: "35px",
+      fontSize: "2rem",
+    },
+  },
+
   homeScreenContainer: {
     height: "100%",
     minHeight: "100vh",
@@ -9,39 +25,28 @@ const styles = (theme) => ({
     cursor: "pointer",
   },
 
-  innerDiv: {
-    flexWrap: "nowrap",
-    height: 600,
-    justifyContent: "space-evenly",
-    marginTop: "5%",
-    [emulatorScreen(theme)]: {
-      marginTop: 0,
-      height: 410,
-
-    },
-    [mobileScreen(theme)]: {
-      height: '100%'
-    },
-  },
-
   logo: {
-    height: 300,
-    width: 700,
-    // paddingRight: 50,
+    marginTop: "-200px",
+    height: "600px",
     [emulatorScreen(theme)]: {
-      height: 175,
-      width: 150,
+      height: "380px",
+      marginTop: "-150px",
     },
     [mobileScreen(theme)]: {
-      height: 150,
-      width: 100,
+      // height: "200px",
+      maxWidth: "600px",
+      marginTop: "-140px",
     },
   },
 
   quizDesc: {
-    // marginTop: "-200px",
-    [emulatorScreen(theme)]: {},
-    [mobileScreen(theme)]: {},
+    marginTop: "-200px",
+    [emulatorScreen(theme)]: {
+      marginTop: "-150px",
+    },
+    [mobileScreen(theme)]: {
+      marginTop: "-140px",
+    },
   },
 
   mruLogo: {
@@ -56,20 +61,7 @@ const styles = (theme) => ({
   homeDesc: {
     color: "#003e4c",
     fontWeight: "500",
-    fontSize: "4rem",
-    textAlign: "center",
-    fontFamily: "'Oswald',sans-serif",
-    [emulatorScreen(theme)]: {
-      fontSize: "1.7rem",
-    },
-    [mobileScreen(theme)]: {
-      fontSize: "1.5rem",
-    },
-  },
-  homeDesc2: {
-    color: "#003e4c",
-    fontWeight: "500",
-    fontSize: "2.8rem",
+    fontSize: "2.5rem",
     textAlign: "center",
     fontFamily: "'Oswald',sans-serif",
     [emulatorScreen(theme)]: {
@@ -79,26 +71,23 @@ const styles = (theme) => ({
       fontSize: "1rem",
     },
   },
-  submitButton: {
-    color: "#fff",
-    backgroundColor: "#00b1d9",
-    fontSize: "36px",
-    fontWeight: "500",
-    // marginTop: "50px",
-    padding: "0px 50px",
-    borderRadius: "0px",
-    fontFamily: "'Oswald', sans-serif",
-    "&:hover": {
-      backgroundColor: "#056f8a",
-    },
-    [emulatorScreen(theme)]: {
-      fontSize: "26px",
-    },
-    [mobileScreen(theme)]: {
-      fontSize: "20px",
-      marginTop: "25px",
-      padding: "0 30px",
-    },
+
+  classAssignmentTitle: {
+    color: "#000",
+    fontWeight: "400",
+    fontSize: "1rem",
+    textAlign: "center",
+    fontFamily: "'Oswald',sans-serif",
+  },
+
+  nameInput: {
+    width: "250px",
+    padding: "6px",
+    fontSize: "20px",
+    border: "none",
+    borderRadius: "4px",
+    marginTop: "10px",
+    textAlign: "center",
   },
 
   forTeachers: {
@@ -110,7 +99,7 @@ const styles = (theme) => ({
       marginTop: -40,
     },
     [mobileScreen(theme)]: {
-      marginTop: -35,
+      marginTop: -40,
     },
   },
 
@@ -168,12 +157,25 @@ const styles = (theme) => ({
     },
   },
 
-  mruLogo: {
-    alignItems: "flex-end",
-    padding: "2rem",
-    display: "flex",
+  submitButton: {
+    color: "#fff",
+    backgroundColor: "#00b1d9",
+    fontSize: "36px",
+    fontWeight: "500",
+    marginTop: "50px",
+    padding: "0px 50px",
+    borderRadius: "0px",
+    fontFamily: "'Oswald', sans-serif",
+    "&:hover": {
+      backgroundColor: "#056f8a",
+    },
+    [emulatorScreen(theme)]: {
+      fontSize: "26px",
+    },
     [mobileScreen(theme)]: {
-      padding: "1rem",
+      fontSize: "20px",
+      marginTop: "25px",
+      padding: "0 30px",
     },
   },
 });
