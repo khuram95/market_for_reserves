@@ -1,128 +1,127 @@
-import { emulatorScreen, mobileScreen } from "../../../../utils/styleUtils"
+import { emulatorScreen, mobileScreen } from "../../../../utils/styleUtils";
 
-const styles = theme => ({
-
+const styles = (theme) => ({
   verticalLinesContainer: {
     position: "absolute",
-    top: "-52px",
-    left: "225px",
+    top: "25px",
+    left: "140px",
     [emulatorScreen(theme)]: {
       top: "-35px",
-      left: "150px"
+      left: "150px",
     },
     [mobileScreen(theme)]: {
       top: "-25px",
-      left: "100px"
-    }
+      left: "100px",
+    },
   },
 
   graphLines: {
-    borderLeft: '5px solid #565656',
-    borderBottom: '5px solid #565656',
-    height: '330px',
-    width: '460px',
+    borderLeft: "5px solid #565656",
+    borderBottom: "5px solid #565656",
+    height: "330px",
+    width: "460px",
     position: "relative",
     [emulatorScreen(theme)]: {
       width: "290px",
       height: "210px",
-      borderWidth: '3px'
+      borderWidth: "3px",
     },
     [mobileScreen(theme)]: {
       width: "200px",
       height: "150px",
-      borderWidth: '3px'
+      borderWidth: "3px",
     },
   },
 
   graphYLable: {
-    height: '18px',
-    position: 'absolute',
-    top: '7px',
-    left: '-90px',
+    height: "18px",
+    position: "absolute",
+    top: "7px",
+    left: "-90px",
     [emulatorScreen(theme)]: {
-      height: '12px',
-      left: '-60px'
+      height: "12px",
+      left: "-60px",
     },
     [mobileScreen(theme)]: {
-      height: '10px',
-      left: '-50px'
+      height: "10px",
+      left: "-50px",
     },
   },
 
   graphXLable: {
-    height: '18px',
-    position: 'absolute',
-    bottom: '-35px',
-    right: '5px',
+    height: "18px",
+    position: "absolute",
+    bottom: "-35px",
+    right: "5px",
     [emulatorScreen(theme)]: {
-      height: '12px',
-      bottom: '-25px',
+      height: "12px",
+      bottom: "-25px",
     },
     [mobileScreen(theme)]: {
-      height: '9px',
-      bottom: '-22px',
-      right: '-2px'
+      height: "9px",
+      bottom: "-22px",
+      right: "-2px",
     },
   },
 
   dragLineMessage: {
-    height: '130px',
-    position: 'absolute',
-    right: '260px',
-    top: '85px',
+    height: "130px",
+    position: "absolute",
+    right: "260px",
+    top: "85px",
     [emulatorScreen(theme)]: {
-      height: '85px',
-      right: '155px',
-      top: '50px',
+      height: "85px",
+      right: "155px",
+      top: "50px",
     },
     [mobileScreen(theme)]: {
-      top: '35px',
-      right: '110px',
-      height: '65px'
-    }
+      top: "35px",
+      right: "110px",
+      height: "65px",
+    },
   },
 
   arrows: {
-    position: 'absolute',
+    position: "absolute",
     height: "22px",
     transform: "rotate(90deg)",
-    top: '185px',
-    left: '-50px',
+    top: "185px",
+    left: "-50px",
     [emulatorScreen(theme)]: {
       top: "117px",
       left: "12px",
-      height: "16px"
+      height: "16px",
     },
     [mobileScreen(theme)]: {
       top: "84px",
       left: "8px",
-      height: "10px"
-    }
+      height: "10px",
+    },
   },
 
   defaultLine: {
     transform: "rotate(45deg)",
-    position: 'absolute',
+    position: "absolute",
     height: "400px",
     width: "8px",
     backgroundColor: "#1db2d7",
-    borderRadius: '5px',
+    borderRadius: "5px",
     [emulatorScreen(theme)]: {
       height: "260px",
-      width: "6px"
+      width: "6px",
     },
     [mobileScreen(theme)]: {
       height: "190px",
-      width: "6px"
-    }
+      width: "6px",
+    },
   },
 
   correctLine: {
     transform: "rotate(45deg)",
-    position: 'absolute',
+    position: "absolute",
     height: "400px",
     width: "8px",
-    borderRadius: '5px',
+    borderRadius: "5px",
     [emulatorScreen(theme)]: {
       height: "260px",
       width: "6px",
@@ -130,17 +129,16 @@ const styles = theme => ({
     [mobileScreen(theme)]: {
       height: "190px",
       width: "6px",
-    }
+    },
   },
 
   dragableLine: {
     display: "flex",
     justifyContent: "center",
-    height: "400px",
-    width: "8px",
+    height: "305px",
+    width: "6px",
     position: "relative",
-    borderRadius: '5px',
-    transform: "rotate(45deg)",
+    borderRadius: "5px",
     [emulatorScreen(theme)]: {
       height: "260px",
       width: "6px",
@@ -148,27 +146,27 @@ const styles = theme => ({
     [mobileScreen(theme)]: {
       transform: "rotate(0deg)",
       height: "190px",
-      width: "6px"
-    }
+      width: "6px",
+    },
   },
 
   lineContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    height: '400px',
-    width: '8px',
-    padding: '0 1rem',
-    margin: '0 -1rem',
-    position: 'relative',
-    borderRadius: '5px',
-    transform: 'rotate(45deg)',
+    display: "flex",
+    justifyContent: "center",
+    height: "400px",
+    width: "8px",
+    padding: "0 1rem",
+    margin: "0 -1rem",
+    position: "relative",
+    borderRadius: "5px",
+    transform: "rotate(45deg)",
     [emulatorScreen(theme)]: {
-      height: '260px',
-      width: '8px',
+      height: "260px",
+      width: "8px",
     },
     [mobileScreen(theme)]: {
-      height: '190px',
-      width: '6px',
+      height: "190px",
+      width: "6px",
     },
   },
 
@@ -177,7 +175,7 @@ const styles = theme => ({
     justifyContent: "center",
     width: "6px",
     position: "relative",
-    borderRadius: '5px',
+    borderRadius: "5px",
     transform: "rotate(45deg)",
     top: "28px",
     left: "67px",
@@ -200,16 +198,16 @@ const styles = theme => ({
     borderRadius: "50%",
     padding: "10px",
     backgroundColor: "#003E4C",
-    top: '120px',
+    top: "120px",
     color: "blue",
     [emulatorScreen(theme)]: {
       padding: "7px",
-      borderWidth: "4px"
+      borderWidth: "4px",
     },
     [mobileScreen(theme)]: {
       padding: "7px",
-      borderWidth: "4px"
-    }
+      borderWidth: "4px",
+    },
   },
 
   correctDot: {
@@ -223,12 +221,12 @@ const styles = theme => ({
     // border: "5px solid",
     [emulatorScreen(theme)]: {
       padding: "7px",
-      border: "4px solid #003e4c"
+      border: "4px solid #003e4c",
     },
     [mobileScreen(theme)]: {
       padding: "6px",
-      border: "4px solid #003e4c"
-    }
+      border: "4px solid #003e4c",
+    },
   },
 
   draggableDot: {
@@ -239,12 +237,12 @@ const styles = theme => ({
     border: "5px solid",
     [emulatorScreen(theme)]: {
       padding: "7px",
-      border: "4px solid"
+      border: "4px solid",
     },
     [mobileScreen(theme)]: {
       padding: "7px",
-      border: "4px solid"
-    }
+      border: "4px solid",
+    },
   },
 
   lineIcon: {
@@ -252,18 +250,16 @@ const styles = theme => ({
     height: "25px",
     top: "-30px",
     left: "5px",
-    transform: "rotate(-45deg)",
     [emulatorScreen(theme)]: {
-      top: '-24px',
-      left: '0px',
-      height: '18px'
+      top: "-24px",
+      left: "0px",
+      height: "18px",
     },
     [mobileScreen(theme)]: {
-      top: '-16px',
-      left: '0px',
-      height: '12px'
-    }
-  }
-
-})
+      top: "-16px",
+      left: "0px",
+      height: "12px",
+    },
+  },
+});
 export default styles;

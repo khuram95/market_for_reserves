@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import Draggable from 'react-draggable'; // Both at the same time
-import dGreen from '../../../../..//equalibriumIcons/d-green.svg'
-// import sBlue from '../../../../..//equalibriumIcons/S-blue.svg'
-import { withStyles } from '@material-ui/core/styles'
-import HandCursor from '../../../../..//handCursor.svg'
-import xMark from '../../../../..//xMark.svg'
-import 'animate.css/animate.css'
-import styles from './styles'
+import React, { useState, useEffect } from "react";
+import Draggable from "react-draggable"; // Both at the same time
+import dGreen from "../../../../../src/images/equalibriumIcons/d-green.svg";
+import sBlue from "../../../../../src/images/equalibriumIcons/S-blue.svg";
+import { withStyles } from "@material-ui/core/styles";
+import HandCursor from "../../../../../src/images/handCursor.svg";
+import xMark from "../../../../../src/images/xMark.svg";
+import "animate.css/animate.css";
+import styles from "./styles";
 
 const SimulatorDemandCurve = (props) => {
   const {
@@ -15,68 +15,72 @@ const SimulatorDemandCurve = (props) => {
     dotCenterPosition,
     dotShiftVariant,
     lineDefaultPosition,
-    lineShiftVariant
-  } = props
+    lineShiftVariant,
+  } = props;
 
   //adjust dot center accoring to line
-  const [dotPosition, setDotPosition] = useState(dotCenterPosition)
-  const [linePosition, setLinePosition] = useState(`${lineDefaultPosition + lineShiftVariant}px`)
+  const [dotPosition, setDotPosition] = useState(dotCenterPosition);
+  const [linePosition, setLinePosition] = useState(
+    `${lineDefaultPosition + lineShiftVariant}px`
+  );
 
   useEffect(() => {
     switch (move) {
       case "none":
         break;
       case "line":
-        animateLine()
+        animateLine();
         break;
       case "dot":
-        animateDot()
+        animateDot();
         break;
       default:
         break;
     }
-  }, [move])
+  }, [move]);
 
   const animateLine = () => {
     setTimeout(() => {
-      setLinePosition(`${lineDefaultPosition - lineShiftVariant}px`)
-    }, 1000)
+      setLinePosition(`${lineDefaultPosition - lineShiftVariant}px`);
+    }, 1000);
     setTimeout(() => {
-      setLinePosition(`${lineDefaultPosition + lineShiftVariant}px`)
-      animateLine()
-
-    }, 2000)
-  }
+      setLinePosition(`${lineDefaultPosition + lineShiftVariant}px`);
+      animateLine();
+    }, 2000);
+  };
 
   const animateDot = () => {
     setTimeout(() => {
-      setDotPosition(dotCenterPosition + dotShiftVariant)
-    }, 1000)
+      setDotPosition(dotCenterPosition + dotShiftVariant);
+    }, 1000);
     setTimeout(() => {
-      setDotPosition(dotCenterPosition - dotShiftVariant)
-      animateDot()
-    }, 2000)
-  }
+      setDotPosition(dotCenterPosition - dotShiftVariant);
+      animateDot();
+    }, 2000);
+  };
 
   return (
-    <div className={classes.verticalLinesContainer} style={{ left: linePosition }}>
+    <div
+      className={classes.verticalLinesContainer}
+      style={{ left: linePosition }}
+    >
       <div>
         <div className={classes.dragableLine}>
           <img src={dGreen} className={classes.lineIcon} />
-          <div style={{height: '40px'}}>
+          <div style={{ height: "40px" }}>
             <img
               src={HandCursor}
               className={classes.handCursorDesign}
               style={{
-                opacity: '1',
-                right: '-5px'
+                opacity: "1",
+                right: "-5px",
               }}
             />
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default withStyles(styles)(SimulatorDemandCurve)
+export default withStyles(styles)(SimulatorDemandCurve);

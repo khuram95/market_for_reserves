@@ -1,73 +1,88 @@
-import React, { useState, useEffect } from 'react'
-import correctIcon from '../../../../../images/correct.svg'
-import NotQuiteIcon from '../../../../../images/notQuite.svg'
-import IncorrectIcon from '../../../../../images/incorrect.svg'
-import { Grid, Typography } from '@material-ui/core'
-import styles from './styles'
-import withStyles from '@material-ui/core/styles/withStyles'
+import React, { useState, useEffect } from "react";
+import correctIcon from "../../../../../src/images/Correct.svg";
+import NotQuiteIcon from "../../../../../src/images/notQuite.svg";
+import IncorrectIcon from "../../../../../src/images/Incorrect.svg";
+import { Grid, Typography } from "@material-ui/core";
+import styles from "./styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const QuizAnswer = ({ questionAnswer, classes, moved, showBriefness }) => {
-
-  const [answerImage, setAnswerImage] = useState("")
-  const [answerMessage, setAnswerMessage] = useState("")
+  const [answerImage, setAnswerImage] = useState("");
+  const [answerMessage, setAnswerMessage] = useState("");
 
   useEffect(() => {
-    whatWasMoved()
-  }, [moved])
+    whatWasMoved();
+  }, [moved]);
 
   const whatWasMoved = () => {
     switch (moved) {
-      case 'nothing':
-        setAnswerImage(IncorrectIcon)
-        setAnswerMessage("")
-        return
-      case 'correct':
-        setAnswerImage(correctIcon)
-        setAnswerMessage("")
-        return
+      case "nothing":
+        setAnswerImage(IncorrectIcon);
+        setAnswerMessage("");
+        return;
+      case "correct":
+        setAnswerImage(correctIcon);
+        setAnswerMessage("");
+        return;
       case "incorrect":
-        setAnswerImage(IncorrectIcon)
-        setAnswerMessage("")
-        return
+        setAnswerImage(IncorrectIcon);
+        setAnswerMessage("");
+        return;
       case "moved demand curve but in opposite":
-        setAnswerImage(NotQuiteIcon)
-        setAnswerMessage("You were right to shift the demand curve, but you did it in the wrong direction.")
-        return
+        setAnswerImage(NotQuiteIcon);
+        setAnswerMessage(
+          "You were right to shift the demand curve, but you did it in the wrong direction."
+        );
+        return;
       case "moved supply curve but in opposite":
-        setAnswerImage(NotQuiteIcon)
-        setAnswerMessage("You were right to shift the supply curve, but you did it in the wrong direction.")
-        return
+        setAnswerImage(NotQuiteIcon);
+        setAnswerMessage(
+          "You were right to shift the supply curve, but you did it in the wrong direction."
+        );
+        return;
     }
-  }
+  };
 
   const answerPrefix = () => {
     if (questionAnswer.graphType === "supply curve") {
-      return !questionAnswer.answer.includes('Nothing') && (questionAnswer.answer.includes('shifts') ? 'Supply curve ' : 'Quantity supplied ')
+      return (
+        !questionAnswer.answer.includes("Nothing") &&
+        (questionAnswer.answer.includes("shifts")
+          ? "Supply curve "
+          : "Quantity supplied ")
+      );
     } else {
-      return !questionAnswer.answer.includes('Nothing') && (questionAnswer.answer.includes('shifts') ? 'Demand curve ' : 'Quantity demanded ')
+      return (
+        !questionAnswer.answer.includes("Nothing") &&
+        (questionAnswer.answer.includes("shifts")
+          ? "Demand curve "
+          : "Quantity demanded ")
+      );
     }
-  }
+  };
 
   return (
     <Grid className={classes.answerContainer}>
-      <Typography variant='h5' className={classes.QuestionTextAgain}>
+      <Typography variant="h5" className={classes.QuestionTextAgain}>
         Q. {questionAnswer.question}
-        <br/>
+        <br />
         {questionAnswer.subQuestion}
       </Typography>
       <img src={answerImage} className={classes.correctIncorrectIcon} />
-      <Typography variant='h4' className={classes.curveShiftingText}>
+      <Typography variant="h4" className={classes.curveShiftingText}>
         {/* {answerPrefix()} */}
         {questionAnswer.answer}
       </Typography>
-      {showBriefness && <Typography variant='h5' className={classes.briefNessHeading}>
-        {answerMessage}
-      </Typography>}
-      <Typography variant='h5' className={classes.briefNess}>
+      {showBriefness && (
+        <Typography variant="h5" className={classes.briefNessHeading}>
+          {answerMessage}
+        </Typography>
+      )}
+      <Typography variant="h5" className={classes.briefNess}>
         {questionAnswer.briefness}
       </Typography>
     </Grid>
-  )
-}
+  );
+};
 
-export default withStyles(styles)(QuizAnswer)
+export default withStyles(styles)(QuizAnswer);

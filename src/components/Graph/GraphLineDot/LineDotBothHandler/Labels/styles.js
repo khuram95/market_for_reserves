@@ -1,121 +1,119 @@
-import { emulatorScreen, mobileScreen } from "../../../../../utils/styleUtils"
+import { emulatorScreen, mobileScreen } from "../../../../../utils/styleUtils";
 
-const styles = theme => ({
-
+const styles = (theme) => ({
   graphYLable: {
-    height: '18px',
-    position: 'absolute',
-    top: '7px',
-    left: '-90px',
+    height: "18px",
+    position: "absolute",
+    top: "7px",
+    left: "-90px",
     [emulatorScreen(theme)]: {
-      height: '12px',
-      left: '-60px'
+      height: "12px",
+      left: "-60px",
     },
     [mobileScreen(theme)]: {
-      height: '10px',
-      left: '-50px'
+      height: "10px",
+      left: "-50px",
     },
   },
 
   graphP1Lable: {
-    fontSize: '24px',
-    fontWeight: '600',
-    position: 'absolute',
-    color: '#003e4c',
-    top: '130px',
-    left: '-40px',
+    fontSize: "17px",
+    fontWeight: "600",
+    position: "absolute",
+    color: "#003e4c",
+    top: "196px",
+    left: "-115px",
     [emulatorScreen(theme)]: {
-      top: '80px',
-      left: '-27px',
-      fontSize: '18px'
+      top: "80px",
+      left: "-27px",
+      fontSize: "18px",
     },
     [mobileScreen(theme)]: {
-      top: '60px',
-      left: '-22px',
-      fontSize: '13px'
+      top: "60px",
+      left: "-22px",
+      fontSize: "13px",
     },
   },
 
   graphP2Lable: {
-    fontSize: '24px',
-    fontWeight: '600',
-    position: 'absolute',
-    color: '#003e4c',
-    top: '200px',
-    left: '-40px',
+    fontSize: "17px",
+    fontWeight: "600",
+    position: "absolute",
+    color: "#003e4c",
+    top: "99px",
+    left: "-115px",
     [emulatorScreen(theme)]: {
-      fontSize: '18px',
-      left: '-27px',
+      fontSize: "18px",
+      left: "-27px",
     },
     [mobileScreen(theme)]: {
-      left: '-22px',
-      fontSize: '13px'
+      left: "-22px",
+      fontSize: "13px",
     },
   },
 
   graphXLable: {
-    height: '18px',
-    position: 'absolute',
-    bottom: '-35px',
-    right: '5px',
+    height: "18px",
+    position: "absolute",
+    bottom: "-35px",
+    right: "5px",
     [emulatorScreen(theme)]: {
-      height: '12px',
-      bottom: '-25px',
+      height: "12px",
+      bottom: "-25px",
     },
     [mobileScreen(theme)]: {
-      height: '10px',
-      bottom: '-22px',
+      height: "10px",
+      bottom: "-22px",
     },
   },
 
   graphQ1Lable: {
-    fontSize: '24px',
-    fontWeight: '600',
-    position: 'absolute',
-    color: '#003e4c',
-    bottom: '-40px',
-    left: '210px',
+    fontSize: "24px",
+    fontWeight: "600",
+    position: "absolute",
+    color: "#003e4c",
+    bottom: "-40px",
+    left: "210px",
     [emulatorScreen(theme)]: {
-      bottom: '-28px',
-      left: '137px',
-      fontSize: '18px'
+      bottom: "-28px",
+      left: "137px",
+      fontSize: "18px",
     },
     [mobileScreen(theme)]: {
-      bottom: '-22px',
-      left: '94px',
-      fontSize: '13px'
+      bottom: "-22px",
+      left: "94px",
+      fontSize: "13px",
     },
   },
 
   graphQ2Lable: {
-    fontSize: '24px',
-    fontWeight: '600',
-    position: 'absolute',
-    color: '#003e4c',
-    bottom: '-40px',
-    left: '282px',
+    fontSize: "24px",
+    fontWeight: "600",
+    position: "absolute",
+    color: "#003e4c",
+    bottom: "-40px",
+    left: "282px",
     [emulatorScreen(theme)]: {
-      bottom: '-28px',
-      fontSize: '18px'
+      bottom: "-28px",
+      fontSize: "18px",
     },
     [mobileScreen(theme)]: {
-      bottom: '-22px',
+      bottom: "-22px",
       // left: '137px',
-      fontSize: '13px'
+      fontSize: "13px",
     },
   },
 
   dragLineMessage: {
-    height: '130px',
-    position: 'absolute',
-    right: '-20px',
-    top: '80px',
+    height: "130px",
+    position: "absolute",
+    right: "-20px",
+    top: "80px",
     [emulatorScreen(theme)]: {
-      height: '90px',
-      right: '-25px',
-      top: '50px',
+      height: "90px",
+      right: "-25px",
+      top: "50px",
     },
   },
-
-})
+});
 export default styles;
