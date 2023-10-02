@@ -284,7 +284,7 @@ const DemandCurve = (props) => {
             top: p1ToCorrect(),
             left: answer.includes("shifts right") ? "250px" : "180px",
           }}
-          q1={{ top: qTop(), left: q1ToOrigin() }}
+          q1={{ top: 337.668, left: 586.5 }}
           q2={{ top: qTop(), left: q2ToCorrect() }}
           originQ={{ top: dotCenterPosition - 38, left: q1ToOrigin() }}
           dotCorrectQ={{
@@ -362,7 +362,47 @@ const DemandCurve = (props) => {
         >
           <div style={{ cursor: !disableDemand && "pointer" }}>
             <div className={classes.dragableLine} id="draggable_line">
-              <img src={dBar} style={{ height: 171, paddingTop: 110 }} />
+              <div
+                className="line-container"
+                style={{ position: "relative", top: "40px" }}
+              >
+                <div
+                  className="straight-line"
+                  style={{
+                    width: "132px",
+                    height: "7px",
+                    backgroundColor: "#003E4C",
+                    position: "relative",
+                    bottom: "-85px",
+                    left: "-183px",
+                    borderRadius: "5px",
+                  }}
+                ></div>
+                <div
+                  className="bent-line"
+                  style={{
+                    width: "205px",
+                    height: "7px",
+                    backgroundColor: "#003E4C",
+                    transform: "rotate(52deg)",
+                    position: "absolute",
+                    top: "165px",
+                    left: "-95px",
+                  }}
+                ></div>
+                <div
+                  className="second-straight-line"
+                  style={{
+                    width: "224px",
+                    height: "7px",
+                    backgroundColor: "#003E4C",
+                    position: "absolute",
+                    top: "245px",
+                    left: "67px",
+                    borderRadius: "5px",
+                  }}
+                ></div>
+              </div>
               {lineMovedOrNotAnswered() && (
                 <img
                   src={changeIconColor && answeredCorrectly ? D2 : dBlue}

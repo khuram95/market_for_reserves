@@ -382,7 +382,7 @@ const LineDotLeft = (props) => {
             top: p1ToCorrect(),
             left: answer.includes("down") ? "150px" : "280px",
           }}
-          q1={{ top: qTop(), left: q1ToOrigin() }}
+          q1={{ top: 337.668, left: 586.5 }}
           q2={{ top: qTop(), left: q2ToCorrect() }}
           originQ={{ top: dotCenterPosition - 25, left: q1ToOrigin() }}
           dotCorrectQ={{

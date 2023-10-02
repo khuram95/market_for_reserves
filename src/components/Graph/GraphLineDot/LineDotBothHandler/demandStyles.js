@@ -263,8 +263,8 @@ const styles = (theme) => ({
   lineIcon: {
     position: "absolute",
     height: "25px",
-    bottom: "130px",
-    left: "223px",
+    bottom: "120px",
+    left: "203px",
     [emulatorScreen(theme)]: {
       left: "5px",
       bottom: "-20px",

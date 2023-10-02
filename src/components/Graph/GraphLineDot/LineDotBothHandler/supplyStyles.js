@@ -5,6 +5,7 @@ const styles = (theme) => ({
     position: "absolute",
     top: "25px",
     left: "140px",
+    zIndex: 1,
     [emulatorScreen(theme)]: {
       top: "-35px",
       left: "150px",

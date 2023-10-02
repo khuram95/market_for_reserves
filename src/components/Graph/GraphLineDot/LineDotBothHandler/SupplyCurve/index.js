@@ -274,8 +274,8 @@ const SupplyCurve = (props) => {
       : dotCenterPosition;
   const q2ToCorrect = () =>
     answer.includes("shifts right") ? "265px" : "195px";
-  const q1ToOrigin = () => "230px";
-  const qTop = () => "330px";
+  const q1ToOrigin = () => "584.5px";
+  const qTop = () => "337px";
 
   return (
     <div>
@@ -288,7 +288,7 @@ const SupplyCurve = (props) => {
             top: p1ToCorrect(),
             left: answer.includes("shifts right") ? "250px" : "180px",
           }}
-          q1={{ top: qTop(), left: q1ToOrigin() }}
+          q1={{ top: 337.668, left: 586.5 }}
           q2={{ top: qTop(), left: q2ToCorrect() }}
           originQ={{ top: dotCenterPosition - 38, left: q1ToOrigin() }}
           dotCorrectQ={{

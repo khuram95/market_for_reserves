@@ -1,6 +1,6 @@
-import { emulatorScreen, mobileScreen } from "../../../../utils/styleUtils"
+import { emulatorScreen, mobileScreen } from "../../../../utils/styleUtils";
 
-const styles = theme => ({
+const styles = (theme) => ({
   verticalLinesContainer: {
     position: "absolute",
     top: "-30px",
@@ -13,19 +13,19 @@ const styles = theme => ({
 
   defaultLine: {
     transform: "rotate(-45deg)",
-    position: 'absolute',
+    position: "absolute",
     height: "400px",
     width: "8px",
     backgroundColor: "#003e4c",
-    borderRadius: '5px'
+    borderRadius: "5px",
   },
 
   correctLine: {
     transform: "rotate(-45deg)",
-    position: 'absolute',
+    position: "absolute",
     height: "400px",
     width: "8px",
-    borderRadius: '5px',
+    borderRadius: "5px",
   },
 
   dragableLine: {
@@ -34,13 +34,13 @@ const styles = theme => ({
     height: "280px",
     width: "6px",
     position: "relative",
-    borderRadius: '5px',
+    borderRadius: "5px",
     backgroundColor: "#fff",
     transform: "rotate(-45deg)",
     [emulatorScreen(theme)]: {
       width: "5px",
       height: "200px",
-      borderWidth: "3px"
+      borderWidth: "3px",
     },
     [mobileScreen(theme)]: {
       height: "150px",
@@ -54,7 +54,7 @@ const styles = theme => ({
     borderRadius: "50%",
     padding: "10px",
     backgroundColor: "#003E4C",
-    top: '120px',
+    top: "120px",
     color: "blue",
   },
 
@@ -86,10 +86,9 @@ const styles = theme => ({
   lineIcon: {
     position: "absolute",
     height: "25px",
-    bottom: "-35px",
-    left: "18px",
+    bottom: "-196px",
+    left: "168px",
     filter: "brightness(10)",
-    transform: "rotate(45deg)",
     [emulatorScreen(theme)]: {
       height: "20px",
       bottom: "-25px",
@@ -103,21 +102,19 @@ const styles = theme => ({
   },
 
   handCursorDesign: {
-    position: 'absolute',
-    right: '-5px',
-    top: '200px',
-    transform: 'rotate(45deg)',
-    width: '40px',
-    transition: 'top 1s',
+    position: "absolute",
+    right: "114px",
+    top: "152px",
+    width: "40px",
+    transition: "top 1s",
     [emulatorScreen(theme)]: {
       width: "25px",
       right: "0px",
-      top: "140px"
+      top: "140px",
     },
     [mobileScreen(theme)]: {
-      top: "110px"
+      top: "110px",
     },
-  }
-
-})
+  },
+});
 export default styles;

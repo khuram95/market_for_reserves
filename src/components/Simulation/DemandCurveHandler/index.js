@@ -1,11 +1,10 @@
-import React from 'react'
-import SimulatorDemandCurve from './SimulatorDemandCurve'
-import { emulatorScreen, mobileScreen } from "../../../utils/styleUtils"
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import React from "react";
+import SimulatorDemandCurve from "./SimulatorDemandCurve";
+import { emulatorScreen, mobileScreen } from "../../../utils/styleUtils";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const DemandCurveHandler = (props) => {
-
   const theme = useTheme();
   const isEmulator = useMediaQuery(emulatorScreen(theme));
   const isMobile = useMediaQuery(mobileScreen(theme));
@@ -21,7 +20,7 @@ const DemandCurveHandler = (props) => {
         lineDefaultPosition={90}
         lineShiftVariant={30}
       />
-    )
+    );
 
   // heightOfLine={200}
   if (isEmulator)
@@ -34,18 +33,18 @@ const DemandCurveHandler = (props) => {
         lineDefaultPosition={120}
         lineShiftVariant={30}
       />
-    )
+    );
 
-// heightOfLine={280}
-  return(
+  // heightOfLine={280}
+  return (
     <SimulatorDemandCurve
       {...props}
       dotCenterPosition={(280 - 30) / 2}
       dotShiftVariant={70}
-      lineDefaultPosition={210}
-      lineShiftVariant={40}
+      lineDefaultPosition={190}
+      lineShiftVariant={30}
     />
-  )
-}
+  );
+};
 
-export default DemandCurveHandler
+export default DemandCurveHandler;

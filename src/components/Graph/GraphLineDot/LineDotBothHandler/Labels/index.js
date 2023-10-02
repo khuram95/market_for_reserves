@@ -64,7 +64,7 @@ const Labels = (props) => {
           className={"P1"}
           style={{
             position: "absolute",
-            top: p1Top,
+            top: 167,
           }}
         />
 
@@ -72,16 +72,16 @@ const Labels = (props) => {
           className={"dotOriginP"}
           style={{
             position: "absolute",
-            top: originP.top,
-            left: originP.left,
+            top: 337.668,
+            left: 586.5,
           }}
         />
         <div
           className={"dotCorrectP"}
           style={{
             position: "absolute",
-            top: originCorrectP.top,
-            left: originCorrectP.left,
+            top: 174,
+            left: 140,
           }}
         />
 
@@ -91,7 +91,7 @@ const Labels = (props) => {
           orientation="h"
           borderStyle="dashed"
           borderWidth={calcBorderWidth()}
-          borderColor="#003e4c"
+          borderColor="red"
           fromAnchor="20%"
           delay={true}
           className="animate__animated animate__fadeIn"
@@ -110,14 +110,14 @@ const Labels = (props) => {
 
         <div
           className={"Q1"}
-          style={{ position: "absolute", top: q1.top, left: q1.left }}
+          style={{ position: "absolute", top: 337.668, left: 586.5 }}
         />
         <div
           className={"Q2"}
           style={{ position: "absolute", top: q2.top, left: q2.left }}
         />
 
-        <div
+        {/* <div
           className={"dotOriginQ"}
           style={{ position: "absolute", top: originQ.top, left: originQ.left }}
         />
@@ -128,7 +128,7 @@ const Labels = (props) => {
             top: dotCorrectQ.top,
             left: dotCorrectQ.left,
           }}
-        />
+        /> */}
 
         <LineTo
           from="dotOriginQ"

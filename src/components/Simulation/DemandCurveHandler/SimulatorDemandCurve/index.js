@@ -65,18 +65,52 @@ const SimulatorDemandCurve = (props) => {
       style={{ left: linePosition }}
     >
       <div>
-        <div className={classes.dragableLine}>
-          <img src={dGreen} className={classes.lineIcon} />
-          <div style={{ height: "40px" }}>
-            <img
-              src={HandCursor}
-              className={classes.handCursorDesign}
-              style={{
-                opacity: "1",
-                right: "-5px",
-              }}
-            />
-          </div>
+        <img src={dGreen} className={classes.lineIcon} />
+        <div style={{ height: "40px" }}>
+          <div
+            className="straight-line"
+            style={{
+              width: "132px",
+              height: "7px",
+              backgroundColor: "white",
+              position: "relative",
+              bottom: "-85px",
+              left: "-183px",
+              borderRadius: "5px",
+            }}
+          ></div>
+          <div
+            className="bent-line"
+            style={{
+              width: "205px",
+              height: "7px",
+              backgroundColor: "white",
+              transform: "rotate(52deg)",
+              position: "absolute",
+              top: "165px",
+              left: "-95px",
+            }}
+          ></div>
+          <div
+            className="second-straight-line"
+            style={{
+              width: "127px",
+              height: "7px",
+              backgroundColor: "white",
+              position: "absolute",
+              top: "245px",
+              left: "67px",
+              borderRadius: "5px",
+            }}
+          ></div>
+
+          <img
+            src={HandCursor}
+            className={classes.handCursorDesign}
+            style={{
+              opacity: "1",
+            }}
+          />
         </div>
       </div>
     </div>
