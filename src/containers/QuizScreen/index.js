@@ -14,7 +14,7 @@ const QuizScreen = (props) => {
   const [open, setOpen] = useState(false);
   const [resetGraph, setResetGraph] = useState(false);
 
-  const modalOpen = () => setOpen(true);
+  const modalOpen = () => setOpen(false);
 
   const modalClose = () => {
     setOpen(false);

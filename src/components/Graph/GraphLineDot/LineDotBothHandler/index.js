@@ -78,7 +78,8 @@ const LineDotBothHandler = (props) => {
           setDisableSupply={setDisableSupply}
         />
       );
-    else
+    else{
+      // vertical line
       return (
         <SupplyCurve
           {...otherProps}
@@ -88,6 +89,7 @@ const LineDotBothHandler = (props) => {
           setDisableSupply={setDisableSupply}
         />
       );
+    }
   };
 
   return (

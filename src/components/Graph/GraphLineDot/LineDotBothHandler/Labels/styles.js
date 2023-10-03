@@ -17,12 +17,12 @@ const styles = (theme) => ({
   },
 
   graphP1Lable: {
-    fontSize: "14px",
+    fontSize: "17px",
     fontWeight: "600",
     position: "absolute",
     color: "#003e4c",
-    top: "154px",
-    left: "-95px",
+    top: "175px",
+    left: "-115px",
     [emulatorScreen(theme)]: {
       top: "80px",
       left: "-27px",

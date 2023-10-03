@@ -28,10 +28,10 @@ const Labels = (props) => {
     if (answerCondition)
       if (isMobile) return "44px";
       else if (isEmulator) return "58px";
-      else return "95px";
+      else return "105px";
     else if (isMobile) return "78px";
     else if (isEmulator) return "102px";
-    else return "165px";
+    else return "250px";
   };
 
   const setQ2Label = () => {
@@ -49,6 +49,39 @@ const Labels = (props) => {
     else return "4px";
   };
 
+  const calculateTopCorrectP = () => {
+    if(answer.includes("Demand")){
+      if (answer.includes("shifts left")){
+        return 260
+      }else{
+        return 125
+      }
+    }else{
+      if (answer.includes("shifts left")){
+        return 120
+      }else{
+        return 260
+      }
+    }
+  }
+
+  const calculateLeftCorrectP = () => {
+    console.log("answer", answer)
+    if(answer.includes("Demand")){
+      if (answer.includes("shifts left")){
+        return 180
+      }else{
+        return 185
+      }
+    }else{
+      if (answer.includes("shifts left")){
+        return 132
+      }else{
+        return 240
+      }
+    }
+  }
+
   return (
     <span className="animate__animated animate__fadeIn">
       <Typography className={classes.graphP1Lable}>Policy Rate 1</Typography>
@@ -59,12 +92,12 @@ const Labels = (props) => {
         Policy Rate 2
       </Typography>
       <>
-        <div className={"P2"} style={{ position: "absolute", top: p2Top }} />
+        <div className={"P2"} style={{ position: "absolute", top: calculateTopCorrectP() }} />
         <div
           className={"P1"}
           style={{
             position: "absolute",
-            top: 167,
+            top: 190,
           }}
         />
 
@@ -72,16 +105,16 @@ const Labels = (props) => {
           className={"dotOriginP"}
           style={{
             position: "absolute",
-            top: 337.668,
-            left: 586.5,
+            top: calculateTopCorrectP(),
+            left: calculateLeftCorrectP(),
           }}
         />
         <div
           className={"dotCorrectP"}
           style={{
             position: "absolute",
-            top: 174,
-            left: 140,
+            top: 190,
+            left: 190,//
           }}
         />
 
@@ -91,7 +124,7 @@ const Labels = (props) => {
           orientation="h"
           borderStyle="dashed"
           borderWidth={calcBorderWidth()}
-          borderColor="red"
+          borderColor="#003e4c"
           fromAnchor="20%"
           delay={true}
           className="animate__animated animate__fadeIn"

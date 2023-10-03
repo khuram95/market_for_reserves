@@ -21,6 +21,8 @@ const Graph = (props) => {
   const [submitted, setSubmitted] = useState(false)
   const [dottedLineLabels, setDottedLineLabels] = useState(false)
   const [hideQuestionBeforeAnimation, setHideQuestionBeforeAnimation] = useState(true);
+  const [demandAnsweredCorrectly, setDemandAnsweredCorrectly] = useState(null);
+  const [supplyAnsweredCorrectly, setSupplyAnsweredCorrectly] = useState(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -51,6 +53,8 @@ const Graph = (props) => {
             submitted={submitted}
             dottedLineLabels={dottedLineLabels}
             key={resetGraph}
+            setSupplyAnsweredCorrectly={setSupplyAnsweredCorrectly}
+            setDemandAnsweredCorrectly={setDemandAnsweredCorrectly}
           />
             <Button
               onClick={submitted ? nextQuestion : handleSubmit}

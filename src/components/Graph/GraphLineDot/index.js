@@ -13,6 +13,8 @@ const GraphLineDot = (props) => {
     questionAnswer,
     setAnsweredCorrectly,
     answeredCorrectly,
+    setSupplyAnsweredCorrectly,
+    setDemandAnsweredCorrectly,
     setMoved,
     modalOpen,
     dottedLineLabels,
@@ -71,6 +73,8 @@ const GraphLineDot = (props) => {
               modalOpen={modalOpen}
               setShowDragMessage={setShowDragMessage}
               dottedLineLabels={dottedLineLabels}
+              setSupplyAnsweredCorrectly={setSupplyAnsweredCorrectly}
+              setDemandAnsweredCorrectly={setDemandAnsweredCorrectly}
             />
           {/* )} */}
         </Grid>

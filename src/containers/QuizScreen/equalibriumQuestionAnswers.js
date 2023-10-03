@@ -10,27 +10,27 @@ import eyeSurgery from "../../images/circleIcons/equalibrium/eyeSurgery.png";
 import oil from "../../images/circleIcons/equalibrium/oil.png";
 
 const questionAnswers = [
-  {
-    title: "MARKET FOR BRACELETS",
-    question:
-      "Fashion magazines: Wearing multiple bracelets is the hot new trend.",
-    subQuestion: "Consider the market for bracelets. What happens?",
-    icon: bracelets,
-    answer: "Demand curve shifts right",
-    graphType: "supply curve",
-    briefness:
-      "If wearing multiple bracelets is now in style, this means that demand for bracelets will increase. The demand curve will shift to the right and this will result in movement along the existing supply curve.",
-  },
-  {
-    title: "MARKET FOR OIL",
-    question: "Oil producers think the price of oil will increase in 6 months.",
-    subQuestion: "Consider the market for oil. What happens?",
-    icon: oil,
-    answer: "Supply curve shifts left",
-    graphType: "supply curve",
-    briefness:
-      "If oil providers think they can charge a higher price for oil in the near future, they will keep oil in the ground. The supply of oil will decrease, the supply curve will shift to the left, and that will result in movement along the existing demand curve.",
-  },
+  // {
+  //   title: "MARKET FOR OIL",
+  //   question: "Oil producers think the price of oil will increase in 6 months.",
+  //   subQuestion: "Consider the market for oil. What happens?",
+  //   icon: oil,
+  //   answer: "Supply curve shifts left",
+  //   graphType: "supply curve",
+  //   briefness:
+  //     "If oil providers think they can charge a higher price for oil in the near future, they will keep oil in the ground. The supply of oil will decrease, the supply curve will shift to the left, and that will result in movement along the existing demand curve.",
+  // },
+  // {
+  //   title: "MARKET FOR OIL",
+  //   question: "Oil producers think the price of oil will increase in 6 months.",
+  //   subQuestion: "Consider the market for oil. What happens?",
+  //   icon: oil,
+  //   answer: "Supply curve shifts right",
+  //   graphType: "supply curve",
+  //   briefness:
+  //     "If oil providers think they can charge a higher price for oil in the near future, they will keep oil in the ground. The supply of oil will decrease, the supply curve will shift to the left, and that will result in movement along the existing demand curve.",
+  // },
+
 
   {
     title: "MARKET FOR SILVER",

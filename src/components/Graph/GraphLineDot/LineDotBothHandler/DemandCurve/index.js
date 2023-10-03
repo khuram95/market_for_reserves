@@ -83,11 +83,11 @@ const DemandCurve = (props) => {
       switch (answer) {
         case "Demand curve shifts left":
           setShowLine(true);
-          setCorrectPosition(-70);
+          setCorrectPosition(-50);
           break;
         case "Demand curve shifts right":
           setShowLine(true);
-          setCorrectPosition(70);
+          setCorrectPosition(50);
           break;
       }
       setAnsweredCorrectly(false);
@@ -106,10 +106,10 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "Demand curve shifts left":
         setArrowIcon(leftArrow);
-        setArrowPosition({ top: dotCenterPosition - 60, left: -110 });
+        setArrowPosition({ top: dotCenterPosition - 20, left: -90 });
         break;
       case "Demand curve shifts right":
-        setArrowPosition({ top: dotCenterPosition + 55, left: 75 });
+        setArrowPosition({ top: dotCenterPosition + 55, left: 20 });
         setArrowIcon(rightArrow);
         break;
     }
@@ -152,11 +152,11 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "shifts left":
         setShowLine(true);
-        setCorrectPosition(-70);
+        setCorrectPosition(-50);
         break;
       case "shifts right":
         setShowLine(true);
-        setCorrectPosition(70);
+        setCorrectPosition(50);
         break;
     }
     setMoved("nothing");
@@ -170,13 +170,13 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "Demand curve shifts left":
         setShowLine(true);
-        setCorrectPosition(-70);
+        setCorrectPosition(-50);
         setMoved("moved demand curve but in opposite");
         setColors();
         break;
       case "Demand curve shifts right":
         setShowLine(true);
-        setCorrectPosition(70);
+        setCorrectPosition(50);
         setMoved("moved demand curve but in opposite");
         setColors();
         break;
@@ -226,10 +226,10 @@ const DemandCurve = (props) => {
   const changePosition = () => {
     switch (answer) {
       case "Demand curve shifts left":
-        setLinePosition({ x: -70, y: 0 });
+        setLinePosition({ x: -50, y: 0 });
         break;
       case "Demand curve shifts right":
-        setLinePosition({ x: 70, y: 0 });
+        setLinePosition({ x: 50, y: 0 });
         break;
       default:
       // code block
@@ -317,16 +317,58 @@ const DemandCurve = (props) => {
             <img src={showIconDefaultLine()} className={classes.lineIcon} />
           )}
         </div>
-        {/* <div
-          className={classes.correctLine}
-          style={{
-            zIndex: showLine ? "1" : "-1",
-            backgroundColor: wrongPosition ? lineColor : "#508a05",
-            transition: `left ${wrongPosition ? "0s" : "1s"}`,
-            left: wrongPosition ? wrongPosition : correctPosition,
-          }}
+        { submitted &&
+        <div
+          // className={classes.correctLine}
+          // style={{
+          //   zIndex: showLine ? "1" : "-1",
+          //   backgroundColor: wrongPosition ? lineColor : "#508a05",
+          //   transition: `left ${wrongPosition ? "0s" : "1s"}`,
+          //   left: wrongPosition ? wrongPosition : correctPosition,
+          // }}
+          style={{ top: 46, position: "relative", left: correctPosition - 25 }}
         >
-          {showDot && !answeredCorrectly && (
+          <div
+                  className="straight-line"
+                  style={{
+                    width: "132px",
+                    height: "7px",
+                    backgroundColor: wrongPosition ? lineColor : "#508a05",
+                    position: "relative",
+                    bottom: "-85px",
+                    left: "-183px",
+                    borderRadius: "5px",
+                  }}
+                ></div>
+                <div
+                  className="bent-line"
+                  style={{
+                    width: "205px",
+                    height: "7px",
+                    backgroundColor: wrongPosition ? lineColor : "#508a05",
+                    transform: "rotate(52deg)",
+                    position: "absolute",
+                    top: "165px",
+                    left: "-95px",
+                  }}
+                ></div>
+                <div
+                  className="second-straight-line"
+                  style={{
+                    width: "224px",
+                    height: "7px",
+                    backgroundColor: wrongPosition ? lineColor : "#508a05",
+                    position: "absolute",
+                    top: "245px",
+                    left: "67px",
+                    borderRadius: "5px",
+                  }}
+                ></div>
+                {/* <img
+                  src={D2}
+                  className={classes.correctLineIcon}
+                /> */}
+          {/* {showDot && !answeredCorrectly && (
             <div
               className={classes.correctDot}
               style={{
@@ -337,8 +379,8 @@ const DemandCurve = (props) => {
                   : dotCenterPosition + 50,
               }}
             />
-          )}
-          {changeIconColor && !answeredCorrectly && (
+          )} */}
+          {/* {changeIconColor && !answeredCorrectly && (
             <img
               src={D2}
               className={
@@ -347,24 +389,25 @@ const DemandCurve = (props) => {
                   : classes.lineIcon
               }
             />
-          )}
-        </div> */}
+          )} */}
+        </div>
+        }
         <Draggable
           axis="x"
-          defaultPosition={{ x: 0, y: 0 }}
+          defaultPosition={{ x: -30, y: 0 }}
           position={linePosition}
           scale={1}
-          bounds={{ top: 0, left: -70, right: 70, bottom: 0 }}
+          bounds={{ top: 0, left: -50, right: 50, bottom: 0 }}
           onStart={DragStartLine}
           onDrag={DragLine}
           onStop={DragEndLine}
           // disabled={DisasetDisableDemand}
         >
           <div style={{ cursor: !disableDemand && "pointer" }}>
-            <div className={classes.dragableLine} id="draggable_line">
+            <div  id="draggable_line">
               <div
                 className="line-container"
-                style={{ position: "relative", top: "40px" }}
+                style={{ position: "relative", top: "40px", height: 0, width: 0,  left: -25 }}
               >
                 <div
                   className="straight-line"
