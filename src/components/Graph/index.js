@@ -63,13 +63,13 @@ const Graph = (props) => {
               {submitted ? "NEXT" : "SUBMIT"}
             </Button>
         </Grid>
-        {hideQuestionBeforeAnimation
+        {/* {hideQuestionBeforeAnimation
           ? <Grid className={classes.questionContainerHidden}/>
           : <QuizQuestion
               answeredCorrectly={answeredCorrectly}
               questionAnswer={questionAnswer}
               moved={moved}
-            />}
+            />} */}
       </Grid>
     </Grid>
   )

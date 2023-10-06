@@ -38,10 +38,10 @@ const styles = theme => ({
   },
 
   graphYLable: {
-    height: '30px',
+    height: '35px',
     position: 'absolute',
     top: '7px',
-    left: '-90px',
+    left: '-100px',
     [emulatorScreen(theme)]: {
       height: '12px',
       left: '-60px'
@@ -53,7 +53,7 @@ const styles = theme => ({
   },
 
   graphXLable: {
-    height: '18px',
+    height: '16px',
     position: 'absolute',
     bottom: '-35px',
     right: '5px',

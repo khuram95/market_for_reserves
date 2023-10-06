@@ -51,6 +51,7 @@ const DemandCurve = (props) => {
   const [arrowPosition, setArrowPosition] = useState({ left: 0, top: 0 });
   const [showDottedLines, setShowDottedLines] = useState(false);
   const [reRender, setReRender] = useState(false);
+  const [d2Postion, setD2Postion] = useState(0);
   // animate__fadeIn
   useEffect(() => {
     if (submitted) {
@@ -106,10 +107,10 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "Demand curve shifts left":
         setArrowIcon(leftArrow);
-        setArrowPosition({ top: dotCenterPosition - 20, left: -90 });
+        setArrowPosition({ top: dotCenterPosition - 30, left: -90 });
         break;
       case "Demand curve shifts right":
-        setArrowPosition({ top: dotCenterPosition + 55, left: 20 });
+        setArrowPosition({ top: dotCenterPosition + 55, left: 25 });
         setArrowIcon(rightArrow);
         break;
     }
@@ -184,6 +185,7 @@ const DemandCurve = (props) => {
         setColors();
         answer.includes("Supply curve shifts") && setMoved("incorrect");
     }
+    setLinePosition({ x: 0, y: 0 });
     setAnsweredCorrectly(false);
   };
 
@@ -222,7 +224,21 @@ const DemandCurve = (props) => {
     changePosition();
     setAnsweredCorrectly(true);
     setMoved("correct");
+    // setLinePosition({ x: 0, y: 0 });
+    setD2Postion()
   };
+
+  const isShowD2 = () => {
+    return submitted && answer.includes("Demand")
+  }
+
+  const getD2Postion = () => {
+    if(answer.includes("Demand")){
+      if(answer.includes("shifts right")) return  -250
+      if(answer.includes("shifts left")) return  -100
+    }
+  }
+
   const changePosition = () => {
     switch (answer) {
       case "Demand curve shifts left":
@@ -244,6 +260,7 @@ const DemandCurve = (props) => {
   };
 
   const lineMovedOrNotAnswered = () => {
+    return true;
     if (answeredCorrectly === null) return true;
     if (answeredCorrectly === false) return false;
     if (answer.includes("Supply curve")) return true;
@@ -275,6 +292,8 @@ const DemandCurve = (props) => {
 
   return (
     <div>
+      <div style={{ height: 15, position: "absolute", zIndex: 15, top: 96, left: -74, width: "15%", backgroundColor: "#ecf2f1" }}></div>
+
       {showDottedLines && (
         <Labels
           p2Top={p2ToOrigin()}
@@ -317,7 +336,7 @@ const DemandCurve = (props) => {
             <img src={showIconDefaultLine()} className={classes.lineIcon} />
           )}
         </div>
-        { submitted &&
+        { submitted && answer.includes("Demand") &&
         <div
           // className={classes.correctLine}
           // style={{
@@ -326,14 +345,14 @@ const DemandCurve = (props) => {
           //   transition: `left ${wrongPosition ? "0s" : "1s"}`,
           //   left: wrongPosition ? wrongPosition : correctPosition,
           // }}
-          style={{ top: 46, position: "relative", left: correctPosition - 25 }}
+          style={{ top: 39, position: "absolute", left: answer.includes("shifts right") ? 25 : -75  }}
         >
           <div
                   className="straight-line"
                   style={{
                     width: "132px",
                     height: "7px",
-                    backgroundColor: wrongPosition ? lineColor : "#508a05",
+                    backgroundColor: "#508a05",
                     position: "relative",
                     bottom: "-85px",
                     left: "-183px",
@@ -345,7 +364,7 @@ const DemandCurve = (props) => {
                   style={{
                     width: "205px",
                     height: "7px",
-                    backgroundColor: wrongPosition ? lineColor : "#508a05",
+                    backgroundColor: "#508a05",
                     transform: "rotate(52deg)",
                     position: "absolute",
                     top: "165px",
@@ -357,7 +376,7 @@ const DemandCurve = (props) => {
                   style={{
                     width: "224px",
                     height: "7px",
-                    backgroundColor: wrongPosition ? lineColor : "#508a05",
+                    backgroundColor: "#508a05",
                     position: "absolute",
                     top: "245px",
                     left: "67px",
@@ -407,7 +426,7 @@ const DemandCurve = (props) => {
             <div  id="draggable_line">
               <div
                 className="line-container"
-                style={{ position: "relative", top: "40px", height: 0, width: 0,  left: -25 }}
+                style={{ position: "relative", top: "39px", height: 0, width: 0,  left: submitted ? -25 : -25 }}
               >
                 <div
                   className="straight-line"
@@ -448,12 +467,9 @@ const DemandCurve = (props) => {
               </div>
               {lineMovedOrNotAnswered() && (
                 <img
-                  src={changeIconColor && answeredCorrectly ? D2 : dBlue}
-                  className={
-                    changeIconColor && answeredCorrectly
-                      ? classes.correctLineIcon
-                      : classes.lineIcon
-                  }
+                  src={isShowD2() ? D2 : dBlue}
+                  className={isShowD2() ? classes.correctLineIcon : classes.lineIcon}
+                  style={{ right: isShowD2() &&  getD2Postion()}}
                 />
               )}
             </div>

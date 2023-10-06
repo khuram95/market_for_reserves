@@ -252,7 +252,7 @@ const styles = theme => ({
     height: "25px",
     top: "-30px",
     left: "5px",
-    transform: "rotate(-45deg)",
+    // transform: "rotate(-45deg)",
     [emulatorScreen(theme)]: {
       top: '-24px',
       left: '0px',

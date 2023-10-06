@@ -264,7 +264,7 @@ const styles = (theme) => ({
     position: "absolute",
     height: "25px",
     bottom: "-275px",
-    left: "203px",
+    left: "150px",
     [emulatorScreen(theme)]: {
       left: "5px",
       bottom: "-20px",
@@ -280,8 +280,8 @@ const styles = (theme) => ({
   correctLineIcon: {
     position: "absolute",
     height: "25px",
-    bottom: "-228px",
-    left: "100px",
+    bottom: "-275px",
+    // left: "100px",
     // transform: "rotate(45deg)",
     [emulatorScreen(theme)]: {
       left: "5px",

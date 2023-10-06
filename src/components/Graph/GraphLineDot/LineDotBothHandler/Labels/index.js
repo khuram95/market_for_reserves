@@ -31,7 +31,7 @@ const Labels = (props) => {
       else return "105px";
     else if (isMobile) return "78px";
     else if (isEmulator) return "102px";
-    else return "250px";
+    else return "235px";
   };
 
   const setQ2Label = () => {
@@ -52,9 +52,9 @@ const Labels = (props) => {
   const calculateTopCorrectP = () => {
     if(answer.includes("Demand")){
       if (answer.includes("shifts left")){
-        return 260
+        return 250
       }else{
-        return 125
+        return 120
       }
     }else{
       if (answer.includes("shifts left")){
@@ -71,7 +71,7 @@ const Labels = (props) => {
       if (answer.includes("shifts left")){
         return 180
       }else{
-        return 185
+        return 182
       }
     }else{
       if (answer.includes("shifts left")){
@@ -94,27 +94,11 @@ const Labels = (props) => {
       <>
         <div className={"P2"} style={{ position: "absolute", top: calculateTopCorrectP() }} />
         <div
-          className={"P1"}
-          style={{
-            position: "absolute",
-            top: 190,
-          }}
-        />
-
-        <div
           className={"dotOriginP"}
           style={{
             position: "absolute",
             top: calculateTopCorrectP(),
             left: calculateLeftCorrectP(),
-          }}
-        />
-        <div
-          className={"dotCorrectP"}
-          style={{
-            position: "absolute",
-            top: 190,
-            left: 190,//
           }}
         />
 
@@ -129,6 +113,25 @@ const Labels = (props) => {
           delay={true}
           className="animate__animated animate__fadeIn"
         />
+
+{/* original */}
+        <div
+          className={"P1"}
+          style={{
+            position: "absolute",
+            top: 180,
+          }}
+        />
+
+        <div
+          className={"dotCorrectP"}
+          style={{
+            position: "absolute",
+            top: 180,
+            left: 180,//
+          }}
+        />
+
         <LineTo
           from="dotCorrectP"
           to="P1"
