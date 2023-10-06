@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import correctIcon from "../../../../images/correct.svg";
-import NotQuiteIcon from "../../../../../src/images/notQuite.svg";
-import IncorrectIcon from "../../../../../src/images/incorrect.svg";
+// import NotQuiteIcon from "../../../../../src/images/notQuite.svg";
+// import IncorrectIcon from "../../../../../src/images/incorrect.svg";
 import { Grid, Typography } from "@material-ui/core";
 import styles from "./styles";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -17,7 +17,7 @@ const QuizAnswer = ({ questionAnswer, classes, moved, showBriefness }) => {
   const whatWasMoved = () => {
     switch (moved) {
       case "nothing":
-        setAnswerImage(IncorrectIcon);
+        // setAnswerImage(IncorrectIcon);
         setAnswerMessage("");
         return;
       case "correct":
@@ -25,17 +25,17 @@ const QuizAnswer = ({ questionAnswer, classes, moved, showBriefness }) => {
         setAnswerMessage("");
         return;
       case "incorrect":
-        setAnswerImage(IncorrectIcon);
+        // setAnswerImage(IncorrectIcon);
         setAnswerMessage("");
         return;
       case "moved demand curve but in opposite":
-        setAnswerImage(NotQuiteIcon);
+        // setAnswerImage(NotQuiteIcon);
         setAnswerMessage(
           "You were right to shift the demand curve, but you did it in the wrong direction."
         );
         return;
       case "moved supply curve but in opposite":
-        setAnswerImage(NotQuiteIcon);
+        // setAnswerImage(NotQuiteIcon);
         setAnswerMessage(
           "You were right to shift the supply curve, but you did it in the wrong direction."
         );
