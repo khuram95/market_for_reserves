@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles";
 import breakingNews from "../../../../../src/images/breakingnews.svg";
-import correctIcon from "../../../../../src/images/correctIcon.svg";
+import correct from "../../../../../src/images/correctIcon.svg";
 import { Grid, Typography } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import "animate.css/animate.css";
