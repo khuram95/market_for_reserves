@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import correctIcon from "../../../../../src/images/correct.svg";
-import NotQuiteIcon from "../../../../../src/images/notQuite.svg";
-import IncorrectIcon from "../../../../../src/images/incorrect.svg";
+// import correctIcon from "../../../../images/correct.svg";
+// import NotQuiteIcon from "../../../../images/notQuite.svg";
+// import IncorrectIcon from "../../../../images/incorrect.svg";
 import { Grid, Typography } from "@material-ui/core";
 import styles from "./styles";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -11,37 +11,37 @@ const QuizAnswer = ({ questionAnswer, classes, moved, showBriefness }) => {
   const [answerMessage, setAnswerMessage] = useState("");
 
   useEffect(() => {
-    whatWasMoved();
+    // whatWasMoved();
   }, [moved]);
 
-  const whatWasMoved = () => {
-    switch (moved) {
-      case "nothing":
-        setAnswerImage(IncorrectIcon);
-        setAnswerMessage("");
-        return;
-      case "correct":
-        setAnswerImage(correctIcon);
-        setAnswerMessage("");
-        return;
-      case "incorrect":
-        setAnswerImage(IncorrectIcon);
-        setAnswerMessage("");
-        return;
-      case "moved demand curve but in opposite":
-        setAnswerImage(NotQuiteIcon);
-        setAnswerMessage(
-          "You were right to shift the demand curve, but you did it in the wrong direction."
-        );
-        return;
-      case "moved supply curve but in opposite":
-        setAnswerImage(NotQuiteIcon);
-        setAnswerMessage(
-          "You were right to shift the supply curve, but you did it in the wrong direction."
-        );
-        return;
-    }
-  };
+  // const whatWasMoved = () => {
+  //   switch (moved) {
+  //     case "nothing":
+  //       setAnswerImage(IncorrectIcon);
+  //       setAnswerMessage("");
+  //       return;
+  //     case "correct":
+  //       setAnswerImage(correctIcon);
+  //       setAnswerMessage("");
+  //       return;
+  //     case "incorrect":
+  //       setAnswerImage(IncorrectIcon);
+  //       setAnswerMessage("");
+  //       return;
+  //     case "moved demand curve but in opposite":
+  //       setAnswerImage(NotQuiteIcon);
+  //       setAnswerMessage(
+  //         "You were right to shift the demand curve, but you did it in the wrong direction."
+  //       );
+  //       return;
+  //     case "moved supply curve but in opposite":
+  //       setAnswerImage(NotQuiteIcon);
+  //       setAnswerMessage(
+  //         "You were right to shift the supply curve, but you did it in the wrong direction."
+  //       );
+  //       return;
+  //   }
+  // };
 
   const answerPrefix = () => {
     if (questionAnswer.graphType === "supply curve") {
