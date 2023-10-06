@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import correctIcon from "../../../../../src/images/correct.svg";
+import correctIcon from "../../../../images/correct.svg";
 import NotQuiteIcon from "../../../../../src/images/notQuite.svg";
 import IncorrectIcon from "../../../../../src/images/incorrect.svg";
 import { Grid, Typography } from "@material-ui/core";
