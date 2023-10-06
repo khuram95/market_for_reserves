@@ -12,7 +12,7 @@ const BreakingNews = ({ questionAnswer, classes }) => {
     >
       <Grid className={classes.questionBody}>
         <img src={breakingNews} className={classes.breakingNews}></img>
-        <img src={questionAnswer.icon} className={classes.circleIcon}></img>
+        {/* <img src={questionAnswer.icon} className={classes.circleIcon}></img> */}
 
         <Typography variant="h5" className={classes.questionText}>
           {questionAnswer.question}

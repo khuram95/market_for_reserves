@@ -10,26 +10,25 @@ import eyeSurgery from "../../images/circleIcons/equalibrium/eyeSurgery.png";
 import oil from "../../images/circleIcons/equalibrium/oil.png";
 
 const questionAnswers = [
-  // {
-  //   title: "MARKET FOR OIL",
-  //   question: "Oil producers think the price of oil will increase in 6 months.",
-  //   subQuestion: "Consider the market for oil. What happens?",
-  //   icon: oil,
-  //   answer: "Supply curve shifts left",
-  //   graphType: "supply curve",
-  //   briefness:
-  //     "If oil providers think they can charge a higher price for oil in the near future, they will keep oil in the ground. The supply of oil will decrease, the supply curve will shift to the left, and that will result in movement along the existing demand curve.",
-  // },
-  // {
-  //   title: "MARKET FOR OIL",
-  //   question: "Oil producers think the price of oil will increase in 6 months.",
-  //   subQuestion: "Consider the market for oil. What happens?",
-  //   icon: oil,
-  //   answer: "Supply curve shifts right",
-  //   graphType: "supply curve",
-  //   briefness:
-  //     "If oil providers think they can charge a higher price for oil in the near future, they will keep oil in the ground. The supply of oil will decrease, the supply curve will shift to the left, and that will result in movement along the existing demand curve.",
-  // },
+  {
+    title: "MARKET FOR RESERVES",
+    question: "The central bank sells bonds to banks, what happens the market for reserves?",
+    subQuestion: "",
+    icon: oil,
+    answer: "Supply curve shifts left",
+    graphType: "supply curve",
+    briefness:"",
+  },
+  {
+    title: "MARKET FOR OIL",
+    question: "Oil producers think the price of oil will increase in 6 months.",
+    subQuestion: "Consider the market for oil. What happens?",
+    icon: oil,
+    answer: "Supply curve shifts right",
+    graphType: "supply curve",
+    briefness:
+      "If oil providers think they can charge a higher price for oil in the near future, they will keep oil in the ground. The supply of oil will decrease, the supply curve will shift to the left, and that will result in movement along the existing demand curve.",
+  },
 
 
   {
