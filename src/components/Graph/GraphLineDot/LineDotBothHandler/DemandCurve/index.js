@@ -244,9 +244,11 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "Demand curve shifts left":
         setLinePosition({ x: -50, y: 0 });
+        setCorrectPosition(-75);
         break;
       case "Demand curve shifts right":
         setLinePosition({ x: 50, y: 0 });
+        setCorrectPosition(25);
         break;
       default:
       // code block
