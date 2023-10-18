@@ -85,11 +85,11 @@ const DemandCurve = (props) => {
       switch (answer) {
         case "Demand curve shifts left":
           setShowLine(true);
-          setCorrectPosition(-50);
+          setCorrectPosition(-75)
           break;
         case "Demand curve shifts right":
           setShowLine(true);
-          setCorrectPosition(50);
+          setCorrectPosition(25);
           break;
       }
       setAnsweredCorrectly(false);
@@ -154,11 +154,11 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "shifts left":
         setShowLine(true);
-        setCorrectPosition(-50);
+        setCorrectPosition(-75);
         break;
       case "shifts right":
         setShowLine(true);
-        setCorrectPosition(50);
+        setCorrectPosition(25);
         break;
     }
     setMoved("nothing");
@@ -172,13 +172,13 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "Demand curve shifts left":
         setShowLine(true);
-        setCorrectPosition(-50);
+        setCorrectPosition(-75);
         setMoved("moved demand curve but in opposite");
         setColors();
         break;
       case "Demand curve shifts right":
         setShowLine(true);
-        setCorrectPosition(50);
+        setCorrectPosition(25);
         setMoved("moved demand curve but in opposite");
         setColors();
         break;
@@ -294,14 +294,13 @@ const DemandCurve = (props) => {
 
   const correctLine = () => {
     return (<div
-          // className={classes.correctLine}
-          // style={{
-          //   zIndex: showLine ? "1" : "-1",
-          //   backgroundColor: wrongPosition ? lineColor : "#508a05",
-          //   transition: `left ${wrongPosition ? "0s" : "1s"}`,
-          //   left: wrongPosition ? wrongPosition : correctPosition,
-          // }}
-          style={{ top: 39, zIndex: 2, position: "absolute", left: answer.includes("shifts right") ? 25 : -75  }}
+      style={{
+        transition: `left ${wrongPosition ? "2s" : "1s"}`, // Specify the transition property and duration
+        top: 39,
+        zIndex: 2,
+        position: "absolute",
+        left: correctPosition ? correctPosition : correctPosition -25, // Use "px" for left values
+      }}
         >
           <div
                   className="straight-line"
@@ -337,6 +336,7 @@ const DemandCurve = (props) => {
                     top: "245px",
                     left: "67px",
                     borderRadius: "5px",
+
                   }}
                 ></div>
                 {/* <img

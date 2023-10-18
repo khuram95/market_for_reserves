@@ -322,9 +322,6 @@ const SupplyCurve = (props) => {
           {!(answeredCorrectly === null) && <img src={showIconDefaultLine()} className={classes.lineIcon} />}
         </div>
         <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
-          {/* {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
-            style={{ opacity: "1", left: "-10px", top: !answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
-          />} */}
           {(changeIconColor && !answeredCorrectly) && <img src={S2} className={classes.lineIcon} />}
 
         </div>

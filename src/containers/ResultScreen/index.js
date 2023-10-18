@@ -2,22 +2,29 @@ import React, { useState } from "react";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import { Grid, Typography, Button, Link } from "@material-ui/core";
-import Correct from "../../images/checkMarkImage.png";
-import Wrong from "../../images/xMarkImage.png";
+import Correct from "../../images/resultIcons/checkMarkImage.png";
+import Wrong from "../../images/resultIcons/xMarkImage.png";
 import mruLogo from "../../images/mruLogo.png";
 import { filter } from "lodash";
 import html2canvas from "html2canvas";
 import Hand from "../../images/resultIcons/Hand.svg";
 import Desk from "../../images/resultIcons/Desk.svg";
+import TeacherGuide from "../../images/resultIcons/TeacherGuide.svg";
 import Blocks from "../../images/resultIcons/Blocks.svg";
 import Podium from "../../images/resultIcons/Podium.svg";
-import NextPractice from "../../images/resultIcons/NextPractice.svg";
 import Retry from "../../images/resultIcons/Retry.svg";
 import download from "downloadjs";
-import downloadIcon from "../../images/download.svg";
-import TeacherGuide from "../../images/resultIcons/TeacherGuide.svg";
+import downloadIcon from "../../images/resultIcons/download.svg";
 
-const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
+const ResultScreen = ({
+  classes,
+  answers,
+  setAnswers,
+  totalBalance,
+  setCurrentScreen,
+  setPhase2Answers,
+  setTotalBalance,
+}) => {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [showStudentName, setShowStudentName] = useState(false);
@@ -55,9 +62,10 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
 
   const quizRetry = () => {
     setAnswers([]);
+    setPhase2Answers([]);
+    setTotalBalance(0);
     setCurrentScreen("Quiz");
   };
-
   return (
     <Grid
       container
@@ -67,12 +75,12 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
     >
       {!showStudentName && (
         <Grid className={classes.leftBarContainer}>
-          {/* <Grid className={classes.forStudents}>
+          <Grid className={classes.forStudents}>
             <Typography className={classes.forStudentsTitle}>
               FOR STUDENTS
             </Typography>
             <Link onClick={quizRetry} className={classes.sideBarLink}>
-              <img src={Retry} className={classes.linkImg} />
+              <img src={Retry} className={classes.linkImg} alt="" />
               <Typography className={classes.sideBarLinkText}>RETRY</Typography>
             </Link>
             <Link
@@ -80,7 +88,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
               target="_blank"
               className={classes.sideBarLink}
             >
-              <img src={Hand} className={classes.linkImg} />
+              <img src={Hand} className={classes.linkImg} alt="" />
               <Grid>
                 <Typography className={classes.sideBarLinkText}>
                   MORE INTERACTIVE
@@ -90,13 +98,13 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
                 </Typography>
               </Grid>
             </Link>
-          </Grid> */}
+          </Grid>
           <Grid className={classes.forTeachers}>
             <Typography className={classes.forStudentsTitle}>
               FOR TEACHERS
             </Typography>
-            <Link
-              href="https://mru.org/get-shifts-supply-or-demand-interactive-practice-teachers-guide/receive"
+            {/* <Link
+              href=" https://mru.org/get-winners-and-losers-of-inflation-interactive-practice-teachers-guide/receive"
               target="_blank"
               className={classes.sideBarLink}
             >
@@ -106,19 +114,19 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
                   GET TEACHER'S GUIDE
                 </Typography>
               </Grid>
-            </Link>
+            </Link> */}
             <Link
-              href="https://mru.org/supplydemand"
+              href="https://learn.mru.org/lesson-plans/monetary-policy-unit/"
               target="_blank"
               className={classes.sideBarLink}
             >
-              <img src={Blocks} className={classes.linkImg} />
+              <img src={Blocks} className={classes.linkImg} alt="" />
               <Grid>
                 <Typography className={classes.sideBarLinkText}>
                   UNIT PLAN
                 </Typography>
                 <Typography className={classes.sideBarLinkText}>
-                  Supply and Demand
+                  Monetary Policy
                 </Typography>
               </Grid>
             </Link>
@@ -127,10 +135,13 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
               target="_blank"
               className={classes.sideBarLink}
             >
-              <img src={Hand} className={classes.linkImg} />
+              <img src={Hand} className={classes.linkImg} alt="" />
               <Grid>
                 <Typography className={classes.sideBarLinkText}>
-                  ALL INTERACTIVES
+                  MORE INTERACTIVE
+                </Typography>
+                <Typography className={classes.sideBarLinkText}>
+                  PRACTICE
                 </Typography>
               </Grid>
             </Link>
@@ -139,7 +150,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
               target="_blank"
               className={classes.sideBarLink}
             >
-              <img src={Desk} className={classes.linkImg} />
+              <img src={Desk} className={classes.linkImg} alt="" />
               <Grid>
                 <Typography className={classes.sideBarLinkText}>
                   ALL HIGH SCHOOL
@@ -154,7 +165,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
               target="_blank"
               className={classes.sideBarLink}
             >
-              <img src={Podium} className={classes.linkImg} />
+              <img src={Podium} className={classes.linkImg} alt="" />
               <Grid>
                 <Typography className={classes.sideBarLinkText}>
                   ALL UNIVERSITY
@@ -167,31 +178,6 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
           </Grid>
         </Grid>
       )}
-
-      <Grid className={classes.rightBarContainer}>
-        <Link onClick={quizRetry} className={classes.rightSideBarLink}>
-          <img src={Retry} className={classes.linkImg} />
-          <Typography className={classes.rightSideBarLinkText}>RETRY</Typography>
-        </Link>
-        <Link
-          href="https://practice.mru.org/equilibrium2/"
-          target="_blank"
-          className={classes.rightSideBarLink}
-        >
-          <img src={NextPractice} className={classes.linkImg} />
-          <Typography className={classes.rightSideBarLinkText}>NEXT PRACTICE SET</Typography>
-        </Link>
-        <Link
-          href="https://practice.mru.org"
-          target="_blank"
-          className={classes.rightSideBarLink}
-        >
-          <img src={Hand} className={classes.linkImg} />
-          <Typography className={classes.rightSideBarLinkText}> ALL INTERACTIVES </Typography>
-        </Link>
-      </Grid>
-
-
       <Grid
         container
         alignItems="center"
@@ -200,7 +186,12 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
       >
         <Grid>
           <Typography variant="h5" className={classes.homeDesc}>
-            Market for Reserves (Limited and Ample)
+            YOU'VE COMPLETED
+          </Typography>
+        </Grid>
+        <Grid>
+          <Typography variant="h5" className={classes.homeDesc}>  
+          Market for Reserves (Limited and Ample)
           </Typography>
         </Grid>
         <Grid container justify="center" alignItems="center">
@@ -261,7 +252,11 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
                 onClick={handleClick}
               >
                 <>
-                  <img src={downloadIcon} className={classes.downloadImage} />
+                  <img
+                    src={downloadIcon}
+                    className={classes.downloadImage}
+                    alt=""
+                  />
                   DOWNLOAD .JPG
                 </>
               </Button>
@@ -283,7 +278,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
             target="_blank"
             className={classes.mruLogo}
           >
-            <img src={mruLogo} className={classes.logoImg} />
+            <img src={mruLogo} className={classes.logoImg} alt="" />
           </Link>
         </Grid>
       </Grid>

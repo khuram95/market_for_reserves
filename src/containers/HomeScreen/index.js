@@ -45,7 +45,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
         </Button>
       </Grid>
       <Grid container justify="space-between" style={{ position: "relative" }}>
-        <Grid className={classes.forTeachers} style={{}}>
+        {/* <Grid className={classes.forTeachers} style={{}}>
           <Typography className={classes.forStudentsTitle}>
             FOR TEACHERS
           </Typography>
@@ -76,7 +76,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
               </Typography>
             </Grid>
           </Link>
-        </Grid>
+        </Grid> */}
         <Grid style={{ padding: "2rem" }} />
         <Grid className={classes.mruLogo}>
           <img src={mruLogo} width="110px" />
