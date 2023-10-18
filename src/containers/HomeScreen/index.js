@@ -10,7 +10,7 @@ import TeacherGuide from "../../images/resultIcons/TeacherGuide.svg";
 // import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 
 const HomeScreen = ({ classes, setCurrentScreen }) => {
-  const handleClick = () => setCurrentScreen("Tutorial");
+  const handleClick = () => setCurrentScreen("Quiz");
 
   const logoClick = (e) => {
     e.stopPropagation();
@@ -37,7 +37,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
         <img src={CoverImage} className={classes.logo} />
         <Grid className={classes.quizDesc}>
           <Typography variant="h5" className={classes.homeDesc}>
-            Finding Equilibrium (Set 1/3)
+            Market for Reserves (Limited and Ample)
           </Typography>
         </Grid>
         <Button className={classes.submitButton} onClick={handleClick}>

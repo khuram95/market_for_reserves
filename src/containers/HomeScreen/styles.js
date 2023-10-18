@@ -28,6 +28,7 @@ const styles = (theme) => ({
   logo: {
     marginTop: "-200px",
     height: "600px",
+    width: "130px",
     [emulatorScreen(theme)]: {
       height: "380px",
       marginTop: "-150px",

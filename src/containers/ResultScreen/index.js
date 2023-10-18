@@ -200,7 +200,7 @@ const ResultScreen = ({ classes, answers, setAnswers, setCurrentScreen }) => {
       >
         <Grid>
           <Typography variant="h5" className={classes.homeDesc}>
-            Finding Equilibrium (Set 1/3)
+            Market for Reserves (Limited and Ample)
           </Typography>
         </Grid>
         <Grid container justify="center" alignItems="center">
