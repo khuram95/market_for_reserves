@@ -294,7 +294,7 @@ const SupplyCurve = (props) => {
 
   return (
     <div>
-       {showDottedLines &&
+       {showDottedLines && false &&
           <Labels
           p2Top={p2ToOrigin()}
           p1Top={p1ToCorrect()}

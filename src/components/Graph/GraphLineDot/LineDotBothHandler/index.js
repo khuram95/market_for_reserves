@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DemandCurve from "./DemandCurve";
+import DemandDotted from "./DemandDotted";
 import SupplyCurve from "./SupplyCurve";
 import DemandCurveEmulator from "./DemandCurveEmulator";
 import SupplyCurveEmulator from "./SupplyCurveEmulator";
@@ -47,7 +48,14 @@ const LineDotBothHandler = (props) => {
       );
     else
       return (
-        <DemandCurve
+        // <DemandCurve
+        //   {...otherProps}
+        //   disableDemand={disableDemand}
+        //   setDisableDemand={setDisableDemand}
+        //   disableSupply={disableSupply}
+        //   setDisableSupply={setDisableSupply}
+        // />
+        <DemandDotted
           {...otherProps}
           disableDemand={disableDemand}
           setDisableDemand={setDisableDemand}

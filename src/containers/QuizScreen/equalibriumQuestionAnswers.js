@@ -1,15 +1,15 @@
 import oil from "../../images/circleIcons/equalibrium/oil.png";
 
 const questionAnswers = [
-  {
-    title: "MARKET FOR RESERVES (Limited)",
-    question: "The central bank sells bonds to banks.",
-    subQuestion: "What happens to the market for reserves?",
-    icon: oil,
-    answer: "Supply curve shifts left",
-    graphType: "supply curve",
-    briefness:"When the central bank sells bonds to banks, the banks use existing reserves to buy those reserves. This removes some reserves from the market, shifting the supply curve back (to the left) and the policy rate increases.",
-  },
+  // {
+  //   title: "MARKET FOR RESERVES (Limited)",
+  //   question: "The central bank sells bonds to banks.",
+  //   subQuestion: "What happens to the market for reserves?",
+  //   icon: oil,
+  //   answer: "Supply curve shifts left",
+  //   graphType: "supply curve",
+  //   briefness:"When the central bank sells bonds to banks, the banks use existing reserves to buy those reserves. This removes some reserves from the market, shifting the supply curve back (to the left) and the policy rate increases.",
+  // },
   {
     title: "MARKET FOR RESERVES (Limited)",
     question: "The central bank lowers the amount that banks are required to hold in reserves.",

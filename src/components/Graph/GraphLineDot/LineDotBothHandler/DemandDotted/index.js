@@ -3,21 +3,21 @@ import Draggable, { DraggableCore } from "react-draggable"; // Both at the same 
 import { withStyles } from "@material-ui/core/styles";
 import leftArrow from "../../../../../images/leftArrow.svg";
 import rightArrow from "../../../../../images/rightArrow.svg";
+import LineTo from "react-lineto";
+import { Typography } from "@material-ui/core";
 // import dGreen from "../../../../../images/equalibriumIcons/d-green.svg";
 import dBlue from "../../../../../images/equalibriumIcons/D-blue.svg";
-import dBar from "../../../../../images/D-bar.svg";
 import D1 from "../../../../../images/equalibriumIcons/D1.svg";
 import D2 from "../../../../../images/equalibriumIcons/D2.svg";
-import upArrow from "../../../../../images/upArrow.svg";
-import downArrow from "../../../../../images/downArrow.svg";
-import styles from "../demandStyles";
+
+import styles from "../dottedDemandStyles";
 import "animate.css/animate.css";
 import Labels from "../Labels";
 
 // let initialDotPosition
 // let moveXAxisCount = 0
 
-const DemandCurve = (props) => {
+const DemandDotted = (props) => {
   const { classes } = props;
 
   const {
@@ -108,10 +108,10 @@ const DemandCurve = (props) => {
     switch (answer) {
       case "Demand curve shifts left":
         setArrowIcon(leftArrow);
-        setArrowPosition({ top: dotCenterPosition - 30, left: -90 });
+        setArrowPosition({ top: dotCenterPosition + 65, left: 150 });
         break;
       case "Demand curve shifts right":
-        setArrowPosition({ top: dotCenterPosition + 55, left: 25 });
+        setArrowPosition({ top: dotCenterPosition + 120, left: 150 });
         setArrowIcon(rightArrow);
         break;
     }
@@ -191,7 +191,7 @@ const DemandCurve = (props) => {
   };
 
   const DragEndLine = (event) => {
-    if (linePosition.x <= 10 && linePosition.x >= -10) {
+    if (linePosition.y <= 10 && linePosition.y >= -10) {
       setDisableSupply(false);
       setLinePosition({ x: 0, y: 0 });
     } else {
@@ -235,19 +235,19 @@ const DemandCurve = (props) => {
 
   const getD2Postion = () => {
     if(answer.includes("Demand")){
-      if(answer.includes("shifts right")) return  -100
-      if(answer.includes("shifts left")) return  -65
+      if(answer.includes("shifts right")) return  -250
+      if(answer.includes("shifts left")) return  -250
     }
   }
 
   const changePosition = () => {
     switch (answer) {
       case "Demand curve shifts left":
-        setLinePosition({ x: -50, y: 0 });
+        setLinePosition({ x: 0, y: 50 });
         setCorrectPosition(-75);
         break;
       case "Demand curve shifts right":
-        setLinePosition({ x: 50, y: 0 });
+        setLinePosition({ x: 0, y: 50 });
         setCorrectPosition(25);
         break;
       default:
@@ -294,25 +294,55 @@ const DemandCurve = (props) => {
   const qTop = () => "330px";
 
 
+  const getSlidDirection = () => {
+    if(answer.includes("shifts right")){
+      return "bottom"
+    }
+    if(answer.includes("shifts left")){
+      return "top"
+    }
+  }
+
+  const getSlidDisctance = () => {
+    if(answer.includes("shifts right")){
+      return -95
+    }
+    if(answer.includes("shifts left")){
+      return -11
+    }
+  }
+
+  const getDefaultDisctance = () => {
+    if(answer.includes("shifts right")){
+      return -45
+    }
+    if(answer.includes("shifts left")){
+      return 39
+    }
+  }
+
   const correctLine = () => {
     return (<div
       style={{
-        transition: `left ${wrongPosition ? "2s" : "1s"}`, // Specify the transition property and duration
-        top: 39,
-        zIndex: 2,
+        transition: `${getSlidDirection()} ${wrongPosition ? "2s" : "1s"}`, // Specify the transition property and duration
+        left: -64,
+        zIndex: 1,
         position: "absolute",
-        left: correctPosition ? correctPosition : correctPosition -25, // Use "px" for left values
+        // top: correctPosition ? getSlidDisctance() : 39, // Use "px" for left values
+
+        [answer.includes("shifts left") ? "top" : "bottom"]: correctPosition ? getSlidDisctance() : getDefaultDisctance(),
+        // bottom: correctPosition ? -95 : -45, // Use "px" for left values
       }}
         >
           <div
                   className="straight-line"
                   style={{
-                    width: "132px",
+                    width: "93px",
                     height: "7px",
                     backgroundColor: "#508a05",
                     position: "relative",
                     bottom: "-85px",
-                    left: "-183px",
+                    left: "-145px",
                     borderRadius: "5px",
                   }}
                 ></div>
@@ -331,7 +361,7 @@ const DemandCurve = (props) => {
                 <div
                   className="second-straight-line"
                   style={{
-                    width: "224px",
+                    width: "262px",
                     height: "7px",
                     backgroundColor: "#508a05",
                     position: "absolute",
@@ -344,7 +374,7 @@ const DemandCurve = (props) => {
             <img
               src={D2}
               className={classes.correctLineIcon}
-              style={{ right: getD2Postion(), bottom: -227}}
+              style={{ right: getD2Postion(), bottom: -235}}
             />
         </div>)
   }
@@ -360,50 +390,108 @@ const DemandCurve = (props) => {
           // }}
           style={{ top: 39, zIndex: -1, position: "absolute", left: -25  }}
         >
-         <div
-                  className="straight-line"
-                  style={{
-                    width: "132px",
-                    height: "7px",
-                    backgroundColor: "#003E4C",
-                    position: "relative",
-                    bottom: "-85px",
-                    left: "-183px",
-                    borderRadius: "5px",
-                  }}
-                ></div>
-                <div
-                  className="bent-line"
-                  style={{
-                    width: "205px",
-                    height: "7px",
-                    backgroundColor: "#003E4C",
-                    transform: "rotate(52deg)",
-                    position: "absolute",
-                    top: "165px",
-                    left: "-95px",
-                  }}
-                ></div>
-                <div
-                  className="second-straight-line"
-                  style={{
-                    width: "224px",
-                    height: "7px",
-                    backgroundColor: "#003E4C",
-                    position: "absolute",
-                    top: "245px",
-                    left: "67px",
-                    borderRadius: "5px",
-                  }}
-                ></div>
+          { submitted &&
+          <div
+            className="straight-line"
+            style={{
+              width: "132px",
+              height: "7px",
+              backgroundColor: "#003E4C",
+              position: "relative",
+              bottom: "-85px",
+              left: "-183px",
+              borderRadius: "5px",
+            }}
+          ></div>}
+
+          <div
+            className="bent-line"
+            style={{
+              width: "205px",
+              height: "7px",
+              backgroundColor: "#003E4C",
+              transform: "rotate(52deg)",
+              position: "absolute",
+              top: "165px",
+              left: "-95px",
+            }}
+          ></div>
+          {submitted && <div
+            className="second-straight-line"
+            style={{
+              width: "224px",
+              height: "7px",
+              backgroundColor: "#003E4C",
+              position: "absolute",
+              top: "245px",
+              left: "67px",
+              borderRadius: "5px",
+            }}
+          ></div>}
         </div>)
+  }
+
+  const dottedLines = () => {
+    return(
+      <>
+        <div style={{ position: "absolute", top: 85, left: "-233px" }}>
+          <Typography style={{left: -60, top: -7, position: "absolute", width: 100 }}>Lending Rate</Typography>
+          <div
+            className={"dotOriginP"}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 145,
+            }}
+          />
+          <div className={"P2"} style={{ position: "absolute", top: 0, right: -520 }} />
+          <LineTo
+            from="dotOriginP"
+            to="P2"
+            orientation="h"
+            borderStyle="dashed"
+            borderWidth="7px"
+            borderColor="#003e4c"
+            fromAnchor="20%"
+            delay={true}
+            zIndex={0}
+            className="animate__animated animate__fadeIn"
+          />
+        </div>
+
+        <div style={{ position: "absolute", top: "245px", left: -280 }}>
+          <Typography style={{left: -15, top: -7, position: "absolute", width: 100 }}>Lending Rate</Typography>
+          <div
+            className={"dotOriginP1"}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 100,
+            }}
+          />
+          <div className={"P3"} style={{ position: "absolute", top: 0, right: submitted ? -303 : -340 }} />
+          <LineTo
+            from="dotOriginP1"
+            to="P3"
+            orientation="h"
+            borderStyle="dashed"
+            borderWidth="7px"
+            borderColor="#003e4c"
+            fromAnchor="20%"
+            delay={true}
+            zIndex={0}
+            className="animate__animated animate__fadeIn"
+          />
+        </div>
+      </>
+    )
   }
 
   return (
     <div>
-      <div style={{ height: 15, position: "absolute", zIndex: 15, top: 96, left: -74, width: "15%", backgroundColor: "#ecf2f1" }}></div>
+      {/* <div style={{ height: 15, position: "absolute", zIndex: 15, top: 96, left: -74, width: "15%", backgroundColor: "#ecf2f1" }}></div> */}
 
-      {showDottedLines && (
+      {showDottedLines && false && (
         <Labels
           p2Top={p2ToOrigin()}
           p1Top={p1ToCorrect()}
@@ -426,6 +514,7 @@ const DemandCurve = (props) => {
           answer={answer}
         />
       )}
+
       <div
         className={classes.verticalLinesContainer}
         style={{
@@ -437,7 +526,7 @@ const DemandCurve = (props) => {
           <img
             src={arrowIcon}
             className={classes.arrows}
-            style={{ top: arrowPosition.top, left: arrowPosition.left }}
+            style={{ top: arrowPosition.top, left: arrowPosition.left, transform: "rotate(90deg)", }}
           ></img>
         </div>
         <div>
@@ -453,7 +542,7 @@ const DemandCurve = (props) => {
           defaultPosition={{ x: -30, y: 0 }}
           position={linePosition}
           scale={1}
-          bounds={{ top: 0, left: -50, right: 50, bottom: 0 }}
+          bounds={{ top: -50, bottom: 50, left: 0, right: 0 }}
           onStart={DragStartLine}
           onDrag={DragLine}
           onStop={DragEndLine}
@@ -465,6 +554,9 @@ const DemandCurve = (props) => {
                 className="line-container"
                 style={{ position: "relative", top: "39px", height: 0, width: 0,  left: submitted ? -25 : -25 }}
               >
+               {dottedLines()}
+                { !submitted &&
+                <>
                 <div
                   className="straight-line"
                   style={{
@@ -477,7 +569,7 @@ const DemandCurve = (props) => {
                     borderRadius: "5px",
                   }}
                 ></div>
-                <div
+                {/* <div
                   className="bent-line"
                   style={{
                     width: "205px",
@@ -488,7 +580,7 @@ const DemandCurve = (props) => {
                     top: "165px",
                     left: "-95px",
                   }}
-                ></div>
+                ></div> */}
                 <div
                   className="second-straight-line"
                   style={{
@@ -501,6 +593,8 @@ const DemandCurve = (props) => {
                     borderRadius: "5px",
                   }}
                 ></div>
+                </>
+                }
               </div>
               {!submitted && lineMovedOrNotAnswered() && (
                 <img
@@ -520,4 +614,4 @@ const DemandCurve = (props) => {
   );
 };
 
-export default withStyles(styles)(DemandCurve);
+export default withStyles(styles)(DemandDotted);
