@@ -314,7 +314,7 @@ const SupplyCurve = (props) => {
           isEmulator={false}
           answer={answer}
         />}
-      <div className={classes.verticalLinesContainer}>
+      <div className={classes.verticalLinesContainer} style={{ left: questionAnswer.type === "limited" ? 183 : 350 }}>
         <div className={arrowFadeIn}>
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left, transform: answer.includes("shift") ? "rotate(0deg)" : "rotate(90deg)" }}></img>
         </div>

@@ -33,6 +33,8 @@ const styles = (theme) => ({
     },
   },
 
+
+
   graphYLable: {
     height: "18px",
     position: "absolute",
@@ -184,6 +186,13 @@ const styles = (theme) => ({
     //   height: "190px",
     //   width: "4px"
     // },
+  },
+
+  dottedLines: {
+    fontFamily: "'Oswald', sans-serif",
+    color: '#003E4C',
+    fontWeight: "600",
+    fontSize: 17
   },
 
   fadedDot: {

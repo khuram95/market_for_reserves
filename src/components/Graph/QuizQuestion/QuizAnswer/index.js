@@ -71,7 +71,7 @@ const QuizAnswer = ({ questionAnswer, classes, moved, showBriefness }) => {
       <img src={answerImage} className={classes.correctIncorrectIcon} />
       <Typography variant="h4" className={classes.curveShiftingText}>
         {/* {answerPrefix()} */}
-        {questionAnswer.answer}
+        {questionAnswer.answerShow ? questionAnswer.answerShow : questionAnswer.answer }
       </Typography>
       {showBriefness && (
         <Typography variant="h5" className={classes.briefNessHeading}>

@@ -66,7 +66,7 @@ const DemandDotted = (props) => {
       } else if (nothingMove()) {
         nothingAsWrong();
       } else {
-        evaluateLineAnswer(linePosition.x);
+        evaluateLineAnswer(linePosition.y);
       }
       showArrow();
       answer.includes("Demand curve") && setChangeIconColor(true);
@@ -82,6 +82,7 @@ const DemandDotted = (props) => {
 
   useEffect(() => {
     if (answeredCorrectly === false && disableDemand) {
+      setLinePosition({ x: 0, y: 0 });
       switch (answer) {
         case "Demand curve shifts left":
           setShowLine(true);
@@ -108,10 +109,10 @@ const DemandDotted = (props) => {
     switch (answer) {
       case "Demand curve shifts left":
         setArrowIcon(leftArrow);
-        setArrowPosition({ top: dotCenterPosition + 65, left: 150 });
+        setArrowPosition({ top: dotCenterPosition + 63, left: 200 });
         break;
       case "Demand curve shifts right":
-        setArrowPosition({ top: dotCenterPosition + 120, left: 150 });
+        setArrowPosition({ top: dotCenterPosition + 118, left: 200 });
         setArrowIcon(rightArrow);
         break;
     }
@@ -321,12 +322,16 @@ const DemandDotted = (props) => {
     }
   }
 
+  const addInLeft = () => {
+    return answer.includes("shifts left") ? 0 : 77
+  }
+
   const correctLine = () => {
     return (<div
       style={{
         transition: `${getSlidDirection()} ${wrongPosition ? "2s" : "1s"}`, // Specify the transition property and duration
         left: -64,
-        zIndex: 1,
+        zIndex: 5,
         position: "absolute",
         // top: correctPosition ? getSlidDisctance() : 39, // Use "px" for left values
 
@@ -334,49 +339,58 @@ const DemandDotted = (props) => {
         // bottom: correctPosition ? -95 : -45, // Use "px" for left values
       }}
         >
+          {dottedLines(getUpperLeft(), getBottomLeft())}
           <div
-                  className="straight-line"
-                  style={{
-                    width: "93px",
-                    height: "7px",
-                    backgroundColor: "#508a05",
-                    position: "relative",
-                    bottom: "-85px",
-                    left: "-145px",
-                    borderRadius: "5px",
-                  }}
-                ></div>
-                <div
-                  className="bent-line"
-                  style={{
-                    width: "205px",
-                    height: "7px",
-                    backgroundColor: "#508a05",
-                    transform: "rotate(52deg)",
-                    position: "absolute",
-                    top: "165px",
-                    left: "-95px",
-                  }}
-                ></div>
-                <div
-                  className="second-straight-line"
-                  style={{
-                    width: "262px",
-                    height: "7px",
-                    backgroundColor: "#508a05",
-                    position: "absolute",
-                    top: "245px",
-                    left: "67px",
-                    borderRadius: "5px",
+            className="straight-line"
+            style={{
+              width: 93 + addInLeft(),
+              height: "7px",
+              backgroundColor: "#508a05",
+              position: "relative",
+              bottom: "-85px",
+              left: -145,
+              borderRadius: "5px",
+            }}
+          ></div>
+          <div
+            className="bent-line"
+            style={{
+              width: "205px",
+              height: "7px",
+              backgroundColor: "#508a05",
+              transform: "rotate(52deg)",
+              position: "absolute",
+              top: "165px",
+              left: -95 + addInLeft(),
+            }}
+          ></div>
+          <div
+            className="second-straight-line"
+            style={{
+              width: 262 - addInLeft(),
+              height: "7px",
+              backgroundColor: "#508a05",
+              position: "absolute",
+              top: "245px",
+              left: 67 + addInLeft(),
+              borderRadius: "5px",
 
-                  }}
-                ></div>
-            <img
-              src={D2}
-              className={classes.correctLineIcon}
-              style={{ right: getD2Postion(), bottom: -235}}
-            />
+            }}
+          ></div>
+          <img
+            src={D2}
+            className={classes.correctLineIcon}
+            style={{ right: getD2Postion() + addInLeft(), bottom: -235}}
+          />
         </div>)
+  }
+
+  const getUpperLeft= () =>{
+    return (answer.includes("shifts right") ? -195 : -195)
+  }
+
+  const getBottomLeft= () =>{
+    return (answer.includes("shifts right") ? -240 : -240)
   }
 
   const FixedLine = () => {
@@ -431,26 +445,26 @@ const DemandDotted = (props) => {
         </div>)
   }
 
-  const dottedLines = () => {
+  const dottedLines = (upperLeft = -233, bottomLeft = -280, upperTop= 85, bottomTop = 245) => {
     return(
       <>
-        <div style={{ position: "absolute", top: 85, left: "-233px" }}>
-          <Typography style={{left: -60, top: -7, position: "absolute", width: 100 }}>Lending Rate</Typography>
+        <div style={{ position: "absolute", top: upperTop, left: upperLeft }}>
+          <Typography style={{left: -45, top: -10, position: "absolute", width: 100 }} className={classes.dottedLines}>Lending Rate</Typography>
           <div
             className={"dotOriginP"}
             style={{
               position: "absolute",
               top: 0,
-              left: 145,
+              left: 60 + dottedLine1Width(),
             }}
           />
-          <div className={"P2"} style={{ position: "absolute", top: 0, right: -520 }} />
+          <div className={"P2"} style={{ position: "absolute", top: 0, right: -520  }} />
           <LineTo
             from="dotOriginP"
             to="P2"
             orientation="h"
             borderStyle="dashed"
-            borderWidth="7px"
+            borderWidth="5px"
             borderColor="#003e4c"
             fromAnchor="20%"
             delay={true}
@@ -459,8 +473,8 @@ const DemandDotted = (props) => {
           />
         </div>
 
-        <div style={{ position: "absolute", top: "245px", left: -280 }}>
-          <Typography style={{left: -15, top: -7, position: "absolute", width: 100 }}>Lending Rate</Typography>
+        <div style={{ position: "absolute", top: bottomTop, left: bottomLeft }}>
+          <Typography style={{ top: -10, position: "absolute", width: 100 }} className={classes.dottedLines}>Deposit Rate</Typography>
           <div
             className={"dotOriginP1"}
             style={{
@@ -469,13 +483,13 @@ const DemandDotted = (props) => {
               left: 100,
             }}
           />
-          <div className={"P3"} style={{ position: "absolute", top: 0, right: submitted ? -303 : -340 }} />
+          <div className={"P3"} style={{ position: "absolute", top: 0, right: -390 + dottedLine2Width()   }} />
           <LineTo
             from="dotOriginP1"
             to="P3"
             orientation="h"
             borderStyle="dashed"
-            borderWidth="7px"
+            borderWidth="5px"
             borderColor="#003e4c"
             fromAnchor="20%"
             delay={true}
@@ -487,33 +501,74 @@ const DemandDotted = (props) => {
     )
   }
 
+  const dottedLine1Width = () => {
+    if(submitted && answer.includes("Demand")){
+      return answer.includes("shifts left") ? 85 : 165
+    }else{
+      return 0
+    }
+  }
+
+  const dottedLine2Width = () => {
+    if(submitted && answer.includes("Demand")){
+      return answer.includes("shifts left") ? 85 : 10
+    }else{
+      return 0
+    }
+  }
+
+  const dragableLine = () => {
+    return(
+      <div  id="draggable_line">
+        <div
+          className="line-container"
+          style={{ position: "relative", top: "39px", height: 0, width: 0,  left: submitted ? -25 : -25 }}
+          >
+          {/* {!submitted ? dottedLines() : answer.includes("Supply") && defaultDottedLines()} */}
+          {(!submitted || answer.includes("Supply")) && dottedLines()}
+          { !submitted &&
+          <>
+          <div
+            className="straight-line"
+            style={{
+              width: "132px",
+              height: "7px",
+              backgroundColor: lineColor,
+              position: "relative",
+              bottom: "-85px",
+              left: "-183px",
+              borderRadius: "5px",
+            }}
+          ></div>
+          <div
+            className="second-straight-line"
+            style={{
+              width: "224px",
+              height: "7px",
+              backgroundColor: lineColor,
+              position: "absolute",
+              top: "245px",
+              left: "67px",
+              borderRadius: "5px",
+            }}
+          ></div>
+          </>
+          }
+        </div>
+        {!submitted && lineMovedOrNotAnswered() && (
+          <img
+            src={isShowD2() ? D2 : dBlue}
+            className={isShowD2() ? classes.correctLineIcon : classes.lineIcon}
+            // style={{ right: isShowD2() &&  getD2Postion()}}
+          />
+        )}
+      </div>
+    )
+  }
+
   return (
     <div>
       {/* <div style={{ height: 15, position: "absolute", zIndex: 15, top: 96, left: -74, width: "15%", backgroundColor: "#ecf2f1" }}></div> */}
-
-      {showDottedLines && false && (
-        <Labels
-          p2Top={p2ToOrigin()}
-          p1Top={p1ToCorrect()}
-          originP={{ top: p2ToOrigin(), left: "225px" }}
-          originCorrectP={{
-            top: p1ToCorrect(),
-            left: answer.includes("shifts right") ? "250px" : "180px",
-          }}
-          q1={{ top: 337.668, left: 586.5 }}
-          q2={{ top: qTop(), left: q2ToCorrect() }}
-          originQ={{ top: dotCenterPosition - 38, left: q1ToOrigin() }}
-          dotCorrectQ={{
-            top: answer.includes("shifts right")
-              ? dotCenterPosition - 60
-              : dotCenterPosition + 10,
-            left: q2ToCorrect(),
-          }}
-          isMobile={false}
-          isEmulator={false}
-          answer={answer}
-        />
-      )}
 
       <div
         className={classes.verticalLinesContainer}
@@ -549,61 +604,7 @@ const DemandDotted = (props) => {
           // disabled={DisasetDisableDemand}
         >
           <div style={{ cursor: !disableDemand && "pointer" }}>
-            <div  id="draggable_line">
-              <div
-                className="line-container"
-                style={{ position: "relative", top: "39px", height: 0, width: 0,  left: submitted ? -25 : -25 }}
-              >
-               {dottedLines()}
-                { !submitted &&
-                <>
-                <div
-                  className="straight-line"
-                  style={{
-                    width: "132px",
-                    height: "7px",
-                    backgroundColor: lineColor,
-                    position: "relative",
-                    bottom: "-85px",
-                    left: "-183px",
-                    borderRadius: "5px",
-                  }}
-                ></div>
-                {/* <div
-                  className="bent-line"
-                  style={{
-                    width: "205px",
-                    height: "7px",
-                    backgroundColor: lineColor,
-                    transform: "rotate(52deg)",
-                    position: "absolute",
-                    top: "165px",
-                    left: "-95px",
-                  }}
-                ></div> */}
-                <div
-                  className="second-straight-line"
-                  style={{
-                    width: "224px",
-                    height: "7px",
-                    backgroundColor: lineColor,
-                    position: "absolute",
-                    top: "245px",
-                    left: "67px",
-                    borderRadius: "5px",
-                  }}
-                ></div>
-                </>
-                }
-              </div>
-              {!submitted && lineMovedOrNotAnswered() && (
-                <img
-                  src={isShowD2() ? D2 : dBlue}
-                  className={isShowD2() ? classes.correctLineIcon : classes.lineIcon}
-                  // style={{ right: isShowD2() &&  getD2Postion()}}
-                />
-              )}
-            </div>
+          {dragableLine()}
           </div>
         </Draggable>
 
