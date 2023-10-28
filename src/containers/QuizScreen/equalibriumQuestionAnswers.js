@@ -111,7 +111,7 @@ const questionAnswers = [
     subQuestion: "What happens in the market for reserves?",
     icon: oil,
     answer: "Demand curve shifts left",
-    answerShow: "Demand curve shifts Down",
+    answerShow: "Demand curve shifts UP",
     type: "ample",
     graphType: "supply curve",
     briefness: "When facing inflation, central banks usually raise their administered rates. This will increase both the lending rate and deposit rate, shifting the price floor and ceiling (and policy rate) up.",
