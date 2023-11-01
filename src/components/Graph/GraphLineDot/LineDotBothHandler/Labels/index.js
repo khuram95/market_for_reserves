@@ -84,12 +84,12 @@ const Labels = (props) => {
 
   return (
     <span className="animate__animated animate__fadeIn">
-      <Typography className={classes.graphP1Lable}>Policy Rate 1</Typography>
+      <Typography className={classes.graphP1Lable}>Fed Funds Rate 1</Typography>
       <Typography
         className={classes.graphP2Lable}
         style={{ top: setP2Label() }}
       >
-        Policy Rate 2
+        Fed Funds Rate 2
       </Typography>
       <>
         <div className={"P2"} style={{ position: "absolute", top: calculateTopCorrectP() }} />

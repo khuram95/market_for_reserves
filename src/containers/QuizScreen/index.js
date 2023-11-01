@@ -5,6 +5,7 @@ import styles from "./styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Graph from "../../components/Graph";
 import WrongMoveModal from "../../components/WrongMoveModal";
+import EvaluatorModal from "../../components/DescriptionModal";
 
 const QuizScreen = (props) => {
   const { classes, setCurrentScreen, ...others } = props;
@@ -12,6 +13,7 @@ const QuizScreen = (props) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [open, setOpen] = useState(false);
   const [resetGraph, setResetGraph] = useState(false);
+  const [ampleModal, setAmpleModal] = useState(false);
 
   const modalOpen = () => setOpen(false);
 
@@ -19,6 +21,8 @@ const QuizScreen = (props) => {
     setOpen(false);
     setResetGraph(!resetGraph);
   };
+
+  const hideModal = () => setAmpleModal(false)
 
   // const resetPosition = () => setResetGraph(true)
 
@@ -29,6 +33,7 @@ const QuizScreen = (props) => {
     // setHideQuestionBeforeAnimation(true)
     isQuizCompleted();
     setQuestionIndex(questionIndex + 1);
+    setAmpleModal(questionIndex === 4)
     // setAnsweredCorrectly(null)
     // setSubmitted(false)
     // setDottedLineLabels(false)
@@ -49,6 +54,10 @@ const QuizScreen = (props) => {
         key={questionIndex}
       />
       <WrongMoveModal open={open} modalClose={modalClose} />
+      <EvaluatorModal
+        open={ampleModal}
+        hideModal={hideModal}
+      />
     </div>
   );
 };
