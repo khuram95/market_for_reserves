@@ -33,7 +33,7 @@ const QuizScreen = (props) => {
     // setHideQuestionBeforeAnimation(true)
     isQuizCompleted();
     setQuestionIndex(questionIndex + 1);
-    setAmpleModal(questionIndex === 4)
+    setAmpleModal(questionIndex === 0)
     // setAnsweredCorrectly(null)
     // setSubmitted(false)
     // setDottedLineLabels(false)

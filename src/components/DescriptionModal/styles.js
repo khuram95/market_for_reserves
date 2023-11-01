@@ -145,7 +145,7 @@ const styles = (theme) => ({
   },
 
   correctIncorrectIcon: {
-    height: "150px",
+    height: "140px",
     // marginLeft: "10%",
     [mobileScreen(theme)]: {
       height: 70,
