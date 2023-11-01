@@ -21,7 +21,7 @@ const DescriptionModal = ({
       >
         <Grid className={`${classes.evaluatorModalContainer}`}>
           <Grid container className={classes.evalInnerModal}>
-            <Grid style={{ width: "60%", marginRight: "5%" }}>
+            <Grid style={{ width: "60%" }}>
               <Typography className={classes.evalDescHeading}>
               In the 2008 Financial Crisis, the Federal Reserve bought so many assets from banks that the supply curve moved to the flat part of the demand curve.
               </Typography>
@@ -32,7 +32,7 @@ const DescriptionModal = ({
               This is called the AMPLE RESERVE ENVIRONMENT. The Fed Funds rate is now where the supply curve intersects the demand curve.
               </Typography>
             </Grid>
-            <Grid style={{  display: "flex", width: "35%", justifyContent: "right" }}>
+            <Grid style={{  display: "flex", width: "30%", justifyContent: "right" }}>
               <img
                 alt=""
                 src={slideTutorial}

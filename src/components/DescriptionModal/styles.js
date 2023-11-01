@@ -118,6 +118,7 @@ const styles = (theme) => ({
 
   evalInnerModal: {
     padding: "30px 0px",
+    justifyContent: "space-between",
     [mobileScreen(theme)]: {
       padding: "10px 0px",
     }
