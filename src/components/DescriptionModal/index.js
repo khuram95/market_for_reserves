@@ -29,7 +29,7 @@ const DescriptionModal = ({
                 className={classes.evalDesc}
                 style={{ padding: "10px 0px" }}
               >
-              This is called the ample reserve environment. The Fed Funds rate is now where the supply curve intersects the demand curve.
+              This is called the AMPLE RESERVE ENVIRONMENT. The Fed Funds rate is now where the supply curve intersects the demand curve.
               </Typography>
             </Grid>
             <Grid style={{  display: "flex", width: "35%", justifyContent: "right" }}>

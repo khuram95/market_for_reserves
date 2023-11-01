@@ -449,7 +449,7 @@ const DemandDotted = (props) => {
     return(
       <>
         <div style={{ position: "absolute", top: upperTop, left: upperLeft }}>
-          <Typography style={{left: -55, top: -10, position: "absolute", width: 100 }} className={classes.dottedLines}>Discount Rate</Typography>
+          <Typography style={{left: -60, top: -10, position: "absolute", width: 95, textAlign: "right" }} className={classes.dottedLines}>Discount Rate</Typography>
           <div
             className={"dotOriginP"}
             style={{
@@ -474,7 +474,7 @@ const DemandDotted = (props) => {
         </div>
 
         <div style={{ position: "absolute", top: bottomTop, left: bottomLeft }}>
-          <Typography style={{ top: -10, position: "absolute", width: 110, left: -25 }} className={classes.dottedLines}>Interest on Rate</Typography>
+          <Typography style={{ top: -10, position: "absolute", width: 95, left: -13, textAlign: "right" }} className={classes.dottedLines}>Interest on Reserves</Typography>
           <div
             className={"dotOriginP1"}
             style={{
