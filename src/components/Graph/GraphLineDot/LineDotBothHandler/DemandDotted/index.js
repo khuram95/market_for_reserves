@@ -52,6 +52,7 @@ const DemandDotted = (props) => {
   const [showDottedLines, setShowDottedLines] = useState(false);
   const [reRender, setReRender] = useState(false);
   const [d2Postion, setD2Postion] = useState(0);
+  const [showIncorrect, setShowIncorrect] = useState(false);
   // animate__fadeIn
   useEffect(() => {
     if (submitted) {
@@ -189,6 +190,8 @@ const DemandDotted = (props) => {
     }
     // setLinePosition({ x: 0, y: 0 });
     setAnsweredCorrectly(false);
+    setShowIncorrect(answer.includes("Demand") && !nothingMove())
+
   };
 
   const DragEndLine = (event) => {
@@ -322,6 +325,10 @@ const DemandDotted = (props) => {
     }
   }
 
+  const wrongAddInLeft = () => {
+    return answer.includes("shifts left") ? 77 :  0
+  }
+
   const addInLeft = () => {
     return answer.includes("shifts left") ? 0 : 77
   }
@@ -382,6 +389,73 @@ const DemandDotted = (props) => {
             className={classes.correctLineIcon}
             style={{ right: getD2Postion() + addInLeft(), bottom: -235}}
           />
+        </div>)
+  }
+
+  const getWrongLineTop = () => {
+    if(answer.includes("shifts right")){
+      return 4
+    }
+    if(answer.includes("shifts left")){
+      return -95
+    }
+  }
+
+  const IncorrectLine = () => {
+    return (<div
+      style={{
+        // transition: `${getSlidDirection()} ${wrongPosition ? "2s" : "1s"}`, // Specify the transition property and duration
+        left: -64,
+        zIndex: 5,
+        position: "absolute",
+        // top: correctPosition ? getSlidDisctance() : 39, // Use "px" for left values
+        // getWrongLineTop()
+        // [answer.includes("shifts left") ? "top" : "bottom"]: correctPosition ? getSlidDisctance() : getDefaultDisctance(),
+        bottom: getWrongLineTop(), // Use "px" for left values
+      }}
+        >
+          <div
+            className="straight-line"
+            style={{
+              width: 93 + wrongAddInLeft(),
+              height: "7px",
+              backgroundColor: "red",
+              position: "relative",
+              bottom: "-85px",
+              left: -145,
+              borderRadius: "5px",
+            }}
+          ></div>
+          <div
+            className="bent-line"
+            style={{
+              width: "205px",
+              height: "7px",
+              backgroundColor: "red",
+              transform: "rotate(52deg)",
+              position: "absolute",
+              top: "165px",
+              left: -95 + wrongAddInLeft(),
+            }}
+          ></div>
+          <div
+            className="second-straight-line"
+            style={{
+              width: 262 - wrongAddInLeft(),
+              height: "7px",
+              backgroundColor: "red",
+              position: "absolute",
+              top: "245px",
+              left: 67 + wrongAddInLeft(),
+              borderRadius: "5px",
+
+            }}
+          ></div>
+          {/* <img
+            src={D2}
+            className={classes.correctLineIcon}
+            style={{ right: getD2Postion() + addInLeft(), bottom: -235}}
+          /> */}
         </div>)
   }
 
@@ -591,6 +665,9 @@ const DemandDotted = (props) => {
         </div>
         { submitted && answer.includes("Demand") &&
           correctLine()
+        }
+        { showIncorrect &&
+          IncorrectLine()
         }
         <Draggable
           axis="x"
