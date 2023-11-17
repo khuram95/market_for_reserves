@@ -24,41 +24,31 @@ const LineDotBothHandler = (props) => {
   const isMobile = useMediaQuery(mobileScreen(theme));
   const [disableDemand, setDisableDemand] = useState(false);
   const [disableSupply, setDisableSupply] = useState(false);
-  const { questionAnswer } = otherProps;
 
-  console.log("answer", questionAnswer)
   const demandCurveResponsive = () => {
-    // if (isMobile)
-    //   return (
-    //     <DemandCurveMobile
-    //       {...otherProps}
-    //       disableDemand={disableDemand}
-    //       setDisableDemand={setDisableDemand}
-    //       disableSupply={disableSupply}
-    //       setDisableSupply={setDisableSupply}
-    //     />
-    //   );
-    // else if (isEmulator)
-    //   return (
-    //     <DemandCurveEmulator
-    //       {...otherProps}
-    //       disableDemand={disableDemand}
-    //       setDisableDemand={setDisableDemand}
-    //       disableSupply={disableSupply}
-    //       setDisableSupply={setDisableSupply}
-    //     />
-    //   );
-    // else
+    if (isMobile)
       return (
-        questionAnswer.type === "limited" ?
-        <DemandCurve
+        <DemandCurveMobile
           {...otherProps}
           disableDemand={disableDemand}
           setDisableDemand={setDisableDemand}
           disableSupply={disableSupply}
           setDisableSupply={setDisableSupply}
         />
-        : <DemandDotted
+      );
+    else if (isEmulator)
+      return (
+        <DemandCurveEmulator
+          {...otherProps}
+          disableDemand={disableDemand}
+          setDisableDemand={setDisableDemand}
+          disableSupply={disableSupply}
+          setDisableSupply={setDisableSupply}
+        />
+      );
+    else
+      return (
+        <DemandCurve
           {...otherProps}
           disableDemand={disableDemand}
           setDisableDemand={setDisableDemand}
@@ -69,28 +59,27 @@ const LineDotBothHandler = (props) => {
   };
 
   const supplyCurveResponsive = () => {
-    // if (isMobile)
-    //   return (
-    //     <SupplyCurveMobile
-    //       {...otherProps}
-    //       disableDemand={disableDemand}
-    //       setDisableDemand={setDisableDemand}
-    //       disableSupply={disableSupply}
-    //       setDisableSupply={setDisableSupply}
-    //     />
-    //   );
-    // else if (isEmulator)
-    //   return (
-    //     <SupplyCurveEmulator
-    //       {...otherProps}
-    //       disableDemand={disableDemand}
-    //       setDisableDemand={setDisableDemand}
-    //       disableSupply={disableSupply}
-    //       setDisableSupply={setDisableSupply}
-    //     />
-    //   );
-    // else{
-      // vertical line
+    if (isMobile)
+      return (
+        <SupplyCurveMobile
+          {...otherProps}
+          disableDemand={disableDemand}
+          setDisableDemand={setDisableDemand}
+          disableSupply={disableSupply}
+          setDisableSupply={setDisableSupply}
+        />
+      );
+    else if (isEmulator)
+      return (
+        <SupplyCurveEmulator
+          {...otherProps}
+          disableDemand={disableDemand}
+          setDisableDemand={setDisableDemand}
+          disableSupply={disableSupply}
+          setDisableSupply={setDisableSupply}
+        />
+      );
+    else
       return (
         <SupplyCurve
           {...otherProps}
@@ -100,12 +89,11 @@ const LineDotBothHandler = (props) => {
           setDisableSupply={setDisableSupply}
         />
       );
-    // }
   };
 
   return (
     <Grid className={classes.graphLines}>
-      <img src={interestRate} className={classes.graphYLable} style={{ top: questionAnswer.type === "limited" ? 7 : -35 }}/>
+      <img src={interestRate} className={classes.graphYLable} />
       {demandCurveResponsive()}
       {supplyCurveResponsive()}
       <img src={quantity} className={classes.graphXLable} />

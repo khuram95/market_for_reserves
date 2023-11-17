@@ -28,10 +28,10 @@ const Labels = (props) => {
     if (answerCondition)
       if (isMobile) return "44px";
       else if (isEmulator) return "58px";
-      else return "105px";
+      else return "95px";
     else if (isMobile) return "78px";
     else if (isEmulator) return "102px";
-    else return "235px";
+    else return "165px";
   };
 
   const setQ2Label = () => {
@@ -49,56 +49,39 @@ const Labels = (props) => {
     else return "4px";
   };
 
-  const calculateTopCorrectP = () => {
-    if(answer.includes("Demand")){
-      if (answer.includes("shifts left")){
-        return 250
-      }else{
-        return 120
-      }
-    }else{
-      if (answer.includes("shifts left")){
-        return 120
-      }else{
-        return 260
-      }
-    }
-  }
-
-  const calculateLeftCorrectP = () => {
-    console.log("answer", answer)
-    if(answer.includes("Demand")){
-      if (answer.includes("shifts left")){
-        return 180
-      }else{
-        return 182
-      }
-    }else{
-      if (answer.includes("shifts left")){
-        return 132
-      }else{
-        return 240
-      }
-    }
-  }
-
   return (
     <span className="animate__animated animate__fadeIn">
-      <Typography className={classes.graphP1Lable}>Fed Funds Rate 1</Typography>
+      <Typography className={classes.graphP1Lable}>Policy Rate 1</Typography>
       <Typography
         className={classes.graphP2Lable}
         style={{ top: setP2Label() }}
       >
-        Fed Funds Rate 2
+        Policy Rate 2
       </Typography>
       <>
-        <div className={"P2"} style={{ position: "absolute", top: calculateTopCorrectP() }} />
+        <div className={"P2"} style={{ position: "absolute", top: p2Top }} />
+        <div
+          className={"P1"}
+          style={{
+            position: "absolute",
+            top: p1Top,
+          }}
+        />
+
         <div
           className={"dotOriginP"}
           style={{
             position: "absolute",
-            top: calculateTopCorrectP(),
-            left: calculateLeftCorrectP(),
+            top: originP.top,
+            left: originP.left,
+          }}
+        />
+        <div
+          className={"dotCorrectP"}
+          style={{
+            position: "absolute",
+            top: originCorrectP.top,
+            left: originCorrectP.left,
           }}
         />
 
@@ -113,25 +96,6 @@ const Labels = (props) => {
           delay={true}
           className="animate__animated animate__fadeIn"
         />
-
-{/* original */}
-        <div
-          className={"P1"}
-          style={{
-            position: "absolute",
-            top: 180,
-          }}
-        />
-
-        <div
-          className={"dotCorrectP"}
-          style={{
-            position: "absolute",
-            top: 180,
-            left: 180,//
-          }}
-        />
-
         <LineTo
           from="dotCorrectP"
           to="P1"
@@ -146,14 +110,14 @@ const Labels = (props) => {
 
         <div
           className={"Q1"}
-          style={{ position: "absolute", top: 337.668, left: 586.5 }}
+          style={{ position: "absolute", top: q1.top, left: q1.left }}
         />
         <div
           className={"Q2"}
           style={{ position: "absolute", top: q2.top, left: q2.left }}
         />
 
-        {/* <div
+        <div
           className={"dotOriginQ"}
           style={{ position: "absolute", top: originQ.top, left: originQ.left }}
         />
@@ -164,7 +128,7 @@ const Labels = (props) => {
             top: dotCorrectQ.top,
             left: dotCorrectQ.left,
           }}
-        /> */}
+        />
 
         <LineTo
           from="dotOriginQ"

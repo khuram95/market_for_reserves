@@ -9,7 +9,6 @@ import S1 from "../../../../../images/equalibriumIcons/S1.svg";
 import S2 from "../../../../../images/equalibriumIcons/S2.svg";
 import styles from "../supplyStyles";
 import "animate.css/animate.css";
-import DemandCurve from "../DemandCurve";
 import Labels from "../Labels";
 
 const SupplyCurveEmulator = (props) => {

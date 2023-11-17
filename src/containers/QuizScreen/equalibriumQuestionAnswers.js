@@ -56,66 +56,66 @@ const questionAnswers = [
       "When the central bank buys assets from banks, the bank receives money for those assets. This increases reserves in the market, shifting the supply curve out (to the right) and the Fed Funds Rate decreases.",
   },
 
-  // shift up => shift left
-  // shift down => shift right
-  {
-    title: "MARKET FOR RESERVES (Ample)",
-    question: "The central bank raises their administered rates.",
-    subQuestion: "What happens in the market for reserves?",
-    icon: oil,
-    answer: "Demand curve shifts left",
-    answerShow: "Administered rates increase",
-    type: "ample",
-    graphType: "supply curve",
-    briefness:
-      "When the central bank raises their administered rates, this will increase both the Discount Rate and Interest on Reserves, shifting the price floor and ceiling (and Fed Funds Rate) up.",
-  },
-  {
-    title: "MARKET FOR RESERVES (Ample)",
-    question: "The central bank lowers their administered rates.",
-    subQuestion: "What happens in the market for reserves?",
-    icon: oil,
-    answer: "Demand curve shifts right",
-    answerShow: "Administered rates decrease",
-    type: "ample",
-    graphType: "supply curve",
-    briefness:
-      "When the central bank lowers their administered rates, this will decrease both the Discount Rate and Interest on Reserves, shifting the price floor and ceiling (and Fed Funds Rate) down.",
-  },
-  {
-    title: "MARKET FOR RESERVES (Ample)",
-    question: "The central bank buys bonds from banks.",
-    subQuestion: "What happens in the market for reserves?",
-    icon: oil,
-    answer: "Supply curve shifts right",
-    answerShow: "Supply curve shifts right",
-    type: "ample",
-    graphType: "supply curve",
-    briefness:
-      "When the central bank buys bonds from banks, this will increase bank reserves and therefore the supply of reserves—shifting the supply curve to the right. Because we are in the ample reserve scenario and on the flat part of the demand curve, the Fed Funds Rate will not change.",
-  },
-  {
-    title: "MARKET FOR RESERVES (Ample)",
-    question: "The central bank is facing a recession (if they act according to standard monetary policy).",
-    subQuestion: "What happens in the market for reserves?",
-    icon: oil,
-    answer: "Demand curve shifts right",
-    answerShow: "Administered rates decrease",
-    type: "ample",
-    graphType: "supply curve",
-    briefness: "When facing a recession, central banks usually lower their administered rates. This will decrease both the Discount Rate and Interest on Reserves, shifting the price floor and ceiling (and Fed Funds Rate) down.",
-  },
-  {
-    title: "MARKET FOR RESERVES (Ample)",
-    question: "The central bank is facing high inflation (if they act according to standard monetary policy).",
-    subQuestion: "What happens in the market for reserves?",
-    icon: oil,
-    answer: "Demand curve shifts left",
-    answerShow: "Administered rates increase",
-    type: "ample",
-    graphType: "supply curve",
-    briefness: "When facing inflation, central banks usually raise their administered rates. This will increase both the Discount Rate and Interest on Reserves, shifting the price floor and ceiling (and Fed Funds Rate) up.",
-  },
+  // // shift up => shift left
+  // // shift down => shift right
+  // {
+  //   title: "MARKET FOR RESERVES (Ample)",
+  //   question: "The central bank raises their administered rates.",
+  //   subQuestion: "What happens in the market for reserves?",
+  //   icon: oil,
+  //   answer: "Demand curve shifts left",
+  //   answerShow: "Administered rates increase",
+  //   type: "ample",
+  //   graphType: "supply curve",
+  //   briefness:
+  //     "When the central bank raises their administered rates, this will increase both the Discount Rate and Interest on Reserves, shifting the price floor and ceiling (and Fed Funds Rate) up.",
+  // },
+  // {
+  //   title: "MARKET FOR RESERVES (Ample)",
+  //   question: "The central bank lowers their administered rates.",
+  //   subQuestion: "What happens in the market for reserves?",
+  //   icon: oil,
+  //   answer: "Demand curve shifts right",
+  //   answerShow: "Administered rates decrease",
+  //   type: "ample",
+  //   graphType: "supply curve",
+  //   briefness:
+  //     "When the central bank lowers their administered rates, this will decrease both the Discount Rate and Interest on Reserves, shifting the price floor and ceiling (and Fed Funds Rate) down.",
+  // },
+  // {
+  //   title: "MARKET FOR RESERVES (Ample)",
+  //   question: "The central bank buys bonds from banks.",
+  //   subQuestion: "What happens in the market for reserves?",
+  //   icon: oil,
+  //   answer: "Supply curve shifts right",
+  //   answerShow: "Supply curve shifts right",
+  //   type: "ample",
+  //   graphType: "supply curve",
+  //   briefness:
+  //     "When the central bank buys bonds from banks, this will increase bank reserves and therefore the supply of reserves—shifting the supply curve to the right. Because we are in the ample reserve scenario and on the flat part of the demand curve, the Fed Funds Rate will not change.",
+  // },
+  // {
+  //   title: "MARKET FOR RESERVES (Ample)",
+  //   question: "The central bank is facing a recession (if they act according to standard monetary policy).",
+  //   subQuestion: "What happens in the market for reserves?",
+  //   icon: oil,
+  //   answer: "Demand curve shifts right",
+  //   answerShow: "Administered rates decrease",
+  //   type: "ample",
+  //   graphType: "supply curve",
+  //   briefness: "When facing a recession, central banks usually lower their administered rates. This will decrease both the Discount Rate and Interest on Reserves, shifting the price floor and ceiling (and Fed Funds Rate) down.",
+  // },
+  // {
+  //   title: "MARKET FOR RESERVES (Ample)",
+  //   question: "The central bank is facing high inflation (if they act according to standard monetary policy).",
+  //   subQuestion: "What happens in the market for reserves?",
+  //   icon: oil,
+  //   answer: "Demand curve shifts left",
+  //   answerShow: "Administered rates increase",
+  //   type: "ample",
+  //   graphType: "supply curve",
+  //   briefness: "When facing inflation, central banks usually raise their administered rates. This will increase both the Discount Rate and Interest on Reserves, shifting the price floor and ceiling (and Fed Funds Rate) up.",
+  // },
 ];
 
 export default questionAnswers;
