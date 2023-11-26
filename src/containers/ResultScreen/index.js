@@ -191,7 +191,7 @@ const ResultScreen = ({
         </Grid>
         <Grid>
           <Typography variant="h5" className={classes.homeDesc}>  
-          Market for Reserves (Limited and Ample)
+          Market for Reserves (Limited)
           </Typography>
         </Grid>
         <Grid container justify="center" alignItems="center">

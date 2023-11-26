@@ -3,7 +3,7 @@ import { emulatorScreen, mobileScreen } from "../../../../utils/styleUtils";
 const styles = (theme) => ({
   verticalLinesContainer: {
     position: "absolute",
-    top: "25px",
+    top: "5px",
     left: "250px",
     [emulatorScreen(theme)]: {
       top: "-35px",
@@ -100,9 +100,9 @@ const styles = (theme) => ({
   },
 
   defaultLine: {
-    transform: "rotate(45deg)",
+    // transform: "rotate(0deg)",
     position: "absolute",
-    height: "400px",
+    height: 325,
     width: "8px",
     backgroundColor: "#1db2d7",
     borderRadius: "5px",
@@ -117,9 +117,9 @@ const styles = (theme) => ({
   },
 
   correctLine: {
-    transform: "rotate(45deg)",
+    // transform: "rotate(45deg)",
     position: "absolute",
-    height: "400px",
+    height: "325px",
     width: "8px",
     borderRadius: "5px",
     [emulatorScreen(theme)]: {

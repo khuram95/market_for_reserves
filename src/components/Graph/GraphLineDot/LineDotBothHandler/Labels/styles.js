@@ -21,8 +21,8 @@ const styles = (theme) => ({
     fontWeight: "600",
     position: "absolute",
     color: "#003e4c",
-    top: "196px",
-    left: "-115px",
+    top: "167px",
+    left: "-160px",
     [emulatorScreen(theme)]: {
       top: "80px",
       left: "-27px",
@@ -41,7 +41,7 @@ const styles = (theme) => ({
     position: "absolute",
     color: "#003e4c",
     top: "99px",
-    left: "-115px",
+    left: "-160px",
     [emulatorScreen(theme)]: {
       fontSize: "18px",
       left: "-27px",

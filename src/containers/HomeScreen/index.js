@@ -37,7 +37,7 @@ const HomeScreen = ({ classes, setCurrentScreen }) => {
         <img src={CoverImage} className={classes.logo} />
         <Grid className={classes.quizDesc}>
           <Typography variant="h5" className={classes.homeDesc}>
-            Market for Reserves (Limited and Ample)
+            Market for Reserves (Limited)
           </Typography>
         </Grid>
         <Button className={classes.submitButton} onClick={handleClick}>

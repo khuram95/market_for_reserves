@@ -269,8 +269,8 @@ const DemandCurve = (props) => {
     return D1
   }
 
-  const p2ToOrigin = () => dotCenterPosition - 34
-  const p1ToCorrect = () => answer.includes('shifts right') ? (dotCenterPosition - 70) : (dotCenterPosition)
+  const p2ToOrigin = () => 178
+  const p1ToCorrect = () => answer.includes('shifts right') ? 108 : 248
   const q2ToCorrect = () => answer.includes('shifts right') ? "265px" : '195px'
   const q1ToOrigin = () => '230px'
   const qTop = () => '330px'
@@ -281,10 +281,10 @@ const DemandCurve = (props) => {
         <Labels
           p2Top={p2ToOrigin()}
           p1Top={p1ToCorrect()}
-          originP={{ top: p2ToOrigin(), left: "225px" }}
+          originP={{ top: p2ToOrigin(), left: "248px" }}
           originCorrectP={{
             top: p1ToCorrect(),
-            left: answer.includes('shifts right') ? "250px" : '180px'
+            left: answer.includes('shifts right') ? "250px" : '248px'
           }}
           q1={{ top: qTop(), left: q1ToOrigin() }}
           q2={{ top: qTop(), left: q2ToCorrect() }}
@@ -305,9 +305,9 @@ const DemandCurve = (props) => {
           {!(answeredCorrectly === null) && <img src={showIconDefaultLine()} className={classes.lineIcon} />}
         </div>
         <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
-          {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
+          {/* {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
               style={{ opacity: "1", left: "-10px", top: answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
-          />}
+          />} */}
           {(changeIconColor && !answeredCorrectly) && <img src={D2} className={(changeIconColor && !answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />}
 
         </div>

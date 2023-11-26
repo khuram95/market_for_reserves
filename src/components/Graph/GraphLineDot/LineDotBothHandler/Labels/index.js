@@ -31,7 +31,7 @@ const Labels = (props) => {
       else return "95px";
     else if (isMobile) return "78px";
     else if (isEmulator) return "102px";
-    else return "165px";
+    else return "225px";
   };
 
   const setQ2Label = () => {
@@ -51,12 +51,17 @@ const Labels = (props) => {
 
   return (
     <span className="animate__animated animate__fadeIn">
-      <Typography className={classes.graphP1Lable}>Policy Rate 1</Typography>
+      <Typography className={classes.graphP1Lable}
+      // dangerouslySetInnerHTML={{__html: "i<sub>1<sub>"}}
+      >
+        Fed Funds Rate 1
+      </Typography>
       <Typography
         className={classes.graphP2Lable}
         style={{ top: setP2Label() }}
+        // dangerouslySetInnerHTML={{__html: "i<sub>2<sub>"}}
       >
-        Policy Rate 2
+        Fed Funds Rate 2
       </Typography>
       <>
         <div className={"P2"} style={{ position: "absolute", top: p2Top }} />
@@ -108,7 +113,7 @@ const Labels = (props) => {
           className="animate__animated animate__fadeIn"
         />
 
-        <div
+        {/* <div
           className={"Q1"}
           style={{ position: "absolute", top: q1.top, left: q1.left }}
         />
@@ -151,7 +156,7 @@ const Labels = (props) => {
           fromAnchor="20%"
           delay={true}
           className="animate__animated animate__fadeIn"
-        />
+        /> */}
       </>
     </span>
   );
