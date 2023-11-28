@@ -324,9 +324,9 @@ const DemandCurve = (props) => {
         >
           <div style={{ cursor: !disableDemand && 'pointer' }}>
             <div className={classes.dragableLine} id="draggable_line" style={{backgroundColor: draggableLineColor()}}>
-              {(showDot && answeredCorrectly) && <div className={classes.correctDot}
+              {/* {(showDot && answeredCorrectly) && <div className={classes.correctDot}
                 style={{ opacity: "1", top: answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
-              />}
+              />} */}
               {lineMovedOrNotAnswered() && <img src={(changeIconColor && answeredCorrectly) ? D2 : dBlue} className={(changeIconColor && answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />}
             </div>
           </div>

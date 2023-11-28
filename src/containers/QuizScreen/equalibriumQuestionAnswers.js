@@ -24,10 +24,11 @@ const questionAnswers = [
   },
   {
     title: "Market for Reserves",
-    question: "Economic uncertainty has many citizens holding their wealth in gold instead of cash, what happens in the money market",
+    question: "Economic uncertainty has many citizens holding their wealth in gold instead of cash.",
     subQuestion: "What happens in the market for reserves?",
     icon: oil,
     answer: "Demand curve shifts left",
+    answerShow: "Demand curve shifts down",
     type: "limited",
     graphType: "supply curve",
     briefness:

@@ -62,9 +62,7 @@ const ResultScreen = ({
 
   const quizRetry = () => {
     setAnswers([]);
-    setPhase2Answers([]);
-    setTotalBalance(0);
-    setCurrentScreen("Quiz");
+    setCurrentScreen("Home");
   };
   return (
     <Grid
