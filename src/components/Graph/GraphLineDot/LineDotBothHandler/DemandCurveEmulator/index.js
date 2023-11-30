@@ -262,94 +262,52 @@ const DemandCurveEmulator = (props) => {
       return dBlue;
     return D1;
   };
-  const p2ToOrigin = () => dotCenterPosition - 16;
-  const p1ToCorrect = () =>
-    answer.includes("shifts right")
-      ? dotCenterPosition - 40
-      : dotCenterPosition + 3;
-  const q2ToCorrect = () =>
-    answer.includes("shifts right") ? "177px" : "131px";
-  const q1ToOrigin = () => originXAxis;
-  const qTop = () => "210px";
-  const originXAxis = "153px";
+  const p2ToOrigin = () => 97
+  const p1ToCorrect = () => answer.includes('shifts right') ? 52 : 145
+  const q2ToCorrect = () => answer.includes('shifts right') ? "265px" : '195px'
+  const q1ToOrigin = () => '230px'
+  const qTop = () => '330px'
+
 
   return (
     <div>
-      {showDottedLines && (
+      {showDottedLines &&
         <Labels
           p2Top={p2ToOrigin()}
           p1Top={p1ToCorrect()}
-          originP={{ top: p2ToOrigin(), left: originXAxis }}
+          originP={{ top: p2ToOrigin(), left: 150 }}
           originCorrectP={{
             top: p1ToCorrect(),
-            left: answer.includes("shifts right") ? "165px" : "119px",
+            left: answer.includes('shifts right') ? 150 : 150
           }}
           q1={{ top: qTop(), left: q1ToOrigin() }}
           q2={{ top: qTop(), left: q2ToCorrect() }}
-          originQ={{ top: dotCenterPosition - 20, left: q1ToOrigin() }}
+          originQ={{ top: dotCenterPosition - 38, left: q1ToOrigin(), }}
           dotCorrectQ={{
-            top: answer.includes("shifts right")
-              ? dotCenterPosition - 32
-              : dotCenterPosition + 12,
-            left: q2ToCorrect(),
+            top: answer.includes('shifts right') ? (dotCenterPosition - 60) : (dotCenterPosition + 10),
+            left: q2ToCorrect()
           }}
           isMobile={false}
           isEmulator={true}
           answer={answer}
-        />
-      )}
-      <div
-        className={classes.verticalLinesContainer}
-        style={{
-          zIndex:
-            answeredCorrectly !== null && answer.includes("Demand") ? "1" : "0",
-        }}
-      >
+        />}
+      <div className={classes.verticalLinesContainer} style={{ zIndex: answeredCorrectly !== null && answer.includes("Demand") ? "1" : "0" }}>
         <div className={arrowFadeIn}>
-          <img
-            src={arrowIcon}
-            className={classes.arrows}
-            style={{ top: arrowPosition.top, left: arrowPosition.left }}
-          ></img>
+          <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left }}></img>
         </div>
-        <div className={classes.defaultLine}>
-          {!(answeredCorrectly === null) && (
-            <img src={showIconDefaultLine()} className={classes.lineIcon} />
-          )}
+        <div className={classes.defaultLine} >
+          {!(answeredCorrectly === null) && <img src={showIconDefaultLine()} className={classes.lineIcon} />}
         </div>
-        <div
-          className={classes.correctLine}
-          style={{
-            zIndex: showLine ? "1" : "-1",
-            backgroundColor: wrongPosition ? lineColor : "#508a05",
-            transition: `left ${wrongPosition ? "0s" : "1s"}`,
-            left: wrongPosition ? wrongPosition : correctPosition,
-          }}
-        >
-          {showDot && !answeredCorrectly && (
-            <div
-              className={classes.correctDot}
-              style={{
-                opacity: "1",
-                left: "-8px",
-                top: answer.includes("shifts right") ? 87 : 150,
-              }}
-            />
-          )}
-          {changeIconColor && !answeredCorrectly && (
-            <img
-              src={D2}
-              className={
-                changeIconColor && !answeredCorrectly
-                  ? classes.correctLineIcon
-                  : classes.lineIcon
-              }
-            />
-          )}
+        <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
+          {/* {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
+              style={{ opacity: "1", left: "-10px", top: answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
+          />} */}
+          {(changeIconColor && !answeredCorrectly) && <img src={D2} className={(changeIconColor && !answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />}
+
         </div>
         <Draggable
           axis="x"
-          defaultPosition={{ x: 0, y: 0 }}
+          defaultPosition={{x: 0, y: 0}}
           position={linePosition}
           scale={1}
           bounds={{ top: 0, left: -45, right: 45, bottom: 0 }}
@@ -358,28 +316,12 @@ const DemandCurveEmulator = (props) => {
           onStop={DragEndLine}
           // disabled={DisasetDisableDemand}
         >
-          <div style={{ cursor: !disableDemand && "pointer" }}>
-            <div className={classes.dragableLine} id="draggable_line">
-              <img src={dBar} style={{ height: 193, paddingTop: 110 }} />
-              {showDot && answeredCorrectly && (
-                <div
-                  className={classes.correctDot}
-                  style={{
-                    opacity: "1",
-                    top: answer.includes("shifts right") ? 87 : 150,
-                  }}
-                />
-              )}
-              {lineMovedOrNotAnswered() && (
-                <img
-                  src={changeIconColor && answeredCorrectly ? D2 : dBlue}
-                  className={
-                    changeIconColor && answeredCorrectly
-                      ? classes.correctLineIcon
-                      : classes.lineIcon
-                  }
-                />
-              )}
+          <div style={{ cursor: !disableDemand && 'pointer' }}>
+            <div className={classes.dragableLine} id="draggable_line" style={{backgroundColor: draggableLineColor()}}>
+              {/* {(showDot && answeredCorrectly) && <div className={classes.correctDot}
+                style={{ opacity: "1", top: answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
+              />} */}
+              {lineMovedOrNotAnswered() && <img src={(changeIconColor && answeredCorrectly) ? D2 : dBlue} className={(changeIconColor && answeredCorrectly) ? classes.correctLineIcon : classes.lineIcon} />}
             </div>
           </div>
         </Draggable>

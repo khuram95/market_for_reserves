@@ -27,10 +27,10 @@ const Labels = (props) => {
 
     if (answerCondition)
       if (isMobile) return "44px";
-      else if (isEmulator) return "58px";
+      else if (isEmulator) return 42;
       else return "95px";
     else if (isMobile) return "78px";
-    else if (isEmulator) return "102px";
+    else if (isEmulator) return 132;
     else return "225px";
   };
 

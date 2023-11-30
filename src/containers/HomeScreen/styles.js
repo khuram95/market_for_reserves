@@ -30,8 +30,9 @@ const styles = (theme) => ({
     height: "600px",
     width: "130px",
     [emulatorScreen(theme)]: {
-      height: "380px",
+      height: "410px",
       marginTop: "-150px",
+      width: 60,
     },
     [mobileScreen(theme)]: {
       // height: "200px",

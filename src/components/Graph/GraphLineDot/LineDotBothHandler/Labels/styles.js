@@ -24,9 +24,9 @@ const styles = (theme) => ({
     top: "167px",
     left: "-160px",
     [emulatorScreen(theme)]: {
-      top: "80px",
-      left: "-27px",
-      fontSize: "18px",
+      top: 87,
+      left: -100,
+      fontSize: 11,
     },
     [mobileScreen(theme)]: {
       top: "60px",
@@ -43,8 +43,8 @@ const styles = (theme) => ({
     top: "99px",
     left: "-160px",
     [emulatorScreen(theme)]: {
-      fontSize: "18px",
-      left: "-27px",
+      left: -100,
+      fontSize: "11px",
     },
     [mobileScreen(theme)]: {
       left: "-22px",

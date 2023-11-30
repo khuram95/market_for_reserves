@@ -6,7 +6,7 @@ const styles = (theme) => ({
     top: "5px",
     left: "250px",
     [emulatorScreen(theme)]: {
-      top: "-35px",
+      top: 0,
       left: "150px",
     },
     [mobileScreen(theme)]: {
@@ -107,7 +107,7 @@ const styles = (theme) => ({
     backgroundColor: "#1db2d7",
     borderRadius: "5px",
     [emulatorScreen(theme)]: {
-      height: "260px",
+      height: 211,
       width: "6px",
     },
     [mobileScreen(theme)]: {
@@ -123,7 +123,7 @@ const styles = (theme) => ({
     width: "8px",
     borderRadius: "5px",
     [emulatorScreen(theme)]: {
-      height: "260px",
+      height: 211,
       width: "6px",
     },
     [mobileScreen(theme)]: {

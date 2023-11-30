@@ -42,8 +42,9 @@ const styles = (theme) => ({
     top: "7px",
     left: "-134px",
     [emulatorScreen(theme)]: {
-      height: "12px",
-      left: "-60px",
+      top: 5,
+      height: 28,
+      left: -85,
     },
     [mobileScreen(theme)]: {
       height: "10px",
