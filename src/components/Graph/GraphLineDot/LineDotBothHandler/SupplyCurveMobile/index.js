@@ -106,10 +106,10 @@ const SupplyCurveMob = (props) => {
     switch (answer) {
       case "Supply curve shifts left":
         setArrowIcon(leftArrow)
-        setArrowPosition({ top: 122, left: -52 })
+        setArrowPosition({ top: 122, left: -20 })
         break;
       case "Supply curve shifts right":
-        setArrowPosition({ top: 50, left: 51 })
+        setArrowPosition({ top: 25, left: 11 })
         setArrowIcon(rightArrow)
         break;
     }
@@ -273,8 +273,8 @@ const SupplyCurveMob = (props) => {
   }
 
 
-  const p2ToOrigin = () => dotCenterPosition - 8
-  const p1ToCorrect = () => !answer.includes('shifts right') ? (dotCenterPosition - 24) : (dotCenterPosition + 9)
+  const p2ToOrigin = () => 73
+  const p1ToCorrect = () => !answer.includes('shifts right') ? 42 : 103
   const q2ToCorrect = () => answer.includes('shifts right') ? "120px" : '90px'
   const q1ToOrigin = () => originXAxis
   const qTop = () => '150px'
@@ -284,35 +284,35 @@ const SupplyCurveMob = (props) => {
     <div>
        {showDottedLines &&
           <Labels
-            p2Top={p2ToOrigin()}
-            p1Top={p1ToCorrect()}
-            originP={{ top: p2ToOrigin(), left: originXAxis }}
-            originCorrectP={{
-              top: p1ToCorrect(),
-              left: answer.includes('shifts right') ? "110px" : '80px'
-            }}
-            q1={{ top: qTop(), left: q1ToOrigin() }}
-            q2={{ top: qTop(), left: q2ToCorrect() }}
-            originQ={{ top: dotCenterPosition - 10, left: q1ToOrigin() }}
-            dotCorrectQ={{
-              top: !answer.includes('shifts right') ? (dotCenterPosition - 18) : (dotCenterPosition + 12),
-              left: q2ToCorrect()
-            }}
-            isMobile={true}
-            isEmulator={false}
-            answer={answer}
+          p2Top={p2ToOrigin()}
+          p1Top={p1ToCorrect()}
+          originP={{ top: p2ToOrigin(), left: 100 }}
+          originCorrectP={{
+            top: p1ToCorrect(),
+            left: answer.includes('shifts right') ? 130 : 70
+          }}
+          q1={{ top: qTop(), left: q1ToOrigin() }}
+          q2={{ top: qTop(), left: q2ToCorrect() }}
+          originQ={{ top: dotCenterPosition - 38, left: q1ToOrigin(), }}
+          dotCorrectQ={{
+            top: !answer.includes('shifts right') ? (dotCenterPosition - 60) : (dotCenterPosition + 10),
+            left: q2ToCorrect()
+          }}
+          isMobile={true}
+          isEmulator={false}
+          answer={answer}
         />}
       <div className={classes.verticalLinesContainer}>
         <div className={arrowFadeIn}>
           <img src={arrowIcon} className={classes.arrows} style={{ top: arrowPosition.top, left: arrowPosition.left, transform: answer.includes("shift") ? "rotate(0deg)" : "rotate(90deg)" }}></img>
         </div>
         <div className={classes.defaultLine} >
-        {!(answeredCorrectly === null) && <img src={showIconDefaultLine()} className={classes.lineIcon} />}
+          {!(answeredCorrectly === null) && <img src={showIconDefaultLine()} className={classes.lineIcon} />}
         </div>
         <div className={classes.correctLine} style={{ zIndex: showLine ? '1' : '-1', backgroundColor: wrongPosition ? lineColor : "#508a05", transition: `left ${wrongPosition ? "0s" : "1s"}`, left: wrongPosition ? wrongPosition : correctPosition }}>
-          {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
-            style={{ opacity: "1", left: "-6px", top: !answer.includes("shifts right") ? 63 : 106 }}
-          />}
+          {/* {(showDot && !answeredCorrectly) && <div className={classes.correctDot}
+            style={{ opacity: "1", left: "-10px", top: !answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
+          />} */}
           {(changeIconColor && !answeredCorrectly) && <img src={S2} className={classes.lineIcon} />}
 
         </div>
@@ -321,21 +321,18 @@ const SupplyCurveMob = (props) => {
           defaultPosition={{x: 0, y: 0}}
           position={linePosition}
           scale={1}
-          bounds={{top: 0, left: -30, right: 30, bottom: 0}}
+          bounds={{top: 0, left: -45, right: 45, bottom: 0}}
           onStart={DragStartLine}
           onDrag={DragLine}
           onStop={DragEndLine}
           // disabled={lineDisable}
         >
           <div style={{ cursor: !disableSupply && 'pointer' }}>
-            <div className={classes.lineContainer} id="draggable_line">
-              <div className={classes.dragableLine} style={{backgroundColor: draggableLineColor()}}>
-               {(showDot && answeredCorrectly) && <div className={classes.correctDot}
-                style={{ opacity: "1", top: !answer.includes("shifts right") ? 63 : 106 }}
-              />}
-              {lineMovedOrNotAnswered() && <img src={((changeIconColor && answeredCorrectly)) ? S2 : sBlue} className={classes.lineIcon} />}
-
-              </div>
+            <div className={classes.defaultLine} id="draggable_line" style={{backgroundColor: draggableLineColor()}}>
+               {/* {(showDot && answeredCorrectly) && <div className={classes.correctDot}
+                style={{ opacity: "1", top: !answer.includes("shifts right") ? (dotCenterPosition - 48) : (dotCenterPosition + 50) }}
+              />} */}
+              {lineMovedOrNotAnswered()  && <img src={((changeIconColor && answeredCorrectly)) ? S2 : sBlue} className={classes.lineIcon} />}
             </div>
           </div>
         </Draggable>

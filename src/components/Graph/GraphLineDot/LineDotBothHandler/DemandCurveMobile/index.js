@@ -265,8 +265,8 @@ const DemandCurveMobile = (props) => {
   const p2ToOrigin = () => dotCenterPosition - 8;
   const p1ToCorrect = () =>
     answer.includes("shifts right")
-      ? dotCenterPosition - 24
-      : dotCenterPosition + 9;
+      ? 42
+      : 103
   const q2ToCorrect = () =>
     answer.includes("shifts right") ? "120px" : "90px";
   const q1ToOrigin = () => originXAxis;
@@ -282,7 +282,7 @@ const DemandCurveMobile = (props) => {
           originP={{ top: p2ToOrigin(), left: originXAxis }}
           originCorrectP={{
             top: p1ToCorrect(),
-            left: answer.includes("shifts right") ? "110px" : "80px",
+            left: answer.includes("shifts right") ? "100px" : "100px",
           }}
           q1={{ top: qTop(), left: q1ToOrigin() }}
           q2={{ top: qTop(), left: q2ToCorrect() }}
@@ -326,7 +326,7 @@ const DemandCurveMobile = (props) => {
             left: wrongPosition ? wrongPosition : correctPosition,
           }}
         >
-          {showDot && !answeredCorrectly && (
+          {/* {showDot && !answeredCorrectly && (
             <div
               className={classes.correctDot}
               style={{
@@ -335,7 +335,7 @@ const DemandCurveMobile = (props) => {
                 top: answer.includes("shifts right") ? 63 : 106,
               }}
             />
-          )}
+          )} */}
           {changeIconColor && !answeredCorrectly && (
             <img
               src={D2}

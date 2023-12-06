@@ -47,8 +47,8 @@ const styles = (theme) => ({
       left: -85,
     },
     [mobileScreen(theme)]: {
-      height: "10px",
-      left: "-50px",
+      height: 21,
+      left: -62,
     },
   },
 

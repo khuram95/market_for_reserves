@@ -29,9 +29,9 @@ const styles = (theme) => ({
       fontSize: 11,
     },
     [mobileScreen(theme)]: {
-      top: "60px",
-      left: "-22px",
-      fontSize: "13px",
+      top: 63,
+      left: "-90px",
+      fontSize: "10px",
     },
   },
 
@@ -47,8 +47,8 @@ const styles = (theme) => ({
       fontSize: "11px",
     },
     [mobileScreen(theme)]: {
-      left: "-22px",
-      fontSize: "13px",
+      left: "-90px",
+      fontSize: "10px",
     },
   },
 

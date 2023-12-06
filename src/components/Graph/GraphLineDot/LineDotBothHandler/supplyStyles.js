@@ -10,7 +10,7 @@ const styles = (theme) => ({
       left: "150px",
     },
     [mobileScreen(theme)]: {
-      top: "-25px",
+      top: 0,
       left: "100px",
     },
   },
@@ -111,7 +111,7 @@ const styles = (theme) => ({
       width: "6px",
     },
     [mobileScreen(theme)]: {
-      height: "190px",
+      height: "150px",
       width: "6px",
     },
   },
@@ -127,7 +127,7 @@ const styles = (theme) => ({
       width: "6px",
     },
     [mobileScreen(theme)]: {
-      height: "190px",
+      height: "150px",
       width: "6px",
     },
   },

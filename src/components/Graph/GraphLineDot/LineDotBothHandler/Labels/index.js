@@ -24,12 +24,12 @@ const Labels = (props) => {
     let answerCondition = answer.includes("shifts left");
 
     if (answer.includes("Demand")) answerCondition = !answerCondition;
-
+    console.log("isMobile", isMobile, answerCondition)
     if (answerCondition)
-      if (isMobile) return "44px";
+      if (isMobile) return 30;
       else if (isEmulator) return 42;
       else return "95px";
-    else if (isMobile) return "78px";
+    else if (isMobile) return 93;
     else if (isEmulator) return 132;
     else return "225px";
   };
